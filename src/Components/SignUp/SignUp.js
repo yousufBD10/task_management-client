@@ -27,7 +27,7 @@ const SingUp = () => {
               name="username"
               id="username"
               placeholder="Name"
-              className="w-full px-4 py-3 rounded-md dark:border-gray-200 bg-greyish text-white"
+              className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-200 bg-greyish text-white"
             />
           </div>
           <div className="space-y-1 text-sm">
@@ -39,7 +39,7 @@ const SingUp = () => {
               name="email"
               id="email"
               placeholder="Email"
-              className="w-full px-4 py-3 rounded-md dark:border-gray-200 bg-greyish text-white"
+              className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-200 bg-greyish text-white"
             />
           </div>
           <div className="space-y-1 text-sm">
@@ -51,7 +51,7 @@ const SingUp = () => {
               name="password"
               id="password"
               placeholder="Password"
-              className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:text-white focus:dark:border-violet-400 bg-greyish"
+              className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:text-white focus:dark:border-violet-400 bg-greyish"
             />
             <div className="flex justify-end text-xs dark:text-gray-900">
               <Link rel="noopener noreferrer" to="/login">
