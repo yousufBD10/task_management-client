@@ -3,16 +3,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo/TaskMaster_logo.png'
 
 const Navbar = () => {
-    const navigate = useNavigate()
-   
-    const {user,logOut} = useContext('AuthContext');
+    // const navigate = useNavigate()
+    const user = null;
+    // const {user,logOut} = useContext('AuthContext');
     const handleLogOut=()=>{
-      logOut()
-      .then(()=>{
-        navigate('/')
+      // logOut()
+      // .then(()=>{
+      //   navigate('/')
   
-      })
-      .catch(error=>console.error(error))
+      // })
+      // .catch(error=>console.error(error))
   }
     return (
         <div className="navbar bg-base-100">
