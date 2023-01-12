@@ -1,5 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
 import taskMaster from '../assets/banner/taskMaster.png';
 
 
@@ -20,13 +19,7 @@ const Header = () => {
                     <img className='lg:w-[450px] mx-auto lg:mr-12 lg:mt-8' src={taskMaster} alt="" />
             </div>
         </div>
-=======
-import Navbar from '../Navbar/Navbar';
 
-const Header = () => {
-    return (
-        <Navbar></Navbar>
->>>>>>> 48fbe36b5bca6190514710e3f8009d8b8869b59b
     );
 };
 
