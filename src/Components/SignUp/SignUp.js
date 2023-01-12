@@ -11,7 +11,7 @@ const SingUp = () => {
     >
       <div className="w-full max-w-md p-8 space-y-1 rounded-xl bg-glass shadow-lg shadow-shade/100 m-2 backdrop-invert-1">
         <h1 className="dark:text-gray-600 text-2xl font-bold text-center">
-          Sing Up
+          Sign Up
         </h1>
         <form
           novalidate=""

@@ -9,11 +9,11 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import app from "../../firebase/firebase.config";
+import app from "../firebase/firebase.config";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
-console.log(auth);
+
 const UserContext = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -52,7 +52,7 @@ const UserContext = ({ children }) => {
     return sendEmailVerification(auth.currentUser);
   };
 
-  //   firebase reset password
+  //   firebase password reset
 
   const resetPassword = (email) => {
     setLoading(true);
