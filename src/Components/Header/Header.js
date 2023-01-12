@@ -5,7 +5,7 @@ import taskMaster from '../assets/banner/taskMaster.png';
 
 const Header = () => {
     return (
-        <div className='hello bg-gradient-to-r from-blue-700 to-indigo-300 lg:h-[85vh] grid lg:grid-cols-2 px-12'>
+        <div className='hello bg-gradient-to-r from-blue-700 to-indigo-300 lg:h-[84vh] grid lg:grid-cols-2 px-12'>
             <div>
               
                 <h1 className='text-6xl font-serif font-bold mt-12 pl-6'>One app to <br /> replace them all.</h1>
