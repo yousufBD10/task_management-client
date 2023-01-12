@@ -3,12 +3,7 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
-    <div
-      className="h-screen flex justify-center items-center bg-cover"
-      style={{
-        backgroundImage: `url("https://i.ibb.co/1bXn5G6/yoz-3.jpg")`,
-      }}
-    >
+    <div className="h-screen flex justify-center items-center">
       <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-glass shadow-lg shadow-shade/100 m-2 backdrop-invert-1">
         <h1 className="text-black text-2xl font-bold text-center">Login</h1>
 
@@ -87,8 +82,7 @@ const Login = () => {
             to="/register"
             className="underline
           dark:text-gray-100"
-          >
-            Sign up
+          > Sign up
           </Link>
         </p>
       </div>
