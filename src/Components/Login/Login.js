@@ -10,13 +10,9 @@ const Login = () => {
       }}
     >
       <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-glass shadow-lg shadow-shade/100 m-2 backdrop-invert-1">
-        <h1 className="dark:text-gray-600 text-2xl font-bold text-center">
-          Login
-        </h1>
-        <form
-          action=""
-          className="space-y-3 ng-untouched ng-pristine ng-valid"
-        >
+        <h1 className="text-black text-2xl font-bold text-center">Login</h1>
+
+        <form action="" className="space-y-3 ng-untouched ng-pristine ng-valid">
           <div className="space-y-1 text-sm">
             <label for="username" className="block dark:text-gray-600">
               Email
@@ -26,7 +22,7 @@ const Login = () => {
               name="email"
               id="email"
               placeholder="email"
-              className="w-full px-4 py-3 rounded-md dark:border-gray-200 bg-greyish outline-none"
+              className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-200 bg-greyish"
             />
           </div>
           <div className="space-y-1 text-sm">
@@ -38,7 +34,7 @@ const Login = () => {
               name="password"
               id="password"
               placeholder="Password"
-              className="w-full px-4 py-3 rounded-md dark:border-gray-700  focus:dark:border-violet-400 bg-greyish outline-none"
+              className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700  focus:dark:border-violet-400 bg-greyish"
             />
             <div className="flex justify-end text-xs dark:text-gray-900">
               <Link rel="noopener noreferrer" href="#">
@@ -88,7 +84,7 @@ const Login = () => {
           Don't have an account?
           <Link
             rel="noopener noreferrer"
-            to="/signup"
+            to="/register"
             className="underline
           dark:text-gray-100"
           >
