@@ -4,8 +4,9 @@ const Footer = () => {
     return (
         <footer className="footer p-10 bg-base-200 text-base-content">
             <div>
-                <img src='/logo.png' className="fill-current" />
-                <p>TaskMaster<br />Task Management System</p>
+                <img src='/logo.png' width="50%" />
+                <h3 className='text-3xl'>TaskMaster</h3>
+                <p>Task Management System</p>
             </div>
             <div>
                 <span className="footer-title">Services</span>
