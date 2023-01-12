@@ -11,12 +11,9 @@ const Login = () => {
     >
       <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-glass shadow-lg shadow-shade/100 m-2 backdrop-invert-1">
         <h1 className="dark:text-gray-600 text-2xl font-bold text-center">
-          Login hi every body hi tell me what
+          Login
         </h1>
-        <form
-          action=""
-          className="space-y-3 ng-untouched ng-pristine ng-valid"
-        >
+        <form action="" className="space-y-3 ng-untouched ng-pristine ng-valid">
           <div className="space-y-1 text-sm">
             <label for="username" className="block dark:text-gray-600">
               Email
