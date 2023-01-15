@@ -26,65 +26,69 @@ const UserContext = ({ children }) => {
   const gitHubProvider = new GithubAuthProvider();
   const twitterProvider = new TwitterAuthProvider();
 
-  //  Firebase create user
+  //-----------Firebase create user------------
 
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  //  Firebase create login
+  //-------Firebase create login ----------
   const signIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
-  //  Firebase google sign In
+
+  //-------Firebase google sign In-----
 
   const signInWithGoogle = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
-  //  Firebase Twitter sign In
+  // ---------- Firebase Twitter sign In---------
+
   const signInWithTwitter = () => {
     setLoading(true);
     return signInWithPopup(auth, twitterProvider);
   };
-  //  Firebase GitHub sign In
+
+  //-------Firebase GitHub sign In ---------
+
   const signInWithGitHub = () => {
     setLoading(true);
     return signInWithPopup(auth, gitHubProvider);
   };
 
-  // Firebase logOut
+  //-------- Firebase logOut -----------
 
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
   };
 
-  //   firebase update name
+  // -------- firebase update name ---------
 
   const updateName = () => {
     setLoading(true);
     return updateProfile(auth.currentUser, { displayName: "name" });
   };
 
-  //   firebase email verification
+  //--------- firebase email verification -----------
 
   const verifyEmail = () => {
     setLoading(true);
     return sendEmailVerification(auth.currentUser);
   };
 
-  //   firebase password reset
+  //--------- firebase password reset ---------
 
   const resetPassword = (email) => {
     setLoading(true);
     return sendPasswordResetEmail(auth, email);
   };
 
-  //   observer
+  //----------- observer ----------
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -95,6 +99,8 @@ const UserContext = ({ children }) => {
 
     return () => unsubscribe();
   }, []);
+
+  //==================== auth Info======================
   const authInfo = {
     user,
     loading,
