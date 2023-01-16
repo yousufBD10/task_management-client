@@ -7,6 +7,7 @@ import Boards from "../Components/Workspace/Boards";
 import CreateWordspace from "../Components/Workspace/CreateWordspace";
 import Members from "../Components/Workspace/Members";
 import Settings from "../Components/Workspace/Settings";
+import Workspace from "../Components/Workspace/Workspace";
 import App from "../Layout/App";
 import Main from "../Layout/Main";
 
@@ -31,35 +32,36 @@ const Router = createBrowserRouter([
         path: "/profile",
         element: <UserProfile />,
       },
+      {
+        path: "/workspace",
+        element: <Workspace/>,
+        children: [
+          {
+            path: "/workspace/boards",
+            element: <Boards />,
+          },
+          {
+            path: "/workspace/settings",
+            element: <Settings />,
+          },
+          {
+            path: "/workspace/members",
+            element: <Members />,
+          },
+          {
+            path: "/workspace/create",
+            element: <CreateWordspace />,
+          },
+        ],
+      },
+    
+      {
+        path: "*",
+        element: <div />,
+      },
     ],
   },
-  {
-    path: "/workspace",
-    element: <App />,
-    children: [
-      {
-        path: "/workspace/boards",
-        element: <Boards />,
-      },
-      {
-        path: "/workspace/settings",
-        element: <Settings />,
-      },
-      {
-        path: "/workspace/members",
-        element: <Members />,
-      },
-      {
-        path: "/workspace/create",
-        element: <CreateWordspace />,
-      },
-    ],
-  },
-
-  {
-    path: "*",
-    element: <div />,
-  },
+  
 ]);
 
 export default Router;
