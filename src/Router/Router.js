@@ -3,6 +3,7 @@ import Homepage from "../Components/Homepage/Homepage";
 import Login from "../Components/Login/Login";
 import SingUp from "../Components/SignUp/SignUp";
 import Main from "../Layout/Main";
+import Error from "../Share/Error";
 
 const Router = createBrowserRouter([
   {
@@ -26,7 +27,7 @@ const Router = createBrowserRouter([
 
   {
     path: "*",
-    element: <div />,
+    element: <Error></Error>,
   },
 ]);
 
