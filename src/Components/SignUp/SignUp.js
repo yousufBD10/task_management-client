@@ -24,7 +24,6 @@ const SingUp = () => {
     }
 
     // ----create user---
-
     createUser(email, password)
       .then((result) => {
         const user = result.user;
@@ -48,32 +47,49 @@ const SingUp = () => {
       .catch((error) => toast.error(error.message));
   };
 
+    createUser(email, password)
+    .then((result) => {
+      const user = result.user;
+      console.log(user);
+      toast.success("Users Successfully created!");
+      const userInfo = {
+        displayName: name,
+      };
+      updateName(userInfo)
+        .then(() => {
+          navigate("/");
+        })
+        .catch((err) => console.log(err));
+    });
+  };
+
   return (
-    <div className="h-screen flex justify-center items-center bg-cover bg-hero bg-no-repeat">
+    <div
+      className="h-screen flex justify-center items-center">
       <div className="w-full max-w-md p-8 space-y-1 rounded-xl bg-glass shadow-lg shadow-shade/100 m-2 backdrop-invert-1">
         <h1 className="dark:text-gray-600 text-2xl font-bold text-center">
           Sign Up
         </h1>
-        <form
-          onSubmit={handleSignUp}
+        <form onSubmit={handleSignUp}
           novalidate=""
           action=""
           className="space-y-3 ng-untouched ng-pristine ng-valid"
         >
           <div className="space-y-1 text-sm">
-            <label for="username" className="block dark:text-gray-600">
-              Username
+            <label  className="block dark:text-gray-600">
+              Full name
             </label>
             <input
               type="text"
               name="name"
+              id="name"
               placeholder="Name"
               className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-200 bg-greyish text-white"
               required
             />
           </div>
           <div className="space-y-1 text-sm">
-            <label for="username" className="block dark:text-gray-600">
+            <label  className="block dark:text-gray-600">
               Email
             </label>
             <input
@@ -85,7 +101,7 @@ const SingUp = () => {
             />
           </div>
           <div className="space-y-1 text-sm">
-            <label for="password" className="block dark:text-gray-600">
+            <label  className="block dark:text-gray-600">
               Password
             </label>
             <input
@@ -102,7 +118,7 @@ const SingUp = () => {
               </Link>
             </div>
           </div>
-          <button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 bg-buttomish">
+          <button type="submit" className="block w-full p-3 text-center rounded-sm dark:text-gray-900 bg-buttomish">
             Sign in
           </button>
         </form>

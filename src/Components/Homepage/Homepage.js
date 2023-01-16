@@ -1,9 +1,13 @@
-import Login from '../Login/Login';
 import React from 'react';
+import Features from '../Features/Features';
+import Header from '../Header/Header';
 
 const Homepage = () => {
     return (
-        <Login></Login>
+        <div>
+            <Header />
+            <Features></Features>
+        </div>
     );
 };
 
