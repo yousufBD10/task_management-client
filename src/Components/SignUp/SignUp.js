@@ -1,7 +1,61 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { GoogleAuthProvider } from "firebase/auth";
+import React, { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from "../../Context/UserContext";
 
 const SingUp = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  const { createUser, updateName ,sinInGoogle} = useContext(AuthContext);
+
+  const handleSingUp = (e)=>{
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(name,password,email);
+    createUser(email, password)
+    .then((result) => {
+      const user = result.user;
+      console.log(user);
+      toast.success("Users Successfully created!");
+      const userInfo = {
+        displayName: name,
+      };
+      updateName(userInfo)
+        .then(() => {
+          navigate("/");
+        })
+        .catch((err) => console.log(err));
+    });
+  };
+
+  const googleProvider = new GoogleAuthProvider();
+  const handleGoogleSignin = () => {
+    sinInGoogle(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+       
+       
+        
+        const currentUser = {
+          email: user.email
+      }
+
+      console.log(currentUser);
+      
+
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
     <div
       className="h-screen flex justify-center items-center">
@@ -9,25 +63,25 @@ const SingUp = () => {
         <h1 className="dark:text-gray-600 text-2xl font-bold text-center">
           Sign Up
         </h1>
-        <form
+        <form onSubmit={handleSingUp}
           novalidate=""
           action=""
           className="space-y-3 ng-untouched ng-pristine ng-valid"
         >
           <div className="space-y-1 text-sm">
-            <label for="username" className="block dark:text-gray-600">
-              Username
+            <label  className="block dark:text-gray-600">
+              Full name
             </label>
             <input
               type="text"
-              name="username"
-              id="username"
+              name="name"
+              id="name"
               placeholder="Name"
               className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-200 bg-greyish text-white"
             />
           </div>
           <div className="space-y-1 text-sm">
-            <label for="username" className="block dark:text-gray-600">
+            <label  className="block dark:text-gray-600">
               Email
             </label>
             <input
@@ -39,7 +93,7 @@ const SingUp = () => {
             />
           </div>
           <div className="space-y-1 text-sm">
-            <label for="password" className="block dark:text-gray-600">
+            <label  className="block dark:text-gray-600">
               Password
             </label>
             <input
@@ -55,7 +109,7 @@ const SingUp = () => {
               </Link>
             </div>
           </div>
-          <button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 bg-buttomish">
+          <button type="submit" className="block w-full p-3 text-center rounded-sm dark:text-gray-900 bg-buttomish">
             Sign in
           </button>
         </form>
@@ -67,7 +121,7 @@ const SingUp = () => {
           <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
         </div>
         <div className="flex justify-center space-x-4">
-          <button
+          <button  onClick={handleGoogleSignin} 
             aria-label="Log in with Google"
             className="p-3 rounded-full w-12 h-12 bg-glass shadow-lg shadow-shade/100"
           >

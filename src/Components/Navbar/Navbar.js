@@ -1,16 +1,17 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Context/UserContext';
 
 const Navbar = () => {
-  // const navigate = useNavigate()
-  const user = null;
-  // const {user,logOut} = useContext('AuthContext');
+  const navigate = useNavigate()
+
+  const {user,logOut} = useContext(AuthContext);
   const handleLogOut = () => {
-    // logOut()
-    // .then(()=>{
-    //   navigate('/')
-    // })
-    // .catch(error=>console.error(error))
+    logOut()
+    .then(()=>{
+      navigate('/')
+    })
+    .catch(error=>console.error(error))
   }
   return (
     <div className="navbar bg-base-100 shadow-md">
@@ -21,8 +22,14 @@ const Navbar = () => {
           </label>
           <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
             <Link to='/'>  <li><a>Home</a></li></Link>
+          
+           
+            {
+              user?.uid &&  <Link to='/workspace'><li><a>Workspace</a></li></Link>
+            }
             <Link to='/service'>  <li><a>Service</a></li></Link>
-            <Link to='/'>  <li><a>About</a></li></Link>
+            <Link to='/about'>  <li><a>About</a></li></Link>
+            <Link to='/about'>  <li><a>Templete</a></li></Link>
             {/* <li tabIndex={0}>
                 <a className="justify-between">
                   Parent
