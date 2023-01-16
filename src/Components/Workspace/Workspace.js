@@ -20,7 +20,7 @@ const Workspace = () => {
         <div className="drawer-content ">
           <Outlet></Outlet>
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side shadow-md">
           <label htmlFor="dashboardDawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80  bg-zinc-100 ">
           <Link to='/workspace/boards' > <li className='shadow-sm mb-2 rounded-full'><a> <MdOutlineSpaceDashboard/>Boards</a></li></Link>
