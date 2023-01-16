@@ -2,11 +2,15 @@ import React, { createContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  GithubAuthProvider,
+  GoogleAuthProvider,
   onAuthStateChanged,
   sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
+  TwitterAuthProvider,
   updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
@@ -17,17 +21,40 @@ const auth = getAuth(app);
 const UserContext = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  
+  const googleProvider = new GoogleAuthProvider();
+  const gitHubProvider = new GithubAuthProvider();
+  const twitterProvider = new TwitterAuthProvider();
 
-  //  Firebase create user
+  //-----------Firebase create user------------
+
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  //  Firebase create login
+  //-------Firebase create login ----------
   const signIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  //-------Firebase google sign In-----
+  const signInWithGoogle = () => {
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider);
+  };
+
+  // ---------- Firebase Twitter sign In---------
+  const signInWithTwitter = () => {
+    setLoading(true);
+    return signInWithPopup(auth, twitterProvider);
+  };
+
+  //-------Firebase GitHub sign In ---------
+  const signInWithGitHub = () => {
+    setLoading(true);
+    return signInWithPopup(auth, gitHubProvider);
   };
 
   // Firebase logOut
@@ -36,24 +63,25 @@ const UserContext = ({ children }) => {
     return signOut(auth);
   };
 
-  //   firebase update name
-
+  // -------- firebase update name ---------
   const updateName = (profile) => {
     setLoading(true);
     return updateProfile(auth.currentUser,profile);
   };
+
 
   //   firebase email verification
   const verifyEmail = () => {
     setLoading(true);
     return sendEmailVerification(auth.currentUser);
   };
-
+  
   //   firebase password reset
   const resetPassword = (email) => {
     setLoading(true);
     return sendPasswordResetEmail(auth, email);
   };
+
 
   //   observer
   useEffect(() => {
@@ -66,12 +94,16 @@ const UserContext = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  //==================== auth Info======================
   const authInfo = {
     user,
     loading,
     createUser,
     updateName,
     verifyEmail,
+    signInWithGoogle,
+    signInWithTwitter,
+    signInWithGitHub,
     signIn,
     logOut,
     resetPassword,

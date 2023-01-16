@@ -10,6 +10,7 @@ import Settings from "../Components/Workspace/Settings";
 import Workspace from "../Components/Workspace/Workspace";
 import App from "../Layout/App";
 import Main from "../Layout/Main";
+import Error from "../Share/Error";
 
 const Router = createBrowserRouter([
   {
@@ -32,11 +33,9 @@ const Router = createBrowserRouter([
         path: "/profile",
         element: <UserProfile />,
       },
-      
-    
       {
         path: "*",
-        element: <div />,
+        element: <Error></Error>,
       },
     ],
   },
