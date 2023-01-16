@@ -88,13 +88,13 @@ const Login = () => {
           <GitHubSignIn></GitHubSignIn>
         </div>
         <p className="text-xs text-center sm:px-6 dark:text-gray-400">
-          Don't have an account?
+          Don't have an account? 
           <Link
             rel="noopener noreferrer"
             to="/register"
             className="underline
           dark:text-gray-100"
-          > Sign up
+          >Sign up
           </Link>
         </p>
       </div>
