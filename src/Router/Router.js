@@ -32,32 +32,33 @@ const Router = createBrowserRouter([
         path: "/profile",
         element: <UserProfile />,
       },
-      {
-        path: "/workspace",
-        element: <Workspace/>,
-        children: [
-          {
-            path: "/workspace/boards",
-            element: <Boards />,
-          },
-          {
-            path: "/workspace/settings",
-            element: <Settings />,
-          },
-          {
-            path: "/workspace/members",
-            element: <Members />,
-          },
-          {
-            path: "/workspace/create",
-            element: <CreateWordspace />,
-          },
-        ],
-      },
+      
     
       {
         path: "*",
         element: <div />,
+      },
+    ],
+  },
+  {
+    path: "/workspace",
+    element: <Workspace/>,
+    children: [
+      {
+        path: "/workspace/boards",
+        element: <Boards />,
+      },
+      {
+        path: "/workspace/settings",
+        element: <Settings />,
+      },
+      {
+        path: "/workspace/members",
+        element: <Members />,
+      },
+      {
+        path: "/workspace/create",
+        element: <CreateWordspace />,
       },
     ],
   },
