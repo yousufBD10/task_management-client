@@ -1,7 +1,7 @@
 import React from 'react';
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { BiUser } from "react-icons/bi";
-import { AiOutlineSetting } from "react-icons/ai";
+import { AiOutlineCalendar, AiOutlineSetting, AiOutlineTable } from "react-icons/ai";
 import { Link } from 'react-router-dom';
 
 const Workspace = () => {
@@ -21,8 +21,10 @@ const Workspace = () => {
      <Link to='/workspace/boards' > <li className='shadow-sm mb-2 rounded-full'><a> <MdOutlineSpaceDashboard/>Boards</a></li></Link>
       <Link to='/workspace/members'><li className='shadow-sm mb-2 rounded-full'><a> <BiUser/>Members</a></li></Link>
      <Link to='/workspace/settings'> <li className='shadow-sm mb-2 rounded-full'><a> <AiOutlineSetting/>Settings</a></li></Link>
-     
-     
+     <h3 className='mb-2 font-medium'>Workspace views</h3>
+     <Link to='/workspace/settings'> <li className='shadow-sm mb-2 rounded-full'><a> <AiOutlineTable/>Table</a></li></Link>
+     <Link to='/workspace/settings'> <li className='shadow-sm mb-2 rounded-full'><a> <AiOutlineCalendar/>Caleder</a></li></Link>
+     <h3 className='mb-2 font-medium'>Your boards</h3>
     </ul>
   
   </div>
