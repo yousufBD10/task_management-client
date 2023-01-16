@@ -19,7 +19,6 @@ const UserContext = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   //  Firebase create user
-
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -32,7 +31,6 @@ const UserContext = ({ children }) => {
   };
 
   // Firebase logOut
-
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
@@ -46,21 +44,18 @@ const UserContext = ({ children }) => {
   };
 
   //   firebase email verification
-
   const verifyEmail = () => {
     setLoading(true);
     return sendEmailVerification(auth.currentUser);
   };
 
   //   firebase password reset
-
   const resetPassword = (email) => {
     setLoading(true);
     return sendPasswordResetEmail(auth, email);
   };
 
   //   observer
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       // console.log("user observing");
@@ -70,6 +65,7 @@ const UserContext = ({ children }) => {
 
     return () => unsubscribe();
   }, []);
+
   const authInfo = {
     user,
     loading,
