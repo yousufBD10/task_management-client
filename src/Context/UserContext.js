@@ -37,9 +37,10 @@ const UserContext = ({ children }) => {
   };
 
   //   firebase update name
-  const updateName = () => {
+
+  const updateName = (profile) => {
     setLoading(true);
-    return updateProfile(auth.currentUser, { displayName: "name" });
+    return updateProfile(auth.currentUser,profile);
   };
 
   //   firebase email verification
