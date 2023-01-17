@@ -7,9 +7,8 @@ import Boards from "../Components/Workspace/Boards";
 import CreateWordspace from "../Components/Workspace/CreateWordspace";
 import Members from "../Components/Workspace/Members";
 import Settings from "../Components/Workspace/Settings";
-import Workspace from "../Components/Workspace/Workspace";
-import App from "../Layout/App";
 import Main from "../Layout/Main";
+import Workspace from "../Layout/Workspace";
 import Error from "../Share/Error";
 import PrivateRoute from "./PrivateRoute";
 
@@ -42,7 +41,7 @@ const Router = createBrowserRouter([
   },
   {
     path: "/workspace",
-    element: <PrivateRoute><Workspace /></PrivateRoute>,
+    element: <PrivateRoute><Workspace/></PrivateRoute>,
     children: [
       {
         path: "/workspace/boards",
