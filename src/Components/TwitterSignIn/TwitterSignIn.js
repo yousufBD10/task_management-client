@@ -3,12 +3,12 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/UserContext";
 
 const TwitterSignIn = () => {
-  const { signInWithTwitter } = useContext(AuthContext);
+  const { signInWithTwitter, jwtANDUser } = useContext(AuthContext);
 
   const handleTwitter = () => {
     signInWithTwitter()
       .then((result) => {
-        const user = result.user;
+        jwtANDUser(result.user);
         toast.success("successfully login");
       })
       .catch((error) => toast.error(error.message));

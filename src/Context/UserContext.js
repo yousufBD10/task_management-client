@@ -14,6 +14,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import useLogin from "../hooks/useLogin";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -21,10 +22,30 @@ const auth = getAuth(app);
 const UserContext = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  
+
   const googleProvider = new GoogleAuthProvider();
   const gitHubProvider = new GithubAuthProvider();
   const twitterProvider = new TwitterAuthProvider();
+
+
+  //push data on server when user signup/login
+  const [LoginInfo, setLoginInfo] = useState({});
+  const jwtANDUser = (result, insert = true, role = 'user') => {
+    setLoading(true);
+    setLoginInfo({
+      email: result.user.email,
+      name: result.user.displayName,
+      photoURL: result.user.photoURL,
+      role,
+      insert,
+    }); setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }
+
+  useEffect(() => {
+    useLogin(LoginInfo);
+  }, [LoginInfo]);
 
   //-----------Firebase create user------------
 
@@ -66,7 +87,7 @@ const UserContext = ({ children }) => {
   // -------- firebase update name ---------
   const updateName = (profile) => {
     setLoading(true);
-    return updateProfile(auth.currentUser,profile);
+    return updateProfile(auth.currentUser, profile);
   };
 
 
@@ -75,7 +96,7 @@ const UserContext = ({ children }) => {
     setLoading(true);
     return sendEmailVerification(auth.currentUser);
   };
-  
+
   //   firebase password reset
   const resetPassword = (email) => {
     setLoading(true);
@@ -107,6 +128,7 @@ const UserContext = ({ children }) => {
     signIn,
     logOut,
     resetPassword,
+    jwtANDUser
   };
   return (
     <div>

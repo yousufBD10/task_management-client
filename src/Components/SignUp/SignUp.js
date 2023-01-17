@@ -9,7 +9,7 @@ import TwitterSignIn from "../TwitterSignIn/TwitterSignIn";
 
 const SingUp = () => {
   useDocumentTitle("Signup");
-  const { user, createUser, updateName, verifyEmail } = useContext(AuthContext);
+  const { user, createUser, updateName, verifyEmail, jwtANDUser } = useContext(AuthContext);
   const [passwordError, setPasswordError] = useState();
 
   const handleSignUp = (e) => {
@@ -38,6 +38,7 @@ const SingUp = () => {
             verifyEmail()
               .then(() => {
                 toast.success("Successfully created your account");
+                jwtANDUser(user);
               })
               .catch((error) => {
                 toast.error(error.message);

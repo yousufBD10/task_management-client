@@ -3,12 +3,12 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/UserContext";
 
 const GoogleSignIn = () => {
-  const { signInWithGoogle } = useContext(AuthContext);
+  const { signInWithGoogle, jwtANDUser } = useContext(AuthContext);
 
   const handleGoogle = () => {
     signInWithGoogle()
       .then((result) => {
-        const user = result.user;
+        jwtANDUser(result.user);
         toast.success("successfully login");
       })
 

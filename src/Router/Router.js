@@ -41,7 +41,7 @@ const Router = createBrowserRouter([
   },
   {
     path: "/workspace",
-    element: <Workspace/>,
+    element: <PrivateRoute><Workspace /></PrivateRoute>,
     children: [
       {
         path: "/workspace/boards",
@@ -61,7 +61,7 @@ const Router = createBrowserRouter([
       },
     ],
   },
-  
+
 ]);
 
 export default Router;

@@ -18,6 +18,7 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
+        jwtANDUser(user, false);
         toast.success("Successfully login");
         form.reset();
       })
@@ -88,7 +89,7 @@ const Login = () => {
           <GitHubSignIn></GitHubSignIn>
         </div>
         <p className="text-xs text-center sm:px-6 dark:text-gray-400">
-          Don't have an account? 
+          Don't have an account?
           <Link
             rel="noopener noreferrer"
             to="/register"

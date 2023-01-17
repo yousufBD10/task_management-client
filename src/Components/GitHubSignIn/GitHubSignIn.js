@@ -3,11 +3,11 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/UserContext";
 
 const GitHubSignIn = () => {
-  const { signInWithGitHub } = useContext(AuthContext);
+  const { signInWithGitHub, jwtANDUser } = useContext(AuthContext);
   const handleGitHub = () => {
     signInWithGitHub()
       .then((result) => {
-        const user = result.user;
+        jwtANDUser(result.user);
         toast.success("successfully login");
       })
       .catch((error) => toast.error(error.message));
