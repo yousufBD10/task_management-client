@@ -11,6 +11,7 @@ import Workspace from "../Components/Workspace/Workspace";
 import App from "../Layout/App";
 import Main from "../Layout/Main";
 import Error from "../Share/Error";
+import PrivateRoute from "./PrivateRoute";
 
 const Router = createBrowserRouter([
   {

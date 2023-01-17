@@ -30,12 +30,12 @@ const UserContext = ({ children }) => {
 
   //push data on server when user signup/login
   const [LoginInfo, setLoginInfo] = useState({});
-  const jwtANDUser = (result, insert = true, role = 'user') => {
+  const jwtANDUser = (user, insert = true, role = 'user') => {
     setLoading(true);
     setLoginInfo({
-      email: result.user.email,
-      name: result.user.displayName,
-      photoURL: result.user.photoURL,
+      email: user.email,
+      name: user.displayName,
+      photoURL: user.photoURL,
       role,
       insert,
     }); setTimeout(() => {
@@ -43,9 +43,7 @@ const UserContext = ({ children }) => {
     }, 1000);
   }
 
-  useEffect(() => {
-    useLogin(LoginInfo);
-  }, [LoginInfo]);
+  useLogin(LoginInfo);
 
   //-----------Firebase create user------------
 

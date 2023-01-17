@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
-import { AuthContext } from '../Contexts/UserContext';
+import { AuthContext } from '../Context/UserContext';
 import useRole from '../hooks/useRole';
 
 const RoleRoute = ({ children, for_role }) => {

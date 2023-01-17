@@ -7,7 +7,7 @@ import GoogleSignIn from "../GoogleSignIn/GoogleSignIn";
 import TwitterSignIn from "../TwitterSignIn/TwitterSignIn";
 
 const Login = () => {
-  const { signIn, resetPassword } = useContext(AuthContext);
+  const { signIn, resetPassword, jwtANDUser } = useContext(AuthContext);
   const [userEmail, setUserEmail] = useState("");
 
   const handleLogIn = (event) => {
@@ -89,8 +89,7 @@ const Login = () => {
           <GitHubSignIn></GitHubSignIn>
         </div>
         <p className="text-xs text-center sm:px-6 dark:text-gray-400">
-          Don't have an account?
-          <Link
+          Don't have an account? <Link
             rel="noopener noreferrer"
             to="/register"
             className="underline
