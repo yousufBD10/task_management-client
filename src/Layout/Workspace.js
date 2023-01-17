@@ -26,15 +26,15 @@ const Workspace = () => {
             <Link to='/workspace/boards' > <li className='shadow-sm mb-2 rounded-full'><a> <MdOutlineSpaceDashboard />Boards</a></li></Link>
             <Link to='/workspace/members'><li className='shadow-sm mb-2 rounded-full'><a> <BiUser />Members</a></li></Link>
             <div className="collapse">
-  <input type="checkbox" className="peer" /> 
-  <div className="collapse-title shadow-sm mb-2 rounded-full hover:bg-glass flex items-center gap-28 ">
-  All Members <TiArrowUnsorted/>
-  </div>
-  <div className="collapse-content bg-glass "> 
-  <Link to='/workspace/members'><li className='shadow-sm mb-2 rounded-none hover:rounded-none w-full bg-blue-500'><a> <BiUser />Members</a></li></Link>
-  <Link to='/workspace/members'><li className='shadow-sm mb-2 rounded-full'><a> <BiUser />Members</a></li></Link>
-  </div>
-</div>
+              <input type="checkbox" className="peer" />
+              <div className="collapse-title shadow-sm mb-2 rounded-full hover:bg-glass flex items-center gap-28 ">
+                All Members <TiArrowUnsorted />
+              </div>
+              <div className="collapse-content bg-glass ">
+                <Link to='/workspace/members'><li className='shadow-sm mb-2 rounded-none hover:rounded-none w-full bg-blue-500'><a> <BiUser />Members</a></li></Link>
+                <Link to='/workspace/members'><li className='shadow-sm mb-2 rounded-full'><a> <BiUser />Members</a></li></Link>
+              </div>
+            </div>
             <Link to='/workspace/settings'> <li className='shadow-sm mb-2 rounded-full'><a> <AiOutlineSetting />Settings</a></li></Link>
             <h3 className='mb-2 font-medium'>Workspace views</h3>
             <Link to='/workspace/settings'> <li className='shadow-sm mb-2 rounded-full'><a> <AiOutlineTable />Table</a></li></Link>
