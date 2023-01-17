@@ -32,8 +32,8 @@ const SingUp = () => {
       .then((result) => {
         const user = result.user;
         form.reset();
-
         //--- update profile name-----
+
         updateName(name)
           .then(() => {
             //----- verify user email -----
@@ -45,10 +45,14 @@ const SingUp = () => {
               .catch((error) => {
                 toast.error(error.message);
               });
+            // ---- verify user email end------
           })
           .catch((error) => toast.error(error.message));
       })
+      //------- update user profile end-------
       .catch((error) => toast.error(error.message));
+
+    // ------------create user end----------
   };
 
   return (
