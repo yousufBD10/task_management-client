@@ -2,11 +2,13 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/UserContext";
+import useDocumentTitle from "../../Share/useDocumentTitle";
 import GitHubSignIn from "../GitHubSignIn/GitHubSignIn";
 import GoogleSignIn from "../GoogleSignIn/GoogleSignIn";
 import TwitterSignIn from "../TwitterSignIn/TwitterSignIn";
 
 const SingUp = () => {
+  useDocumentTitle("Signup");
   const { user, createUser, updateName, verifyEmail } = useContext(AuthContext);
   const [passwordError, setPasswordError] = useState();
 
