@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/UserContext';
+import { CgLogOut } from "react-icons/cg";
 
 const Navbar = () => {
   const navigate = useNavigate()
@@ -74,7 +75,7 @@ const Navbar = () => {
                     Profile
                   </Link>
                 </li>
-                <li><a onClick={handleLogOut}>Logout</a></li>
+                <li><a className='gap-1 items-center' onClick={handleLogOut}><CgLogOut></CgLogOut>Logout</a></li>
               </ul>
             </div></> :
             <>
