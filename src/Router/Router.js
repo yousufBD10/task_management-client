@@ -11,6 +11,7 @@ import Workspace from "../Components/Workspace/Workspace";
 import App from "../Layout/App";
 import Main from "../Layout/Main";
 import Error from "../Share/Error";
+import PrivateRoute from "./PrivateRoute";
 
 const Router = createBrowserRouter([
   {
@@ -41,7 +42,7 @@ const Router = createBrowserRouter([
   },
   {
     path: "/workspace",
-    element: <Workspace/>,
+    element: <PrivateRoute><Workspace /></PrivateRoute>,
     children: [
       {
         path: "/workspace/boards",
@@ -61,7 +62,7 @@ const Router = createBrowserRouter([
       },
     ],
   },
-  
+
 ]);
 
 export default Router;
