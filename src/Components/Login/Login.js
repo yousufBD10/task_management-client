@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/UserContext";
 import GitHubSignIn from "../GitHubSignIn/GitHubSignIn";
@@ -9,6 +9,11 @@ import TwitterSignIn from "../TwitterSignIn/TwitterSignIn";
 const Login = () => {
   const { signIn, resetPassword, jwtANDUser } = useContext(AuthContext);
   const [userEmail, setUserEmail] = useState("");
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from?.pathname || "/";
 
   const handleLogIn = (event) => {
     const form = event.target;
@@ -21,6 +26,7 @@ const Login = () => {
         jwtANDUser(user, false);
         toast.success("Successfully login");
         form.reset();
+        navigate(from, { replace: true });
       })
       .catch((error) => toast.error(error.message));
   };
@@ -89,12 +95,14 @@ const Login = () => {
           <GitHubSignIn></GitHubSignIn>
         </div>
         <p className="text-xs text-center sm:px-6 dark:text-gray-400">
-          Don't have an account? <Link
+          Don't have an account?
+          <Link
             rel="noopener noreferrer"
             to="/register"
             className="underline
           dark:text-gray-100"
-          >Sign up
+          >
+            Sign up
           </Link>
         </p>
       </div>
