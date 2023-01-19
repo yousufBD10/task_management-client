@@ -56,10 +56,10 @@ const Boards = () => {
     <div>
       <div className="flex justify-between mt-8 pr-5">
         <h1 className="text-xl font-medium px-5">Boards</h1>
-        <label
-          htmlFor="new-board"
+        <a
+          href="#new-board"
           className="btn btn-primary btn-sm rounded-sm"
-        > Create new board </label>
+        > Create new board </a>
       </div>
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 px-5 ">
@@ -72,9 +72,9 @@ const Boards = () => {
           </div>
         ))}
       </div>
-      <input type="checkbox" id="new-board" className="modal-toggle" />
-      <div className="modal">
+      <div id="new-board" className="modal">
         <div className="modal-box">
+          <a href="#" className="btn btn-sm btn-circle absolute right-2 top-2 z-30 hover:rotate-90 transition-all ease-in close_modal">✕</a>
           <form onSubmit={handleSubmit}>
             <div className="mt-6 space-y-6">
               <div>
@@ -85,9 +85,7 @@ const Boards = () => {
             <div className="space-x-4 mt-8">
               <button type="submit" className="w-full btn btn-primary rounded-md font-bold">Save</button>
             </div>
-          </form><div className="modal-action">
-            <label htmlFor="new-board" className="btn close_modal">Close</label>
-          </div>
+          </form>
         </div>
       </div>
     </div>
