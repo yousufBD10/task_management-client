@@ -76,7 +76,7 @@ const ToDoCard = () => {
                         <div className="flex justify-between items-center gap-1">
                             <button className="w-10/12 hover:bg-gray-300 px-2 py-1 text-start" onClick={() => setData([...data, "1"])}>➕
                                 Add a Card</button>
-                            <button className="hover:bg-gray-300 px-2 py-1">📝</button>
+                            <a href="#new-board-modal" className="hover:bg-gray-300 px-2 py-1">📝</a>
                         </div>
                     </div>
                 </div>

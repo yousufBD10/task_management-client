@@ -16,17 +16,15 @@ import { TbTemplate } from "react-icons/tb";
 
 const NewBoardModal = () => {
   return (
-    // modal of created new board
     <div>
-      <input type="checkbox" id="new-board-modal" className="modal-toggle" />
-      <div className="modal">
+      <div id="new-board-modal" className="modal">
         <div className="modal-box rounded-sm max-w-screen-md mx-2">
-          <label
-            htmlFor="new-board-modal"
+          <a
+            href="#"
             className="btn btn-ghost btn-sm absolute right-2 top-2"
           >
             ✕
-          </label>
+          </a>
 
           <div className="grid grid-cols-4 -mr-4">
             <div className="px-6 dark:text-gray-500 col-span-4 md:col-span-3">
