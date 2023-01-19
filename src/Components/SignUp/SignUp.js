@@ -2,12 +2,14 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/UserContext";
+import useDocumentTitle from "../../Share/useDocumentTitle";
 import GitHubSignIn from "../GitHubSignIn/GitHubSignIn";
 import GoogleSignIn from "../GoogleSignIn/GoogleSignIn";
 import TwitterSignIn from "../TwitterSignIn/TwitterSignIn";
 
 const SingUp = () => {
-  const { user, createUser, updateName, verifyEmail } = useContext(AuthContext);
+  useDocumentTitle("Signup");
+  const { user, createUser, updateName, verifyEmail, jwtANDUser } = useContext(AuthContext);
   const [passwordError, setPasswordError] = useState();
   const location = useLocation();
   const navigate = useNavigate();
@@ -41,6 +43,7 @@ const SingUp = () => {
               .then(() => {
                 toast.success("Successfully created your account");
                 navigate(from, { replace: true });
+                jwtANDUser(user);
               })
               .catch((error) => {
                 toast.error(error.message);

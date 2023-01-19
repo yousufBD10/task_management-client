@@ -7,7 +7,7 @@ import GoogleSignIn from "../GoogleSignIn/GoogleSignIn";
 import TwitterSignIn from "../TwitterSignIn/TwitterSignIn";
 
 const Login = () => {
-  const { signIn, resetPassword } = useContext(AuthContext);
+  const { signIn, resetPassword, jwtANDUser } = useContext(AuthContext);
   const [userEmail, setUserEmail] = useState("");
 
   const location = useLocation();
@@ -23,9 +23,10 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
+        jwtANDUser(user, false);
         toast.success("Successfully login");
-        navigate(from, { replace: true });
         form.reset();
+        navigate(from, { replace: true });
       })
       .catch((error) => toast.error(error.message));
   };

@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/UserContext";
 
 const TwitterSignIn = () => {
-  const { signInWithTwitter } = useContext(AuthContext);
+  const { signInWithTwitter, jwtANDUser } = useContext(AuthContext);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const TwitterSignIn = () => {
   const handleTwitter = () => {
     signInWithTwitter()
       .then((result) => {
-        const user = result.user;
+        jwtANDUser(result.user);
         toast.success("successfully login");
         navigate(from, { replace: true });
       })
