@@ -1,7 +1,37 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from "../../Context/UserContext";
 
 const WorkSpaceModal = () => {
+    const { user } = useContext(AuthContext);
+
+    const navigate = useNavigate();
     const workImage = 'https://www.cygnismedia.com/images/post-images/ui-for-web-apps/Main.jpg';
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const type = form.type.value;
+        const description = form.description.value;
+        const data = { name, type, description };
+
+        fetch(`${process.env.REACT_APP_SERVER_URL}/create-workspace`, {
+            method: 'POST',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success("Successfully added the workspace.");
+                form.reset();
+                navigate('/workspace/boards', { replace: true });
+            })
+            .catch((error) => toast.error(error.message));
+    };
 
     return (
         <div>
@@ -15,16 +45,16 @@ const WorkSpaceModal = () => {
                                     <div className="px-8">
                                         <h1 className="font-medium text-3xl">Let's build a Workspace</h1>
                                         <p className="text-gray-600 mt-6">Boost your productivity by making it easier for everyone to access boards in one location.</p>
-                                        <form>
+                                        <form onSubmit={handleSubmit}>
                                             <div className="mt-6 space-y-6">
                                                 <div>
                                                     <label htmlFor="name" className="text-sm text-gray-700 block mb-1 font-medium">Workspace name</label>
-                                                    <input type="text" name="name" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter Workspace name" />
+                                                    <input required type="text" name="name" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter Workspace name" />
                                                     <small>This is the name of your company, team or organization.</small>
                                                 </div>
                                                 <div>
                                                     <label htmlFor="email" className="text-sm text-gray-700 block mb-1 font-medium">Workspace type</label>
-                                                    <select className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full">
+                                                    <select required name="type" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full">
                                                         <option>Operation</option>
                                                         <option>Small Business</option>
                                                         <option>Engineering-IT</option>
@@ -37,7 +67,7 @@ const WorkSpaceModal = () => {
                                                 </div>
                                                 <div>
                                                     <label htmlFor="job" className="text-sm text-gray-700 block mb-1 font-medium">Workspace description</label>
-                                                    <textarea className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full h-36" placeholder="Our team organizes everything here" defaultValue={""} />
+                                                    <textarea name="description" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full h-36" placeholder="Our team organizes everything here" defaultValue={""} />
                                                     <small>Get your members on board with a few words about your Workspace.</small>
                                                 </div>
                                             </div>

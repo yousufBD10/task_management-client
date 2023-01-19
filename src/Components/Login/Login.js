@@ -100,9 +100,7 @@ const Login = () => {
             rel="noopener noreferrer"
             to="/register"
             className="underline
-          dark:text-gray-100"
-          >
-            Sign up
+          dark:text-gray-100">Sign up
           </Link>
         </p>
       </div>
