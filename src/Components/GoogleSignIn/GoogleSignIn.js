@@ -1,15 +1,22 @@
 import React, { useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/UserContext";
 
 const GoogleSignIn = () => {
   const { signInWithGoogle, jwtANDUser } = useContext(AuthContext);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from?.pathname || "/";
+
   const handleGoogle = () => {
     signInWithGoogle()
       .then((result) => {
         jwtANDUser(result.user);
         toast.success("successfully login");
+        navigate(from, { replace: true });
       })
 
       .catch((error) => {
