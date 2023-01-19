@@ -20,7 +20,7 @@ const useLogin = currentUser => {
                     }
                 });
         }
-    }, [currentUser.email]);
+    }, [currentUser]);
     return [token];
 }
 
