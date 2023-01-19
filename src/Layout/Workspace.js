@@ -13,7 +13,7 @@ import { AuthContext } from '../Context/UserContext';
 
 const Workspace = () => {
 
-  const { user, reloadWorkspaces } = useContext(AuthContext);
+  const { user, reloadWorkspaces, workspaces, setCurrentWorkspace } = useContext(AuthContext);
 
   useEffect(reloadWorkspaces, [user]);
 
@@ -65,40 +65,43 @@ const Workspace = () => {
                 <AiOutlinePlus />
               </a>
             </div>
-            <div className="collapse  hover:bg-zinc-100 shadow-sm mb-2 ">
-              <input type="checkbox" className="peer" />
-              <div className="collapse-title mb-2 flex items-center gap-3 font-bold">
-                {" "}
-                <img
-                  className="w-6 rounded-sm"
-                  src="https://placeimg.com/192/192/people"
-                  alt=""
-                />
-                Anonymous <TiArrowUnsorted className="ml-16"></TiArrowUnsorted>
+            {workspaces.length > 0 ? workspaces.map((el) => {
+              return <div key={el._id} className="collapse hover:bg-zinc-100 shadow-sm mb-2" onClick={() => { setCurrentWorkspace(workspaces.find((w) => w._id == el._id)) }}>
+                <input type="checkbox" className="peer" />
+                <div className="collapse-title mb-2 flex items-center gap-3 font-bold">
+                  {" "}
+                  <img
+                    className="w-6 rounded-sm"
+                    src="https://placeimg.com/192/192/people"
+                    alt=""
+                  />
+                  {el.name} <TiArrowUnsorted className="ml-16"></TiArrowUnsorted>
+                </div>
+                <div className="collapse-content">
+                  <li className="shadow-sm mb-2 rounded-full">
+                    <Link to="/workspace/boards">
+                      <MdOutlineSpaceDashboard />
+                      Boards
+                    </Link>
+                  </li>
+                  <li className="shadow-sm mb-2 rounded-full">
+                    <Link to="/workspace/members">
+                      <HiOutlineUsers />
+                      Members
+                    </Link>
+                  </li>
+                  {" "}
+                  <li className="shadow-sm mb-2 rounded-full">
+                    <Link to="/workspace/settings">
+                      {" "}
+                      <AiOutlineSetting />
+                      Settings
+                    </Link>
+                  </li>
+                </div>
               </div>
-              <div className="collapse-content">
-                <li className="shadow-sm mb-2 rounded-full">
-                  <Link to="/workspace/boards">
-                    <MdOutlineSpaceDashboard />
-                    Boards
-                  </Link>
-                </li>
-                <li className="shadow-sm mb-2 rounded-full">
-                  <Link to="/workspace/members">
-                    <HiOutlineUsers />
-                    Members
-                  </Link>
-                </li>
-                {" "}
-                <li className="shadow-sm mb-2 rounded-full">
-                  <Link to="/workspace/settings">
-                    {" "}
-                    <AiOutlineSetting />
-                    Settings
-                  </Link>
-                </li>
-              </div>
-            </div>
+            }) : <div></div>
+            }
           </ul>
         </div>
       </div>

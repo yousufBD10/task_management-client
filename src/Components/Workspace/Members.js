@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../Context/UserContext';
 
 const Members = () => {
+  const { user, currentWorkspace } = useContext(AuthContext);
   const members = [
     {
       image: '',

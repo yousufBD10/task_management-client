@@ -23,6 +23,7 @@ const UserContext = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [workspaces, setWorkspaces] = useState([]);
+  const [currentWorkspace, setCurrentWorkspace] = useState(null);
 
   const googleProvider = new GoogleAuthProvider();
   const gitHubProvider = new GithubAuthProvider();
@@ -46,6 +47,7 @@ const UserContext = ({ children }) => {
 
   useLogin(LoginInfo);
 
+  //load workspaces
   const reloadWorkspaces = () => {
     fetch(process.env.REACT_APP_SERVER_URL + `/get-workspaces`, {
       method: 'GET',
@@ -61,6 +63,9 @@ const UserContext = ({ children }) => {
       })
       .then(res => {
         setWorkspaces(res);
+        if (!currentWorkspace && res.length > 0) {
+          setCurrentWorkspace(res[0]);
+        }
       });
   }
 
@@ -145,7 +150,7 @@ const UserContext = ({ children }) => {
     logOut,
     resetPassword,
     jwtANDUser,
-    workspaces, setWorkspaces, reloadWorkspaces
+    workspaces, setWorkspaces, reloadWorkspaces, currentWorkspace, setCurrentWorkspace
   };
   return (
     <div>

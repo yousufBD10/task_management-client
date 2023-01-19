@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import DocModal from "../NewBoard/NewBoardModal";
+import { AuthContext } from '../../Context/UserContext';
 
 const Boards = () => {
+  const { user, currentWorkspace } = useContext(AuthContext);
   const cards = [
     {
       image:

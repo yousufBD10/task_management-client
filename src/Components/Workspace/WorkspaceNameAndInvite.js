@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BiLock, BiPencil } from "react-icons/bi";
 import { FiUserPlus } from "react-icons/fi";
+import { AuthContext } from '../../Context/UserContext';
 
 const WorkspaceNameAndInvite = () => {
+  const { user, currentWorkspace } = useContext(AuthContext);
   return (
     <div>
       <div className='lg:flex justify-between px-5'>
@@ -13,7 +15,7 @@ const WorkspaceNameAndInvite = () => {
             </div>
           </div>
           <div>
-            <h1 className='text-xl flex items-center gap-2 font-medium'>Anonymous <BiPencil></BiPencil> </h1>
+            <h1 className='text-xl flex items-center gap-2 font-medium'>{currentWorkspace?.name} <BiPencil></BiPencil> </h1>
             <p className='flex items-center gap-2'><BiLock></BiLock> Private</p>
           </div>
         </div>

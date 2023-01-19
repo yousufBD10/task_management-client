@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { AuthContext } from '../../Context/UserContext';
 
 const WorkSpaceModal = () => {
     const navigate = useNavigate();
+    const { reloadWorkspaces } = useContext(AuthContext);
     const workImage = 'https://www.cygnismedia.com/images/post-images/ui-for-web-apps/Main.jpg';
 
     const handleSubmit = (event) => {
@@ -24,6 +26,7 @@ const WorkSpaceModal = () => {
         })
             .then(res => res.json())
             .then(data => {
+                reloadWorkspaces();
                 toast.success("Successfully added the workspace.");
                 form.reset();
                 navigate('/workspace/boards', { replace: true });
