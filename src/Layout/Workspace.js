@@ -49,7 +49,7 @@ const Workspace = () => {
         </div>
         <div className="drawer-side shadow-md">
           <label htmlFor="dashboardDawer" className="drawer-overlay"></label>
-          <ul className=" p-4 w-80 menu bg-base-100 ">
+          <ul className="p-4 w-80 menu bg-base-100">
             {" "}
             <li className="shadow-sm mb-2 rounded-full ">
               <Link to="/workspace/boards" className="font-bold">
