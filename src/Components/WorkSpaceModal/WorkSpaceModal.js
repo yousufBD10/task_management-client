@@ -29,6 +29,7 @@ const WorkSpaceModal = () => {
                 reloadWorkspaces();
                 toast.success("Successfully added the workspace.");
                 form.reset();
+                document.querySelector(".close_modal").click();
                 navigate('/workspace/boards', { replace: true });
             })
             .catch((error) => toast.error(error.message));
@@ -38,7 +39,7 @@ const WorkSpaceModal = () => {
         <div>
             <div id="WorkSpaceModal-1" className="modal">
                 <div className="modal-box w-11/12 max-w-6xl m-0 p-0">
-                    <a href="#" className="btn btn-sm btn-circle absolute right-2 top-2  z-30 hover:rotate-90 transition-all ease-in">✕</a>
+                    <a href="#" className="btn btn-sm btn-circle absolute right-2 top-2 z-30 hover:rotate-90 transition-all ease-in close_modal">✕</a>
                     <div>
                         <div className="relative flex flex-col-reverse  lg:py-0 lg:flex-col">
                             <div className="w-full max-w-xl px-4 mx-auto md:px-0 lg:px-8 lg:py-20 lg:max-w-screen-xl">

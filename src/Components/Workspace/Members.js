@@ -1,22 +1,37 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Context/UserContext';
 
 const Members = () => {
-  const { user, currentWorkspace } = useContext(AuthContext);
-  const members = [
-    {
-      image: '',
-      name: 'Hasib Ferdous',
-      id: 'hasibferdous09'
-    },
-    {
-      image: '',
-      name: 'Farhad Hossain',
-      id: 'farhadhossain19'
+  const { user, currentWorkspace, logOut } = useContext(AuthContext);
+  const [members, setMembers] = useState([]);
 
-    },
+  const reloadMembers = () => {
+    if (!currentWorkspace) return;
+    let data = [];
+    for (let el of currentWorkspace.users) {
+      data.push(el.uid);
+    }
+    fetch(process.env.REACT_APP_SERVER_URL + `/get-workspace-member`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      },
+      body: JSON.stringify(data)
+    })
+      .then(res => {
+        if (res.status === 401 || res.status === 403) {
+          return logOut();
+        }
+        return res.json();
+      })
+      .then(res => {
+        setMembers(res);
+      });
+  }
 
-  ]
+  useEffect(reloadMembers, [currentWorkspace]);
+
   return (
     <div>
       <h1 className="text-xl font-medium px-5">Members</h1>
@@ -42,13 +57,13 @@ const Members = () => {
           </select>
         </div>
         <div>
-          {
+          {members.length > 0 &&
             members.map((member, i) =>
               <div className="flex flex-row card ml-5 mt-6 bg-base-50">
-                <img className='w-12 h-12 rounded-xl' src={member.image} alt="" />
+                <img className='w-12 h-12 rounded-xl' src={member.photoURL} alt="" />
                 <div className='mr-5 w-56'>
                   <h2 className="card-title ml-2">{member.name}</h2>
-                  <h2 className="card-id ml-2">{member.id}</h2>
+                  <h2 className="card-id ml-2">{member._id}</h2>
                 </div>
                 <div className='ml-11'>
                   <button className='btn-primary px-3 m-2 rounded-md'>Remove</button>

@@ -85,7 +85,7 @@ const Navbar = () => {
             </>
         }
       </div>
-      <WorkSpaceModal></WorkSpaceModal>
+      {user && <WorkSpaceModal></WorkSpaceModal>}
     </div>
   );
 };

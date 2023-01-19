@@ -14,7 +14,7 @@ import { AuthContext } from '../Context/UserContext';
 const Workspace = () => {
 
   const { user, reloadWorkspaces, workspaces, setCurrentWorkspace } = useContext(AuthContext);
-
+  const setCurrent = (id) => { setCurrentWorkspace(workspaces.find((w) => w._id == id)) }
   useEffect(reloadWorkspaces, [user]);
 
   return (
@@ -66,7 +66,7 @@ const Workspace = () => {
               </a>
             </div>
             {workspaces.length > 0 ? workspaces.map((el) => {
-              return <div key={el._id} className="collapse hover:bg-zinc-100 shadow-sm mb-2" onClick={() => { setCurrentWorkspace(workspaces.find((w) => w._id == el._id)) }}>
+              return <div key={el._id} className="collapse hover:bg-zinc-100 shadow-sm mb-2" onClick={() => setCurrent(el._id)}>
                 <input type="checkbox" className="peer" />
                 <div className="collapse-title mb-2 flex items-center gap-3 font-bold">
                   {" "}
