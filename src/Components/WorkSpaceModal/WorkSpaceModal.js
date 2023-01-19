@@ -1,11 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { AuthContext } from "../../Context/UserContext";
 
 const WorkSpaceModal = () => {
-    const { user } = useContext(AuthContext);
-
     const navigate = useNavigate();
     const workImage = 'https://www.cygnismedia.com/images/post-images/ui-for-web-apps/Main.jpg';
 
@@ -15,11 +12,12 @@ const WorkSpaceModal = () => {
         const name = form.name.value;
         const type = form.type.value;
         const description = form.description.value;
-        const data = { name, type, description };
+        const data = { name, type, description, _id: 'new' };
 
-        fetch(`${process.env.REACT_APP_SERVER_URL}/create-workspace`, {
+        fetch(`${process.env.REACT_APP_SERVER_URL}/create-update-workspace`, {
             method: 'POST',
             headers: {
+                'content-type': 'application/json',
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(data)

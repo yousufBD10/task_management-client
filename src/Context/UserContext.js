@@ -22,6 +22,7 @@ const auth = getAuth(app);
 const UserContext = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [workspaces, setWorkspaces] = useState([]);
 
   const googleProvider = new GoogleAuthProvider();
   const gitHubProvider = new GithubAuthProvider();
@@ -45,8 +46,25 @@ const UserContext = ({ children }) => {
 
   useLogin(LoginInfo);
 
-  //-----------Firebase create user------------
+  const reloadWorkspaces = () => {
+    fetch(process.env.REACT_APP_SERVER_URL + `/get-workspaces`, {
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
+      .then(res => {
+        if (res.status === 401 || res.status === 403) {
+          return logOut();
+        }
+        return res.json();
+      })
+      .then(res => {
+        setWorkspaces(res);
+      });
+  }
 
+  //-----------Firebase create user------------
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -126,7 +144,8 @@ const UserContext = ({ children }) => {
     signIn,
     logOut,
     resetPassword,
-    jwtANDUser
+    jwtANDUser,
+    workspaces, setWorkspaces, reloadWorkspaces
   };
   return (
     <div>

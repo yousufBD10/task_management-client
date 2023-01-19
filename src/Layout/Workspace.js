@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from 'react';
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import {
   AiOutlineSetting,
@@ -9,8 +9,14 @@ import { TiArrowUnsorted } from "react-icons/ti";
 import { HiOutlineUsers } from "react-icons/hi";
 import { AiOutlinePlus } from "react-icons/ai";
 import WorkspaceNameAndInvite from "../Components/Workspace/WorkspaceNameAndInvite";
+import { AuthContext } from '../Context/UserContext';
 
 const Workspace = () => {
+
+  const { user, reloadWorkspaces } = useContext(AuthContext);
+
+  useEffect(reloadWorkspaces, [user]);
+
   return (
     <div>
       <Navbar></Navbar>
