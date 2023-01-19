@@ -1,15 +1,45 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from '../../Context/UserContext';
 
 const WorkSpaceModal = () => {
+    const navigate = useNavigate();
+    const { reloadWorkspaces } = useContext(AuthContext);
     const workImage = 'https://www.cygnismedia.com/images/post-images/ui-for-web-apps/Main.jpg';
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const type = form.type.value;
+        const description = form.description.value;
+        const data = { name, type, description, _id: 'new' };
+
+        fetch(`${process.env.REACT_APP_SERVER_URL}/create-update-workspace`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                reloadWorkspaces();
+                toast.success("Successfully added the workspace.");
+                form.reset();
+                document.querySelector(".close_modal").click();
+                navigate('/workspace/boards', { replace: true });
+            })
+            .catch((error) => toast.error(error.message));
+    };
 
     return (
         <div>
-            <label htmlFor="WorkSpaceModal-1" className="btn">open modal</label>
-            <input type="checkbox" id="WorkSpaceModal-1" className="modal-toggle " />
-            <label htmlFor="WorkSpaceModal-1" className="modal">
-                <label className="modal-box w-11/12 max-w-6xl m-0 p-0" htmlFor=''>
-                    <label htmlFor="WorkSpaceModal-1" className="btn btn-sm btn-circle absolute right-2 top-2  z-30 hover:rotate-90 transition-all ease-in">✕</label>
+            <div id="WorkSpaceModal-1" className="modal">
+                <div className="modal-box w-11/12 max-w-6xl m-0 p-0">
+                    <a href="#" className="btn btn-sm btn-circle absolute right-2 top-2 z-30 hover:rotate-90 transition-all ease-in close_modal">✕</a>
                     <div>
                         <div className="relative flex flex-col-reverse  lg:py-0 lg:flex-col">
                             <div className="w-full max-w-xl px-4 mx-auto md:px-0 lg:px-8 lg:py-20 lg:max-w-screen-xl">
@@ -17,16 +47,16 @@ const WorkSpaceModal = () => {
                                     <div className="px-8">
                                         <h1 className="font-medium text-3xl">Let's build a Workspace</h1>
                                         <p className="text-gray-600 mt-6">Boost your productivity by making it easier for everyone to access boards in one location.</p>
-                                        <form>
+                                        <form onSubmit={handleSubmit}>
                                             <div className="mt-6 space-y-6">
                                                 <div>
                                                     <label htmlFor="name" className="text-sm text-gray-700 block mb-1 font-medium">Workspace name</label>
-                                                    <input type="text" name="name" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter Workspace name" />
+                                                    <input required type="text" name="name" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter Workspace name" />
                                                     <small>This is the name of your company, team or organization.</small>
                                                 </div>
                                                 <div>
                                                     <label htmlFor="email" className="text-sm text-gray-700 block mb-1 font-medium">Workspace type</label>
-                                                    <select className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full">
+                                                    <select required name="type" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full">
                                                         <option>Operation</option>
                                                         <option>Small Business</option>
                                                         <option>Engineering-IT</option>
@@ -38,8 +68,8 @@ const WorkSpaceModal = () => {
                                                     </select>
                                                 </div>
                                                 <div>
-                                                    <label htmlFor="job" className="text-sm text-gray-700 block mb-1 font-medium">Workspace description <span className="text-buttomish">Optional</span></label>
-                                                    <textarea className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full h-36" placeholder="Our team organizes everything here" defaultValue={""} />
+                                                    <label htmlFor="job" className="text-sm text-gray-700 block mb-1 font-medium">Workspace description</label>
+                                                    <textarea name="description" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full h-36" placeholder="Our team organizes everything here" defaultValue={""} />
                                                     <small>Get your members on board with a few words about your Workspace.</small>
                                                 </div>
                                             </div>
@@ -55,8 +85,8 @@ const WorkSpaceModal = () => {
                             </div>
                         </div>
                     </div>
-                </label>
-            </label>
+                </div>
+            </div>
         </div>
     );
 };
