@@ -5,11 +5,9 @@ const WorkSpaceModal = () => {
 
     return (
         <div>
-            <label htmlFor="WorkSpaceModal-1" className="btn">open modal</label>
-            <input type="checkbox" id="WorkSpaceModal-1" className="modal-toggle " />
-            <label htmlFor="WorkSpaceModal-1" className="modal">
-                <label className="modal-box w-11/12 max-w-6xl m-0 p-0" htmlFor=''>
-                    <label htmlFor="WorkSpaceModal-1" className="btn btn-sm btn-circle absolute right-2 top-2  z-30 hover:rotate-90 transition-all ease-in">✕</label>
+            <div id="WorkSpaceModal-1" className="modal">
+                <div className="modal-box w-11/12 max-w-6xl m-0 p-0">
+                    <a href="#" className="btn btn-sm btn-circle absolute right-2 top-2  z-30 hover:rotate-90 transition-all ease-in">✕</a>
                     <div>
                         <div className="relative flex flex-col-reverse  lg:py-0 lg:flex-col">
                             <div className="w-full max-w-xl px-4 mx-auto md:px-0 lg:px-8 lg:py-20 lg:max-w-screen-xl">
@@ -38,7 +36,7 @@ const WorkSpaceModal = () => {
                                                     </select>
                                                 </div>
                                                 <div>
-                                                    <label htmlFor="job" className="text-sm text-gray-700 block mb-1 font-medium">Workspace description <span className="text-buttomish">Optional</span></label>
+                                                    <label htmlFor="job" className="text-sm text-gray-700 block mb-1 font-medium">Workspace description</label>
                                                     <textarea className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full h-36" placeholder="Our team organizes everything here" defaultValue={""} />
                                                     <small>Get your members on board with a few words about your Workspace.</small>
                                                 </div>
@@ -55,8 +53,8 @@ const WorkSpaceModal = () => {
                             </div>
                         </div>
                     </div>
-                </label>
-            </label>
+                </div>
+            </div>
         </div>
     );
 };

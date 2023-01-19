@@ -1,18 +1,14 @@
 import React from "react";
-import { MdArrowDropDown, MdOutlineSpaceDashboard } from "react-icons/md";
-import { BiHome, BiUser } from "react-icons/bi";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
 import {
-  AiOutlineCalendar,
   AiOutlineSetting,
-  AiOutlineTable,
 } from "react-icons/ai";
 import { Link, Outlet } from "react-router-dom";
 import Navbar from "../Components/Navbar/Navbar";
 import { TiArrowUnsorted } from "react-icons/ti";
-import { HiOutlineTemplate, HiOutlineUsers } from "react-icons/hi";
+import { HiOutlineUsers } from "react-icons/hi";
 import { AiOutlinePlus } from "react-icons/ai";
-import { GiSelfLove } from "react-icons/gi";
-import { MdGridView } from "react-icons/md";
+import WorkspaceNameAndInvite from "../Components/Workspace/WorkspaceNameAndInvite";
 
 const Workspace = () => {
   return (
@@ -41,77 +37,27 @@ const Workspace = () => {
 
       <div className="drawer drawer-mobile mt-8">
         <input id="dashboardDawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content ">
+        <div className="drawer-content min-h-screen">
+          <WorkspaceNameAndInvite></WorkspaceNameAndInvite>
           <Outlet></Outlet>
         </div>
         <div className="drawer-side shadow-md">
           <label htmlFor="dashboardDawer" className="drawer-overlay"></label>
-          <ul className=" p-4 w-80  menu bg-base-100 ">
-            <Link to="/workspace/boards">
-              {" "}
-              <li className="shadow-sm mb-2 rounded-full ">
-                <a className="font-bold">
-                  {" "}
-                  <MdOutlineSpaceDashboard />
-                  Boards
-                </a>
-              </li>
-            </Link>
-            <div className="collapse shadow-sm mb-2 ">
-              <input type="checkbox" className="peer" />
-              <div className="collapse-title shadow-sm mb-2 rounded-full  flex items-center gap-3 font-bold">
+          <ul className=" p-4 w-80 menu bg-base-100 ">
+            {" "}
+            <li className="shadow-sm mb-2 rounded-full ">
+              <Link to="/workspace/boards" className="font-bold">
                 {" "}
-                <HiOutlineTemplate />
-                All Members<TiArrowUnsorted className="ml-16"></TiArrowUnsorted>
-              </div>
-              <div className="collapse-content">
-                <Link to="/workspace/members">
-                  <li className="shadow-sm mb-2 rounded-full">
-                    <a>Business</a>
-                  </li>
-                </Link>
-                <Link to="/workspace/members">
-                  <li className="shadow-sm mb-2 rounded-full">
-                    <a>Design</a>
-                  </li>
-                </Link>
-                <Link to="/workspace/members">
-                  <li className="shadow-sm mb-2 rounded-full">
-                    <a>Education</a>
-                  </li>
-                </Link>
-                <Link to="/workspace/members">
-                  <li className="shadow-sm mb-2 rounded-full">
-                    <a>Engineering</a>
-                  </li>
-                </Link>
-                <Link to="/workspace/members">
-                  <li className="shadow-sm mb-2 rounded-full">
-                    <a>Marketing</a>
-                  </li>
-                </Link>
-                <Link to="/workspace/members">
-                  <li className="shadow-sm mb-2 rounded-full">
-                    <a>HR & Opetations</a>
-                  </li>
-                </Link>
-              </div>
-            </div>
-            <Link to="/workspace/members">
-              <li className="shadow-sm mb-2 rounded-full font-bold">
-                <a>
-                  {" "}
-                  <BiHome />
-                  Home
-                </a>
-              </li>
-            </Link>
+                <MdOutlineSpaceDashboard />
+                Boards
+              </Link>
+            </li>
             <div className="divider"></div>
             <div className="flex items-center ">
               <h3 className="mb-2 font-medium">Workspace</h3>
-              <button className=" ml-32 hover:bg-zinc-300 p-2 rounded-full">
+              <a href="#WorkSpaceModal-1" className=" ml-32 hover:bg-zinc-300 p-2 rounded-full">
                 <AiOutlinePlus />
-              </button>
+              </a>
             </div>
             <div className="collapse  hover:bg-zinc-100 shadow-sm mb-2 ">
               <input type="checkbox" className="peer" />
@@ -125,47 +71,26 @@ const Workspace = () => {
                 Anonymous <TiArrowUnsorted className="ml-16"></TiArrowUnsorted>
               </div>
               <div className="collapse-content">
-                <Link to="/workspace/members">
-                  <li className="shadow-sm mb-2 rounded-full">
-                    <a>
-                      <MdOutlineSpaceDashboard />
-                      Boards
-                    </a>
-                  </li>
-                </Link>
-                <Link to="/workspace/members">
-                  <li className="shadow-sm mb-2 rounded-full">
-                    <a>
-                      <GiSelfLove /> Highlights
-                    </a>
-                  </li>
-                </Link>
-                <Link to="/workspace/members">
-                  <li className="shadow-sm mb-2 rounded-full">
-                    <a>
-                      <MdGridView />
-                      Views
-                    </a>
-                  </li>
-                </Link>
-                <Link to="/workspace/members">
-                  <li className="shadow-sm mb-2 rounded-full">
-                    <a>
-                      <HiOutlineUsers />
-                      Members
-                    </a>
-                  </li>
-                </Link>
-                <Link to="/workspace/settings">
-                  {" "}
-                  <li className="shadow-sm mb-2 rounded-full">
-                    <a>
-                      {" "}
-                      <AiOutlineSetting />
-                      Settings
-                    </a>
-                  </li>
-                </Link>
+                <li className="shadow-sm mb-2 rounded-full">
+                  <Link to="/workspace/boards">
+                    <MdOutlineSpaceDashboard />
+                    Boards
+                  </Link>
+                </li>
+                <li className="shadow-sm mb-2 rounded-full">
+                  <Link to="/workspace/members">
+                    <HiOutlineUsers />
+                    Members
+                  </Link>
+                </li>
+                {" "}
+                <li className="shadow-sm mb-2 rounded-full">
+                  <Link to="/workspace/settings">
+                    {" "}
+                    <AiOutlineSetting />
+                    Settings
+                  </Link>
+                </li>
               </div>
             </div>
           </ul>

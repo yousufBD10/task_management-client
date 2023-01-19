@@ -4,7 +4,6 @@ import Login from "../Components/Login/Login";
 import SingUp from "../Components/SignUp/SignUp";
 import UserProfile from "../Components/User/UserProfile";
 import Boards from "../Components/Workspace/Boards";
-import CreateWordspace from "../Components/Workspace/CreateWordspace";
 import Members from "../Components/Workspace/Members";
 import Settings from "../Components/Workspace/Settings";
 import Main from "../Layout/Main";
@@ -54,10 +53,6 @@ const Router = createBrowserRouter([
       {
         path: "/workspace/members",
         element: <Members />,
-      },
-      {
-        path: "/workspace/create",
-        element: <CreateWordspace />,
       },
     ],
   },
