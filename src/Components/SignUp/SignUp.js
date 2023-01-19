@@ -9,7 +9,8 @@ import TwitterSignIn from "../TwitterSignIn/TwitterSignIn";
 
 const SingUp = () => {
   useDocumentTitle("Signup");
-  const { user, createUser, updateName, verifyEmail, jwtANDUser } = useContext(AuthContext);
+  const { user, createUser, updateName, verifyEmail, jwtANDUser } =
+    useContext(AuthContext);
   const [passwordError, setPasswordError] = useState();
   const location = useLocation();
   const navigate = useNavigate();
@@ -59,9 +60,9 @@ const SingUp = () => {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center">
-      <div className="w-full max-w-md p-8 space-y-1 rounded-xl bg-glass shadow-lg shadow-shade/100 m-2 backdrop-invert-1">
-        <h1 className="dark:text-gray-600 text-2xl font-bold text-center">
+    <div className="h-screen flex justify-center items-center bg-gray-50">
+      <div className="w-full max-w-md p-8 space-y-1 rounded-xl bg-blue-400 shadow-lg shadow-shade/100 m-2 backdrop-invert-1">
+        <h1 className="dark:text-gray-800 text-2xl font-bold text-center">
           Sign Up
         </h1>
         <form
@@ -77,46 +78,57 @@ const SingUp = () => {
               name="name"
               id="name"
               placeholder="Name"
-              className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-200 bg-greyish text-white"
+              className="input input-bordered w-full px-4 py-3 rounded-md  dark:border-blue-700 bg-blue-200"
               required
             />
           </div>
+          {/* ---- Email Input--------- */}
           <div className="space-y-1 text-sm">
             <label className="block dark:text-gray-600">Email</label>
             <input
               type="email"
               name="email"
               placeholder="Email"
-              className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-200 bg-greyish text-white"
+              className="input input-bordered w-full px-4 py-3 rounded-md dark:border-blue-700 bg-blue-200"
               required
             />
           </div>
+          {/* --------------Password input----------- */}
           <div className="space-y-1 text-sm">
             <label className="block dark:text-gray-600">Password</label>
             <input
               type="password"
               name="password"
               placeholder="Password"
-              className="input input-bordered w-full px-4 py-3 rounded-md dark:border-gray-700 dark:text-white focus:dark:border-violet-400 bg-greyish"
+              className="input input-bordered w-full px-4 py-3 rounded-md dark:border-blue-700 bg-blue-200"
               required
             />
             <p className="text-red">{passwordError}</p>
+
+            {/*------------LogIn Link--------- */}
+
             <div className="flex justify-end text-xs dark:text-gray-900">
               <Link rel="noopener noreferrer" to="/login">
                 Already have an account, Login
               </Link>
             </div>
           </div>
+
+          {/* -------- Sign In button------- */}
+
           <button
             type="submit"
-            className="block w-full p-3 text-center rounded-sm dark:text-gray-900 bg-buttomish"
+            className="glass btn-outline block w-full p-3 text-center rounded-sm dark:text-gray-900"
           >
             Sign in
           </button>
         </form>
         <div className="flex items-center pt-4 space-x-1">
           <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
-          <p className="px-3 text-sm dark:text-gray-400">
+
+          {/* -------Social login section------- */}
+
+          <p className="px-3 text-sm dark:text-gray-600">
             Login with social accounts
           </p>
           <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
