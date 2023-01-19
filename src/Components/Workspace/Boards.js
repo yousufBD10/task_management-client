@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Context/UserContext';
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const Boards = () => {
   const { user, currentWorkspace, logOut } = useContext(AuthContext);
@@ -64,12 +65,12 @@ const Boards = () => {
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 px-5 ">
         {cards.map((card, i) => (
-          <div className="card mt-6 bg-base-50 shadow-xl image-full">
+          <Link to="/workspace/single" className="card mt-6 bg-base-50 shadow-xl image-full">
             <img className="w-full h-32" src={image} alt="Shoes" />
             <div className="card-body">
               <h2 className="card-title">{card.name}</h2>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <div id="new-board" className="modal">
