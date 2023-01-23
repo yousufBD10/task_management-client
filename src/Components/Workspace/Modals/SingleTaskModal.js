@@ -14,7 +14,7 @@ import {
 } from "react-icons/fi";
 import { TbTemplate } from "react-icons/tb";
 
-const NewBoardModal = () => {
+const SingleTaskModal = () => {
   return (
     <div>
       <div id="new-board-modal" className="modal">
@@ -234,4 +234,4 @@ const NewBoardModal = () => {
   );
 };
 
-export default NewBoardModal;
+export default SingleTaskModal;

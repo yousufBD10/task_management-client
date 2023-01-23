@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import {
   AiOutlineSetting,
@@ -8,12 +8,13 @@ import Navbar from "../Components/Navbar/Navbar";
 import { TiArrowUnsorted } from "react-icons/ti";
 import { HiOutlineUsers } from "react-icons/hi";
 import { AiOutlinePlus } from "react-icons/ai";
-import WorkspaceNameAndInvite from "../Components/Workspace/WorkspaceNameAndInvite";
+import { BiLock, BiPencil } from "react-icons/bi";
+import { FiUserPlus } from "react-icons/fi";
 import { AuthContext } from '../Context/UserContext';
 
 const Workspace = () => {
 
-  const { user, reloadWorkspaces, workspaces, setCurrentWorkspace } = useContext(AuthContext);
+  const { user, reloadWorkspaces, workspaces, setCurrentWorkspace, currentWorkspace } = useContext(AuthContext);
   const setCurrent = (id) => { setCurrentWorkspace(workspaces.find((w) => w._id == id)) }
   useEffect(reloadWorkspaces, [user]);
 
@@ -44,7 +45,21 @@ const Workspace = () => {
       <div className="drawer drawer-mobile mt-8">
         <input id="dashboardDawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content min-h-screen">
-          <WorkspaceNameAndInvite></WorkspaceNameAndInvite>
+          {currentWorkspace && <><div className='lg:flex justify-between px-5'>
+            <div className='flex items-center gap-2'>
+              <div className="avatar">
+                <div className="w-20 rounded">
+                  <img src="https://placeimg.com/192/192/people" />
+                </div>
+              </div>
+              <div>
+                <h1 className='text-xl flex items-center gap-2 font-medium'>{currentWorkspace?.name} <BiPencil></BiPencil> </h1>
+                <p className='flex items-center gap-2'><BiLock></BiLock> Private</p>
+              </div>
+            </div>
+            <button className='flex mt-12 items-center gap-2 bg-blue-600 btn btn-primary btn-sm rounded-sm text-white'><FiUserPlus></FiUserPlus> Invite Workspace members</button>
+          </div><div className="divider px-5"></div></>
+          }
           <Outlet></Outlet>
         </div>
         <div className="drawer-side shadow-md">
@@ -65,7 +80,7 @@ const Workspace = () => {
                 <AiOutlinePlus />
               </a>
             </div>
-            {workspaces.length > 0 ? workspaces.map((el) => {
+            {workspaces?.length > 0 ? workspaces.map((el) => {
               return <div key={el._id} className="collapse hover:bg-zinc-100 shadow-sm mb-2" onClick={() => setCurrent(el._id)}>
                 <input type="checkbox" className="peer" />
                 <div className="collapse-title mb-2 flex items-center gap-3 font-bold">

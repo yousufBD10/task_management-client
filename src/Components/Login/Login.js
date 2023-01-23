@@ -5,8 +5,10 @@ import { AuthContext } from "../../Context/UserContext";
 import GitHubSignIn from "../GitHubSignIn/GitHubSignIn";
 import GoogleSignIn from "../GoogleSignIn/GoogleSignIn";
 import TwitterSignIn from "../TwitterSignIn/TwitterSignIn";
+import useDocumentTitle from "../../Share/useDocumentTitle";
 
 const Login = () => {
+  useDocumentTitle("Login");
   const { signIn, resetPassword, jwtANDUser } = useContext(AuthContext);
   const [userEmail, setUserEmail] = useState("");
 
