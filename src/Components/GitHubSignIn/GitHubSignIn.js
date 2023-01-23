@@ -1,14 +1,20 @@
 import React, { useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/UserContext";
 
 const GitHubSignIn = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
+
   const { signInWithGitHub, jwtANDUser } = useContext(AuthContext);
   const handleGitHub = () => {
     signInWithGitHub()
       .then((result) => {
         jwtANDUser(result.user);
         toast.success("successfully login");
+        navigate(from, { replace: true });
       })
       .catch((error) => toast.error(error.message));
   };

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/UserContext';
 import { CgLogOut } from "react-icons/cg";
+import CreateWorkSpaceModal from '../CreateWorkSpaceModal/CreateWorkSpaceModal';
 
 const Navbar = () => {
   const navigate = useNavigate()
@@ -25,7 +26,7 @@ const Navbar = () => {
 
             <li><Link to='/'>Home</Link></li>
             <li> <Link to='/workspace/boards'>Workspaces</Link></li>
-            <li><Link to='/workspace/create'>Create</Link></li>
+            <li><a href="#WorkSpaceModal-1">Create</a></li>
 
             {/* <li tabIndex={0}>
                 <a className="justify-between">
@@ -46,7 +47,7 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">
           <li><Link to='/'>Home</Link></li>
           <li> <Link to='/workspace/boards'>Workspaces</Link></li>
-          <li><Link to='/workspace/create'>Create</Link></li>
+          <li><a href="#WorkSpaceModal-1">Create</a></li>
           {/* <li tabIndex={0}>
               <a>
                 Parent
@@ -86,6 +87,7 @@ const Navbar = () => {
             </>
         }
       </div>
+      {user && <CreateWorkSpaceModal></CreateWorkSpaceModal>}
     </div>
   );
 };

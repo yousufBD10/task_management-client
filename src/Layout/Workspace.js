@@ -1,20 +1,23 @@
-import React from "react";
-import { MdArrowDropDown, MdOutlineSpaceDashboard } from "react-icons/md";
-import { BiHome, BiUser } from "react-icons/bi";
+import React, { useContext, useEffect } from 'react';
+import { MdOutlineSpaceDashboard } from "react-icons/md";
 import {
-  AiOutlineCalendar,
   AiOutlineSetting,
-  AiOutlineTable,
 } from "react-icons/ai";
 import { Link, Outlet } from "react-router-dom";
 import Navbar from "../Components/Navbar/Navbar";
 import { TiArrowUnsorted } from "react-icons/ti";
-import { HiOutlineTemplate, HiOutlineUsers } from "react-icons/hi";
+import { HiOutlineUsers } from "react-icons/hi";
 import { AiOutlinePlus } from "react-icons/ai";
-import { GiSelfLove } from "react-icons/gi";
-import { MdGridView } from "react-icons/md";
+import { BiLock, BiPencil } from "react-icons/bi";
+import { FiUserPlus } from "react-icons/fi";
+import { AuthContext } from '../Context/UserContext';
 
 const Workspace = () => {
+
+  const { user, reloadWorkspaces, workspaces, setCurrentWorkspace, currentWorkspace } = useContext(AuthContext);
+  const setCurrent = (id) => { setCurrentWorkspace(workspaces.find((w) => w._id == id)) }
+  useEffect(reloadWorkspaces, [user]);
+
   return (
     <div>
       <Navbar></Navbar>
@@ -41,133 +44,79 @@ const Workspace = () => {
 
       <div className="drawer drawer-mobile mt-8">
         <input id="dashboardDawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content ">
+        <div className="drawer-content min-h-screen">
+          {currentWorkspace && <><div className='lg:flex justify-between px-5'>
+            <div className='flex items-center gap-2'>
+              <div className="avatar">
+                <div className="w-20 rounded">
+                  <img src="https://placeimg.com/192/192/people" />
+                </div>
+              </div>
+              <div>
+                <h1 className='text-xl flex items-center gap-2 font-medium'>{currentWorkspace?.name} <BiPencil></BiPencil> </h1>
+                <p className='flex items-center gap-2'><BiLock></BiLock> Private</p>
+              </div>
+            </div>
+            <button className='flex mt-12 items-center gap-2 bg-blue-600 btn btn-primary btn-sm rounded-sm text-white'><FiUserPlus></FiUserPlus> Invite Workspace members</button>
+          </div><div className="divider px-5"></div></>
+          }
           <Outlet></Outlet>
         </div>
         <div className="drawer-side shadow-md">
           <label htmlFor="dashboardDawer" className="drawer-overlay"></label>
-          <ul className=" p-4 w-80  menu bg-base-100 ">
-            <Link to="/workspace/boards">
-              {" "}
-              <li className="shadow-sm mb-2 rounded-full ">
-                <a className="font-bold">
-                  {" "}
-                  <MdOutlineSpaceDashboard />
-                  Boards
-                </a>
-              </li>
-            </Link>
-            <div className="collapse shadow-sm mb-2 ">
-              <input type="checkbox" className="peer" />
-              <div className="collapse-title shadow-sm mb-2 rounded-full  flex items-center gap-3 font-bold">
+          <ul className="p-4 w-80 menu bg-base-100">
+            {" "}
+            <li className="shadow-sm mb-2 rounded-full ">
+              <Link to="/workspace/boards" className="font-bold">
                 {" "}
-                <HiOutlineTemplate />
-                All Members<TiArrowUnsorted className="ml-16"></TiArrowUnsorted>
-              </div>
-              <div className="collapse-content">
-                <Link to="/workspace/members">
-                  <li className="shadow-sm mb-2 rounded-full">
-                    <a>Business</a>
-                  </li>
-                </Link>
-                <Link to="/workspace/members">
-                  <li className="shadow-sm mb-2 rounded-full">
-                    <a>Design</a>
-                  </li>
-                </Link>
-                <Link to="/workspace/members">
-                  <li className="shadow-sm mb-2 rounded-full">
-                    <a>Education</a>
-                  </li>
-                </Link>
-                <Link to="/workspace/members">
-                  <li className="shadow-sm mb-2 rounded-full">
-                    <a>Engineering</a>
-                  </li>
-                </Link>
-                <Link to="/workspace/members">
-                  <li className="shadow-sm mb-2 rounded-full">
-                    <a>Marketing</a>
-                  </li>
-                </Link>
-                <Link to="/workspace/members">
-                  <li className="shadow-sm mb-2 rounded-full">
-                    <a>HR & Opetations</a>
-                  </li>
-                </Link>
-              </div>
-            </div>
-            <Link to="/workspace/members">
-              <li className="shadow-sm mb-2 rounded-full font-bold">
-                <a>
-                  {" "}
-                  <BiHome />
-                  Home
-                </a>
-              </li>
-            </Link>
+                <MdOutlineSpaceDashboard />
+                Boards
+              </Link>
+            </li>
             <div className="divider"></div>
             <div className="flex items-center ">
               <h3 className="mb-2 font-medium">Workspace</h3>
-              <button className=" ml-32 hover:bg-zinc-300 p-2 rounded-full">
+              <a href="#WorkSpaceModal-1" className=" ml-32 hover:bg-zinc-300 p-2 rounded-full">
                 <AiOutlinePlus />
-              </button>
+              </a>
             </div>
-            <div className="collapse  hover:bg-zinc-100 shadow-sm mb-2 ">
-              <input type="checkbox" className="peer" />
-              <div className="collapse-title mb-2 flex items-center gap-3 font-bold">
-                {" "}
-                <img
-                  className="w-6 rounded-sm"
-                  src="https://placeimg.com/192/192/people"
-                  alt=""
-                />
-                Anonymous <TiArrowUnsorted className="ml-16"></TiArrowUnsorted>
-              </div>
-              <div className="collapse-content">
-                <Link to="/workspace/members">
+            {workspaces?.length > 0 ? workspaces.map((el) => {
+              return <div key={el._id} className="collapse hover:bg-zinc-100 shadow-sm mb-2" onClick={() => setCurrent(el._id)}>
+                <input type="checkbox" className="peer" />
+                <div className="collapse-title mb-2 flex items-center gap-3 font-bold">
+                  {" "}
+                  <img
+                    className="w-6 rounded-sm"
+                    src="https://placeimg.com/192/192/people"
+                    alt=""
+                  />
+                  {el.name} <TiArrowUnsorted className="ml-16"></TiArrowUnsorted>
+                </div>
+                <div className="collapse-content">
                   <li className="shadow-sm mb-2 rounded-full">
-                    <a>
+                    <Link to="/workspace/boards">
                       <MdOutlineSpaceDashboard />
                       Boards
-                    </a>
+                    </Link>
                   </li>
-                </Link>
-                <Link to="/workspace/members">
                   <li className="shadow-sm mb-2 rounded-full">
-                    <a>
-                      <GiSelfLove /> Highlights
-                    </a>
-                  </li>
-                </Link>
-                <Link to="/workspace/members">
-                  <li className="shadow-sm mb-2 rounded-full">
-                    <a>
-                      <MdGridView />
-                      Views
-                    </a>
-                  </li>
-                </Link>
-                <Link to="/workspace/members">
-                  <li className="shadow-sm mb-2 rounded-full">
-                    <a>
+                    <Link to="/workspace/members">
                       <HiOutlineUsers />
                       Members
-                    </a>
+                    </Link>
                   </li>
-                </Link>
-                <Link to="/workspace/settings">
                   {" "}
                   <li className="shadow-sm mb-2 rounded-full">
-                    <a>
+                    <Link to="/workspace/settings">
                       {" "}
                       <AiOutlineSetting />
                       Settings
-                    </a>
+                    </Link>
                   </li>
-                </Link>
+                </div>
               </div>
-            </div>
+            }) : <div></div>
+            }
           </ul>
         </div>
       </div>
