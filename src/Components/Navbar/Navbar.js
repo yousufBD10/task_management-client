@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/UserContext';
 import { CgLogOut } from "react-icons/cg";
-import WorkSpaceModal from '../WorkSpaceModal/WorkSpaceModal';
+import CreateWorkSpaceModal from '../CreateWorkSpaceModal/CreateWorkSpaceModal';
 
 const Navbar = () => {
   const navigate = useNavigate()
@@ -85,7 +85,7 @@ const Navbar = () => {
             </>
         }
       </div>
-      {user && <WorkSpaceModal></WorkSpaceModal>}
+      {user && <CreateWorkSpaceModal></CreateWorkSpaceModal>}
     </div>
   );
 };

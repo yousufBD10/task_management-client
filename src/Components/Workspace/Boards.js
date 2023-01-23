@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Context/UserContext';
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import NewBoard from './Modals/NewBoard';
 
 const Boards = () => {
   const { user, currentWorkspace, logOut } = useContext(AuthContext);
@@ -9,6 +10,7 @@ const Boards = () => {
 
   const reloadBoards = () => {
     if (!currentWorkspace) return;
+    setBoards([]);
     fetch(process.env.REACT_APP_SERVER_URL + `/workspace-boards/${currentWorkspace._id}`, {
       method: 'GET',
       headers: {
@@ -54,7 +56,7 @@ const Boards = () => {
   const image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLsiiM_FzbrKVFZ9Bh-i2oVYtMlqknjHc3tUz8oKDhLAgjhUwPJTu5buAApydXjKLslQs&usqp=CAU";
 
   return (
-    <div>
+    <div>{currentWorkspace && <>
       <div className="flex justify-between mt-8 pr-5">
         <h1 className="text-xl font-medium px-5">Boards</h1>
         <a
@@ -73,22 +75,8 @@ const Boards = () => {
           </Link>
         ))}
       </div>
-      <div id="new-board" className="modal">
-        <div className="modal-box">
-          <a href="#" className="btn btn-sm btn-circle absolute right-2 top-2 z-30 hover:rotate-90 transition-all ease-in close_modal">✕</a>
-          <form onSubmit={handleSubmit}>
-            <div className="mt-6 space-y-6">
-              <div>
-                <label htmlFor="name" className="text-sm text-gray-700 block mb-1 font-medium">Board name</label>
-                <input required type="text" name="name" className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full" placeholder="Enter Board name" />
-              </div>
-            </div>
-            <div className="space-x-4 mt-8">
-              <button type="submit" className="w-full btn btn-primary rounded-md font-bold">Save</button>
-            </div>
-          </form>
-        </div>
-      </div>
+      <NewBoard handleSubmit={handleSubmit}></NewBoard>
+    </>}
     </div>
   );
 };
