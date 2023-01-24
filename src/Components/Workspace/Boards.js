@@ -88,7 +88,7 @@ const Boards = () => {
       })
       .catch((error) => toast.error(error.message));
   };
-  const image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLsiiM_FzbrKVFZ9Bh-i2oVYtMlqknjHc3tUz8oKDhLAgjhUwPJTu5buAApydXjKLslQs&usqp=CAU";
+  const image = "https://media.istockphoto.com/id/1044776908/photo/a-beautiful-colorful-abstract-mountain-scenery-in-sunrise-minimalist-landscape-of-mountains.jpg?s=170667a&w=0&k=20&c=M1n3XMcg9KJNXEdsQqITqboEcU999O4uRy9yjUOKpJk=";
 
   return (
     <div>{currentWorkspace && <>
@@ -103,14 +103,20 @@ const Boards = () => {
       <div className="grid lg:grid-cols-3 md:grid-cols-2 mt-8 gap-4 px-5 ">
         {cards.map((card, i) => (
          <div className=''>
-          <a href="#edit-board" onClick={()=>handleEdit(card._id)} className='justify-end  flex  -mb-16 mr-4 cursor-pointer p-2 text-lg hover:text-gray-400  text-white'><BsPencilSquare ></BsPencilSquare></a>
-          <Link to="/workspace/single" className="card mt-6 absulute -z-50  image-full">
-            <img className="w-full h-28" src={image} alt="Shoes" />
-            <div className="card-body">
-           
-              <h2 className="card-title">{card.name}</h2>
+          <a href="#edit-board " onClick={()=>handleEdit(card._id)} className='  justify-end flex  -mb-16   cursor-pointer p-2 text-lg hover:text-gray-400  text-white'><BsPencilSquare ></BsPencilSquare></a>
+          <Link  to="/workspace/single">
+          <div  style = {{ backgroundImage: `url(${image})`,
+                backgroundSize: 'cover', 
+                backgroundPosition: 'center center',
+                backgroundRepeat: 'no-repeat',
+              }} className=" mt-6 image-full">
+            {/* <img className="w-full h-28" src={image} alt="Shoes" /> */}
+            <div className="card-body ">
+           <div className='flex'>
+              <h2 className="card-title text-white ">{card.name}</h2>
+             </div>
             </div>
-          </Link>
+          </div></Link>
           <EditBoard card={card} handleEdite={handleEdite} ></EditBoard>
           </div> 
         ))}
