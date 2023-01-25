@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/UserContext';
 import { CgLogOut } from "react-icons/cg";
+import { BiEdit } from "react-icons/bi";
 import CreateWorkSpaceModal from '../CreateWorkSpaceModal/CreateWorkSpaceModal';
 
 const Navbar = () => {
@@ -45,7 +46,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li><Link to='/'>Home</Link></li>
+          <li className='rounded-none'><Link to='/'>Home</Link></li>
           <li> <Link to='/workspace/boards'>Workspaces</Link></li>
           <li><a href="#WorkSpaceModal-1">Create</a></li>
           {/* <li tabIndex={0}>
@@ -65,21 +66,69 @@ const Navbar = () => {
         {
           user?.uid ?
             <><div className="dropdown dropdown-end flex flex-row">
-              <p className='mt-3 font-bold'>{user.displayName}</p>
+              {/* <p className='mt-3 font-bold'>{user.displayName}</p> */}
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                  <img src={user.photoURL != null ? user.photoURL : `https://ui-avatars.com/api/?name=${user.displayName}&color=7F9CF5&background=EBF4FF`} />
+                  <img src={user?.photoURL != null ? user?.photoURL : `https://ui-avatars.com/api/?name=${user?.displayName}&color=7F9CF5&background=EBF4FF`} />
                   
                 </div>
               </label>
-              <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+              <div tabIndex={0} className="menu menu-compact dropdown-content mt-12 p-2 shadow-lg bg-base-100 rounded-sm w-60">
+                <h2 className=" text-gray-600 font-bold my-2">ACCOUNT</h2>
+             <div className='flex items-center mb-5'>
+               <div className="w-10 mr-1">
+                  <img className='rounded-full' src={user?.photoURL != null ? user?.photoURL : `https://ui-avatars.com/api/?name=${user?.displayName}&color=7F9CF5&background=EBF4FF`} />
+                  
+                </div>
+                  <div>
+                      <p className='mt-3 text-xs mb-0'>{user?.displayName}</p>
+                      <p className='mt-3 text-xs mt-0'>{user?.email}</p>
+                  </div>
+                </div>
                 <li>
                   <Link to='/profile' className="justify-between">
-                    Profile
+                    Switch accounts
                   </Link>
                 </li>
+                <li>
+                  <Link to='/profile' className="justify-between">
+                    Manage account <BiEdit/>
+                  </Link>
+                </li>
+                <div className="divider"></div>
+                <p className='text-gray-600 ml-3 mb-2'>TaskMaster</p>
+                <li>
+                  <Link to='/profile' className="justify-between">
+                    Profile and visibility
+                  </Link>
+                   </li>
+                <li>  <Link to='/profile' className="justify-between">
+                    Activity
+                  </Link>
+                  </li>
+                  <li>
+                     <Link to='/profile' className="justify-between">
+                    Cards
+                  </Link>
+                  </li>
+                  <li>
+                     <Link to='/profile' className="justify-between">
+                    Settings
+                  </Link>
+                  </li>
+                  <li>
+                    <Link to='/profile' className="justify-between">
+                    Help
+                  </Link>
+                  </li>
+                 <li>
+                    <Link to='/profile' className="justify-between">
+                    Shortcuts
+                  </Link>
+                 </li>
+                  <div className="divider"></div>
                 <li><a className='gap-1 items-center' onClick={handleLogOut}><CgLogOut></CgLogOut>Logout</a></li>
-              </ul>
+              </div>
             </div></> :
             <>
               <Link to='/login'><button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Login</button></Link>
