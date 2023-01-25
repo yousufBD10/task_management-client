@@ -3,7 +3,7 @@ import React from 'react';
 
 const Header = () => {
     return (
-        <div className="my-10 grid lg:grid-cols-2 px-12">
+        <div className="my-10 grid items-center lg:grid-cols-2 px-12">
             <div>
                 <h1 className='text-6xl font-serif font-bold mt-12'>One app to <br /> replace them all.</h1>
                 <h3 className='text-xl font-semibold font-serif mt-8'>We’re more than a doc. Or a table. Customize TaskMaster <br /> to work the way you do.</h3>
@@ -13,7 +13,7 @@ const Header = () => {
                 </form>
             </div>
             <div>
-                <img className='lg:w-[450px] mx-auto lg:mr-12 lg:mt-8' src="/assets/banner/taskMaster.png" alt="" />
+                <img className='lg:w-[650px] mx-auto lg:mr-12 lg:mt-8' src="/assets/banner/SMS2.gif" alt="" />
             </div>
         </div>
     );

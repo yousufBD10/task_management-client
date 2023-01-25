@@ -19,7 +19,7 @@ const Features = () => {
             text: `Working together is hard work—for a lot of reasons. You likely have teammates who work in different locations and different hours. Plus, everyone’s work is now spread across multiple apps. The result?`
         },
         {
-            image: 'https://i.dlpng.com/static/png/7200231_preview.png',
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfzn9Ral6WyicOtDbzy-nUQNMuXTTmNZvfUw&usqp=CAU',
             title: 'Task Management',
             text: `Task management software tends to have fewer features than standard project management platforms. That’s because it is intended to be used by entire teams, not just by managers or “power users.” The focus of task management tools is strictly execution-oriented, centered on organizing and managing tasks. Thus, these solutions tend to be limited when.`
         },
