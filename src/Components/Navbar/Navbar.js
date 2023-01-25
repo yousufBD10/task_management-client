@@ -127,7 +127,7 @@ const Navbar = () => {
                   </Link>
                  </li>
                   <div className="divider"></div>
-                <li><a className='gap-1 items-center' onClick={handleLogOut}><CgLogOut></CgLogOut>Logout</a></li>
+                <li><a className='gap-1 items-center text-center' onClick={handleLogOut}>  <CgLogOut></CgLogOut>Logout</a></li>
               </div>
             </div></> :
             <>
