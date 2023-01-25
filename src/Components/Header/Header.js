@@ -13,7 +13,7 @@ const Header = () => {
                 </form>
             </div>
             <div>
-                <img className='lg:w-[650px] mx-auto lg:mr-12 lg:mt-8' src="/assets/banner/SMS2.gif" alt="" />
+                <img className='lg:w-[650px] mx-auto lg:mr-12' src="/assets/banner/SMS2.gif" alt="" />
             </div>
         </div>
     );
