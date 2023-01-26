@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/UserContext';
 
 const UserProfile = () => {
@@ -26,9 +27,8 @@ const UserProfile = () => {
             <p>{user?.email}</p>
         </div>
         </div>
-        <div class="card-actions justify-end">
-            <button class="btn btn-primary">Edit Profile</button>
-        </div>
+        <Link to='/updateprofile' className="btn btn-primary">Update Profile</Link>
+
         </div>
         </div>
         </div>
