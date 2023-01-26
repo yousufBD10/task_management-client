@@ -12,6 +12,7 @@ import Workspace from "../Layout/Workspace";
 import WorkspaceSingle from "../Layout/WorkspaceSingle";
 import Error from "../Share/Error";
 import PrivateRoute from "./PrivateRoute";
+import UpdateUser from "../Components/User/UpdateUser"
 
 const Router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const Router = createBrowserRouter([
       {
         path: "/profile",
         element: <UserProfile />,
+      },
+      {
+        path: "/updateprofile",
+        element: <UpdateUser/>,
       },
       {
         path: "*",
