@@ -27,7 +27,40 @@ const UserProfile = () => {
         </div>
         </div>
         <div class="card-actions justify-end">
-            <button class="btn btn-primary">Edit Profile</button>
+{/* The button to open modal */}
+<label htmlFor="my-modal-3" className="btn btn-primary">Edit Profile</label>
+
+{/* Put this part before </body> tag */}
+<input type="checkbox" id="my-modal-3" className="modal-toggle" />
+<div className="modal">
+  <div className="modal-box relative">
+    <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+    <h3 className="text-lg font-bold">Edit/Update your profile</h3>
+    <label className="label">
+    <h4 className='font-bold'>Name</h4>
+  </label>
+    <input type="text" placeholder="Type here" className="input input-bordered input-primary w-full max-w-xs" />
+    <label className="label">
+    <h4 className='font-bold'>Email</h4>
+  </label>
+    <input type="text" placeholder="Type here" className="input input-bordered input-primary w-full max-w-xs" />
+    <label className="label">
+    <h4 className='font-bold'>Contact No.</h4>
+  </label>
+    <input type="text" placeholder="Type here" className="input input-bordered input-primary w-full max-w-xs" />
+    <label className="label">
+    <h4 className='font-bold'>Address</h4>
+  </label>
+    <input type="text" placeholder="Type here" className="input input-bordered input-primary w-full max-w-xs" />
+    <label className="label">
+    <h4 className='font-bold'>Image</h4>
+  </label>
+    <input type="file" placeholder="" className="" />
+    
+    <label htmlFor="my-modal-3" className="btn btn-primary">Update</label>
+    </div>
+</div>
+
         </div>
         </div>
         </div>
