@@ -9,7 +9,7 @@ import TwitterSignIn from "../TwitterSignIn/TwitterSignIn";
 
 const SingUp = () => {
   useDocumentTitle("Signup");
-  const { user, createUser, updateName, verifyEmail, jwtANDUser } =
+  const { user,subscribes, createUser, updateName, verifyEmail, jwtANDUser } =
     useContext(AuthContext);
   const [passwordError, setPasswordError] = useState();
   const location = useLocation();
@@ -84,11 +84,12 @@ const SingUp = () => {
           </div>
           {/* ---- Email Input--------- */}
           <div className="space-y-1 text-sm">
-            <label className="block dark:text-gray-600">Email</label>
+            <label  className="block dark:text-gray-600">Email</label>
             <input
-              type="email"
+              defaultValue={subscribes}
+               type="email"
               name="email"
-              placeholder="Email"
+               placeholder="Email"
               className="input input-bordered w-full px-4 py-3 rounded-md dark:border-blue-700 bg-blue-200"
               required
             />

@@ -21,6 +21,7 @@ const auth = getAuth(app);
 
 const UserContext = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [subscribes, setSubscribes] = useState("");
   const [loading, setLoading] = useState(true);
   const [workspaces, setWorkspaces] = useState([]);
   const [currentWorkspace, setCurrentWorkspace] = useState(null);
@@ -150,6 +151,8 @@ const UserContext = ({ children }) => {
     logOut,
     resetPassword,
     jwtANDUser,
+    subscribes,
+    setSubscribes,
     workspaces, setWorkspaces, reloadWorkspaces, currentWorkspace, setCurrentWorkspace
   };
   return (
