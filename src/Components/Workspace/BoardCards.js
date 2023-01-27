@@ -73,9 +73,12 @@ const BoardCards = () => {
   useEffect(reloadBoard, []);
 
   return (
-    <div>
+    <div className="my-12 px-12">
       <div>
-        <h1>{currentWorkspace?.name}</h1>
+        <div className='w-full mb-12'>
+          <h3>{currentWorkspace?.name}</h3>
+          <h2 className='text-2xl font-bold'>{board?.name}</h2>
+        </div>
         <div>
           <div className="w-1/4 h-48 flex gap-1">
             {list.map((l, i) => (
