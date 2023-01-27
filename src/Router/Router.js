@@ -64,11 +64,11 @@ const Router = createBrowserRouter([
     ],
   },
   {
-    path: "/workspace/single",
+    path: "/workspace/board/:id",
     element: <PrivateRoute><WorkspaceSingle /></PrivateRoute>,
     children: [
       {
-        path: "/workspace/single",
+        path: "/workspace/board/:id",
         element: <BoardCards />,
       }
     ],
