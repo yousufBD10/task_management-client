@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../Context/UserContext';
 import CreateTask from '../Modals/CreateTask';
 
 const ToDoCard = ({ list }) => {
-
+    const { user, currentWorkspace, logOut } = useContext(AuthContext);
     /* ----------- Static data to Check task distribution on list card Start ---------- */
     const taskInformation = [
         {
@@ -49,11 +50,13 @@ const ToDoCard = ({ list }) => {
         const form = event.target;
         const note = form.note.value;
         const taskData = {
+            wid: currentWorkspace._id,
             cardID: cardID,
             note: note,
             createTime: new Date().toLocaleString()
         }
-        console.log(taskData)
+        form.reset();
+        document.querySelector(".close_modal").click();
     };
     /* ----------------- Collect data After Submit Task on modal End ----------------- */
 
