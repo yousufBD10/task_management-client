@@ -70,63 +70,50 @@ const Navbar = () => {
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img alt='#' src={user?.photoURL != null ? user?.photoURL : `https://ui-avatars.com/api/?name=${user?.displayName}&color=7F9CF5&background=EBF4FF`} />
-                  
                 </div>
               </label>
               <div tabIndex={1} className="menu menu-compact dropdown-content mt-12 p-2 shadow-lg bg-base-100 rounded-sm w-60">
                 <h2 className=" text-gray-600 font-bold my-2">ACCOUNT</h2>
-             <div className='flex items-center mb-5'>
-               <div className="w-10 mr-1">
-                  <img alt='#' className='rounded-full' src={user?.photoURL != null ? user?.photoURL : `https://ui-avatars.com/api/?name=${user?.displayName}&color=7F9CF5&background=EBF4FF`} />
-                  
-                </div>
+                <div className='flex items-center mb-5'>
+                  <div className="w-10 mr-1">
+                    <img alt='#' className='rounded-full' src={user?.photoURL != null ? user?.photoURL : `https://ui-avatars.com/api/?name=${user?.displayName}&color=7F9CF5&background=EBF4FF`} />
+                  </div>
                   <div>
-                      <p className='mt-3 text-xs mb-0'>{user?.displayName}</p>
-                      <p className='mt-3 text-xs mt-0'>{user?.email}</p>
+                    <p className='mt-3 text-xs mb-0'>{user?.displayName}</p>
+                    <p className='mt-3 text-xs mt-0'>{user?.email}</p>
                   </div>
                 </div>
                 <li>
                   <Link to='/profile' className="justify-between">
-                    Switch accounts
+                    Profile
                   </Link>
                 </li>
                 <li>
                   <Link to='/profile' className="justify-between">
-                    Manage account <BiEdit/>
+                    Activity
+                  </Link>
+                </li>
+                <li>
+                  <Link to='/profile' className="justify-between">
+                    Cards
+                  </Link>
+                </li>
+                <li>
+                  <Link to='/profile' className="justify-between">
+                    Settings
+                  </Link>
+                </li>
+                <li>
+                  <Link to='/profile' className="justify-between">
+                    Help
+                  </Link>
+                </li>
+                <li>
+                  <Link to='/profile' className="justify-between">
+                    Shortcuts
                   </Link>
                 </li>
                 <div className="divider"></div>
-                <p className='text-gray-600 ml-3 mb-2'>TaskMaster</p>
-                <li>
-                  <Link to='/profile' className="justify-between">
-                    Profile and visibility
-                  </Link>
-                   </li>
-                <li>  <Link to='/profile' className="justify-between">
-                    Activity
-                  </Link>
-                  </li>
-                  <li>
-                     <Link to='/profile' className="justify-between">
-                    Cards
-                  </Link>
-                  </li>
-                  <li>
-                     <Link to='/profile' className="justify-between">
-                    Settings
-                  </Link>
-                  </li>
-                  <li>
-                    <Link to='/profile' className="justify-between">
-                    Help
-                  </Link>
-                  </li>
-                 <li>
-                    <Link to='/profile' className="justify-between">
-                    Shortcuts
-                  </Link>
-                 </li>
-                  <div className="divider"></div>
                 <li><a className='gap-1 items-center text-center' onClick={handleLogOut}>  <CgLogOut></CgLogOut>Logout</a></li>
               </div>
             </div></> :
