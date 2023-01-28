@@ -11,9 +11,14 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { BiLock, BiPencil } from "react-icons/bi";
 import { FiUserPlus } from "react-icons/fi";
 import { AuthContext } from '../Context/UserContext';
+import { useState } from 'react';
 import InviteMember from '../Components/Workspace/Modals/InviteMember';
 
 const Workspace = () => {
+  const [id,setId] =useState('')
+  const handleWorkspaceEdit = (id)=>{
+  setId(id);
+  }
 
   const { user, reloadWorkspaces, workspaces, setCurrentWorkspace, currentWorkspace } = useContext(AuthContext);
   const setCurrent = (id) => { setCurrentWorkspace(workspaces.find((w) => w._id == id)) }
@@ -54,7 +59,9 @@ const Workspace = () => {
                 </div>
               </div>
               <div>
-                <h1 className='text-xl flex items-center gap-2 font-medium'>{currentWorkspace?.name} <BiPencil></BiPencil> </h1>
+               <div className='flex items-center gap-3'> <h1 className='text-xl flex items-center gap-2 font-medium'>{currentWorkspace?.name} </h1> 
+              <p onClick={()=>handleWorkspaceEdit(currentWorkspace._id)} className= 'hover:bg-slate-200 text-black rounded-lg cursor-pointer p-2'> <BiPencil></BiPencil> </p>
+                </div>
                 <p className='flex items-center gap-2'><BiLock></BiLock> Private</p>
               </div>
             </div>
@@ -67,7 +74,7 @@ const Workspace = () => {
           <label htmlFor="dashboardDawer" className="drawer-overlay"></label>
           <ul className="p-4 w-80 menu bg-base-100">
             {" "}
-            <li className="shadow-sm mb-2 rounded-full ">
+            <li className="shadow-sm mb-2 rounded-md ">
               <Link to="/workspace/boards" className="font-bold">
                 {" "}
                 <MdOutlineSpaceDashboard />
@@ -77,7 +84,7 @@ const Workspace = () => {
             <div className="divider"></div>
             <div className="flex items-center ">
               <h3 className="mb-2 font-medium">Workspace</h3>
-              <a href="#WorkSpaceModal-1" className=" ml-32 hover:bg-zinc-300 p-2 rounded-full">
+              <a href="#WorkSpaceModal-1" className=" ml-32 hover:bg-zinc-300 p-2 rounded-md">
                 <AiOutlinePlus />
               </a>
             </div>
@@ -94,20 +101,20 @@ const Workspace = () => {
                   {el.name} <TiArrowUnsorted className="ml-16"></TiArrowUnsorted>
                 </div>
                 <div className="collapse-content">
-                  <li className="shadow-sm mb-2 rounded-full">
+                  <li className="shadow-sm mb-2 rounded-md">
                     <Link to="/workspace/boards">
                       <MdOutlineSpaceDashboard />
                       Boards
                     </Link>
                   </li>
-                  <li className="shadow-sm mb-2 rounded-full">
+                  <li className="shadow-sm mb-2 rounded-md">
                     <Link to="/workspace/members">
                       <HiOutlineUsers />
                       Members
                     </Link>
                   </li>
                   {" "}
-                  <li className="shadow-sm mb-2 rounded-full">
+                  <li className="shadow-sm mb-2 rounded-md">
                     <Link to="/workspace/settings">
                       {" "}
                       <AiOutlineSetting />
