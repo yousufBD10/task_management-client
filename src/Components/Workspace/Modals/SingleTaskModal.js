@@ -98,18 +98,18 @@ const SingleTaskModal = () => {
                     {/* ------ Suggested section----- */}
 
                     <p className="text-grey mt-6">Suggested</p>
-                    <li className="shadow-sm">
+                    <li className="">
                       <Link
                         rel="noopener noreferrer"
                         href="#"
-                        className="flex btn-ghost btn-sm  items-center p-2 space-x-3 rounded-sm shadow-sm"
+                        className="flex items-center p-2 space-x-3 rounded-sm btn-ghost btn-sm"
                       >
                         <FiUser></FiUser>
                         <span>Join</span>
                       </Link>
                     </li>
                     <p className="pt-6">Add to card</p>
-                    <li className="shadow-md">
+                    <li className="">
                       <Link
                         rel="noopener noreferrer"
                         href="#"
@@ -119,7 +119,7 @@ const SingleTaskModal = () => {
                         <span className="text-grey">Members</span>
                       </Link>
                     </li>
-                    <li className="shadow-md">
+                    <li className="">
                       <Link
                         rel="noopener noreferrer"
                         href="#"
@@ -129,7 +129,7 @@ const SingleTaskModal = () => {
                         <span>Labels</span>
                       </Link>
                     </li>
-                    <li className="shadow-md">
+                    <li className="">
                       <Link
                         rel="noopener noreferrer"
                         href="#"
@@ -139,7 +139,7 @@ const SingleTaskModal = () => {
                         <span>Checklist</span>
                       </Link>
                     </li>
-                    <li className="shadow-md">
+                    <li className="">
                       <Link
                         rel="noopener noreferrer"
                         href="#"
@@ -149,7 +149,7 @@ const SingleTaskModal = () => {
                         <span>Dates</span>
                       </Link>
                     </li>
-                    <li className="shadow-md">
+                    <li className="">
                       <Link
                         rel="noopener noreferrer"
                         href="#"
@@ -159,7 +159,7 @@ const SingleTaskModal = () => {
                         <span>Attachment</span>
                       </Link>
                     </li>
-                    <li className="shadow-md">
+                    <li className="">
                       <Link
                         rel="noopener noreferrer"
                         href="#"
@@ -173,7 +173,7 @@ const SingleTaskModal = () => {
                     {/*----------- Action Section ----------- */}
 
                     <p className="text-grey pt-6">Actions</p>
-                    <li className="shadow-md">
+                    <li className="">
                       <Link
                         rel="noopener noreferrer"
                         href="#"
@@ -183,7 +183,7 @@ const SingleTaskModal = () => {
                         <span>Move</span>
                       </Link>
                     </li>
-                    <li className="shadow-md">
+                    <li className="">
                       <Link
                         rel="noopener noreferrer"
                         href="#"
@@ -193,7 +193,7 @@ const SingleTaskModal = () => {
                         <span>Copy</span>
                       </Link>
                     </li>
-                    <li className="shadow-md">
+                    <li className="">
                       <Link
                         rel="noopener noreferrer"
                         href="#"
@@ -203,7 +203,7 @@ const SingleTaskModal = () => {
                         <span>Make Template</span>
                       </Link>
                     </li>
-                    <li className="shadow-md">
+                    <li className="">
                       <Link
                         rel="noopener noreferrer"
                         href="#"
@@ -213,7 +213,7 @@ const SingleTaskModal = () => {
                         <span>Archive</span>
                       </Link>
                     </li>
-                    <li className="shadow-md">
+                    <li className="">
                       <Link
                         rel="noopener noreferrer"
                         href="#"
