@@ -100,7 +100,7 @@ const Boards = () => {
       <div className="grid lg:grid-cols-3 md:grid-cols-2 mt-8 gap-4 px-5 ">
         {cards.map((card, i) => (
           <div key={card._id}>
-            <a href="#edit-board" onClick={() => handleEdit(card._id)} className='justify-end flex -mb-16 cursor-pointer p-2 text-lg hover:text-gray-400  text-white'><BsPencilSquare ></BsPencilSquare></a>
+            <a href={`#edit-board-${card._id}`} onClick={() => handleEdit(card._id)} className='justify-end flex -mb-16 cursor-pointer p-2 text-lg hover:text-gray-400  text-white'><BsPencilSquare ></BsPencilSquare></a>
             <Link to={`/workspace/board/${card._id}`}>
               <div style={{
                 backgroundImage: `url(${image})`,
