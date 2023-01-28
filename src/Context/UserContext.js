@@ -11,6 +11,7 @@ import {
   signInWithPopup,
   signOut,
   TwitterAuthProvider,
+  updateEmail,
   updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
@@ -124,6 +125,11 @@ const UserContext = ({ children }) => {
     setLoading(true);
     return sendPasswordResetEmail(auth, email);
   };
+  //   firebase updateEmail
+  const emailUpdate = (newEmail) => {
+    setLoading(true);
+    return updateEmail(auth.currentUser, `${newEmail}`);
+  };
 
 
   //   observer
@@ -151,6 +157,7 @@ const UserContext = ({ children }) => {
     logOut,
     resetPassword,
     jwtANDUser,
+    emailUpdate,
     subscribes,
     setSubscribes,
     workspaces, setWorkspaces, reloadWorkspaces, currentWorkspace, setCurrentWorkspace

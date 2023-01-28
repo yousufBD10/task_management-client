@@ -11,8 +11,13 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { BiLock, BiPencil } from "react-icons/bi";
 import { FiUserPlus } from "react-icons/fi";
 import { AuthContext } from '../Context/UserContext';
+import { useState } from 'react';
 
 const Workspace = () => {
+  const [id,setId] =useState('')
+  const handleWorkspaceEdit = (id)=>{
+  setId(id);
+  }
 
   const { user, reloadWorkspaces, workspaces, setCurrentWorkspace, currentWorkspace } = useContext(AuthContext);
   const setCurrent = (id) => { setCurrentWorkspace(workspaces.find((w) => w._id == id)) }
@@ -53,7 +58,9 @@ const Workspace = () => {
                 </div>
               </div>
               <div>
-                <h1 className='text-xl flex items-center gap-2 font-medium'>{currentWorkspace?.name} <BiPencil></BiPencil> </h1>
+               <div className='flex items-center gap-3'> <h1 className='text-xl flex items-center gap-2 font-medium'>{currentWorkspace?.name} </h1> 
+              <p onClick={()=>handleWorkspaceEdit(currentWorkspace._id)} className= 'hover:bg-slate-200 text-black rounded-lg cursor-pointer p-2'> <BiPencil></BiPencil> </p>
+                </div>
                 <p className='flex items-center gap-2'><BiLock></BiLock> Private</p>
               </div>
             </div>
