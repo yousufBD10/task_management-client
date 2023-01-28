@@ -2,7 +2,7 @@ import React from 'react';
 
 const EditBoard = ({ handleEdite, card }) => {
     return (
-        <div id="edit-board" className="modal ">
+        <div id={`edit-board-${card._id}`} className="modal ">
             <div className="modal-box">
                 <a href="#" className="btn btn-sm btn-circle absolute right-2 top-2 z-30 hover:rotate-90 transition-all ease-in close_modal">✕</a>
                 <form onSubmit={handleEdite}>
