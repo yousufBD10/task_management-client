@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Context/UserContext';
+import { useLocation } from 'react-router-dom';
 
 const Members = () => {
   const { user, currentWorkspace, logOut } = useContext(AuthContext);
   const [members, setMembers] = useState([]);
+  let location = useLocation();
 
   const reloadMembers = () => {
     if (!currentWorkspace) return;
@@ -11,6 +13,7 @@ const Members = () => {
     for (let el of currentWorkspace.users) {
       data.push(el.uid);
     }
+
     fetch(process.env.REACT_APP_SERVER_URL + `/get-workspace-member`, {
       method: 'POST',
       headers: {
@@ -30,10 +33,11 @@ const Members = () => {
       });
   }
 
-  useEffect(reloadMembers, [currentWorkspace]);
+  useEffect(reloadMembers, [currentWorkspace, location]);
+
 
   return (
-    <div>
+    <div>{currentWorkspace && <>
       <h1 className="text-xl font-medium px-5">Members</h1>
       <div className='flex flex-row px-5'>
         <div className='flex flex-col w-60 g-3'>
@@ -76,7 +80,7 @@ const Members = () => {
 
         </div>
       </div>
-
+    </>}
     </div>
   );
 };

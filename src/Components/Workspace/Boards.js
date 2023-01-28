@@ -11,14 +11,11 @@ const Boards = () => {
   const [cards, setBoards] = useState([]);
   const [_id, _setId] = useState("");
 
-  const handleEdit =(id)=>{
-   console.log(id);
+  const handleEdit = (id) => {
     _setId(id)
- 
-   }
+  }
 
-  const handleEdite =(event)=>{
-   
+  const handleEdite = (event) => {
     event.preventDefault();
     console.log(event,);
     const form = event.target;
@@ -34,7 +31,7 @@ const Boards = () => {
     })
       .then(res => res.json())
       .then(data => {
-        toast.success("Successfully edit the board name.");
+        toast.success("Successfully edited the board name.");
         form.reset();
         document.querySelector(".close_modal").click();
         reloadBoards();
@@ -65,8 +62,8 @@ const Boards = () => {
   useEffect(reloadBoards, [currentWorkspace]);
 
   const handleSubmit = (event) => {
-     event.preventDefault();
-    console.log(event);
+    event.preventDefault();
+
     const form = event.target;
     const name = form.name.value;
     const data = { name, wid: currentWorkspace._id, _id: 'new' };
@@ -102,26 +99,27 @@ const Boards = () => {
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 mt-8 gap-4 px-5 ">
         {cards.map((card, i) => (
-         <div className=''>
-          <a href="#edit-board " onClick={()=>handleEdit(card._id)} className='  justify-end flex  -mb-16   cursor-pointer p-2 text-lg hover:text-gray-400  text-white'><BsPencilSquare ></BsPencilSquare></a>
-          <Link  to="/workspace/single">
-          <div  style = {{ backgroundImage: `url(${image})`,
-                backgroundSize: 'cover', 
+          <div key={card._id}>
+            <a href="#edit-board" onClick={() => handleEdit(card._id)} className='justify-end flex -mb-16 cursor-pointer p-2 text-lg hover:text-gray-400  text-white'><BsPencilSquare ></BsPencilSquare></a>
+            <Link to={`/workspace/board/${card._id}`}>
+              <div style={{
+                backgroundImage: `url(${image})`,
+                backgroundSize: 'cover',
                 backgroundPosition: 'center center',
                 backgroundRepeat: 'no-repeat',
               }} className=" mt-6 image-full">
-            {/* <img className="w-full h-28" src={image} alt="Shoes" /> */}
-            <div className="card-body ">
-           <div className='flex'>
-              <h2 className="card-title text-white ">{card.name}</h2>
-             </div>
-            </div>
-          </div></Link>
-          <EditBoard card={card} handleEdite={handleEdite} ></EditBoard>
-          </div> 
+                {/* <img className="w-full h-28" src={image} alt="Shoes" /> */}
+                <div className="card-body ">
+                  <div className='flex'>
+                    <h2 className="card-title text-white ">{card.name}</h2>
+                  </div>
+                </div>
+              </div></Link>
+            <EditBoard card={card} handleEdite={handleEdite} ></EditBoard>
+          </div>
         ))}
       </div>
-      <NewBoard  handleSubmit={handleSubmit}></NewBoard>
+      <NewBoard handleSubmit={handleSubmit}></NewBoard>
     </>}
     </div>
   );
