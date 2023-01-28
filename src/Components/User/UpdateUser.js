@@ -108,10 +108,10 @@ const UpdateUser = () => {
   </div>
 </form>
 
+    
+   </div>
 
-        </div>
-   
-    );
+  );
 };
 
 export default UpdateUser;

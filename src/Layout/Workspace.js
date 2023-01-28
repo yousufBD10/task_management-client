@@ -12,6 +12,7 @@ import { BiLock, BiPencil } from "react-icons/bi";
 import { FiUserPlus } from "react-icons/fi";
 import { AuthContext } from '../Context/UserContext';
 import { useState } from 'react';
+import InviteMember from '../Components/Workspace/Modals/InviteMember';
 
 const Workspace = () => {
   const [id,setId] =useState('')
@@ -64,7 +65,7 @@ const Workspace = () => {
                 <p className='flex items-center gap-2'><BiLock></BiLock> Private</p>
               </div>
             </div>
-            <button className='flex mt-12 items-center gap-2 bg-blue-600 btn btn-primary btn-sm rounded-sm text-white'><FiUserPlus></FiUserPlus> Invite Workspace members</button>
+            <a href='#invite-member' className='flex mt-12 items-center gap-2 bg-blue-600 btn btn-primary btn-sm rounded-sm text-white'><FiUserPlus></FiUserPlus> Invite Workspace members</a>
           </div><div className="divider px-5"></div></>
           }
           <Outlet></Outlet>
@@ -127,6 +128,8 @@ const Workspace = () => {
           </ul>
         </div>
       </div>
+
+      <InviteMember></InviteMember>
     </div>
   );
 };
