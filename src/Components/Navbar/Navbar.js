@@ -8,7 +8,7 @@ import CreateWorkSpaceModal from '../CreateWorkSpaceModal/CreateWorkSpaceModal';
 const Navbar = () => {
   const navigate = useNavigate()
 
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, toggleTheme, isDark } = useContext(AuthContext);
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -63,6 +63,11 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
+       <div className='mr-5 cursor-pointer'> {
+          isDark ?   <img  onClick={toggleTheme}  className='w-6' src="https://cdn-icons-png.flaticon.com/512/831/831682.png" alt="#" /> :   <img  onClick={toggleTheme} className='w-6' src="https://icon-library.com/images/moon-icon-png/moon-icon-png-25.jpg" alt="" />
+        }
+        </div>
+     
         {
           user?.uid ?
             <><div className="dropdown dropdown-end flex flex-row">
