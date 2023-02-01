@@ -13,10 +13,8 @@ const Members = () => {
     fetch(process.env.REACT_APP_SERVER_URL + `/get-workspace-member/${currentWorkspace._id}`, {
       method: 'POST',
       headers: {
-        'content-type': 'application/json',
         authorization: `Bearer ${localStorage.getItem('accessToken')}`
-      },
-      body: JSON.stringify(data)
+      }
     })
       .then(res => {
         if (res.status === 401 || res.status === 403) {
