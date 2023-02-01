@@ -28,25 +28,22 @@ const UserContext = ({ children }) => {
   const [currentWorkspace, setCurrentWorkspace] = useState(null);
 
 
-    const themes = {
-      light: "winter",
-      dark: "forest"
-    }
+  const themes = {
+    light: "winter",
+    dark: "forest"
+  }
 
-    const [isDark, setIsDark] = useState(false);
-    const theme = isDark ? themes.dark : themes.light;
-    const toggleTheme = ()=>{
-      localStorage.setItem('dark',JSON.stringify(!isDark));
-      setIsDark(!isDark)
-    };
+  const [isDark, setIsDark] = useState(false);
+  const theme = isDark ? themes.dark : themes.light;
+  const toggleTheme = () => {
+    localStorage.setItem('dark', JSON.stringify(!isDark));
+    setIsDark(!isDark)
+  };
 
-    useEffect(()=>{
-      const isDark = localStorage.getItem('dark') === 'true';
-      setIsDark(isDark);
-    },[])
-
-
-
+  useEffect(() => {
+    const isDark = localStorage.getItem('dark') === 'true';
+    setIsDark(isDark);
+  }, [])
 
 
 

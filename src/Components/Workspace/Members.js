@@ -9,12 +9,8 @@ const Members = () => {
 
   const reloadMembers = () => {
     if (!currentWorkspace) return;
-    let data = [];
-    for (let el of currentWorkspace.users) {
-      data.push(el.uid);
-    }
 
-    fetch(process.env.REACT_APP_SERVER_URL + `/get-workspace-member`, {
+    fetch(process.env.REACT_APP_SERVER_URL + `/get-workspace-member/${currentWorkspace._id}`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -42,7 +38,6 @@ const Members = () => {
       <div className='flex flex-row px-5'>
         <div className='flex flex-col w-60 g-3'>
           <button className='btn btn-primary btn-sm rounded-sm mt-3 mb-3'>Workspace members</button>
-          <button className='btn btn-primary btn-sm rounded-sm mb-3'>Guests</button>
           <button className='btn btn-primary btn-sm rounded-sm mb-3'>Pending</button>
         </div>
         <div>
@@ -72,12 +67,9 @@ const Members = () => {
                 <div className='ml-11'>
                   <button className='btn-primary px-3 m-2 rounded-md'>Remove</button>
                 </div>
-
               </div>
             )
           }
-
-
         </div>
       </div>
     </>}
