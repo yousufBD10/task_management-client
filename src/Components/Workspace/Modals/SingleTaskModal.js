@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   FiArchive,
@@ -18,11 +18,13 @@ import ChecklistDropDown from "../SingleTaskModalDropDown/ChecklistDropDown";
 import DateDropDown from "../SingleTaskModalDropDown/DateDropDown";
 import MoveDropDown from "../SingleTaskModalDropDown/MoveDropDown";
 import CopyDropDown from "../SingleTaskModalDropDown/CopyDropDown";
+import { AuthContext } from "../../../Context/UserContext";
 
 const SingleTaskModal = () => {
   const buttonStyle =
     "dropdown dropdown-left flex items-center p-2 space-x-3 rounded-md btn-ghost bg-gray-800 btn-sm text-gray-400";
-
+  const { currentWorkspace, currentTask, setCurrentTask } =
+    useContext(AuthContext);
   return (
     <div>
       <div id="new-board-modal" className="modal">
@@ -38,7 +40,8 @@ const SingleTaskModal = () => {
                 <input
                   name="name"
                   type="text"
-                  placeholder="Untitled"
+                  // placeholder="Untitled"
+                  defaultValue={currentTask?.note}
                   className="input input-bordered w-full rounded-sm text-3xl font-semibold"
                   required
                 />

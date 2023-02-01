@@ -26,35 +26,32 @@ const UserContext = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [workspaces, setWorkspaces] = useState([]);
   const [currentWorkspace, setCurrentWorkspace] = useState(null);
-
+  const [currentTask, setCurrentTask] = useState(null);
 
   const themes = {
     light: "winter",
-    dark: "forest"
-  }
+    dark: "forest",
+  };
 
   const [isDark, setIsDark] = useState(false);
   const theme = isDark ? themes.dark : themes.light;
   const toggleTheme = () => {
-    localStorage.setItem('dark', JSON.stringify(!isDark));
-    setIsDark(!isDark)
+    localStorage.setItem("dark", JSON.stringify(!isDark));
+    setIsDark(!isDark);
   };
 
   useEffect(() => {
-    const isDark = localStorage.getItem('dark') === 'true';
+    const isDark = localStorage.getItem("dark") === "true";
     setIsDark(isDark);
-  }, [])
-
-
+  }, []);
 
   const googleProvider = new GoogleAuthProvider();
   const gitHubProvider = new GithubAuthProvider();
   const twitterProvider = new TwitterAuthProvider();
 
-
   //push data on server when user signup/login
   const [LoginInfo, setLoginInfo] = useState({});
-  const jwtANDUser = (user, insert = true, role = 'user') => {
+  const jwtANDUser = (user, insert = true, role = "user") => {
     setLoading(true);
     setLoginInfo({
       email: user.email,
@@ -62,34 +59,35 @@ const UserContext = ({ children }) => {
       photoURL: user.photoURL,
       role,
       insert,
-    }); setTimeout(() => {
+    });
+    setTimeout(() => {
       setLoading(false);
     }, 1000);
-  }
+  };
 
   useLogin(LoginInfo);
 
   //load workspaces
   const reloadWorkspaces = () => {
     fetch(process.env.REACT_APP_SERVER_URL + `/get-workspaces`, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        authorization: `Bearer ${localStorage.getItem('accessToken')}`
-      }
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
-      .then(res => {
+      .then((res) => {
         if (res.status === 401 || res.status === 403) {
           return logOut();
         }
         return res.json();
       })
-      .then(res => {
+      .then((res) => {
         setWorkspaces(res);
         if (!currentWorkspace && res.length > 0) {
           setCurrentWorkspace(res[0]);
         }
       });
-  }
+  };
 
   //-----------Firebase create user------------
   const createUser = (email, password) => {
@@ -128,13 +126,16 @@ const UserContext = ({ children }) => {
   };
 
   // -------- firebase update name ---------
-  const updateName = (name, photoURL = 'https://cdn-icons-png.flaticon.com/512/21/21104.png') => {
+  const updateName = (
+    name,
+    photoURL = "https://cdn-icons-png.flaticon.com/512/21/21104.png"
+  ) => {
     setLoading(true);
     return updateProfile(auth.currentUser, {
-      displayName: name, photoURL: photoURL
+      displayName: name,
+      photoURL: photoURL,
     });
   };
-
 
   //   firebase email verification
   const verifyEmail = () => {
@@ -152,7 +153,6 @@ const UserContext = ({ children }) => {
     setLoading(true);
     return updateEmail(auth.currentUser, `${newEmail}`);
   };
-
 
   //   observer
   useEffect(() => {
@@ -182,8 +182,16 @@ const UserContext = ({ children }) => {
     emailUpdate,
     subscribes,
     setSubscribes,
-    workspaces, setWorkspaces, reloadWorkspaces, currentWorkspace, setCurrentWorkspace,
-    toggleTheme, isDark, theme
+    workspaces,
+    setWorkspaces,
+    reloadWorkspaces,
+    currentWorkspace,
+    setCurrentWorkspace,
+    toggleTheme,
+    isDark,
+    theme,
+    currentTask,
+    setCurrentTask,
   };
   return (
     <div>
