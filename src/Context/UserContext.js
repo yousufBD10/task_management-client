@@ -11,6 +11,7 @@ import {
   signInWithPopup,
   signOut,
   TwitterAuthProvider,
+  updateEmail,
   updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
@@ -25,6 +26,26 @@ const UserContext = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [workspaces, setWorkspaces] = useState([]);
   const [currentWorkspace, setCurrentWorkspace] = useState(null);
+
+
+  const themes = {
+    light: "winter",
+    dark: "forest"
+  }
+
+  const [isDark, setIsDark] = useState(false);
+  const theme = isDark ? themes.dark : themes.light;
+  const toggleTheme = () => {
+    localStorage.setItem('dark', JSON.stringify(!isDark));
+    setIsDark(!isDark)
+  };
+
+  useEffect(() => {
+    const isDark = localStorage.getItem('dark') === 'true';
+    setIsDark(isDark);
+  }, [])
+
+
 
   const googleProvider = new GoogleAuthProvider();
   const gitHubProvider = new GithubAuthProvider();
@@ -107,9 +128,11 @@ const UserContext = ({ children }) => {
   };
 
   // -------- firebase update name ---------
-  const updateName = (profile) => {
+  const updateName = (name, photoURL = 'https://cdn-icons-png.flaticon.com/512/21/21104.png') => {
     setLoading(true);
-    return updateProfile(auth.currentUser, profile);
+    return updateProfile(auth.currentUser, {
+      displayName: name, photoURL: photoURL
+    });
   };
 
 
@@ -123,6 +146,11 @@ const UserContext = ({ children }) => {
   const resetPassword = (email) => {
     setLoading(true);
     return sendPasswordResetEmail(auth, email);
+  };
+  //   firebase updateEmail
+  const emailUpdate = (newEmail) => {
+    setLoading(true);
+    return updateEmail(auth.currentUser, `${newEmail}`);
   };
 
 
@@ -151,9 +179,11 @@ const UserContext = ({ children }) => {
     logOut,
     resetPassword,
     jwtANDUser,
+    emailUpdate,
     subscribes,
     setSubscribes,
-    workspaces, setWorkspaces, reloadWorkspaces, currentWorkspace, setCurrentWorkspace
+    workspaces, setWorkspaces, reloadWorkspaces, currentWorkspace, setCurrentWorkspace,
+    toggleTheme, isDark, theme
   };
   return (
     <div>
