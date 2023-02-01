@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import "./ServiceCard.css";
 
 const ServiceCard = ({ image, title, text }) => {
   return (
-    <div className="h-auto md:h-[500px] flex overflow-hidden">
+    <div className="h-auto md:h-[500px] flex overflow-hidden shadow">
       <article className="flex flex-col rounded-lg border border-gray-100 p-2 shadow-sm transition hover:shadow-lg sm:p-6">
         <span className="inline-block rounded p-2  text-white">
           <img src={image} className="h-52 object-cover mx-auto" alt="ima" />
