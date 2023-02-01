@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   FiArchive,
@@ -13,16 +13,23 @@ import {
   FiUser,
 } from "react-icons/fi";
 import { TbTemplate } from "react-icons/tb";
+import MembersDropDown from "../SingleTaskModalDropDown/MembersDropDown";
+import ChecklistDropDown from "../SingleTaskModalDropDown/ChecklistDropDown";
+import DateDropDown from "../SingleTaskModalDropDown/DateDropDown";
+import MoveDropDown from "../SingleTaskModalDropDown/MoveDropDown";
+import CopyDropDown from "../SingleTaskModalDropDown/CopyDropDown";
+import { AuthContext } from "../../../Context/UserContext";
 
 const SingleTaskModal = () => {
+  const buttonStyle =
+    "dropdown dropdown-left flex items-center p-2 space-x-3 rounded-md btn-ghost bg-gray-800 btn-sm text-gray-400";
+  const { currentWorkspace, currentTask, setCurrentTask } =
+    useContext(AuthContext);
   return (
     <div>
       <div id="new-board-modal" className="modal">
-        <div className="modal-box rounded-sm max-w-screen-md mx-2">
-          <a
-            href="#"
-            className="btn btn-ghost btn-sm absolute right-2 top-2"
-          >
+        <div className="modal-box rounded-md bg-gray-50 max-w-screen-md mx-2">
+          <a href="#" className="btn btn-ghost btn-sm absolute right-2 top-2">
             ✕
           </a>
 
@@ -33,7 +40,8 @@ const SingleTaskModal = () => {
                 <input
                   name="name"
                   type="text"
-                  placeholder="Untitled"
+                  // placeholder="Untitled"
+                  defaultValue={currentTask?.note}
                   className="input input-bordered w-full rounded-sm text-3xl font-semibold"
                   required
                 />
@@ -45,12 +53,28 @@ const SingleTaskModal = () => {
                   placeholder=""
                   className="input input-bordered p-4 w-full rounded-sm outline-border h-24"
                 ></textarea>
-                <br />
+                <div className="mt-4">
+                  <button
+                    onClick={""}
+                    type="submit"
+                    className="btn btn-ghost btn-sm rounded-md bg-gray-800 text-gray-400"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={""}
+                    type="submit"
+                    className="btn btn-ghost btn-sm font-normal bg-gray-200 rounded-md text-gray-400 ml-3"
+                  >
+                    Cancel
+                  </button>
+                </div>
               </form>
+              <br />
 
               {/*-------------comments/Activity section----------- */}
 
-              <div className="text-gray-600">
+              <div className="text-gray-600 mt-8">
                 <div className="flex justify-between ">
                   <h3 className="text-md font-semibold">Activity</h3>
 
@@ -69,8 +93,8 @@ const SingleTaskModal = () => {
                     <label className="block">
                       <textarea
                         id="bio"
-                        placeholder=""
-                        className="input input-bordered p-4 w-full rounded-sm outline-border"
+                        placeholder="Write a comment..."
+                        className="input input-bordered p-2 mt-2 w-full rounded-sm outline-border"
                       ></textarea>
                     </label>
                     <div className="flex flex-wrap">
@@ -78,9 +102,9 @@ const SingleTaskModal = () => {
                       <button
                         onClick={""}
                         type="submit"
-                        className="btn btn-active btn-ghost btn-sm rounded-md"
+                        className="btn btn-ghost btn-sm rounded-md bg-gray-800 text-gray-400"
                       >
-                        Submit
+                        Save
                       </button>
                     </div>
                   </form>
@@ -112,18 +136,19 @@ const SingleTaskModal = () => {
                     <li className="">
                       <Link
                         rel="noopener noreferrer"
-                        href="#"
-                        className="flex items-center p-2 space-x-3 rounded-sm btn-ghost btn-sm"
+                        tabIndex={0}
+                        className={buttonStyle}
                       >
                         <FiUser></FiUser>
                         <span className="text-grey">Members</span>
+                        <MembersDropDown></MembersDropDown>
                       </Link>
                     </li>
                     <li className="">
                       <Link
                         rel="noopener noreferrer"
                         href="#"
-                        className="flex items-center p-2 space-x-3 rounded-sm btn-ghost btn-sm"
+                        className={buttonStyle}
                       >
                         <FiTag></FiTag>
                         <span>Labels</span>
@@ -133,27 +158,31 @@ const SingleTaskModal = () => {
                       <Link
                         rel="noopener noreferrer"
                         href="#"
-                        className="flex items-center p-2 space-x-3 rounded-sm btn-ghost btn-sm"
+                        tabIndex={0}
+                        className={buttonStyle}
                       >
                         <FiCheckSquare></FiCheckSquare>
                         <span>Checklist</span>
+                        <ChecklistDropDown></ChecklistDropDown>
                       </Link>
                     </li>
                     <li className="">
                       <Link
                         rel="noopener noreferrer"
                         href="#"
-                        className="flex items-center p-2 space-x-3 rounded-sm btn-ghost btn-sm"
+                        tabIndex={0}
+                        className={buttonStyle}
                       >
                         <FiClock></FiClock>
                         <span>Dates</span>
+                        <DateDropDown></DateDropDown>
                       </Link>
                     </li>
                     <li className="">
                       <Link
                         rel="noopener noreferrer"
                         href="#"
-                        className="flex items-center p-2 space-x-3 rounded-sm btn-ghost btn-sm"
+                        className={buttonStyle}
                       >
                         <FiPaperclip></FiPaperclip>
                         <span>Attachment</span>
@@ -163,7 +192,7 @@ const SingleTaskModal = () => {
                       <Link
                         rel="noopener noreferrer"
                         href="#"
-                        className="flex items-center p-2 space-x-3 rounded-sm btn-ghost btn-sm"
+                        className={buttonStyle}
                       >
                         <FiBook></FiBook>
                         <span>Cover</span>
@@ -177,27 +206,31 @@ const SingleTaskModal = () => {
                       <Link
                         rel="noopener noreferrer"
                         href="#"
-                        className="flex items-center p-2 space-x-3 rounded-sm btn-ghost btn-sm"
+                        tabIndex={0}
+                        className={buttonStyle}
                       >
                         <FiArrowRight></FiArrowRight>
                         <span>Move</span>
+                        <MoveDropDown></MoveDropDown>
                       </Link>
                     </li>
                     <li className="">
                       <Link
                         rel="noopener noreferrer"
                         href="#"
-                        className="flex items-center p-2 space-x-3 rounded-sm btn-ghost btn-sm"
+                        tabIndex={0}
+                        className={buttonStyle}
                       >
                         <FiCopy></FiCopy>
                         <span>Copy</span>
+                        <CopyDropDown></CopyDropDown>
                       </Link>
                     </li>
                     <li className="">
                       <Link
                         rel="noopener noreferrer"
                         href="#"
-                        className="flex items-center p-2 space-x-3 rounded-sm btn-ghost btn-sm"
+                        className={buttonStyle}
                       >
                         <TbTemplate></TbTemplate>
                         <span>Make Template</span>
@@ -207,7 +240,7 @@ const SingleTaskModal = () => {
                       <Link
                         rel="noopener noreferrer"
                         href="#"
-                        className="flex items-center p-2 space-x-3 rounded-sm btn-ghost btn-sm"
+                        className={buttonStyle}
                       >
                         <FiArchive></FiArchive>
                         <span>Archive</span>
@@ -217,7 +250,7 @@ const SingleTaskModal = () => {
                       <Link
                         rel="noopener noreferrer"
                         href="#"
-                        className="flex items-center p-2 space-x-3 rounded-sm btn-ghost btn-sm"
+                        className={buttonStyle}
                       >
                         <FiShare2></FiShare2>
                         <span>Share</span>
