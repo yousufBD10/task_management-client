@@ -14,6 +14,7 @@ import Error from "../Share/Error";
 import PrivateRoute from "./PrivateRoute";
 import UpdateUser from "../Components/User/UpdateUser"
 import AdminDashboard from "../Layout/AdminDashboard";
+import Pricing from "../Components/PricingPlans/Pricing/Pricing";
 
 const Router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const Router = createBrowserRouter([
         path: "/updateprofile",
         element: <UpdateUser/>,
       },
+      {
+        path: '/pricing',
+        element: <Pricing></Pricing>
+        },
       {
         path: "*",
         element: <Error></Error>,
@@ -75,7 +80,7 @@ const Router = createBrowserRouter([
     ],
   },
 
-  
+
   {
     path: "/dashboard",
     element: <PrivateRoute><AdminDashboard /></PrivateRoute>,
