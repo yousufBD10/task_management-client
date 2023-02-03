@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { AuthContext } from "../../Context/UserContext";
 import ToDoCard from "./ToDoCard/ToDoCard";
-import { useParams } from "react-router-dom";
 
 const initialLists = [
   {
