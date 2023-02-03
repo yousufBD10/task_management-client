@@ -26,7 +26,7 @@ const BoardCards = () => {
     currentWorkspace,
     setCurrentWorkspace,
     workspaces,
-    logOut,
+    logOut, boardItems, setBoardItems
   } = useContext(AuthContext);
   const setCurrent = (id) => {
     setCurrentWorkspace(workspaces.find((w) => w._id == id));
@@ -35,7 +35,6 @@ const BoardCards = () => {
   useEffect(reloadWorkspaces, [user]);
   const [list, setLists] = useState(initialLists);
   const [board, setBoard] = useState(null);
-  const [items, setItems] = useState(null);
 
   const reloadItems = () => {
     if (!currentWorkspace) return;
@@ -52,7 +51,7 @@ const BoardCards = () => {
         return res.json();
       })
       .then((res) => {
-        setItems(res);
+        setBoardItems(res);
         if (res.length > 0) {
           setCurrent(res[0].wid);
         }
@@ -93,7 +92,6 @@ const BoardCards = () => {
               <ToDoCard
                 key={l.id}
                 current_list={l}
-                items={items}
                 current_board={id}
                 reloadItems={reloadItems}
               />

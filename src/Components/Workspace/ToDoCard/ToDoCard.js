@@ -3,8 +3,8 @@ import { AuthContext } from "../../../Context/UserContext";
 import CreateTask from "../Modals/CreateTask";
 import { toast } from "react-toastify";
 
-const ToDoCard = ({ current_board, current_list, items, reloadItems }) => {
-  const { currentWorkspace, currentTask, setCurrentTask } = useContext(AuthContext);
+const ToDoCard = ({ current_board, current_list, reloadItems }) => {
+  const { currentWorkspace, setCurrentTask, boardItems } = useContext(AuthContext);
 
   /* ----------------- Collect data After Submit Task on modal Start ----------------- */
   const handleTaskSubmit = (event, cardID) => {
@@ -49,8 +49,8 @@ const ToDoCard = ({ current_board, current_list, items, reloadItems }) => {
           </div>
           <div className="py-2">
             {/*  ---------------------- map and distribute card data Start ----------------------  */}
-            {items &&
-              items.map((item, i) => (
+            {boardItems &&
+              boardItems.map((item, i) => (
                 <>
                   {item.cardID === current_list.id && (
                     <div
