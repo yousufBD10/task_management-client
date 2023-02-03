@@ -13,8 +13,8 @@ const useRole = email => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    localStorage.setItem('role', data.role);
-                    setRole(data.role);
+                    localStorage.setItem('role', data?.role);
+                    setRole(data?.role);
                     setRoleLoading(false);
                 })
         }

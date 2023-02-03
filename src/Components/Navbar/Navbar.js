@@ -4,11 +4,14 @@ import { AuthContext } from '../../Context/UserContext';
 import { CgLogOut } from "react-icons/cg";
 import { BiEdit } from "react-icons/bi";
 import CreateWorkSpaceModal from '../CreateWorkSpaceModal/CreateWorkSpaceModal';
+import useRole from '../../hooks/useRole';
 
 const Navbar = () => {
   const navigate = useNavigate()
-
   const { user, logOut, toggleTheme, isDark } = useContext(AuthContext);
+  const [role] = useRole(user?.email)
+  console.log(role);
+
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -50,6 +53,9 @@ const Navbar = () => {
           <li> <Link to='/workspace/boards'>Workspaces</Link></li>
           <li><a href="#WorkSpaceModal-1">Create</a></li>
           <li><Link to="/pricing">Pricing</Link></li>
+        {
+          role &&   <li><Link to="/dashboard">Dashboard</Link></li>
+        }
           {/* <li tabIndex={0}>
               <a>
                 Parent
