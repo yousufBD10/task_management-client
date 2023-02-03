@@ -1,40 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/UserContext';
-import { useLocation } from 'react-router-dom';
+import useMembersOfCurrentWorkspace from '../../hooks/useMembersOfCurrentWorkspace';
 
 const Members = () => {
-  const { user, currentWorkspace, logOut } = useContext(AuthContext);
-  const [members, setMembers] = useState([]);
-  let location = useLocation();
+  const { currentWorkspace, logOut } = useContext(AuthContext);
 
-  const reloadMembers = () => {
-    if (!currentWorkspace) return;
-    let data = [];
-    for (let el of currentWorkspace.users) {
-      data.push(el.uid);
-    }
-
-    fetch(process.env.REACT_APP_SERVER_URL + `/get-workspace-member`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        authorization: `Bearer ${localStorage.getItem('accessToken')}`
-      },
-      body: JSON.stringify(data)
-    })
-      .then(res => {
-        if (res.status === 401 || res.status === 403) {
-          return logOut();
-        }
-        return res.json();
-      })
-      .then(res => {
-        setMembers(res);
-      });
-  }
-
-  useEffect(reloadMembers, [currentWorkspace, location]);
-
+  const [members] = useMembersOfCurrentWorkspace(currentWorkspace, logOut);
 
   return (
     <div>{currentWorkspace && <>
@@ -42,7 +13,6 @@ const Members = () => {
       <div className='flex flex-row px-5'>
         <div className='flex flex-col w-60 g-3'>
           <button className='btn btn-primary btn-sm rounded-sm mt-3 mb-3'>Workspace members</button>
-          <button className='btn btn-primary btn-sm rounded-sm mb-3'>Guests</button>
           <button className='btn btn-primary btn-sm rounded-sm mb-3'>Pending</button>
         </div>
         <div>
@@ -69,15 +39,12 @@ const Members = () => {
                   <h2 className="card-title ml-2">{member.name}</h2>
                   <h2 className="card-id ml-2">{member._id}</h2>
                 </div>
-                <div className='ml-11'>
+                <div className='ml-11 opacity-0'>
                   <button className='btn-primary px-3 m-2 rounded-md'>Remove</button>
                 </div>
-
               </div>
             )
           }
-
-
         </div>
       </div>
     </>}

@@ -48,6 +48,7 @@ const Navbar = () => {
           <li className='rounded-none'><Link to='/'>Home</Link></li>
           <li> <Link to='/workspace/boards'>Workspaces</Link></li>
           <li><a href="#WorkSpaceModal-1">Create</a></li>
+          <li><Link to="/pricing">Pricing</Link></li>
           {/* <li tabIndex={0}>
               <a>
                 Parent

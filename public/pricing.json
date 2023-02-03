@@ -1,0 +1,79 @@
+[
+  {
+
+      
+      "title": "FREE",
+      "img": "https://img.freepik.com/free-photo/indian-chicken-biryani-served-terracotta-bowl-with-yogurt-white-background-selective-focus_466689-72554.jpg?w=740&t=st=1668011527~exp=1668012127~hmac=e1df1b8f6d0caaada6c68a15042302146b79f7e2961b34fa5a8fefc0d50336c3",
+      "pricing": "0",
+      "button":"Get Started",
+      "priceDetails":"Free for your personal project and for your whole team",
+      "subtitle": "For individuals or teams looking to organize any project.",
+      "featureTitle":"INCLUDED IN FREE:",
+      "feature01":"Unlimited cards",
+      "feature02":"Up to 10 boards per Workspace",
+      "feature03":"Unlimited Power-Ups per board",
+      "feature04":"Unlimited storage (10MB/file)",
+      "feature05":"250 Workspace command runs per month",
+      "feature06":"Custom backgrounds & stickers",
+      "feature07":"Unlimited activity log"
+
+      
+
+      
+
+  },
+  {
+
+      
+      "title": "STANDARD",
+      "img": "https://img.freepik.com/free-photo/crispy-fried-chicken-plate-with-salad-carrot_1150-20212.jpg?w=740&t=st=1668012005~exp=1668012605~hmac=efd0b5a52a512ec6566ad8c5b32730c4b616d9b0159625264038ab72dea05ae7",
+      "pricing": "5",
+      "button":"Purchase It",
+      "priceDetails":"Per user/month if billed annually ($6 billed monthly)",
+      "subtitle": "For small teams that need to manage work and scale collaboration.",
+      "featureTitle":"EVERYTHING IN FREE, PLUS:",
+      "feature01":"Unlimited boards",
+      "feature02":"Advanced checklists",
+      "feature03":"Custom Fields",
+      "feature04":"Unlimited storage (250MB/file)",
+      "feature05":"1,000 Workspace command runs per month",
+      "feature06":"Single board guests",
+      "feature07":"Saved searches"
+  },
+  {
+
+      
+      "title": "PREMIUM",
+      "img": "https://img.freepik.com/free-photo/side-view-chicken-burger-deep-fired-chicken-fillet-with-tomato-cheese-lettuce-burger-buns_141793-4816.jpg?w=740&t=st=1668016039~exp=1668016639~hmac=3090f8ec8ff4f822644964a10cb4c565be0cdcc8db66614de220f27e11d9b3c2",
+      "pricing": "10",
+      "button":"Purchase It",
+      "priceDetails":"Per user/month if billed annually ($12.50 billed monthly)",
+      "subtitle": "For teams that need to track and visualize multiple projects in several ways, including boards, timelines, calendars, etc.",
+      "featureTitle":"EVERYTHING IN STANDARD,PLUS:",
+      "feature01":"Views: Calendar, Timeline, Table, Dashboard, and Map",
+      "feature02":"Workspace views: Table and Calendar",
+      "feature03":"Unlimited Workspace command runs",
+      "feature04":"Admin and security features",
+      "feature05":"Workspace-level templates",
+      "feature06":"Priority support",
+      "feature07":"Simple data export"
+  },
+  {
+
+      
+    "title": "ENTERPRISE",
+    "img": "https://img.freepik.com/free-photo/side-view-chicken-burger-deep-fired-chicken-fillet-with-tomato-cheese-lettuce-burger-buns_141793-4816.jpg?w=740&t=st=1668016039~exp=1668016639~hmac=3090f8ec8ff4f822644964a10cb4c565be0cdcc8db66614de220f27e11d9b3c2",
+    "pricing": "16.50",
+    "button":"Contact Us",
+    "priceDetails":"Per user/month - billed annually ($210.00 annual price per user)",
+    "subtitle": "For organizations that need to connect work across teams with more security and controls.",
+    "featureTitle":"EVERYTHING IN PREMIUM, PLUS:",
+    "feature01":"Unlimited Workspaces",
+    "feature02":"Organization-wide permissions",
+    "feature03":"Organization-visible boards",
+    "feature04":"Public board management",
+    "feature05":"Multi-board guests",
+    "feature06":"Attachment permissions",
+    "feature07":"Power-Up administration"
+}
+]
