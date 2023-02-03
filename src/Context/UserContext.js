@@ -26,6 +26,7 @@ const UserContext = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [workspaces, setWorkspaces] = useState([]);
   const [currentWorkspace, setCurrentWorkspace] = useState(null);
+  const [boardItems, setBoardItems] = useState(null);
   const [currentTask, setCurrentTask] = useState(null);
 
   const themes = {
@@ -192,6 +193,7 @@ const UserContext = ({ children }) => {
     theme,
     currentTask,
     setCurrentTask,
+    boardItems, setBoardItems
   };
   return (
     <div>

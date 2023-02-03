@@ -25,11 +25,9 @@ const ChecklistDropDown = () => {
           <p className="text-gray-900 font-bold">Copy items from…</p>
           <select name="" id="" className="w-full text-gray-900">
             <option value="#">(none)</option>
-            <span className="font-bold">Dark Mode Implementation</span>
             <option value="checklist">Checklist</option>
           </select>
           <button
-            onClick={""}
             type="submit"
             className="btn btn-ghost btn-sm rounded-md bg-gray-800 text-gray-400 my-3"
           >
