@@ -17,7 +17,7 @@ const MembersDropDown = () => {
         </p>
         <hr />
         {members && members.map((member) => {
-          return <li className="flex btn btn-ghost items-center justify-center btn-sm  my-1 rounded-md bg-gray-900 text-gray-400 shadow-md">
+          return <li key={member._id} className="flex btn btn-ghost items-center justify-center btn-sm  my-1 rounded-md bg-gray-900 text-gray-400 shadow-md">
             <button>{member.name}</button>
           </li>
         })}

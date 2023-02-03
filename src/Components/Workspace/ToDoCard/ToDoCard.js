@@ -54,7 +54,7 @@ const ToDoCard = ({ current_board, current_list, reloadItems }) => {
                 <>
                   {item.cardID === current_list.id && (
                     <div
-                      key={i}
+                      key={item._id}
                       className="bg-gray-50 hover:cursor-pointer hover:bg-gray-100 p-2 my-1 relative"
                     >
                       <a

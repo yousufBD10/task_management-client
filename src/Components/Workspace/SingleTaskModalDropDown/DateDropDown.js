@@ -53,14 +53,12 @@ const DateDropDown = () => {
           </select>
           <div className="my-4">
             <button
-              onClick={""}
               type="submit"
               className="btn btn-ghost btn-sm rounded-md bg-gray-800 text-gray-400"
             >
               Save
             </button>
             <button
-              onClick={""}
               type="submit"
               className="btn btn-ghost btn-sm font-normal bg-gray-300 rounded-md text-gray-700 ml-3"
             >
