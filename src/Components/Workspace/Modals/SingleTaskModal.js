@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import {
   FiArchive,
@@ -21,10 +22,25 @@ import CopyDropDown from "../SingleTaskModalDropDown/CopyDropDown";
 import { AuthContext } from "../../../Context/UserContext";
 
 const SingleTaskModal = () => {
-  const buttonStyle =
-    "dropdown dropdown-left flex items-center p-2 space-x-3 rounded-md btn-ghost bg-gray-800 btn-sm text-gray-400";
-  const { currentWorkspace, currentTask, setCurrentTask } =
-    useContext(AuthContext);
+  const buttonStyle = "dropdown dropdown-left flex items-center p-2 space-x-3 rounded-md btn-ghost bg-gray-800 btn-sm text-gray-400";
+  const { currentWorkspace, currentTask } = useContext(AuthContext);
+
+  const SendToServer = () => {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/create-update-task`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(currentTask),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Successfully saved to server.");
+      })
+      .catch((error) => toast.error(error.message));
+  };
+
   return (
     <div>
       <div id="new-board-modal" className="modal">
@@ -40,7 +56,7 @@ const SingleTaskModal = () => {
                 <input
                   name="name"
                   type="text"
-                  // placeholder="Untitled"
+                  onKeyUp={(e) => { currentTask.note = e.target.value; SendToServer(); }}
                   defaultValue={currentTask?.note}
                   className="input input-bordered w-full rounded-sm text-3xl font-semibold"
                   required
@@ -50,25 +66,10 @@ const SingleTaskModal = () => {
 
                 <textarea
                   id="bio"
-                  placeholder=""
-                  className="input input-bordered p-4 w-full rounded-sm outline-border h-24"
-                ></textarea>
-                <div className="mt-4">
-                  <button
-                    onClick={""}
-                    type="submit"
-                    className="btn btn-ghost btn-sm rounded-md bg-gray-800 text-gray-400"
-                  >
-                    Save
-                  </button>
-                  <button
-                    onClick={""}
-                    type="submit"
-                    className="btn btn-ghost btn-sm font-normal bg-gray-200 rounded-md text-gray-400 ml-3"
-                  >
-                    Cancel
-                  </button>
-                </div>
+                  onKeyUp={(e) => { currentTask.description = e.target.value; SendToServer(); }}
+                  placeholder="Description"
+                  className="input input-bordered p-4 w-full rounded-sm outline-border"
+                >{currentTask?.description}</textarea>
               </form>
               <br />
 
@@ -78,13 +79,11 @@ const SingleTaskModal = () => {
                 <div className="flex justify-between ">
                   <h3 className="text-md font-semibold">Activity</h3>
 
-                  <Link
-                    rel="noopener noreferrer"
-                    href="#"
+                  <button
                     className="flex btn-ghost btn-sm text-gray-600  items-center p-2 space-x-3 rounded-sm shadow-sm"
                   >
                     <p>Show Details</p>
-                  </Link>
+                  </button>
                 </div>
                 <div>
                   {/* -----------Comment text area---------- */}
@@ -94,6 +93,7 @@ const SingleTaskModal = () => {
                       <textarea
                         id="bio"
                         placeholder="Write a comment..."
+                        rows={6}
                         className="input input-bordered p-2 mt-2 w-full rounded-sm outline-border"
                       ></textarea>
                     </label>
@@ -120,18 +120,6 @@ const SingleTaskModal = () => {
                 <div className="divide-y divide-gray-700">
                   <ul className="pt-2 pb-4 space-y-1 text-sm text-grey">
                     {/* ------ Suggested section----- */}
-
-                    <p className="text-grey mt-6">Suggested</p>
-                    <li className="">
-                      <Link
-                        rel="noopener noreferrer"
-                        href="#"
-                        className="flex items-center p-2 space-x-3 rounded-sm btn-ghost btn-sm"
-                      >
-                        <FiUser></FiUser>
-                        <span>Join</span>
-                      </Link>
-                    </li>
                     <p className="pt-6">Add to card</p>
                     <li className="">
                       <Link
@@ -140,18 +128,8 @@ const SingleTaskModal = () => {
                         className={buttonStyle}
                       >
                         <FiUser></FiUser>
-                        <span className="text-grey">Members</span>
+                        <span className="text-grey">Assign Members</span>
                         <MembersDropDown></MembersDropDown>
-                      </Link>
-                    </li>
-                    <li className="">
-                      <Link
-                        rel="noopener noreferrer"
-                        href="#"
-                        className={buttonStyle}
-                      >
-                        <FiTag></FiTag>
-                        <span>Labels</span>
                       </Link>
                     </li>
                     <li className="">
@@ -174,7 +152,7 @@ const SingleTaskModal = () => {
                         className={buttonStyle}
                       >
                         <FiClock></FiClock>
-                        <span>Dates</span>
+                        <span>Deadline</span>
                         <DateDropDown></DateDropDown>
                       </Link>
                     </li>
@@ -186,16 +164,6 @@ const SingleTaskModal = () => {
                       >
                         <FiPaperclip></FiPaperclip>
                         <span>Attachment</span>
-                      </Link>
-                    </li>
-                    <li className="">
-                      <Link
-                        rel="noopener noreferrer"
-                        href="#"
-                        className={buttonStyle}
-                      >
-                        <FiBook></FiBook>
-                        <span>Cover</span>
                       </Link>
                     </li>
 
@@ -224,16 +192,6 @@ const SingleTaskModal = () => {
                         <FiCopy></FiCopy>
                         <span>Copy</span>
                         <CopyDropDown></CopyDropDown>
-                      </Link>
-                    </li>
-                    <li className="">
-                      <Link
-                        rel="noopener noreferrer"
-                        href="#"
-                        className={buttonStyle}
-                      >
-                        <TbTemplate></TbTemplate>
-                        <span>Make Template</span>
                       </Link>
                     </li>
                     <li className="">

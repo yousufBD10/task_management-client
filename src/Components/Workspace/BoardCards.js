@@ -39,7 +39,6 @@ const BoardCards = () => {
 
   const reloadItems = () => {
     if (!currentWorkspace) return;
-    setItems(null);
     fetch(process.env.REACT_APP_SERVER_URL + `/board/get_task_list/${id}`, {
       method: "GET",
       headers: {
@@ -59,6 +58,7 @@ const BoardCards = () => {
         }
       });
   };
+
   const reloadBoard = () => {
     if (!id) return;
     fetch(process.env.REACT_APP_SERVER_URL + `/board/${id}`, {
@@ -80,7 +80,6 @@ const BoardCards = () => {
 
   useEffect(reloadItems, [currentWorkspace]);
   useEffect(reloadBoard, []);
-
   return (
     <div className="my-12 px-12 min-h-screen">
       <div>
