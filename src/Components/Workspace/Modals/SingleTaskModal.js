@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import {
   FiArchive,
@@ -21,10 +22,96 @@ import CopyDropDown from "../SingleTaskModalDropDown/CopyDropDown";
 import { AuthContext } from "../../../Context/UserContext";
 
 const SingleTaskModal = () => {
-  const buttonStyle =
-    "dropdown dropdown-left flex items-center p-2 space-x-3 rounded-md btn-ghost bg-gray-800 btn-sm text-gray-400";
-  const { currentWorkspace, currentTask, setCurrentTask } =
-    useContext(AuthContext);
+  const buttonStyle = "dropdown dropdown-left flex items-center p-2 space-x-3 rounded-md btn-ghost bg-gray-800 btn-sm text-gray-400";
+  const { boardItems, currentTask, user, logOut } = useContext(AuthContext);
+  let timer;
+  const [comments, setComments] = useState([]);
+
+  const SendToServer = () => {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/create-update-task`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(currentTask),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Successfully saved to server.");
+      })
+      .catch((error) => toast.error(error.message));
+  };
+
+  const updateCurrentTaskInfo = (e) => {
+    e.preventDefault();
+    clearTimeout(timer);
+    const form = e.target.form;
+    const note = form.note.value;
+    const description = form.description.value;
+    timer = setTimeout(() => {
+      for (let i = 0; i < boardItems.length; i++) {
+        if (boardItems[i]._id == currentTask._id) {
+          currentTask.note = boardItems[i].note = note;
+          currentTask.description = boardItems[i].description = description;
+          SendToServer();
+          break;
+        }
+      }
+    }, 1000);
+  }
+
+  const reloadComments = () => {
+    if (!currentTask) return;
+    fetch(process.env.REACT_APP_SERVER_URL + `/comments/${currentTask._id}`, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          return logOut();
+        }
+        return res.json();
+      })
+      .then((res) => {
+        setComments(res);
+      });
+  };
+
+  useEffect(reloadComments, [currentTask]);
+
+  const handleCommentSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const text = form.text.value;
+    const commentData = {
+      _id: "new",
+      wid: currentTask.wid,
+      boradId: currentTask.boradId,
+      taskId: currentTask._id,
+      text: text,
+      username: user.displayName,
+      photo: user.photoURL,
+    };
+
+    fetch(`${process.env.REACT_APP_SERVER_URL}/create-update-comments`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(commentData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Successfully added the comment.");
+        reloadComments();
+        form.reset();
+      })
+      .catch((error) => toast.error(error.message));
+  };
   return (
     <div>
       <div id="new-board-modal" className="modal">
@@ -35,12 +122,12 @@ const SingleTaskModal = () => {
 
           <div className="grid grid-cols-4 -mr-4">
             <div className="px-6 dark:text-gray-500 col-span-4 md:col-span-3">
-              <form className="grid grid-cols-1 gap-3 mt-10">
+              <form className="grid grid-cols-1 gap-3 mt-10" onKeyUp={updateCurrentTaskInfo}
+              >
                 {/* ------------title input section---------- */}
                 <input
-                  name="name"
+                  name="note"
                   type="text"
-                  // placeholder="Untitled"
                   defaultValue={currentTask?.note}
                   className="input input-bordered w-full rounded-sm text-3xl font-semibold"
                   required
@@ -49,26 +136,11 @@ const SingleTaskModal = () => {
                 {/* ------------Text Area section------------- */}
 
                 <textarea
-                  id="bio"
-                  placeholder=""
-                  className="input input-bordered p-4 w-full rounded-sm outline-border h-24"
+                  name="description"
+                  placeholder="Description"
+                  defaultValue={currentTask?.description}
+                  className="input input-bordered p-4 w-full rounded-sm outline-border h-28"
                 ></textarea>
-                <div className="mt-4">
-                  <button
-                    onClick={""}
-                    type="submit"
-                    className="btn btn-ghost btn-sm rounded-md bg-gray-800 text-gray-400"
-                  >
-                    Save
-                  </button>
-                  <button
-                    onClick={""}
-                    type="submit"
-                    className="btn btn-ghost btn-sm font-normal bg-gray-200 rounded-md text-gray-400 ml-3"
-                  >
-                    Cancel
-                  </button>
-                </div>
               </form>
               <br />
 
@@ -77,30 +149,22 @@ const SingleTaskModal = () => {
               <div className="text-gray-600 mt-8">
                 <div className="flex justify-between ">
                   <h3 className="text-md font-semibold">Activity</h3>
-
-                  <Link
-                    rel="noopener noreferrer"
-                    href="#"
-                    className="flex btn-ghost btn-sm text-gray-600  items-center p-2 space-x-3 rounded-sm shadow-sm"
-                  >
-                    <p>Show Details</p>
-                  </Link>
                 </div>
                 <div>
                   {/* -----------Comment text area---------- */}
 
-                  <form className="flex flex-col py-6 space-y-4 md:py-0 ng-untouched ng-pristine ng-valid">
+                  <form onSubmit={handleCommentSubmit} className="flex flex-col py-6 space-y-4 md:py-0 ng-untouched ng-pristine ng-valid">
                     <label className="block">
                       <textarea
-                        id="bio"
+                        name="text"
                         placeholder="Write a comment..."
+                        rows={6}
                         className="input input-bordered p-2 mt-2 w-full rounded-sm outline-border"
                       ></textarea>
                     </label>
                     <div className="flex flex-wrap">
                       {/* ----- comment submit button------ */}
                       <button
-                        onClick={""}
                         type="submit"
                         className="btn btn-ghost btn-sm rounded-md bg-gray-800 text-gray-400"
                       >
@@ -108,6 +172,21 @@ const SingleTaskModal = () => {
                       </button>
                     </div>
                   </form>
+
+                  {comments && comments.map((c) => {
+                    return <div key={c._id} className="chat chat-start mt-5">
+                      <div className="chat-image avatar">
+                        <div className="w-10 rounded-full">
+                          <img src={c.photo} />
+                        </div>
+                      </div>
+                      <div className="chat-header ml-1">
+                        {c.username}
+                      </div>
+                      <div className="chat-bubble w-full">{c.text}</div>
+                    </div>
+                  })}
+
                 </div>
               </div>
             </div>
@@ -120,18 +199,6 @@ const SingleTaskModal = () => {
                 <div className="divide-y divide-gray-700">
                   <ul className="pt-2 pb-4 space-y-1 text-sm text-grey">
                     {/* ------ Suggested section----- */}
-
-                    <p className="text-grey mt-6">Suggested</p>
-                    <li className="">
-                      <Link
-                        rel="noopener noreferrer"
-                        href="#"
-                        className="flex items-center p-2 space-x-3 rounded-sm btn-ghost btn-sm"
-                      >
-                        <FiUser></FiUser>
-                        <span>Join</span>
-                      </Link>
-                    </li>
                     <p className="pt-6">Add to card</p>
                     <li className="">
                       <Link
@@ -140,18 +207,8 @@ const SingleTaskModal = () => {
                         className={buttonStyle}
                       >
                         <FiUser></FiUser>
-                        <span className="text-grey">Members</span>
+                        <span className="text-grey">Assign Members</span>
                         <MembersDropDown></MembersDropDown>
-                      </Link>
-                    </li>
-                    <li className="">
-                      <Link
-                        rel="noopener noreferrer"
-                        href="#"
-                        className={buttonStyle}
-                      >
-                        <FiTag></FiTag>
-                        <span>Labels</span>
                       </Link>
                     </li>
                     <li className="">
@@ -174,7 +231,7 @@ const SingleTaskModal = () => {
                         className={buttonStyle}
                       >
                         <FiClock></FiClock>
-                        <span>Dates</span>
+                        <span>Deadline</span>
                         <DateDropDown></DateDropDown>
                       </Link>
                     </li>
@@ -186,16 +243,6 @@ const SingleTaskModal = () => {
                       >
                         <FiPaperclip></FiPaperclip>
                         <span>Attachment</span>
-                      </Link>
-                    </li>
-                    <li className="">
-                      <Link
-                        rel="noopener noreferrer"
-                        href="#"
-                        className={buttonStyle}
-                      >
-                        <FiBook></FiBook>
-                        <span>Cover</span>
                       </Link>
                     </li>
 
@@ -224,16 +271,6 @@ const SingleTaskModal = () => {
                         <FiCopy></FiCopy>
                         <span>Copy</span>
                         <CopyDropDown></CopyDropDown>
-                      </Link>
-                    </li>
-                    <li className="">
-                      <Link
-                        rel="noopener noreferrer"
-                        href="#"
-                        className={buttonStyle}
-                      >
-                        <TbTemplate></TbTemplate>
-                        <span>Make Template</span>
                       </Link>
                     </li>
                     <li className="">

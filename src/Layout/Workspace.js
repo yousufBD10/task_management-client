@@ -13,13 +13,9 @@ import { FiUserPlus } from "react-icons/fi";
 import { AuthContext } from '../Context/UserContext';
 import { useState } from 'react';
 import InviteMember from '../Components/Workspace/Modals/InviteMember';
+import EditWorkspace from '../Components/Workspace/Modals/EditWorkspace';
 
 const Workspace = () => {
-  const [id,setId] =useState('')
-  const handleWorkspaceEdit = (id)=>{
-  setId(id);
-  }
-
   const { user, reloadWorkspaces, workspaces, setCurrentWorkspace, currentWorkspace } = useContext(AuthContext);
   const setCurrent = (id) => { setCurrentWorkspace(workspaces.find((w) => w._id == id)) }
   useEffect(reloadWorkspaces, [user]);
@@ -59,8 +55,8 @@ const Workspace = () => {
                 </div>
               </div>
               <div>
-               <div className='flex items-center gap-3'> <h1 className='text-xl flex items-center gap-2 font-medium'>{currentWorkspace?.name} </h1> 
-              <p onClick={()=>handleWorkspaceEdit(currentWorkspace._id)} className= 'hover:bg-slate-200 text-black rounded-lg cursor-pointer p-2'> <BiPencil></BiPencil> </p>
+                <div className='flex items-center gap-3'> <h1 className='text-xl flex items-center gap-2 font-medium'>{currentWorkspace?.name} </h1>
+                  <a href='#edit-workspace' className='hover:bg-slate-200 text-black rounded-lg cursor-pointer p-2'> <BiPencil></BiPencil> </a>
                 </div>
                 <p className='flex items-center gap-2'><BiLock></BiLock> Private</p>
               </div>
@@ -128,7 +124,7 @@ const Workspace = () => {
           </ul>
         </div>
       </div>
-
+      <EditWorkspace></EditWorkspace>
       <InviteMember></InviteMember>
     </div>
   );
