@@ -13,7 +13,10 @@ import WorkspaceSingle from "../Layout/WorkspaceSingle";
 import Error from "../Share/Error";
 import PrivateRoute from "./PrivateRoute";
 import UpdateUser from "../Components/User/UpdateUser"
+
 import Pricing from "../Components/PricingPlans/Pricing/Pricing";
+import AdminDashboard from "../Layout/AdminDashboard/AdminDashboard";
+import User from "../Layout/AdminDashboard/User";
 
 const Router = createBrowserRouter([
   {
@@ -78,6 +81,20 @@ const Router = createBrowserRouter([
       }
     ],
   },
+
+
+  {
+    path: "/dashboard",
+    element: <PrivateRoute><AdminDashboard /></PrivateRoute>,
+    children: [
+      {
+        path: "/dashboard/user",
+        element: <User />,
+      }
+     
+    ],
+  },
+ 
 
 ]);
 
