@@ -1,5 +1,4 @@
-import React from 'react';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/UserContext';
 
 const UpdateUser = () => {
@@ -7,9 +6,9 @@ const UpdateUser = () => {
     const updateUserInfo = (e)=>{
       e.preventDefault();
     const form = e.target;
-    const name = form.name.value;
+    // const name = form.name.value;
     const newEmail = form.email.value;
-    const password = form.password.value;
+    // const password = form.password.value;
     
     emailUpdate(newEmail)
     .then((result)=>{

@@ -12,7 +12,7 @@ const ServiceCard = ({ image, title, text }) => {
         <div className="mt-auto">
           <h3 className="mt-0.5 text-lg font-medium text-gray-900">{title}</h3>
           <p className="mt-2 text-sm leading-relaxed text-gray-500 line-clamp-3">
-            {text}
+            {text.slice(0,150)}...
           </p>
           {/* <Link to={''} className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
                         Find out more
