@@ -1,7 +1,7 @@
 import React from 'react';
 
 const OurService = () => (
-    <div className=''>
+    <div className='mb-24'>
         <div className='text-center mt-24'>
             <h3 className='font-bold text-blue-400'>BUILT FOR EVERYONE</h3>
             <h1 className='text-3xl font-serif mt-5 font-bold'>See how TaskMaster can work for you.</h1>
@@ -67,7 +67,7 @@ const OurService = () => (
             </div>
                     </div>
                     <div>
-                    <img src="https://www.softsmithinc.com/wp-content/uploads/2019/06/Railroad-taskmaster.png" alt="" />
+                    <img src="https://assets.plan.io/images/blog/what-makes-a-great-project-manager.png" alt="" />
                     </div>
             </div>
             
