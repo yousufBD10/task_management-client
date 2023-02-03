@@ -20,12 +20,15 @@ import DateDropDown from "../SingleTaskModalDropDown/DateDropDown";
 import MoveDropDown from "../SingleTaskModalDropDown/MoveDropDown";
 import CopyDropDown from "../SingleTaskModalDropDown/CopyDropDown";
 import { AuthContext } from "../../../Context/UserContext";
+import useMembersOfCurrentWorkspace from "../../../hooks/useMembersOfCurrentWorkspace";
 
 const SingleTaskModal = () => {
   const buttonStyle = "dropdown dropdown-left flex items-center p-2 space-x-3 rounded-md btn-ghost bg-gray-800 btn-sm text-gray-400";
-  const { boardItems, currentTask, user, logOut } = useContext(AuthContext);
+  const { boardItems, currentTask, user, logOut, currentWorkspace } = useContext(AuthContext);
+  const [members] = useMembersOfCurrentWorkspace(currentWorkspace, logOut);
   let timer;
   const [comments, setComments] = useState([]);
+  const [assignedUsers, setAssignedUsers] = useState(currentTask?.users);
 
   const SendToServer = () => {
     fetch(`${process.env.REACT_APP_SERVER_URL}/create-update-task`, {
@@ -42,6 +45,27 @@ const SingleTaskModal = () => {
       })
       .catch((error) => toast.error(error.message));
   };
+
+  const assignORremoveMember = (uid) => {
+    for (let i = 0; i < boardItems.length; i++) {
+      if (boardItems[i]._id == currentTask._id) {
+        if (!boardItems[i].users) {
+          boardItems[i].users = [];
+          boardItems[i].users.push(uid);
+        } else {
+          if (boardItems[i].users.find((el) => { return el === uid })) {
+            boardItems[i].users = boardItems[i].users.filter((el) => { return el != uid })
+          } else {
+            boardItems[i].users.push(uid);
+          }
+        }
+        currentTask.users = boardItems[i].users;
+        setAssignedUsers(boardItems[i].users);
+        SendToServer();
+        break;
+      }
+    }
+  }
 
   const updateCurrentTaskInfo = (e) => {
     e.preventDefault();
@@ -63,6 +87,8 @@ const SingleTaskModal = () => {
 
   const reloadComments = () => {
     if (!currentTask) return;
+    setAssignedUsers(currentTask?.users);
+    setComments([]);
     fetch(process.env.REACT_APP_SERVER_URL + `/comments/${currentTask._id}`, {
       method: "GET",
       headers: {
@@ -122,8 +148,14 @@ const SingleTaskModal = () => {
 
           <div className="grid grid-cols-4 -mr-4">
             <div className="px-6 dark:text-gray-500 col-span-4 md:col-span-3">
-              <form className="grid grid-cols-1 gap-3 mt-10" onKeyUp={updateCurrentTaskInfo}
-              >
+              {assignedUsers && assignedUsers.length > 0 ? assignedUsers.map((el) => {
+                return <div className="avatar">
+                  <div className="w-10 h-10 rounded-full">
+                    <img src={members.find((u) => { return u._id == el })?.photoURL} />
+                  </div>
+                </div>
+              }) : ''}
+              <form className="grid grid-cols-1 gap-3 mt-10" onKeyUp={updateCurrentTaskInfo}>
                 {/* ------------title input section---------- */}
                 <input
                   name="note"
@@ -208,7 +240,7 @@ const SingleTaskModal = () => {
                       >
                         <FiUser></FiUser>
                         <span className="text-grey">Assign Members</span>
-                        <MembersDropDown></MembersDropDown>
+                        <MembersDropDown assignORremoveMember={assignORremoveMember}></MembersDropDown>
                       </Link>
                     </li>
                     <li className="">

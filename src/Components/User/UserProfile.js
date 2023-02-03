@@ -6,7 +6,7 @@ const UserProfile = () => {
     const { user } = useContext(AuthContext);
     return (
         <div>
-            <div className="card lg:card-side bg-base-100 shadow-xl w-1/2 h-full  my-11 p-8">
+            <div className="card bg-base-100 shadow-xl md:w-1/2 h-full mx-auto my-11 p-8">
                 <figure><img className='w-full h-80' src={user?.photoURL} alt="Album" /></figure>
                 <div className="card-body">
                     <div className="d-flex bread-crumb justify-content-between align-items-center px-md-4 px-3">

@@ -2,10 +2,11 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../../Context/UserContext";
 import useMembersOfCurrentWorkspace from "../../../hooks/useMembersOfCurrentWorkspace";
 
-const MembersDropDown = () => {
+const MembersDropDown = ({ assignORremoveMember }) => {
   const { currentWorkspace, logOut } = useContext(AuthContext);
 
   const [members] = useMembersOfCurrentWorkspace(currentWorkspace, logOut);
+
   return (
     <div>
       <ul
@@ -18,7 +19,7 @@ const MembersDropDown = () => {
         <hr />
         {members && members.map((member) => {
           return <li key={member._id} className="flex btn btn-ghost items-center justify-center btn-sm  my-1 rounded-md bg-gray-900 text-gray-400 shadow-md">
-            <button>{member.name}</button>
+            <button onClick={() => assignORremoveMember(member._id)}>{member.name}</button> 
           </li>
         })}
       </ul>
