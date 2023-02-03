@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../../Context/UserContext";
+import useMembersOfCurrentWorkspace from "../../../hooks/useMembersOfCurrentWorkspace";
 
-const MembersDropDown = () => {
+const MembersDropDown = ({ assignORremoveMember }) => {
+  const { currentWorkspace, logOut } = useContext(AuthContext);
+
+  const [members] = useMembersOfCurrentWorkspace(currentWorkspace, logOut);
+
   return (
     <div>
       <ul
@@ -10,21 +16,12 @@ const MembersDropDown = () => {
         <p className="text-gray-900 font-semibold space-x-3 text-center pb-1">
           Members
         </p>
-
         <hr />
-
-        <li className="flex btn btn-ghost items-center justify-center btn-sm  my-1 rounded-md bg-gray-900 text-gray-400 shadow-md">
-          <button>Item 1</button>
-        </li>
-        <li className="flex btn btn-ghost items-center justify-center btn-sm  my-1 rounded-md bg-gray-900 text-gray-400">
-          <button>Item 2</button>
-        </li>
-        <li className="flex btn btn-ghost items-center justify-center btn-sm  my-1 rounded-md bg-gray-900 text-gray-400">
-          <button>Item 2</button>
-        </li>
-        <li className="flex btn btn-ghost items-center justify-center btn-sm  my-1 rounded-md bg-gray-900 text-gray-400">
-          <button>Item 2</button>
-        </li>
+        {members && members.map((member) => {
+          return <li key={member._id} className="flex btn btn-ghost items-center justify-center btn-sm  my-1 rounded-md bg-gray-900 text-gray-400 shadow-md">
+            <button onClick={() => assignORremoveMember(member._id)}>{member.name}</button> 
+          </li>
+        })}
       </ul>
     </div>
   );

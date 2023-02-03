@@ -3,9 +3,8 @@ import { AuthContext } from "../../../Context/UserContext";
 import CreateTask from "../Modals/CreateTask";
 import { toast } from "react-toastify";
 
-const ToDoCard = ({ current_board, current_list, items, reloadItems }) => {
-  const { currentWorkspace, currentTask, setCurrentTask } =
-    useContext(AuthContext);
+const ToDoCard = ({ current_board, current_list, reloadItems }) => {
+  const { currentWorkspace, setCurrentTask, boardItems } = useContext(AuthContext);
 
   /* ----------------- Collect data After Submit Task on modal Start ----------------- */
   const handleTaskSubmit = (event, cardID) => {
@@ -17,8 +16,7 @@ const ToDoCard = ({ current_board, current_list, items, reloadItems }) => {
       wid: currentWorkspace._id,
       boradId: current_board,
       cardID: cardID,
-      note: note,
-      createTime: new Date().toLocaleString(),
+      note: note
     };
 
     fetch(`${process.env.REACT_APP_SERVER_URL}/create-update-task`, {
@@ -51,12 +49,12 @@ const ToDoCard = ({ current_board, current_list, items, reloadItems }) => {
           </div>
           <div className="py-2">
             {/*  ---------------------- map and distribute card data Start ----------------------  */}
-            {items &&
-              items.map((item, i) => (
+            {boardItems &&
+              boardItems.map((item, i) => (
                 <>
                   {item.cardID === current_list.id && (
                     <div
-                      key={i}
+                      key={item._id}
                       className="bg-gray-50 hover:cursor-pointer hover:bg-gray-100 p-2 my-1 relative"
                     >
                       <a

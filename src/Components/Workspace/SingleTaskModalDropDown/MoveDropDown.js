@@ -30,7 +30,6 @@ const MoveDropDown = () => {
             <option value="to_do">Done</option>
           </select>
           <button
-            onClick={""}
             type="submit"
             className="btn btn-ghost btn-sm rounded-md bg-gray-800 text-gray-400 my-3"
           >

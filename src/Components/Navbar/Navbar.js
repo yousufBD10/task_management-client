@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
+import { CgLogOut } from "react-icons/cg";
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/UserContext';
-import { CgLogOut } from "react-icons/cg";
-import { BiEdit } from "react-icons/bi";
 import CreateWorkSpaceModal from '../CreateWorkSpaceModal/CreateWorkSpaceModal';
 import useRole from '../../hooks/useRole';
 
@@ -92,7 +91,7 @@ const Navbar = () => {
                   </div>
                   <div>
                     <p className='mt-3 text-xs mb-0'>{user?.displayName}</p>
-                    <p className='mt-3 text-xs mt-0'>{user?.email}</p>
+                    <p className='mt-3 text-xs mb-0'>{user?.email}</p>
                   </div>
                 </div>
                 <li>
@@ -126,7 +125,7 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <div className="divider"></div>
-                <li><a className='gap-1 items-center text-center' onClick={handleLogOut}>  <CgLogOut></CgLogOut>Logout</a></li>
+                <li><Link className='gap-1 items-center text-center' onClick={handleLogOut}>  <CgLogOut></CgLogOut>Logout</Link></li>
               </div>
             </div></> :
             <>
