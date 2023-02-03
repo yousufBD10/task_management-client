@@ -86,7 +86,7 @@ const Boards = () => {
       })
       .catch((error) => toast.error(error.message));
   }
-  
+
   return (
     <div>{currentWorkspace && <>
       <div className="flex justify-between mt-8 pr-5">
