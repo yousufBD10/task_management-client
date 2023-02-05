@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useParams } from 'react-router-dom';
 import { AuthContext } from "../../Context/UserContext";
 import ToDoCard from "./ToDoCard/ToDoCard";
-import { useParams } from "react-router-dom";
 
 const initialLists = [
   {
@@ -26,7 +26,7 @@ const BoardCards = () => {
     currentWorkspace,
     setCurrentWorkspace,
     workspaces,
-    logOut,
+    logOut, boardItems, setBoardItems
   } = useContext(AuthContext);
   const setCurrent = (id) => {
     setCurrentWorkspace(workspaces.find((w) => w._id == id));
@@ -35,11 +35,9 @@ const BoardCards = () => {
   useEffect(reloadWorkspaces, [user]);
   const [list, setLists] = useState(initialLists);
   const [board, setBoard] = useState(null);
-  const [items, setItems] = useState(null);
 
   const reloadItems = () => {
     if (!currentWorkspace) return;
-    setItems(null);
     fetch(process.env.REACT_APP_SERVER_URL + `/board/get_task_list/${id}`, {
       method: "GET",
       headers: {
@@ -53,12 +51,13 @@ const BoardCards = () => {
         return res.json();
       })
       .then((res) => {
-        setItems(res);
+        setBoardItems(res);
         if (res.length > 0) {
           setCurrent(res[0].wid);
         }
       });
   };
+
   const reloadBoard = () => {
     if (!id) return;
     fetch(process.env.REACT_APP_SERVER_URL + `/board/${id}`, {
@@ -80,7 +79,6 @@ const BoardCards = () => {
 
   useEffect(reloadItems, [currentWorkspace]);
   useEffect(reloadBoard, []);
-
   return (
     <div className="my-12 px-12 min-h-screen">
       <div>
@@ -94,7 +92,6 @@ const BoardCards = () => {
               <ToDoCard
                 key={l.id}
                 current_list={l}
-                items={items}
                 current_board={id}
                 reloadItems={reloadItems}
               />

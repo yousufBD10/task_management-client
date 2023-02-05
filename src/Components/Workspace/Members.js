@@ -1,34 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/UserContext';
-import { useLocation } from 'react-router-dom';
+import useMembersOfCurrentWorkspace from '../../hooks/useMembersOfCurrentWorkspace';
 
 const Members = () => {
-  const { user, currentWorkspace, logOut } = useContext(AuthContext);
-  const [members, setMembers] = useState([]);
-  let location = useLocation();
+  const { currentWorkspace, logOut } = useContext(AuthContext);
 
-  const reloadMembers = () => {
-    if (!currentWorkspace) return;
-
-    fetch(process.env.REACT_APP_SERVER_URL + `/get-workspace-member/${currentWorkspace._id}`, {
-      method: 'POST',
-      headers: {
-        authorization: `Bearer ${localStorage.getItem('accessToken')}`
-      }
-    })
-      .then(res => {
-        if (res.status === 401 || res.status === 403) {
-          return logOut();
-        }
-        return res.json();
-      })
-      .then(res => {
-        setMembers(res);
-      });
-  }
-
-  useEffect(reloadMembers, [currentWorkspace, location]);
-
+  const [members] = useMembersOfCurrentWorkspace(currentWorkspace, logOut);
 
   return (
     <div>{currentWorkspace && <>
@@ -62,7 +39,7 @@ const Members = () => {
                   <h2 className="card-title ml-2">{member.name}</h2>
                   <h2 className="card-id ml-2">{member._id}</h2>
                 </div>
-                <div className='ml-11'>
+                <div className='ml-11 opacity-0'>
                   <button className='btn-primary px-3 m-2 rounded-md'>Remove</button>
                 </div>
               </div>
