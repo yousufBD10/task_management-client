@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { FcCheckmark } from 'react-icons/fc';
 const PricingCard = ({ price }) => {
-    const { _id, priceDetails, pricing,button, title, subtitle, featureTitle, feature01, feature02, feature03, feature04, feature05, feature06, feature07 } = price;
+    const { _id, priceDetails, pricing,button,link, title, subtitle, featureTitle, feature01, feature02, feature03, feature04, feature05, feature06, feature07 } = price;
     
     return (
         <div className="my-9 mr-3 py-3 px-3 card-compact w-72 h-auto bg-base-100 shadow-2xl rounded-xl">
@@ -15,8 +15,8 @@ const PricingCard = ({ price }) => {
                 <p className='text-stone-500 mb-11'>{priceDetails}</p>
                 <h2>{subtitle}</h2>
                 </div>
-                <Link to={`/prices/${_id}`}>
-                        <button className="bg-indigo-400  rounded  px-14 py-4 mt-2 mb-6 text-center text-stone-100">{button}</button>
+                <Link to={link}>
+                        <button className="bg-indigo-400  rounded font-bold text-lg  px-14 py-4 mt-2 mb-6 text-center text-stone-100">{button}</button>
                 </Link>
                 <hr></hr>
                 <h5 className='mt-5 mb-11 pb-11'>{featureTitle}</h5>

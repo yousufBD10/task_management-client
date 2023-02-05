@@ -13,8 +13,8 @@ const Pricing = () => {
     }, []);
 
     return (
-        <div className=' bg-slate-200 mt-5 pt-5 px-5 bg-indigo-200'>
-            <div className='text-center mb-4'>
+        <div className=' bg-slate-200 pt-5 px-5 bg-indigo-200'>
+            <div className='text-center mb-11 mt-11'>
                 <h6 className="text-2xl font-bold text-purple-800">One tool for your whole company</h6>
                 <h4 className="text-4xl font-semibold text-stone-700">Available Subscription Plan for you!</h4>
                 <p></p>

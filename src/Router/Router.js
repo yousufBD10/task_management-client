@@ -14,6 +14,7 @@ import Error from "../Share/Error";
 import PrivateRoute from "./PrivateRoute";
 import UpdateUser from "../Components/User/UpdateUser"
 import Pricing from "../Components/PricingPlans/Pricing/Pricing";
+import Payment from "../Components/PricingPlans/Payment/Payment";
 
 const Router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const Router = createBrowserRouter([
         path: '/pricing',
         element: <Pricing></Pricing>
         },
+        {
+          path: '/payment',
+          element: <Payment></Payment>
+          },
       {
         path: "*",
         element: <Error></Error>,
