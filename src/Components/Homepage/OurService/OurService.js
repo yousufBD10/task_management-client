@@ -41,7 +41,7 @@ const OurService = () => (
                         </div>
                         <div>
                             <h2 className='text-2xl font-bold px-2'>Visualize & plan</h2>
-                            <h4 className='font-semibold text-black px-2 '>Manage any project from start to finish with highly customizable views that make project planning a breeze.</h4>
+                            <h4 className='font-semibold px-2 '>Manage any project from start to finish with highly customizable views that make project planning a breeze.</h4>
                         </div>
                        </div>
                        <div className='flex py-10'>
@@ -50,7 +50,7 @@ const OurService = () => (
                         </div>
                         <div>
                             <h2 className='text-2xl font-bold px-2'>Collaborate</h2>
-                            <h4 className='font-semibold text-black px-2 '>Work with your team in real-time with Chat, assign comments for action items, and never miss a beat with notifications that bring everything in one place</h4>
+                            <h4 className='font-semibold  px-2 '>Work with your team in real-time with Chat, assign comments for action items, and never miss a beat with notifications that bring everything in one place</h4>
                         </div>
                        </div>
                        <div className='flex'>
@@ -63,7 +63,7 @@ const OurService = () => (
                         </div>
                        </div>
                        <div className='px-12 mt-12'>
-                <button className='border rounded-lg text-black hover:text-white  lg:h-12 text-xl font-bold lg:w-36 border-gray-500 bg-gray-200 hover:bg-blue-600'>Get Start</button>
+                <button className='border rounded-lg  hover:text-white  lg:h-12 text-xl font-bold lg:w-36 border-gray-500 bg-gray-200 hover:bg-blue-600'>Get Start</button>
             </div>
                     </div>
                     <div>
