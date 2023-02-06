@@ -15,12 +15,9 @@ import PrivateRoute from "./PrivateRoute";
 import UpdateUser from "../Components/User/UpdateUser"
 
 import Pricing from "../Components/PricingPlans/Pricing/Pricing";
-<<<<<<< HEAD
 import Payment from "../Components/PricingPlans/Payment/Payment";
-=======
 import AdminDashboard from "../Layout/AdminDashboard/AdminDashboard";
 import User from "../Layout/AdminDashboard/User";
->>>>>>> 677e7a0025b9a4c3aa0c0c4e6d47dcbe299fc141
 
 const Router = createBrowserRouter([
   {
