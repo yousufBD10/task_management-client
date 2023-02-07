@@ -63,7 +63,7 @@ const OurService = () => (
                         </div>
                        </div>
                        <div className='px-12 mt-12'>
-                <button className='border rounded-lg text-black hover:text-white  lg:h-12 text-xl font-bold lg:w-36 border-gray-500 bg-gray-200 hover:bg-blue-600'>Get Start</button>
+                <button className='border rounded-lg  hover:text-white  lg:h-12 text-xl font-bold lg:w-36 border-gray-500 bg-gray-200 hover:bg-blue-600'>Get Start</button>
             </div>
                     </div>
                     <div>
