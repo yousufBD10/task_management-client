@@ -1,36 +1,44 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import { useContext } from 'react';
-import { AuthContext } from '../../Context/UserContext';
+import { toast } from 'react-toastify';
+import React from 'react';
+
 
 const User = () => {
-    const {currentWorkspace} = useContext(AuthContext);
-   const [allUsers,setAllUsers] = useState([])
 
-
-    useEffect(()=>{
-      fetch(process.env.REACT_APP_SERVER_URL + `/allusers`,{
-      method: "GET",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+  const { data: allUsers = [], refetch } = useQuery({
+      queryKey: ['allusers'],
+      queryFn: async () => {
+        const res = await fetch(process.env.REACT_APP_SERVER_URL + `/allusers`,{
+            method: "GET",
+            headers: {
+              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            }},
+        );
+        const data = await res.json();
+        console.log(allUsers);
+        return data;
       },
-    }
-      
-      )
-      .then((res)=>res.json())
-      .then((data)=>setAllUsers(data))
-      
-    },[])
-    // const { data: allUsers = [], refetch } = useQuery({
-    //   queryKey: ['allUsers'],
-    //   queryFn: async () => {
-    //     const res = await fetch(process.env.REACT_APP_SERVER_URL + `/allusers`);
-    //     const data = await res.json();
-    //     console.log(allUsers);
-    //     return data;
-    //   },
-    // });
+    });
+   
+const handleDelete = (data)=>{
+  console.log(data);
+
+  fetch(process.env.REACT_APP_SERVER_URL + `/delete/${data}`, {
+            method: 'DELETE', 
+             headers: {
+               authorization: `bearer ${localStorage.getItem('accessToken')}`
+             }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.deletedCount > 0){
+              refetch()
+                toast.success(`Users deleted successfully`)
+            }
+        })
+}
+    
+  
     return (
         <div className="overflow-x-auto w-full">
         <table className="table w-full">
@@ -75,7 +83,7 @@ const User = () => {
               <th>
                 <button className="btn btn-ghost btn-xs">details</button>
               </th>
-              <td><button className="bg-red-600 rounded text-white px-2 hover:bg-red-500">Delete</button></td>
+              <td><button onClick={()=>handleDelete(alluser._id)} className="bg-red-600 rounded text-white px-2 hover:bg-red-500">Delete</button></td>
             </tr>
             )
           }
