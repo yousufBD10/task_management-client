@@ -13,14 +13,12 @@ import WorkspaceSingle from "../Layout/WorkspaceSingle";
 import Error from "../Share/Error";
 import PrivateRoute from "./PrivateRoute";
 import UpdateUser from "../Components/User/UpdateUser"
-
+import Payment from "../Components/PricingPlans/Payment/Payment"
 import Pricing from "../Components/PricingPlans/Pricing/Pricing";
-<<<<<<< HEAD
-import Payment from "../Components/PricingPlans/Payment/Payment";
-=======
 import AdminDashboard from "../Layout/AdminDashboard/AdminDashboard";
 import User from "../Layout/AdminDashboard/User";
->>>>>>> 677e7a0025b9a4c3aa0c0c4e6d47dcbe299fc141
+import Checkout from "../Components/PricingPlans/Checkout/Checkout";
+
 
 const Router = createBrowserRouter([
   {
@@ -51,6 +49,13 @@ const Router = createBrowserRouter([
         path: '/pricing',
         element: <Pricing></Pricing>
         },
+        
+        {
+          path: '/pricingOptions/:id',
+          element: <Checkout></Checkout>,
+          loader: ({ params }) => fetch(`http://localhost:5000/pricingOptions/${params.id}`)
+            
+          },
         {
           path: '/payment',
           element: <Payment></Payment>

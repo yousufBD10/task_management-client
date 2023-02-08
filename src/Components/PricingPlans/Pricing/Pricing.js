@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
-import BookPricing from '../BookPricing/BookPricing';
 import PricingCard from '../PricingCard/PricingCard';
 
 const Pricing = () => {
     const [prices, setPrices] = useState([]);
     
     useEffect( () =>{
-        fetch('pricing.json')
+        fetch('http://localhost:5000/pricingOptions')
         .then(res =>res.json())
         .then(data => setPrices(data))
     }, []);
@@ -30,5 +28,4 @@ const Pricing = () => {
              </div>
     );
 };
-
 export default Pricing;
