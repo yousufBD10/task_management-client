@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@stripe/react-stripe-js": "^1.16.4",
+    "@stripe/stripe-js": "^1.46.0",
     "@tanstack/react-query": "^4.24.4",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -17,6 +19,7 @@
     "react-router-dom": "^6.6.2",
     "react-scripts": "^5.0.1",
     "react-toastify": "^9.1.1",
+    "stripe": "^11.9.1",
     "web-vitals": "^2.1.0"
   },
   "scripts": {

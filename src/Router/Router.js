@@ -18,6 +18,7 @@ import Pricing from "../Components/PricingPlans/Pricing/Pricing";
 import Checkout from "../Components/PricingPlans/Checkout/Checkout"
 import AdminDashboard from "../Layout/AdminDashboard/AdminDashboard";
 import User from "../Layout/AdminDashboard/User";
+import Order from "../Components/PricingPlans/Order/Order";
 
 
 const Router = createBrowserRouter([
@@ -64,6 +65,15 @@ const Router = createBrowserRouter([
         path: "*",
         element: <Error></Error>,
       },
+      {
+        path: "/order",
+        element: <Order></Order>
+      },
+      {
+        path: '/payment/:id',
+        element: <Payment></Payment>,
+        loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
+    },
     ],
   },
   {

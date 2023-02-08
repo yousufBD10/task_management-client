@@ -17,7 +17,7 @@ const Checkout = () => {
                 <h1 className='text-3xl text-red-500 font-semibold'>Price: {pricing} USD</h1>
                 <p className='text-stone-500 mb-5'>{priceDetails}</p>
                 <h1 className='text-lg'>{subtitle}</h1>
-                <Link to={`/pricingOptions/${_id}`}>
+                <Link to={`/payment/${_id}`}>
                         <button className="bg-indigo-400 p-4 text-xl font-bold rounded mt-7 text-white text-center">Order Now!</button>
                 </Link>
                 </div>                
