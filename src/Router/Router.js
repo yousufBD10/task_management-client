@@ -15,9 +15,9 @@ import PrivateRoute from "./PrivateRoute";
 import UpdateUser from "../Components/User/UpdateUser"
 import Payment from "../Components/PricingPlans/Payment/Payment"
 import Pricing from "../Components/PricingPlans/Pricing/Pricing";
+import Checkout from "../Components/PricingPlans/Checkout/Checkout"
 import AdminDashboard from "../Layout/AdminDashboard/AdminDashboard";
 import User from "../Layout/AdminDashboard/User";
-import Checkout from "../Components/PricingPlans/Checkout/Checkout";
 
 
 const Router = createBrowserRouter([

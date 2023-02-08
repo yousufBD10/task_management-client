@@ -5,11 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import UserContext from "./Context/UserContext";
 import "react-day-picker/dist/style.css";
-
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const queryClient = new QueryClient()
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <UserContext>
-    <App />
+   <QueryClientProvider client={queryClient}>
+      <App />
+
+    </QueryClientProvider>
   </UserContext>
 );
 
