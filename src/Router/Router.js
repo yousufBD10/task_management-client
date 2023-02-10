@@ -19,6 +19,7 @@ import Checkout from "../Components/PricingPlans/Checkout/Checkout"
 import AdminDashboard from "../Layout/AdminDashboard/AdminDashboard";
 import User from "../Layout/AdminDashboard/User";
 import Order from "../Components/PricingPlans/Order/Order";
+import AdminHomePage from "../Layout/AdminDashboard/AdminHomePage";
 
 
 const Router = createBrowserRouter([
@@ -113,7 +114,12 @@ const Router = createBrowserRouter([
       {
         path: "/dashboard/user",
         element: <User />,
-      }
+      },
+      {
+        path: "/dashboard",
+        element: <AdminHomePage />,
+      },
+
      
     ],
   },
