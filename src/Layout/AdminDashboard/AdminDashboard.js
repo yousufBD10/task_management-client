@@ -1,5 +1,5 @@
 import React from 'react';
-import { AiOutlinePlus, AiOutlineUser } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlinePlus, AiOutlineUser } from 'react-icons/ai';
 import { MdOutlineSpaceDashboard } from 'react-icons/md';
 import { Link, Outlet } from 'react-router-dom';
 import Navbar from '../../Components/Navbar/Navbar';
@@ -31,7 +31,7 @@ const AdminDashboard = () => {
   
         <div className="drawer drawer-mobile mt-8">
           <input id="dashboardDawer" type="checkbox" className="drawer-toggle" />
-          <div className="drawer-content min-h-screen border">
+          <div className="drawer-content min-h-screen ">
           
             <Outlet></Outlet>
           </div>
@@ -39,6 +39,13 @@ const AdminDashboard = () => {
             <label htmlFor="dashboardDawer" className="drawer-overlay"></label>
             <ul className="p-4 w-80 menu bg-base-100">
               {" "}
+              <li className="shadow-sm mb-2 rounded-md ">
+                <Link to="/dashboard" className="font-bold">
+                  {" "}
+                  <AiOutlineHome />
+              Home
+                </Link>
+              </li>
               <li className="shadow-sm mb-2 rounded-md ">
                 <Link to="/dashboard/user" className="font-bold">
                   {" "}
