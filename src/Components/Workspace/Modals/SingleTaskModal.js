@@ -13,22 +13,30 @@ import {
   FiTag,
   FiUser,
 } from "react-icons/fi";
-import { TbTemplate } from "react-icons/tb";
 import MembersDropDown from "../SingleTaskModalDropDown/MembersDropDown";
-import ChecklistDropDown from "../SingleTaskModalDropDown/ChecklistDropDown";
 import DateDropDown from "../SingleTaskModalDropDown/DateDropDown";
+import AttachmentDropDown from "../SingleTaskModalDropDown/AttachmentDropDown";
 import MoveDropDown from "../SingleTaskModalDropDown/MoveDropDown";
-import CopyDropDown from "../SingleTaskModalDropDown/CopyDropDown";
 import { AuthContext } from "../../../Context/UserContext";
 import useMembersOfCurrentWorkspace from "../../../hooks/useMembersOfCurrentWorkspace";
+import { set } from "date-fns/esm";
 
 const SingleTaskModal = () => {
-  const buttonStyle = "dropdown dropdown-left flex items-center p-2 space-x-3 rounded-md btn-ghost bg-gray-800 btn-sm text-gray-400";
-  const { boardItems, currentTask, user, logOut, currentWorkspace } = useContext(AuthContext);
+  const buttonStyle =
+    "dropdown dropdown-left flex items-center p-2 space-x-3 rounded-md btn-ghost bg-gray-800 btn-sm text-gray-400";
+  const {
+    boardItems,
+    setBoardItems,
+    currentTask,
+    user,
+    logOut,
+    currentWorkspace,
+  } = useContext(AuthContext);
   const [members] = useMembersOfCurrentWorkspace(currentWorkspace, logOut);
-  let timer;
+  let timer,
+    is_loading_comment = false;
   const [comments, setComments] = useState([]);
-  const [assignedUsers, setAssignedUsers] = useState(currentTask?.users);
+  const [assignedUsers, setAssignedUsers] = useState([]);
 
   const SendToServer = () => {
     fetch(`${process.env.REACT_APP_SERVER_URL}/create-update-task`, {
@@ -47,25 +55,33 @@ const SingleTaskModal = () => {
   };
 
   const assignORremoveMember = (uid) => {
-    for (let i = 0; i < boardItems.length; i++) {
-      if (boardItems[i]._id == currentTask._id) {
-        if (!boardItems[i].users) {
-          boardItems[i].users = [];
-          boardItems[i].users.push(uid);
+    let boardItemsCopy = [...boardItems];
+    for (let i = 0; i < boardItemsCopy.length; i++) {
+      if (boardItemsCopy[i]._id == currentTask._id) {
+        if (!boardItemsCopy[i].users) {
+          boardItemsCopy[i].users = [];
+          boardItemsCopy[i].users.push(uid);
         } else {
-          if (boardItems[i].users.find((el) => { return el === uid })) {
-            boardItems[i].users = boardItems[i].users.filter((el) => { return el != uid })
+          if (
+            typeof boardItemsCopy[i].users.find((el) => {
+              return el === uid;
+            }) == "string"
+          ) {
+            boardItemsCopy[i].users = boardItemsCopy[i].users.filter((el) => {
+              return el != uid;
+            });
           } else {
-            boardItems[i].users.push(uid);
+            boardItemsCopy[i].users.push(uid);
           }
         }
-        currentTask.users = boardItems[i].users;
-        setAssignedUsers(boardItems[i].users);
+        setAssignedUsers(boardItemsCopy[i].users);
+        currentTask.users = boardItemsCopy[i].users;
+        setBoardItems(boardItemsCopy);
         SendToServer();
         break;
       }
     }
-  }
+  };
 
   const updateCurrentTaskInfo = (e) => {
     e.preventDefault();
@@ -83,12 +99,11 @@ const SingleTaskModal = () => {
         }
       }
     }, 1000);
-  }
+  };
 
   const reloadComments = () => {
-    if (!currentTask) return;
-    setAssignedUsers(currentTask?.users);
-    setComments([]);
+    if (!currentTask || is_loading_comment) return;
+    is_loading_comment = true;
     fetch(process.env.REACT_APP_SERVER_URL + `/comments/${currentTask._id}`, {
       method: "GET",
       headers: {
@@ -97,16 +112,21 @@ const SingleTaskModal = () => {
     })
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
+          is_loading_comment = false;
           return logOut();
         }
         return res.json();
       })
       .then((res) => {
+        is_loading_comment = false;
         setComments(res);
       });
   };
 
   useEffect(reloadComments, [currentTask]);
+  useEffect(() => {
+    setAssignedUsers(currentTask?.users);
+  }, [currentTask]);
 
   const handleCommentSubmit = (event) => {
     event.preventDefault();
@@ -142,20 +162,33 @@ const SingleTaskModal = () => {
     <div>
       <div id="new-board-modal" className="modal">
         <div className="modal-box rounded-md bg-gray-50 max-w-screen-md mx-2">
-          <a href="#" className="btn btn-ghost btn-sm absolute right-2 top-2">
+          <a href="#g" className="btn btn-ghost btn-sm absolute right-2 top-2">
             ✕
           </a>
 
           <div className="grid grid-cols-4 -mr-4">
             <div className="px-6 dark:text-gray-500 col-span-4 md:col-span-3">
-               {/* {assignedUsers && assignedUsers.length > 0 ? assignedUsers.map((el) => {
-                return <div className="avatar">
-                  <div className="w-10 h-10 rounded-full">
-                    <img src={members.find((u) => { return u._id == el })?.photoURL} />
-                  </div>
-                </div>
-              }) : ''} */}
-              <form className="grid grid-cols-1 gap-3 mt-10" onKeyUp={updateCurrentTaskInfo}>
+              {assignedUsers && assignedUsers.length > 0
+                ? assignedUsers.map((el) => {
+                    return (
+                      <div className="avatar">
+                        <div className="w-10 h-10 rounded-full">
+                          <img alt='#'
+                            src={
+                              members.find((u) => {
+                                return u._id == el;
+                              })?.photoURL
+                            }
+                          />
+                        </div>
+                      </div>
+                    );
+                  })
+                : ""}
+              <form
+                className="grid grid-cols-1 gap-3 mt-10"
+                onKeyUp={updateCurrentTaskInfo}
+              >
                 {/* ------------title input section---------- */}
                 <input
                   name="note"
@@ -185,7 +218,10 @@ const SingleTaskModal = () => {
                 <div>
                   {/* -----------Comment text area---------- */}
 
-                  <form onSubmit={handleCommentSubmit} className="flex flex-col py-6 space-y-4 md:py-0 ng-untouched ng-pristine ng-valid">
+                  <form
+                    onSubmit={handleCommentSubmit}
+                    className="flex flex-col py-6 space-y-4 md:py-0 ng-untouched ng-pristine ng-valid"
+                  >
                     <label className="block">
                       <textarea
                         name="text"
@@ -205,20 +241,20 @@ const SingleTaskModal = () => {
                     </div>
                   </form>
 
-                  {comments && comments.map((c) => {
-                    return <div key={c._id} className="chat chat-start mt-5">
-                      <div className="chat-image avatar">
-                        <div className="w-10 rounded-full">
-                          <img src={c.photo} />
+                  {comments &&
+                    comments.map((c) => {
+                      return (
+                        <div key={c._id} className="chat chat-start mt-5">
+                          <div className="chat-image avatar">
+                            <div className="w-10 rounded-full">
+                              <img alt="user" src={c.photo} />
+                            </div>
+                          </div>
+                          <div className="chat-header ml-1">{c.username}</div>
+                          <div className="chat-bubble w-full">{c.text}</div>
                         </div>
-                      </div>
-                      <div className="chat-header ml-1">
-                        {c.username}
-                      </div>
-                      <div className="chat-bubble w-full">{c.text}</div>
-                    </div>
-                  })}
-
+                      );
+                    })}
                 </div>
               </div>
             </div>
@@ -240,7 +276,9 @@ const SingleTaskModal = () => {
                       >
                         <FiUser></FiUser>
                         <span className="text-grey">Assign Members</span>
-                        <MembersDropDown assignORremoveMember={assignORremoveMember}></MembersDropDown>
+                        <MembersDropDown
+                          assignORremoveMember={assignORremoveMember}
+                        ></MembersDropDown>
                       </Link>
                     </li>
                     <li className="">
@@ -252,14 +290,13 @@ const SingleTaskModal = () => {
                       >
                         <FiCheckSquare></FiCheckSquare>
                         <span>Checklist</span>
-                        <ChecklistDropDown></ChecklistDropDown>
                       </Link>
                     </li>
                     <li className="">
                       <Link
                         rel="noopener noreferrer"
                         href="#"
-                        tabIndex={0}
+                        tabIndex={2}
                         className={buttonStyle}
                       >
                         <FiClock></FiClock>
@@ -269,12 +306,14 @@ const SingleTaskModal = () => {
                     </li>
                     <li className="">
                       <Link
+                        tabIndex={0}
                         rel="noopener noreferrer"
                         href="#"
                         className={buttonStyle}
                       >
                         <FiPaperclip></FiPaperclip>
                         <span>Attachment</span>
+                        <AttachmentDropDown></AttachmentDropDown>
                       </Link>
                     </li>
 
@@ -291,38 +330,6 @@ const SingleTaskModal = () => {
                         <FiArrowRight></FiArrowRight>
                         <span>Move</span>
                         <MoveDropDown></MoveDropDown>
-                      </Link>
-                    </li>
-                    <li className="">
-                      <Link
-                        rel="noopener noreferrer"
-                        href="#"
-                        tabIndex={0}
-                        className={buttonStyle}
-                      >
-                        <FiCopy></FiCopy>
-                        <span>Copy</span>
-                        <CopyDropDown></CopyDropDown>
-                      </Link>
-                    </li>
-                    <li className="">
-                      <Link
-                        rel="noopener noreferrer"
-                        href="#"
-                        className={buttonStyle}
-                      >
-                        <FiArchive></FiArchive>
-                        <span>Archive</span>
-                      </Link>
-                    </li>
-                    <li className="">
-                      <Link
-                        rel="noopener noreferrer"
-                        href="#"
-                        className={buttonStyle}
-                      >
-                        <FiShare2></FiShare2>
-                        <span>Share</span>
                       </Link>
                     </li>
                   </ul>
