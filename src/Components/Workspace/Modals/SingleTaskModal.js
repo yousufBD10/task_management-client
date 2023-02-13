@@ -148,13 +148,13 @@ const SingleTaskModal = () => {
 
           <div className="grid grid-cols-4 -mr-4">
             <div className="px-6 dark:text-gray-500 col-span-4 md:col-span-3">
-//               {assignedUsers && assignedUsers.length > 0 ? assignedUsers.map((el) => {
-//                 return <div className="avatar">
-//                   <div className="w-10 h-10 rounded-full">
-//                     <img src={members.find((u) => { return u._id == el })?.photoURL} />
-//                   </div>
-//                 </div>
-//               }) : ''}
+               {/* {assignedUsers && assignedUsers.length > 0 ? assignedUsers.map((el) => {
+                return <div className="avatar">
+                  <div className="w-10 h-10 rounded-full">
+                    <img src={members.find((u) => { return u._id == el })?.photoURL} />
+                  </div>
+                </div>
+              }) : ''} */}
               <form className="grid grid-cols-1 gap-3 mt-10" onKeyUp={updateCurrentTaskInfo}>
                 {/* ------------title input section---------- */}
                 <input

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { CgLogOut } from "react-icons/cg";
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/UserContext';
@@ -9,6 +9,13 @@ const Navbar = () => {
   const navigate = useNavigate()
   const { user, logOut, toggleTheme, isDark } = useContext(AuthContext);
   const [role] = useRole(user?.email)
+  // if(role === "admin"){
+  //   return setAdmin(role)
+  // }
+  // else {
+  //   return setUsers(role)
+  // };
+
   console.log(role);
 
   const handleLogOut = () => {
@@ -18,6 +25,7 @@ const Navbar = () => {
       })
       .catch(error => console.error(error))
   }
+  // eslint-disable-next-line no-unreachable
   return (
     <div className="navbar bg-base-100 shadow-md">
       <div className="navbar-start">

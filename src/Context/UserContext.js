@@ -129,7 +129,7 @@ const UserContext = ({ children }) => {
   // -------- firebase update name ---------
   const updateName = (
     name,
-    photoURL = "https://cdn-icons-png.flaticon.com/512/21/21104.png"
+    photoURL = "https://www.transparentpng.com/thumb/user/gray-user-profile-icon-png-fP8Q1P.png"
   ) => {
     setLoading(true);
     return updateProfile(auth.currentUser, {

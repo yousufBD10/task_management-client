@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import {HiViewBoards} from 'react-icons/hi'
 import {AiOutlineUser} from 'react-icons/ai'
 import {BiTask} from 'react-icons/bi'
 import {IoIosBriefcase} from 'react-icons/io'
 import { useQuery } from "@tanstack/react-query";
 import { VictoryChart , VictoryLegend,VictoryBar, VictorySharedEvents, VictoryLabel, VictoryPie} from "victory";
+import useRole from "../../hooks/useRole";
+import { AuthContext } from "../../Context/UserContext";
 
 const AdminHomePage = () => {
+  const {user} = useContext(AuthContext);
+  const [role] = useRole(user?.email)
   const { data: allUsers = [], refetch } = useQuery({
     queryKey: ['allusers'],
     queryFn: async () => {
@@ -61,7 +65,8 @@ const AdminHomePage = () => {
   });
   return (
     <div>
-      <div className=" ml-1 lg:flex grid md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5   ">
+    {role === 'admin' &&  <div>
+       <div className=" ml-1 lg:flex grid md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5   ">
      
        <div className="bg-green-500 rounded-md  text-white w-72 mb-4 shadow-xl">
           <div className="flex ml-2  justify-between">
@@ -168,7 +173,15 @@ const AdminHomePage = () => {
       />
     </g>
   </VictorySharedEvents>
-</svg>
+</svg> 
+</div>
+}
+
+  {role === 'user' && <div>
+<h1>Welcome to Dashboard</h1>
+</div>
+  }
+  
     </div>
   );
 };
