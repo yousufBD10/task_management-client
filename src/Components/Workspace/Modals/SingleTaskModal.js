@@ -21,10 +21,13 @@ import MoveDropDown from "../SingleTaskModalDropDown/MoveDropDown";
 import CopyDropDown from "../SingleTaskModalDropDown/CopyDropDown";
 import { AuthContext } from "../../../Context/UserContext";
 import useMembersOfCurrentWorkspace from "../../../hooks/useMembersOfCurrentWorkspace";
+import AttachmentDropDown from "../SingleTaskModalDropDown/AttachmentDropDown";
 
 const SingleTaskModal = () => {
-  const buttonStyle = "dropdown dropdown-left flex items-center p-2 space-x-3 rounded-md btn-ghost bg-gray-800 btn-sm text-gray-400";
-  const { boardItems, currentTask, user, logOut, currentWorkspace } = useContext(AuthContext);
+  const buttonStyle =
+    "dropdown dropdown-left flex items-center p-2 space-x-3 rounded-md btn-ghost bg-gray-800 btn-sm text-gray-400";
+  const { boardItems, currentTask, user, logOut, currentWorkspace } =
+    useContext(AuthContext);
   const [members] = useMembersOfCurrentWorkspace(currentWorkspace, logOut);
   let timer;
   const [comments, setComments] = useState([]);
@@ -53,8 +56,14 @@ const SingleTaskModal = () => {
           boardItems[i].users = [];
           boardItems[i].users.push(uid);
         } else {
-          if (boardItems[i].users.find((el) => { return el === uid })) {
-            boardItems[i].users = boardItems[i].users.filter((el) => { return el != uid })
+          if (
+            boardItems[i].users.find((el) => {
+              return el === uid;
+            })
+          ) {
+            boardItems[i].users = boardItems[i].users.filter((el) => {
+              return el != uid;
+            });
           } else {
             boardItems[i].users.push(uid);
           }
@@ -65,7 +74,7 @@ const SingleTaskModal = () => {
         break;
       }
     }
-  }
+  };
 
   const updateCurrentTaskInfo = (e) => {
     e.preventDefault();
@@ -83,7 +92,7 @@ const SingleTaskModal = () => {
         }
       }
     }, 1000);
-  }
+  };
 
   const reloadComments = () => {
     if (!currentTask) return;
@@ -148,14 +157,27 @@ const SingleTaskModal = () => {
 
           <div className="grid grid-cols-4 -mr-4">
             <div className="px-6 dark:text-gray-500 col-span-4 md:col-span-3">
-              {assignedUsers && assignedUsers.length > 0 ? assignedUsers.map((el) => {
-                return <div className="avatar">
-                  <div className="w-10 h-10 rounded-full">
-                    <img src={members.find((u) => { return u._id == el })?.photoURL} />
-                  </div>
-                </div>
-              }) : ''}
-              <form className="grid grid-cols-1 gap-3 mt-10" onKeyUp={updateCurrentTaskInfo}>
+              {assignedUsers && assignedUsers.length > 0
+                ? assignedUsers.map((el) => {
+                    return (
+                      <div className="avatar">
+                        <div className="w-10 h-10 rounded-full">
+                          <img
+                            src={
+                              members.find((u) => {
+                                return u._id == el;
+                              })?.photoURL
+                            }
+                          />
+                        </div>
+                      </div>
+                    );
+                  })
+                : ""}
+              <form
+                className="grid grid-cols-1 gap-3 mt-10"
+                onKeyUp={updateCurrentTaskInfo}
+              >
                 {/* ------------title input section---------- */}
                 <input
                   name="note"
@@ -185,7 +207,10 @@ const SingleTaskModal = () => {
                 <div>
                   {/* -----------Comment text area---------- */}
 
-                  <form onSubmit={handleCommentSubmit} className="flex flex-col py-6 space-y-4 md:py-0 ng-untouched ng-pristine ng-valid">
+                  <form
+                    onSubmit={handleCommentSubmit}
+                    className="flex flex-col py-6 space-y-4 md:py-0 ng-untouched ng-pristine ng-valid"
+                  >
                     <label className="block">
                       <textarea
                         name="text"
@@ -205,20 +230,20 @@ const SingleTaskModal = () => {
                     </div>
                   </form>
 
-                  {comments && comments.map((c) => {
-                    return <div key={c._id} className="chat chat-start mt-5">
-                      <div className="chat-image avatar">
-                        <div className="w-10 rounded-full">
-                          <img src={c.photo} />
+                  {comments &&
+                    comments.map((c) => {
+                      return (
+                        <div key={c._id} className="chat chat-start mt-5">
+                          <div className="chat-image avatar">
+                            <div className="w-10 rounded-full">
+                              <img src={c.photo} />
+                            </div>
+                          </div>
+                          <div className="chat-header ml-1">{c.username}</div>
+                          <div className="chat-bubble w-full">{c.text}</div>
                         </div>
-                      </div>
-                      <div className="chat-header ml-1">
-                        {c.username}
-                      </div>
-                      <div className="chat-bubble w-full">{c.text}</div>
-                    </div>
-                  })}
-
+                      );
+                    })}
                 </div>
               </div>
             </div>
@@ -240,7 +265,9 @@ const SingleTaskModal = () => {
                       >
                         <FiUser></FiUser>
                         <span className="text-grey">Assign Members</span>
-                        <MembersDropDown assignORremoveMember={assignORremoveMember}></MembersDropDown>
+                        <MembersDropDown
+                          assignORremoveMember={assignORremoveMember}
+                        ></MembersDropDown>
                       </Link>
                     </li>
                     <li className="">
@@ -259,7 +286,7 @@ const SingleTaskModal = () => {
                       <Link
                         rel="noopener noreferrer"
                         href="#"
-                        tabIndex={0}
+                        tabIndex={2}
                         className={buttonStyle}
                       >
                         <FiClock></FiClock>
@@ -269,12 +296,14 @@ const SingleTaskModal = () => {
                     </li>
                     <li className="">
                       <Link
+                        tabIndex={0}
                         rel="noopener noreferrer"
                         href="#"
                         className={buttonStyle}
                       >
                         <FiPaperclip></FiPaperclip>
                         <span>Attachment</span>
+                        <AttachmentDropDown></AttachmentDropDown>
                       </Link>
                     </li>
 
@@ -325,6 +354,7 @@ const SingleTaskModal = () => {
                         <span>Share</span>
                       </Link>
                     </li>
+                    <input type="file" name="file" required />
                   </ul>
                 </div>
               </div>
