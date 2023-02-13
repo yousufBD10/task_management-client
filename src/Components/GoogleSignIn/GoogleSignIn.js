@@ -28,7 +28,7 @@ const GoogleSignIn = () => {
       <button
         onClick={handleGoogle}
         aria-label="Log in with Google"
-        className="p-3 rounded-full w-12 h-12 bg-glass shadow-lg shadow-shade/100"
+        className="p-3 rounded-full w-12 h-12 bg-violet-500 shadow-lg shadow-shade/100"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
