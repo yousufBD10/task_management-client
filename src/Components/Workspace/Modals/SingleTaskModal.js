@@ -13,25 +13,30 @@ import {
   FiTag,
   FiUser,
 } from "react-icons/fi";
-import { TbTemplate } from "react-icons/tb";
 import MembersDropDown from "../SingleTaskModalDropDown/MembersDropDown";
-import ChecklistDropDown from "../SingleTaskModalDropDown/ChecklistDropDown";
 import DateDropDown from "../SingleTaskModalDropDown/DateDropDown";
+import AttachmentDropDown from "../SingleTaskModalDropDown/AttachmentDropDown";
 import MoveDropDown from "../SingleTaskModalDropDown/MoveDropDown";
-import CopyDropDown from "../SingleTaskModalDropDown/CopyDropDown";
 import { AuthContext } from "../../../Context/UserContext";
 import useMembersOfCurrentWorkspace from "../../../hooks/useMembersOfCurrentWorkspace";
-import AttachmentDropDown from "../SingleTaskModalDropDown/AttachmentDropDown";
+import { set } from "date-fns/esm";
 
 const SingleTaskModal = () => {
   const buttonStyle =
     "dropdown dropdown-left flex items-center p-2 space-x-3 rounded-md btn-ghost bg-gray-800 btn-sm text-gray-400";
-  const { boardItems, currentTask, user, logOut, currentWorkspace } =
-    useContext(AuthContext);
+  const {
+    boardItems,
+    setBoardItems,
+    currentTask,
+    user,
+    logOut,
+    currentWorkspace,
+  } = useContext(AuthContext);
   const [members] = useMembersOfCurrentWorkspace(currentWorkspace, logOut);
-  let timer;
+  let timer,
+    is_loading_comment = false;
   const [comments, setComments] = useState([]);
-  const [assignedUsers, setAssignedUsers] = useState(currentTask?.users);
+  const [assignedUsers, setAssignedUsers] = useState([]);
 
   const SendToServer = () => {
     fetch(`${process.env.REACT_APP_SERVER_URL}/create-update-task`, {
@@ -50,26 +55,28 @@ const SingleTaskModal = () => {
   };
 
   const assignORremoveMember = (uid) => {
-    for (let i = 0; i < boardItems.length; i++) {
-      if (boardItems[i]._id == currentTask._id) {
-        if (!boardItems[i].users) {
-          boardItems[i].users = [];
-          boardItems[i].users.push(uid);
+    let boardItemsCopy = [...boardItems];
+    for (let i = 0; i < boardItemsCopy.length; i++) {
+      if (boardItemsCopy[i]._id == currentTask._id) {
+        if (!boardItemsCopy[i].users) {
+          boardItemsCopy[i].users = [];
+          boardItemsCopy[i].users.push(uid);
         } else {
           if (
-            boardItems[i].users.find((el) => {
+            typeof boardItemsCopy[i].users.find((el) => {
               return el === uid;
-            })
+            }) == "string"
           ) {
-            boardItems[i].users = boardItems[i].users.filter((el) => {
+            boardItemsCopy[i].users = boardItemsCopy[i].users.filter((el) => {
               return el != uid;
             });
           } else {
-            boardItems[i].users.push(uid);
+            boardItemsCopy[i].users.push(uid);
           }
         }
-        currentTask.users = boardItems[i].users;
-        setAssignedUsers(boardItems[i].users);
+        setAssignedUsers(boardItemsCopy[i].users);
+        currentTask.users = boardItemsCopy[i].users;
+        setBoardItems(boardItemsCopy);
         SendToServer();
         break;
       }
@@ -95,9 +102,8 @@ const SingleTaskModal = () => {
   };
 
   const reloadComments = () => {
-    if (!currentTask) return;
-    setAssignedUsers(currentTask?.users);
-    setComments([]);
+    if (!currentTask || is_loading_comment) return;
+    is_loading_comment = true;
     fetch(process.env.REACT_APP_SERVER_URL + `/comments/${currentTask._id}`, {
       method: "GET",
       headers: {
@@ -106,16 +112,21 @@ const SingleTaskModal = () => {
     })
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
+          is_loading_comment = false;
           return logOut();
         }
         return res.json();
       })
       .then((res) => {
+        is_loading_comment = false;
         setComments(res);
       });
   };
 
   useEffect(reloadComments, [currentTask]);
+  useEffect(() => {
+    setAssignedUsers(currentTask?.users);
+  }, [currentTask]);
 
   const handleCommentSubmit = (event) => {
     event.preventDefault();
@@ -279,7 +290,6 @@ const SingleTaskModal = () => {
                       >
                         <FiCheckSquare></FiCheckSquare>
                         <span>Checklist</span>
-                        <ChecklistDropDown></ChecklistDropDown>
                       </Link>
                     </li>
                     <li className="">
@@ -322,39 +332,6 @@ const SingleTaskModal = () => {
                         <MoveDropDown></MoveDropDown>
                       </Link>
                     </li>
-                    <li className="">
-                      <Link
-                        rel="noopener noreferrer"
-                        href="#"
-                        tabIndex={0}
-                        className={buttonStyle}
-                      >
-                        <FiCopy></FiCopy>
-                        <span>Copy</span>
-                        <CopyDropDown></CopyDropDown>
-                      </Link>
-                    </li>
-                    <li className="">
-                      <Link
-                        rel="noopener noreferrer"
-                        href="#"
-                        className={buttonStyle}
-                      >
-                        <FiArchive></FiArchive>
-                        <span>Archive</span>
-                      </Link>
-                    </li>
-                    <li className="">
-                      <Link
-                        rel="noopener noreferrer"
-                        href="#"
-                        className={buttonStyle}
-                      >
-                        <FiShare2></FiShare2>
-                        <span>Share</span>
-                      </Link>
-                    </li>
-                    <input type="file" name="file" required />
                   </ul>
                 </div>
               </div>
