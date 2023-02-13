@@ -263,7 +263,7 @@ const SingleTaskModal = () => {
     <div>
       <div id="new-board-modal" className="modal">
         <div className="modal-box rounded-md bg-gray-50 max-w-screen-md mx-2">
-          <a href="#" className="btn btn-ghost btn-sm absolute right-2 top-2">
+          <a href="#g" className="btn btn-ghost btn-sm absolute right-2 top-2">
             ✕
           </a>
 
@@ -274,7 +274,7 @@ const SingleTaskModal = () => {
                     return (
                       <div className="avatar">
                         <div className="w-10 h-10 rounded-full">
-                          <img
+                          <img alt='#'
                             src={
                               members.find((u) => {
                                 return u._id == el;
@@ -358,7 +358,7 @@ const SingleTaskModal = () => {
                         <div key={c._id} className="chat chat-start mt-5">
                           <div className="chat-image avatar">
                             <div className="w-10 rounded-full">
-                              <img src={c.photo} alt="" />
+                              <img alt="user" src={c.photo} />
                             </div>
                           </div>
                           <div className="chat-header ml-1">{c.username}</div>

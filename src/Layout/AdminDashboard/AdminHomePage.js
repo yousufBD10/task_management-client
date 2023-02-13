@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import {HiViewBoards} from 'react-icons/hi'
 import {AiOutlineUser} from 'react-icons/ai'
 import {BiTask} from 'react-icons/bi'
 import {IoIosBriefcase} from 'react-icons/io'
 import { useQuery } from "@tanstack/react-query";
+import { VictoryChart , VictoryLegend,VictoryBar, VictorySharedEvents, VictoryLabel, VictoryPie} from "victory";
+import useRole from "../../hooks/useRole";
+import { AuthContext } from "../../Context/UserContext";
 
 const AdminHomePage = () => {
+  const {user} = useContext(AuthContext);
+  const [role] = useRole(user?.email)
   const { data: allUsers = [], refetch } = useQuery({
     queryKey: ['allusers'],
     queryFn: async () => {
@@ -60,7 +65,8 @@ const AdminHomePage = () => {
   });
   return (
     <div>
-      <div className=" ml-1 lg:flex grid md:grid-cols-3 lg:grid-cols-4 gap-5    ">
+    {role === 'admin' &&  <div>
+       <div className=" ml-1 lg:flex grid md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5   ">
      
        <div className="bg-green-500 rounded-md  text-white w-72 mb-4 shadow-xl">
           <div className="flex ml-2  justify-between">
@@ -109,8 +115,73 @@ const AdminHomePage = () => {
           </div>
 
        </div>
+    <div className="mt-10 ml-3">
+      <h1 className="text-3xl">Analysis Reports</h1>
+      <h1 className="text-blue-300">Checkout your latest project and their progress</h1>
+    </div>
+      <svg viewBox="0 0 450 350">
+  <VictorySharedEvents
+    events={[{
+      childName: ["pie", "bar"],
+      target: "data",
+      eventHandlers: {
+        onMouseOver: () => {
+          return [{
+            childName: ["pie", "bar"],
+            mutation: (props) => {
+              return {
+                style: Object.assign({}, props.style, {fill: "tomato"})
+              };
+            }
+          }];
+        },
+        onMouseOut: () => {
+          return [{
+            childName: ["pie", "bar"],
+            mutation: () => {
+              return null;
+            }
+          }];
+        }
+      }
+    }]}
+  >
+    <g transform={"translate(150, 50)"}>
+      <VictoryBar name="bar"
+        width={300}
+        standalone={false}
+        style={{
+          data: { width: 20 },
+          labels: {fontSize: 12}
+        }}
+        data={[
+          {x: "Members", y: allUsers.length}, {x: "Tasks", y: allTasks.length}, {x: "Boards", y: allBoards.length}, {x: "Workspaces", y:allWorkspace.length}
+        ]}
+        labels={["Members", "Tasks", "Boards", "Workspaces"]}
+        labelComponent={<VictoryLabel y={280}/>}
+      />
+    </g>
+    <g transform={"translate(0, -75)"}>
+      <VictoryPie name="pie"
+        width={200}
+        standalone={false}
+        style={{ labels: {fontSize: 9, padding: 10}}}
+        data={[
+          {x: "Members", y: allUsers.length}, {x: "Tasks", y: allTasks.length}, {x: "Boards", y: allBoards.length},
+           {x: "Workspaces", y:allWorkspace.length}
+        ]}
+      />
+    </g>
+  </VictorySharedEvents>
+</svg> 
+</div>
+}
 
-       <img className="w-full" src="https://apexcharts.com/wp-content/uploads/2018/05/basic-area-chart.svg" alt="" />
+  {role === 'user' && <div>
+<h1>Welcome to Dashboard</h1>
+</div>
+  }
+  
     </div>
   );
 };

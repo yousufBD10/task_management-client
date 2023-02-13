@@ -39,36 +39,36 @@ const AdminDashboard = () => {
             <label htmlFor="dashboardDawer" className="drawer-overlay"></label>
             <ul className="p-4 w-80 menu bg-base-100">
               {" "}
-              <li className="shadow-sm mb-2 rounded-md ">
-                <Link to="/dashboard" className="font-bold">
+              <li className="mb-1">
+                <Link to="/dashboard" className="font-semibold">
                   {" "}
                   <AiOutlineHome />
               Home
                 </Link>
               </li>
-              <li className="shadow-sm mb-2 rounded-md ">
-                <Link to="/dashboard/user" className="font-bold">
+              <li className="mb-1">
+                <Link to="/dashboard/user" className="font-semibold">
                   {" "}
                   <AiOutlineUser />
                 User
                 </Link>
               </li>
-              <li className="shadow-sm mb-2 rounded-md ">
-                <Link to="/workspace/boards" className="font-bold">
+              <li className="mb-1">
+                <Link to="/workspace/boards" className="font-semibold">
                   {" "}
                   <MdOutlineSpaceDashboard />
                   Email
                 </Link>
               </li>
-              <li className="shadow-sm mb-2 rounded-md ">
-                <Link to="/workspace/boards" className="font-bold">
+              <li className="mb-1">
+                <Link to="/workspace/boards" className="font-semibold">
                   {" "}
                   <MdOutlineSpaceDashboard />
                  Contact
                 </Link>
               </li>
-              <li className="shadow-sm mb-2 rounded-md ">
-                <Link to="/workspace/boards" className="font-bold">
+              <li className=" mb-1  ">
+                <Link to="/workspace/boards" className="font-semibold">
                   {" "}
                   <MdOutlineSpaceDashboard />
                   Boards

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { CgLogOut } from "react-icons/cg";
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/UserContext';
@@ -17,6 +17,7 @@ const Navbar = () => {
       })
       .catch(error => console.error(error))
   }
+  // eslint-disable-next-line no-unreachable
   return (
     <div className="navbar bg-base-100 shadow-md">
       <div className="navbar-start">
