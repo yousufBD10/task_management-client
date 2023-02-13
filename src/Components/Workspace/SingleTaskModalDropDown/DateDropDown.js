@@ -6,40 +6,16 @@ import { toast } from "react-toastify";
 
 const thisMonth = new Date();
 
-const DateDropDown = () => {
+const DateDropDown = ({
+  handleDateSubmit,
+  selectedDate,
+  setSelectedDate,
+  handleRemoveDate,
+}) => {
   const { boardItems, currentTask, user, logOut, currentWorkspace } =
     useContext(AuthContext);
   //------- Received selected date range from DayPicker calendar-----
-  const [selectedDate, setSelectedDate] = useState();
 
-  const handleDateSubmit = () => {
-    const dateData = {
-      wid: currentTask.wid,
-      boardId: currentTask.boradId,
-      taskId: currentTask._id,
-      taskName: currentTask.note,
-      taskCreated: currentTask.created,
-      StartDate: selectedDate?.from && format(selectedDate.from, "PP"),
-      Deadline: selectedDate?.to && format(selectedDate.to, "PP"),
-      username: user.displayName,
-    };
-    console.log(dateData);
-    fetch(`${process.env.REACT_APP_SERVER_URL}/create-deadline`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        // authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify(dateData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        toast.success("Work duration updated");
-        // form.reset();
-      })
-      .catch((error) => toast.error(error.message));
-  };
   return (
     <div
       tabIndex={2}
@@ -62,7 +38,7 @@ const DateDropDown = () => {
           <div>
             <p className="text-gray-500">
               Start date:{" "}
-              {selectedDate?.from && format(selectedDate.from, "Pp")}
+              {selectedDate?.from && format(selectedDate.from, "PP")}
             </p>
           </div>
           <div>
@@ -93,6 +69,7 @@ const DateDropDown = () => {
               Save
             </button>
             <button
+              onClick={() => handleRemoveDate("")}
               type="submit"
               className="btn btn-ghost btn-sm font-normal bg-gray-300 rounded-md text-gray-700 ml-3"
             >

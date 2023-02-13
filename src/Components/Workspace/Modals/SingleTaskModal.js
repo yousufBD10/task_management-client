@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { format } from "date-fns";
 import {
   FiArchive,
   FiArrowRight,
@@ -11,6 +12,7 @@ import {
   FiPaperclip,
   FiShare2,
   FiTag,
+  FiTrash,
   FiUser,
 } from "react-icons/fi";
 import MembersDropDown from "../SingleTaskModalDropDown/MembersDropDown";
@@ -23,7 +25,7 @@ import { set } from "date-fns/esm";
 
 const SingleTaskModal = () => {
   const buttonStyle =
-    "dropdown dropdown-left flex items-center p-2 space-x-3 rounded-md btn-ghost bg-gray-800 btn-sm text-gray-400";
+    "dropdown dropdown-bottom md:dropdown-left flex items-center mb-1 mr-1 p-2 space-x-3 rounded-md btn-ghost bg-gray-800 btn-sm text-gray-400 w-44 md:w-none";
   const {
     boardItems,
     setBoardItems,
@@ -32,11 +34,15 @@ const SingleTaskModal = () => {
     logOut,
     currentWorkspace,
   } = useContext(AuthContext);
+  const [selectedDate, setSelectedDate] = useState();
   const [members] = useMembersOfCurrentWorkspace(currentWorkspace, logOut);
   let timer,
     is_loading_comment = false;
   const [comments, setComments] = useState([]);
   const [assignedUsers, setAssignedUsers] = useState([]);
+  const [attachment, setAttachment] = useState([]);
+
+  // -------- Task info & description post to DB ---------
 
   const SendToServer = () => {
     fetch(`${process.env.REACT_APP_SERVER_URL}/create-update-task`, {
@@ -53,6 +59,8 @@ const SingleTaskModal = () => {
       })
       .catch((error) => toast.error(error.message));
   };
+
+  //-------------- Member assign & remove --------------
 
   const assignORremoveMember = (uid) => {
     let boardItemsCopy = [...boardItems];
@@ -83,6 +91,8 @@ const SingleTaskModal = () => {
     }
   };
 
+  // ----------- Task title or info & description update----------
+
   const updateCurrentTaskInfo = (e) => {
     e.preventDefault();
     clearTimeout(timer);
@@ -100,6 +110,8 @@ const SingleTaskModal = () => {
       }
     }, 1000);
   };
+
+  // ------------- Reload comments ---------------
 
   const reloadComments = () => {
     if (!currentTask || is_loading_comment) return;
@@ -127,6 +139,8 @@ const SingleTaskModal = () => {
   useEffect(() => {
     setAssignedUsers(currentTask?.users);
   }, [currentTask]);
+
+  // -------------- Handle submit comments -----------
 
   const handleCommentSubmit = (event) => {
     event.preventDefault();
@@ -158,6 +172,93 @@ const SingleTaskModal = () => {
       })
       .catch((error) => toast.error(error.message));
   };
+
+  // ------------ Handle Adding Deadline ------------
+
+  const handleDateSubmit = () => {
+    const dateData = {
+      wid: currentTask.wid,
+      boardId: currentTask.boradId,
+      taskId: currentTask._id,
+      taskName: currentTask.note,
+      taskCreated: currentTask.created,
+      StartDate: selectedDate?.from && format(selectedDate.from, "PP"),
+      Deadline: selectedDate?.to && format(selectedDate.to, "PP"),
+      username: user.displayName,
+    };
+    console.log(dateData);
+
+    fetch(`${process.env.REACT_APP_SERVER_URL}/`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(dateData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast.success("Work duration updated");
+        // form.reset();
+      })
+      .catch((error) => toast.error(error.message));
+  };
+
+  // ------------ Handle Remove Deadline ------------
+
+  const handleRemoveDate = () => {
+    const removeData = {
+      StartDate: "null",
+      Deadline: "null",
+    };
+
+    fetch(`${process.env.REACT_APP_SERVER_URL}/''/${""}`, {
+      method: "PUT",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(removeData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
+  // ------------ Handle file Attachment -----------
+
+  const handleAttachment = (attachData) => {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/''`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(attachData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("File successfully added");
+        setAttachment(data);
+        // form.reset();
+      })
+      .catch((error) => toast.error(error.message));
+  };
+  // ------------ Remove Attachment -----------
+  const removeAttachment = () => {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/''/${""}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.error("deleted successfully");
+      });
+  };
   return (
     <div>
       <div id="new-board-modal" className="modal">
@@ -179,6 +280,7 @@ const SingleTaskModal = () => {
                                 return u._id == el;
                               })?.photoURL
                             }
+                            alt=""
                           />
                         </div>
                       </div>
@@ -197,6 +299,7 @@ const SingleTaskModal = () => {
                   className="input input-bordered w-full rounded-sm text-3xl font-semibold"
                   required
                 />
+                <p className="mt-6">Duration: Feb 18, 2023 to Feb 22, 2023</p>
 
                 {/* ------------Text Area section------------- */}
 
@@ -208,6 +311,14 @@ const SingleTaskModal = () => {
                 ></textarea>
               </form>
               <br />
+              {/* ------------- Attachment section------- */}
+
+              <div className=" flex justify-between items-center border border-gray-400 rounded-md p-2 bg-gray-900 text-gray-400">
+                <p> Attached file</p>
+                <button title="Remove" onClick={removeAttachment}>
+                  <FiTrash></FiTrash>
+                </button>
+              </div>
 
               {/*-------------comments/Activity section----------- */}
 
@@ -247,7 +358,7 @@ const SingleTaskModal = () => {
                         <div key={c._id} className="chat chat-start mt-5">
                           <div className="chat-image avatar">
                             <div className="w-10 rounded-full">
-                              <img src={c.photo} />
+                              <img src={c.photo} alt="" />
                             </div>
                           </div>
                           <div className="chat-header ml-1">{c.username}</div>
@@ -301,7 +412,12 @@ const SingleTaskModal = () => {
                       >
                         <FiClock></FiClock>
                         <span>Deadline</span>
-                        <DateDropDown></DateDropDown>
+                        <DateDropDown
+                          handleDateSubmit={handleDateSubmit}
+                          selectedDate={selectedDate}
+                          setSelectedDate={setSelectedDate}
+                          handleRemoveDate={handleRemoveDate}
+                        ></DateDropDown>
                       </Link>
                     </li>
                     <li className="">
@@ -313,7 +429,9 @@ const SingleTaskModal = () => {
                       >
                         <FiPaperclip></FiPaperclip>
                         <span>Attachment</span>
-                        <AttachmentDropDown></AttachmentDropDown>
+                        <AttachmentDropDown
+                          handleAttachment={handleAttachment}
+                        ></AttachmentDropDown>
                       </Link>
                     </li>
 
