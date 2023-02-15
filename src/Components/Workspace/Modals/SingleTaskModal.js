@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { format } from "date-fns";
 import {
   FiArchive,
   FiArrowRight,
@@ -11,8 +12,12 @@ import {
   FiPaperclip,
   FiShare2,
   FiTag,
+  FiTrash,
   FiUser,
 } from "react-icons/fi";
+import { BsCalendar4Range } from "react-icons/bs";
+import { GrTextAlignFull } from "react-icons/gr";
+import { RxActivityLog } from "react-icons/rx";
 import MembersDropDown from "../SingleTaskModalDropDown/MembersDropDown";
 import DateDropDown from "../SingleTaskModalDropDown/DateDropDown";
 import AttachmentDropDown from "../SingleTaskModalDropDown/AttachmentDropDown";
@@ -23,7 +28,7 @@ import { set } from "date-fns/esm";
 
 const SingleTaskModal = () => {
   const buttonStyle =
-    "dropdown dropdown-left flex items-center p-2 space-x-3 rounded-md btn-ghost bg-gray-800 btn-sm text-gray-400";
+    "dropdown dropdown-bottom md:dropdown-left flex items-center mb-1 mr-1 p-2 space-x-3 rounded-md btn-ghost bg-gray-800 btn-sm text-gray-400 w-44 md:w-none";
   const {
     boardItems,
     setBoardItems,
@@ -32,11 +37,15 @@ const SingleTaskModal = () => {
     logOut,
     currentWorkspace,
   } = useContext(AuthContext);
+  const [selectedDate, setSelectedDate] = useState();
   const [members] = useMembersOfCurrentWorkspace(currentWorkspace, logOut);
   let timer,
     is_loading_comment = false;
   const [comments, setComments] = useState([]);
   const [assignedUsers, setAssignedUsers] = useState([]);
+  const [attachment, setAttachment] = useState([]);
+
+  // -------- Task info & description post to DB ---------
 
   const SendToServer = () => {
     fetch(`${process.env.REACT_APP_SERVER_URL}/create-update-task`, {
@@ -53,6 +62,8 @@ const SingleTaskModal = () => {
       })
       .catch((error) => toast.error(error.message));
   };
+
+  //-------------- Member assign & remove --------------
 
   const assignORremoveMember = (uid) => {
     let boardItemsCopy = [...boardItems];
@@ -83,6 +94,8 @@ const SingleTaskModal = () => {
     }
   };
 
+  // ----------- Task title or info & description update----------
+
   const updateCurrentTaskInfo = (e) => {
     e.preventDefault();
     clearTimeout(timer);
@@ -100,6 +113,8 @@ const SingleTaskModal = () => {
       }
     }, 1000);
   };
+
+  // ------------- Reload comments ---------------
 
   const reloadComments = () => {
     if (!currentTask || is_loading_comment) return;
@@ -127,6 +142,8 @@ const SingleTaskModal = () => {
   useEffect(() => {
     setAssignedUsers(currentTask?.users);
   }, [currentTask]);
+
+  // -------------- Handle submit comments -----------
 
   const handleCommentSubmit = (event) => {
     event.preventDefault();
@@ -158,33 +175,87 @@ const SingleTaskModal = () => {
       })
       .catch((error) => toast.error(error.message));
   };
+
+  // ------------ Handle Adding Deadline ------------
+
+  const handleDateSubmit = () => {
+    clearTimeout(timer);
+
+    const StartDate = selectedDate?.from && format(selectedDate.from, "PP");
+    const Deadline = selectedDate?.to && format(selectedDate.to, "PP");
+    timer = setTimeout(() => {
+      for (let i = 0; i < boardItems.length; i++) {
+        if (boardItems[i]._id == currentTask._id) {
+          currentTask.StartDate = boardItems[i].StartDate = StartDate;
+          currentTask.Deadline = boardItems[i].Deadline = Deadline;
+          SendToServer();
+          break;
+        }
+      }
+    }, 1000);
+  };
+
+  // ------------ Handle Remove Deadline ------------
+
+  const handleRemoveDate = () => {
+    clearTimeout(timer);
+
+    const StartDate = "";
+    const Deadline = "";
+    timer = setTimeout(() => {
+      for (let i = 0; i < boardItems.length; i++) {
+        if (boardItems[i]._id == currentTask._id) {
+          currentTask.StartDate = boardItems[i].StartDate = StartDate;
+          currentTask.Deadline = boardItems[i].Deadline = Deadline;
+          SendToServer();
+          break;
+        }
+      }
+    }, 1000);
+  };
+
+  // ------------ Handle file Attachment -----------
+
+  const handleAttachment = (attachData) => {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/''`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(attachData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("File successfully added");
+        setAttachment(data);
+        // form.reset();
+      })
+      .catch((error) => toast.error(error.message));
+  };
+  // ------------ Remove Attachment -----------
+  const removeAttachment = () => {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/''/${""}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.error("deleted successfully");
+      });
+  };
   return (
     <div>
-      <div id="new-board-modal" className="modal">
-        <div className="modal-box rounded-md bg-gray-50 max-w-screen-md mx-2">
+      <div id="new-board-modal" className="modal p-2">
+        <div className="modal-box rounded-md  max-w-screen-md mx-2 p-2">
           <a href="#g" className="btn btn-ghost btn-sm absolute right-2 top-2">
             ✕
           </a>
 
           <div className="grid grid-cols-4 -mr-4">
             <div className="px-6 dark:text-gray-500 col-span-4 md:col-span-3">
-              {assignedUsers && assignedUsers.length > 0
-                ? assignedUsers.map((el) => {
-                    return (
-                      <div className="avatar">
-                        <div className="w-10 h-10 rounded-full">
-                          <img alt='#'
-                            src={
-                              members.find((u) => {
-                                return u._id == el;
-                              })?.photoURL
-                            }
-                          />
-                        </div>
-                      </div>
-                    );
-                  })
-                : ""}
               <form
                 className="grid grid-cols-1 gap-3 mt-10"
                 onKeyUp={updateCurrentTaskInfo}
@@ -194,26 +265,73 @@ const SingleTaskModal = () => {
                   name="note"
                   type="text"
                   defaultValue={currentTask?.note}
-                  className="input input-bordered w-full rounded-sm text-3xl font-semibold"
+                  className="input input-bordered w-full rounded-md text-3xl font-semibold"
                   required
                 />
+                {assignedUsers && assignedUsers.length > 0 && (
+                  <small className="font-semibold mt-4">Members</small>
+                )}
+                <div className="flex items-center">
+                  {assignedUsers && assignedUsers.length > 0
+                    ? assignedUsers.map((el) => {
+                        return (
+                          <div className="avatar">
+                            <div className="w-10 h-10 rounded-full">
+                              <img
+                                alt="#"
+                                src={
+                                  members.find((u) => {
+                                    return u._id == el;
+                                  })?.photoURL
+                                }
+                              />
+                            </div>
+                          </div>
+                        );
+                      })
+                    : ""}
+                </div>
+                {currentTask?.StartDate && (
+                  <p className="flex mt-2 font-semibold">
+                    <span className="pr-2">
+                      <BsCalendar4Range></BsCalendar4Range>{" "}
+                    </span>
+                    <small className="">
+                      {currentTask.StartDate} ~{" "}
+                      {!currentTask?.Deadline ? (
+                        <span className="text-gray-900">--</span>
+                      ) : (
+                        currentTask?.Deadline
+                      )}
+                    </small>
+                  </p>
+                )}
 
                 {/* ------------Text Area section------------- */}
-
+                <GrTextAlignFull></GrTextAlignFull>
                 <textarea
                   name="description"
                   placeholder="Description"
                   defaultValue={currentTask?.description}
-                  className="input input-bordered p-4 w-full rounded-sm outline-border h-28"
+                  className="input input-bordered p-4 w-full rounded-md outline-border h-28"
                 ></textarea>
               </form>
               <br />
+              {/* ------------- Attachment section------- */}
+
+              <div className=" flex justify-between items-center border border-gray-400 rounded-md p-2 bg-gray-900 text-gray-400">
+                <p> Attached file</p>
+                <button title="Remove" onClick={removeAttachment}>
+                  <FiTrash></FiTrash>
+                </button>
+              </div>
 
               {/*-------------comments/Activity section----------- */}
 
               <div className="text-gray-600 mt-8">
-                <div className="flex justify-between ">
-                  <h3 className="text-md font-semibold">Activity</h3>
+                <div className="flex items-center ">
+                  <RxActivityLog></RxActivityLog>
+                  <h3 className="text-md font-semibold pl-2">Activity</h3>
                 </div>
                 <div>
                   {/* -----------Comment text area---------- */}
@@ -301,7 +419,12 @@ const SingleTaskModal = () => {
                       >
                         <FiClock></FiClock>
                         <span>Deadline</span>
-                        <DateDropDown></DateDropDown>
+                        <DateDropDown
+                          handleDateSubmit={handleDateSubmit}
+                          selectedDate={selectedDate}
+                          setSelectedDate={setSelectedDate}
+                          handleRemoveDate={handleRemoveDate}
+                        ></DateDropDown>
                       </Link>
                     </li>
                     <li className="">
@@ -313,7 +436,9 @@ const SingleTaskModal = () => {
                       >
                         <FiPaperclip></FiPaperclip>
                         <span>Attachment</span>
-                        <AttachmentDropDown></AttachmentDropDown>
+                        <AttachmentDropDown
+                          handleAttachment={handleAttachment}
+                        ></AttachmentDropDown>
                       </Link>
                     </li>
 
