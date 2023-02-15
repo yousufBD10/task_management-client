@@ -21,19 +21,6 @@ const AttachmentDropDown = ({ handleAttachment }) => {
 
       <hr />
 
-      <div className="text-gray-900 mt-3">
-        <Link>Computer</Link>
-      </div>
-      <div className="text-gray-900 mt-3">
-        <Link>Task Master</Link>
-      </div>
-      <div className="text-gray-900 mt-3">
-        <Link>Google Drive</Link>
-      </div>
-      <div className="text-gray-900 my-3">
-        <Link>One Drive</Link>
-      </div>
-      <hr />
       <form>
         <div>
           <p className="text-gray-900 font-bold mt-4">Attach a link</p>
