@@ -7,14 +7,16 @@ import { useQuery } from "@tanstack/react-query";
 import { VictoryChart , VictoryLegend,VictoryBar, VictorySharedEvents, VictoryLabel, VictoryPie} from "victory";
 import useRole from "../../hooks/useRole";
 import { AuthContext } from "../../Context/UserContext";
+import UserDashboard from "./UserDashboard";
 
 const AdminHomePage = () => {
   const {user} = useContext(AuthContext);
   const [role] = useRole(user?.email)
-  const { data: allUsers = [], refetch } = useQuery({
-    queryKey: ['allusers'],
+
+  const { data: allData = [] } = useQuery({
+    queryKey: ['allDatas'],
     queryFn: async () => {
-      const res = await fetch(process.env.REACT_APP_SERVER_URL + `/allusers`,{
+      const res = await fetch(process.env.REACT_APP_SERVER_URL + `/allDatas`,{
           method: "GET",
           headers: {
             authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -24,54 +26,18 @@ const AdminHomePage = () => {
       return data;
     },
   });
-  const { data: allTasks = [] } = useQuery({
-    queryKey: ['alltasks'],
-    queryFn: async () => {
-      const res = await fetch(process.env.REACT_APP_SERVER_URL + `/alltasks`,{
-          method: "GET",
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          }},
-      );
-      const data = await res.json();
-      return data;
-    },
-  });
-  const { data: allBoards = [] } = useQuery({
-    queryKey: ['allboards'],
-    queryFn: async () => {
-      const res = await fetch(process.env.REACT_APP_SERVER_URL + `/allboards`,{
-          method: "GET",
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          }},
-      );
-      const data = await res.json();
-      return data;
-    },
-  });
-  const { data: allWorkspace = [] } = useQuery({
-    queryKey: ['allworkspace'],
-    queryFn: async () => {
-      const res = await fetch(process.env.REACT_APP_SERVER_URL + `/allworkspace`,{
-          method: "GET",
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          }},
-      );
-      const data = await res.json();
-      return data;
-    },
-  });
+  console.log(allData)
+ 
   return (
     <div>
-    {role === 'admin' &&  <div>
+    {role === 'admin' && 
+     <div>
        <div className=" ml-1 lg:flex grid md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5   ">
      
        <div className="bg-green-500 rounded-md  text-white w-72 mb-4 shadow-xl">
           <div className="flex ml-2  justify-between">
           <div className="mt-3">
-          <p className="">{allUsers.length}</p>
+          <p className="">{allData[0]?.length}</p>
           <h2 className="card-title">Total Members</h2>
           </div>
           <div className="text-4xl mt-3 mr-3">   < AiOutlineUser/></div>
@@ -83,7 +49,7 @@ const AdminHomePage = () => {
        <div className="bg-pink-500 rounded-md mb-4  text-white w-72  shadow-xl">
           <div className="flex ml-2  justify-around">
           <div className="mt-3">
-          <p className="">{allBoards.length}</p>
+          <p className="">{allData[1]?.length}</p>
           <h2 className="card-title">Total Boards</h2>
           </div>
         <div className="text-4xl mt-3 mr-3">   < HiViewBoards/></div>
@@ -95,7 +61,7 @@ const AdminHomePage = () => {
        <div className="bg-red-500 rounded-md mb-4  text-white w-72  shadow-xl">
           <div className="flex ml-2  justify-between">
           <div className="mt-3">
-          <p className="">{allTasks.length}</p>
+          <p className="">{allData[2]?.length}</p>
           <h2 className="card-title">Total Tasks</h2>
           </div>
           <div className="text-4xl mt-3 mr-3">   < BiTask/></div>
@@ -107,7 +73,7 @@ const AdminHomePage = () => {
        <div className="bg-blue-500 rounded-md mb-4  text-white w-72  shadow-xl">
           <div className="flex ml-2  justify-between">
           <div className="mt-3">
-          <p className="">{allWorkspace.length}</p>
+          <p className="">{allData[3]?.length}</p>
           <h2 className="card-title">Total Workspace</h2>
           </div>
           <div className="text-4xl mt-3 mr-3">   < IoIosBriefcase/></div>
@@ -155,7 +121,7 @@ const AdminHomePage = () => {
           labels: {fontSize: 12}
         }}
         data={[
-          {x: "Members", y: allUsers.length}, {x: "Tasks", y: allTasks.length}, {x: "Boards", y: allBoards.length}, {x: "Workspaces", y:allWorkspace.length}
+          {x: "Members", y: allData[0]?.length}, {x: "Tasks", y: allData[2]?.length}, {x: "Boards", y: allData[1]?.length}, {x: "Workspaces", y:allData[3]?.length}
         ]}
         labels={["Members", "Tasks", "Boards", "Workspaces"]}
         labelComponent={<VictoryLabel y={280}/>}
@@ -167,8 +133,8 @@ const AdminHomePage = () => {
         standalone={false}
         style={{ labels: {fontSize: 9, padding: 10}}}
         data={[
-          {x: "Members", y: allUsers.length}, {x: "Tasks", y: allTasks.length}, {x: "Boards", y: allBoards.length},
-           {x: "Workspaces", y:allWorkspace.length}
+          {x: "Members", y: allData[0]?.length}, {x: "Tasks", y: allData[2]?.length}, {x: "Boards", y: allData[1]?.length},
+           {x: "Workspaces", y:allData[3]?.length}
         ]}
       />
     </g>
@@ -177,9 +143,9 @@ const AdminHomePage = () => {
 </div>
 }
 
-  {role === 'user' && <div>
-<h1>Welcome to Dashboard</h1>
-</div>
+  {role === 'user' && 
+<UserDashboard>Welcome to Dashboard</UserDashboard>
+
   }
   
     </div>
