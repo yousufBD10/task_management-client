@@ -15,6 +15,9 @@ import {
   FiTrash,
   FiUser,
 } from "react-icons/fi";
+import { BsCalendar4Range } from "react-icons/bs";
+import { GrTextAlignFull } from "react-icons/gr";
+import { RxActivityLog } from "react-icons/rx";
 import MembersDropDown from "../SingleTaskModalDropDown/MembersDropDown";
 import DateDropDown from "../SingleTaskModalDropDown/DateDropDown";
 import AttachmentDropDown from "../SingleTaskModalDropDown/AttachmentDropDown";
@@ -176,55 +179,39 @@ const SingleTaskModal = () => {
   // ------------ Handle Adding Deadline ------------
 
   const handleDateSubmit = () => {
-    const dateData = {
-      wid: currentTask.wid,
-      boardId: currentTask.boradId,
-      taskId: currentTask._id,
-      taskName: currentTask.note,
-      taskCreated: currentTask.created,
-      StartDate: selectedDate?.from && format(selectedDate.from, "PP"),
-      Deadline: selectedDate?.to && format(selectedDate.to, "PP"),
-      username: user.displayName,
-    };
-    console.log(dateData);
+    clearTimeout(timer);
 
-    fetch(`${process.env.REACT_APP_SERVER_URL}/`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify(dateData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        toast.success("Work duration updated");
-        // form.reset();
-      })
-      .catch((error) => toast.error(error.message));
+    const StartDate = selectedDate?.from && format(selectedDate.from, "PP");
+    const Deadline = selectedDate?.to && format(selectedDate.to, "PP");
+    timer = setTimeout(() => {
+      for (let i = 0; i < boardItems.length; i++) {
+        if (boardItems[i]._id == currentTask._id) {
+          currentTask.StartDate = boardItems[i].StartDate = StartDate;
+          currentTask.Deadline = boardItems[i].Deadline = Deadline;
+          SendToServer();
+          break;
+        }
+      }
+    }, 1000);
   };
 
   // ------------ Handle Remove Deadline ------------
 
   const handleRemoveDate = () => {
-    const removeData = {
-      StartDate: "null",
-      Deadline: "null",
-    };
+    clearTimeout(timer);
 
-    fetch(`${process.env.REACT_APP_SERVER_URL}/''/${""}`, {
-      method: "PUT",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(removeData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
+    const StartDate = "";
+    const Deadline = "";
+    timer = setTimeout(() => {
+      for (let i = 0; i < boardItems.length; i++) {
+        if (boardItems[i]._id == currentTask._id) {
+          currentTask.StartDate = boardItems[i].StartDate = StartDate;
+          currentTask.Deadline = boardItems[i].Deadline = Deadline;
+          SendToServer();
+          break;
+        }
+      }
+    }, 1000);
   };
 
   // ------------ Handle file Attachment -----------
@@ -261,32 +248,14 @@ const SingleTaskModal = () => {
   };
   return (
     <div>
-      <div id="new-board-modal" className="modal">
-        <div className="modal-box rounded-md bg-gray-50 max-w-screen-md mx-2">
+      <div id="new-board-modal" className="modal p-2">
+        <div className="modal-box rounded-md  max-w-screen-md mx-2 p-2">
           <a href="#g" className="btn btn-ghost btn-sm absolute right-2 top-2">
             ✕
           </a>
 
           <div className="grid grid-cols-4 -mr-4">
             <div className="px-6 dark:text-gray-500 col-span-4 md:col-span-3">
-              {assignedUsers && assignedUsers.length > 0
-                ? assignedUsers.map((el) => {
-                    return (
-                      <div className="avatar">
-                        <div className="w-10 h-10 rounded-full">
-                          <img alt='#'
-                            src={
-                              members.find((u) => {
-                                return u._id == el;
-                              })?.photoURL
-                            }
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                    );
-                  })
-                : ""}
               <form
                 className="grid grid-cols-1 gap-3 mt-10"
                 onKeyUp={updateCurrentTaskInfo}
@@ -296,18 +265,55 @@ const SingleTaskModal = () => {
                   name="note"
                   type="text"
                   defaultValue={currentTask?.note}
-                  className="input input-bordered w-full rounded-sm text-3xl font-semibold"
+                  className="input input-bordered w-full rounded-md text-3xl font-semibold"
                   required
                 />
-                <p className="mt-6">Duration: Feb 18, 2023 to Feb 22, 2023</p>
+                {assignedUsers && assignedUsers.length > 0 && (
+                  <small className="font-semibold mt-4">Members</small>
+                )}
+                <div className="flex items-center">
+                  {assignedUsers && assignedUsers.length > 0
+                    ? assignedUsers.map((el) => {
+                        return (
+                          <div className="avatar">
+                            <div className="w-10 h-10 rounded-full">
+                              <img
+                                alt="#"
+                                src={
+                                  members.find((u) => {
+                                    return u._id == el;
+                                  })?.photoURL
+                                }
+                              />
+                            </div>
+                          </div>
+                        );
+                      })
+                    : ""}
+                </div>
+                {currentTask?.StartDate && (
+                  <p className="flex mt-2 font-semibold">
+                    <span className="pr-2">
+                      <BsCalendar4Range></BsCalendar4Range>{" "}
+                    </span>
+                    <small className="">
+                      {currentTask.StartDate} ~{" "}
+                      {!currentTask?.Deadline ? (
+                        <span className="text-gray-900">--</span>
+                      ) : (
+                        currentTask?.Deadline
+                      )}
+                    </small>
+                  </p>
+                )}
 
                 {/* ------------Text Area section------------- */}
-
+                <GrTextAlignFull></GrTextAlignFull>
                 <textarea
                   name="description"
                   placeholder="Description"
                   defaultValue={currentTask?.description}
-                  className="input input-bordered p-4 w-full rounded-sm outline-border h-28"
+                  className="input input-bordered p-4 w-full rounded-md outline-border h-28"
                 ></textarea>
               </form>
               <br />
@@ -323,8 +329,9 @@ const SingleTaskModal = () => {
               {/*-------------comments/Activity section----------- */}
 
               <div className="text-gray-600 mt-8">
-                <div className="flex justify-between ">
-                  <h3 className="text-md font-semibold">Activity</h3>
+                <div className="flex items-center ">
+                  <RxActivityLog></RxActivityLog>
+                  <h3 className="text-md font-semibold pl-2">Activity</h3>
                 </div>
                 <div>
                   {/* -----------Comment text area---------- */}
