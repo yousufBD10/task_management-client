@@ -9,7 +9,7 @@ const Footer = () => {
                 <h3 className='text-3xl'>TaskMaster</h3>
                 <p>Task Management System</p>
             </div>
-            <div>
+            {/* <div>
                 <span className="footer-title">Services</span>
                 <a className="link link-hover">Branding</a>
                 <a className="link link-hover">Marketing</a>
@@ -18,13 +18,14 @@ const Footer = () => {
                 <a className="link link-hover">About us</a>
                 <a className="link link-hover">Contact</a>
                 <a className="link link-hover">Jobs</a>
-            </div>
-            <div>
+            </div> */}
+            <div className='pt-4'>
                 <span className="footer-title">Legal</span>
-                <a className="link link-hover">Terms of use</a>
+                <Link to="/terms">Terms of use</Link>
                 <Link to="/privacy">Privacy policy</Link>
                 {/* <a className="link link-hover">Cookie policy</a> */}
             </div>
+            <div><h1 className='pl-11 pt-20'>Copyright © 2023 TaskMaster</h1></div>
         </footer>
     );
 };
