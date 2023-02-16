@@ -47,23 +47,23 @@ const Router = createBrowserRouter([
       },
       {
         path: "/updateprofile",
-        element: <UpdateUser/>,
+        element: <UpdateUser />,
       },
       {
         path: '/pricing',
         element: <Pricing></Pricing>
-        },
-        
-        {
-          path: '/pricingOptions/:id',
-          element: <Checkout></Checkout>,
-          loader: ({ params }) => fetch(`http://localhost:5000/pricingOptions/${params.id}`)
-            
-          },
-        {
-          path: '/payment',
-          element: <Payment></Payment>
-          },
+      },
+
+      {
+        path: '/pricingOptions/:id',
+        element: <Checkout></Checkout>,
+        loader: ({ params }) => fetch(process.env.REACT_APP_SERVER_URL + `/pricingOptions/${params.id}`)
+
+      },
+      {
+        path: '/payment',
+        element: <Payment></Payment>
+      },
       {
         path: "*",
         element: <Error></Error>,
@@ -75,16 +75,16 @@ const Router = createBrowserRouter([
       {
         path: '/payment/:id',
         element: <Payment></Payment>,
-        loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
-    },
-    {
-      path: "/privacy",
-      element: <Privacy></Privacy>
-    },
-    {
-      path: "/terms",
-      element: <Terms></Terms>
-    },
+        loader: ({ params }) => fetch(process.env.REACT_APP_SERVER_URL + `/bookings/${params.id}`)
+      },
+      {
+        path: "/privacy",
+        element: <Privacy></Privacy>
+      },
+      {
+        path: "/terms",
+        element: <Terms></Terms>
+      },
     ],
   },
   {
@@ -130,10 +130,10 @@ const Router = createBrowserRouter([
         element: <AdminHomePage />,
       },
 
-     
+
     ],
   },
- 
+
 
 ]);
 
