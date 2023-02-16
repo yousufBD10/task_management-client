@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const AttachmentDropDown = ({ handleAttachment }) => {
   const handleForm = (event) => {
@@ -9,6 +8,7 @@ const AttachmentDropDown = ({ handleAttachment }) => {
       attach: form.file.value,
     };
     handleAttachment(attachData);
+    form.reset();
   };
   return (
     <div
@@ -31,7 +31,7 @@ const AttachmentDropDown = ({ handleAttachment }) => {
             required
           />
         </div>
-        <div div className="my-2 form-control">
+        <div className="my-2 form-control">
           <button
             onClick={handleForm}
             type="submit"

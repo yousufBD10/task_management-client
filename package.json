@@ -18,8 +18,10 @@
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.6.2",
     "react-scripts": "^5.0.1",
+    "react-share": "^4.4.1",
     "react-toastify": "^9.1.1",
     "stripe": "^11.9.1",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "victory": "^36.6.8",
     "web-vitals": "^2.1.0"
   },
