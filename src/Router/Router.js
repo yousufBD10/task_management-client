@@ -20,6 +20,8 @@ import AdminDashboard from "../Layout/AdminDashboard/AdminDashboard";
 import User from "../Layout/AdminDashboard/User";
 import Order from "../Components/PricingPlans/Order/Order";
 import AdminHomePage from "../Layout/AdminDashboard/AdminHomePage";
+import Privacy from "../Components/Footer/Privacy/Privacy";
+import Terms from "../Components/Footer/Terms/Terms";
 
 
 const Router = createBrowserRouter([
@@ -74,6 +76,14 @@ const Router = createBrowserRouter([
         path: '/payment/:id',
         element: <Payment></Payment>,
         loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
+    },
+    {
+      path: "/privacy",
+      element: <Privacy></Privacy>
+    },
+    {
+      path: "/terms",
+      element: <Terms></Terms>
     },
     ],
   },
