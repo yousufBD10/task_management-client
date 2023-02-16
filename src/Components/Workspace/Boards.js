@@ -107,8 +107,8 @@ const Boards = () => {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center center',
                 backgroundRepeat: 'no-repeat',
-              }} className=" mt-6 image-full">
-                <div className="card-body ">
+              }} className="mt-6 image-full">
+                <div className="card-body">
                   <div className='flex'>
                     <h2 className="card-title text-white ">{card.name}</h2>
                   </div>
