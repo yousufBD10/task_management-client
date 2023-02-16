@@ -7,7 +7,7 @@ import { AuthContext } from '../../../Context/UserContext';
 const Order = () => {
     const { user } = useContext(AuthContext);
 
-    const url = `http://localhost:5000/bookings?email=${user?.email}`;
+    const url = process.env.REACT_APP_SERVER_URL+`/bookings?email=${user?.email}`;
 
     const { data: bookings = [] } = useQuery({
         queryKey: ['bookings', user?.email],

@@ -6,9 +6,9 @@ import React from 'react';
 const User = () => {
 
   const { data: allUsers = [], refetch } = useQuery({
-      queryKey: ['allusers'],
+      queryKey: ['allDatas'],
       queryFn: async () => {
-        const res = await fetch(process.env.REACT_APP_SERVER_URL + `/allusers`,{
+        const res = await fetch(process.env.REACT_APP_SERVER_URL + `/allDatas`,{
             method: "GET",
             headers: {
               authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -58,7 +58,7 @@ const handleDelete = (data)=>{
           <tbody>
           
           {
-            allUsers.map((alluser,i)=>
+            allUsers[0].map((alluser,i)=>
                 <tr key={i}>
               <th>
                 

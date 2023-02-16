@@ -166,6 +166,21 @@ const UserContext = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  const initialBoardLists = [
+    {
+      ListName: "To Do",
+      id: "1",
+    },
+    {
+      ListName: "Doing",
+      id: "2",
+    },
+    {
+      ListName: "Done",
+      id: "3",
+    },
+  ];
+
   //==================== auth Info======================
   const authInfo = {
     user,
@@ -190,7 +205,7 @@ const UserContext = ({ children }) => {
     setCurrentWorkspace,
     toggleTheme,
     isDark,
-    theme,
+    theme, initialBoardLists,
     currentTask,
     setCurrentTask,
     boardItems, setBoardItems

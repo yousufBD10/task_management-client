@@ -9,7 +9,7 @@ const Navbar = () => {
   const navigate = useNavigate()
   const { user, logOut, toggleTheme, isDark } = useContext(AuthContext);
   const [role] = useRole(user?.email)
-  
+
   const handleLogOut = () => {
     logOut()
       .then(() => {
