@@ -47,7 +47,7 @@ const Login = () => {
       <div className="flex items-center justify-center hidden md:block">
         <img
           className="lg:w-[670px] mx-auto lg:mr-12"
-          src="/assets/banner/login-2.JPG"
+          src="/assets/banner/login-2.PNG"
           alt=""
         />
       </div>

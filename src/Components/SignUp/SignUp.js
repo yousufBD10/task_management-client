@@ -143,7 +143,7 @@ const SingUp = () => {
       <div className="hidden md:block">
         <img
           className="lg:w-[670px] mx-auto lg:mr-12"
-          src="/assets/banner/login-3.JPG"
+          src="/assets/banner/login-3.PNG"
           alt=""
         />
       </div>

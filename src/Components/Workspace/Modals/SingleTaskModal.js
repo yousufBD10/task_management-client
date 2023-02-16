@@ -3,12 +3,10 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import {
-  FiArchive,
   FiArrowRight,
   FiBook,
   FiCheckSquare,
   FiClock,
-  FiCopy,
   FiPaperclip,
   FiShare2,
   FiTag,
@@ -22,6 +20,7 @@ import MembersDropDown from "../SingleTaskModalDropDown/MembersDropDown";
 import DateDropDown from "../SingleTaskModalDropDown/DateDropDown";
 import AttachmentDropDown from "../SingleTaskModalDropDown/AttachmentDropDown";
 import MoveDropDown from "../SingleTaskModalDropDown/MoveDropDown";
+import ShareDropDown from "../SingleTaskModalDropDown/ShareDropDown";
 import { AuthContext } from "../../../Context/UserContext";
 import useMembersOfCurrentWorkspace from "../../../hooks/useMembersOfCurrentWorkspace";
 import { set } from "date-fns/esm";
@@ -37,6 +36,7 @@ const SingleTaskModal = () => {
     logOut,
     currentWorkspace,
   } = useContext(AuthContext);
+
   const [selectedDate, setSelectedDate] = useState();
   const [members] = useMembersOfCurrentWorkspace(currentWorkspace, logOut);
   let timer,
@@ -217,45 +217,48 @@ const SingleTaskModal = () => {
   // ------------ Handle file Attachment -----------
 
   const handleAttachment = (attachData) => {
-    fetch(`${process.env.REACT_APP_SERVER_URL}/''`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify(attachData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        toast.success("File successfully added");
-        setAttachment(data);
-        // form.reset();
-      })
-      .catch((error) => toast.error(error.message));
+    let boardItemsCopy = [...boardItems];
+    for (let i = 0; i < boardItemsCopy.length; i++) {
+      if (boardItemsCopy[i]._id == currentTask._id) {
+        if (!boardItemsCopy[i].attachment) {
+          boardItemsCopy[i].attachment = [];
+          boardItemsCopy[i].attachment.push(attachData.attach);
+        } else {
+          boardItemsCopy[i].attachment.push(attachData.attach);
+        }
+
+        SendToServer();
+        break;
+      }
+    }
   };
   // ------------ Remove Attachment -----------
-  const removeAttachment = () => {
-    fetch(`${process.env.REACT_APP_SERVER_URL}/''/${""}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        toast.error("deleted successfully");
-      });
+  const removeAttachment = (data) => {
+    const findAttachment = currentTask.attachment.filter(
+      (attach) => attach !== data
+    );
+    console.log(findAttachment);
+    timer = setTimeout(() => {
+      for (let i = 0; i < boardItems.length; i++) {
+        if (boardItems[i]._id == currentTask._id) {
+          currentTask.attachment = boardItems[i].attachment = findAttachment;
+
+          SendToServer();
+          break;
+        }
+      }
+    }, 1000);
   };
   return (
     <div>
-      <div id="new-board-modal" className="modal p-2">
-        <div className="modal-box rounded-md  max-w-screen-md mx-2 p-2">
+      <div id="new-board-modal" className="modal">
+        <div className="modal-box card rounded-md touch-auto max-w-screen-md scrollbar-hide">
           <a href="#g" className="btn btn-ghost btn-sm absolute right-2 top-2">
             ✕
           </a>
 
-          <div className="grid grid-cols-4 -mr-4">
-            <div className="px-6 dark:text-gray-500 col-span-4 md:col-span-3">
+          <div className="md:grid md:grid-cols-4 -mr-4">
+            <div className="pl-2 pr-6 dark:text-gray-500 col-span-4 md:col-span-3">
               <form
                 className="grid grid-cols-1 gap-3 mt-10"
                 onKeyUp={updateCurrentTaskInfo}
@@ -318,13 +321,27 @@ const SingleTaskModal = () => {
               </form>
               <br />
               {/* ------------- Attachment section------- */}
-
-              <div className=" flex justify-between items-center border border-gray-400 rounded-md p-2 bg-gray-900 text-gray-400">
-                <p> Attached file</p>
-                <button title="Remove" onClick={removeAttachment}>
-                  <FiTrash></FiTrash>
-                </button>
-              </div>
+              {currentTask?.attachment?.length > 0 && (
+                <div className="flex items-center mt-8 mb-2">
+                  <FiPaperclip></FiPaperclip>
+                  <p className="text-md font-semibold pl-2">Attachment</p>
+                </div>
+              )}
+              {currentTask?.attachment?.length > 0 &&
+                currentTask.attachment.map((attach) => {
+                  return (
+                    <div className=" flex justify-between items-center border border-gray-400 rounded-md p-3 mb-4 bg-indigo-500 text-gray-900">
+                      <p className="w-2/3"> {attach}</p>
+                      <button
+                        title="Remove"
+                        onClick={() => removeAttachment(attach)}
+                        className="text-gray-900"
+                      >
+                        <FiTrash></FiTrash>
+                      </button>
+                    </div>
+                  );
+                })}
 
               {/*-------------comments/Activity section----------- */}
 
@@ -381,82 +398,97 @@ const SingleTaskModal = () => {
 
             <div className="col-span-1">
               <div className="h-full space-y-2 w-full  dark:text-gray-700">
-                {/* <div className="md:flex items-center space-x-4"></div> */}
                 <div className="divide-y divide-gray-700">
                   <ul className="pt-2 pb-4 space-y-1 text-sm text-grey">
                     {/* ------ Suggested section----- */}
                     <p className="pt-6">Add to card</p>
-                    <li className="">
-                      <Link
-                        rel="noopener noreferrer"
-                        tabIndex={0}
-                        className={buttonStyle}
-                      >
-                        <FiUser></FiUser>
-                        <span className="text-grey">Assign Members</span>
-                        <MembersDropDown
-                          assignORremoveMember={assignORremoveMember}
-                        ></MembersDropDown>
-                      </Link>
-                    </li>
-                    <li className="">
-                      <Link
-                        rel="noopener noreferrer"
-                        href="#"
-                        tabIndex={0}
-                        className={buttonStyle}
-                      >
-                        <FiCheckSquare></FiCheckSquare>
-                        <span>Checklist</span>
-                      </Link>
-                    </li>
-                    <li className="">
-                      <Link
-                        rel="noopener noreferrer"
-                        href="#"
-                        tabIndex={2}
-                        className={buttonStyle}
-                      >
-                        <FiClock></FiClock>
-                        <span>Deadline</span>
-                        <DateDropDown
-                          handleDateSubmit={handleDateSubmit}
-                          selectedDate={selectedDate}
-                          setSelectedDate={setSelectedDate}
-                          handleRemoveDate={handleRemoveDate}
-                        ></DateDropDown>
-                      </Link>
-                    </li>
-                    <li className="">
-                      <Link
-                        tabIndex={0}
-                        rel="noopener noreferrer"
-                        href="#"
-                        className={buttonStyle}
-                      >
-                        <FiPaperclip></FiPaperclip>
-                        <span>Attachment</span>
-                        <AttachmentDropDown
-                          handleAttachment={handleAttachment}
-                        ></AttachmentDropDown>
-                      </Link>
-                    </li>
+                    <div className="flex flex-wrap md:flex-col">
+                      <li className="">
+                        <Link
+                          rel="noopener noreferrer"
+                          tabIndex={0}
+                          className={buttonStyle}
+                        >
+                          <FiUser></FiUser>
+                          <span className="text-grey">Assign Members</span>
+                          <MembersDropDown
+                            assignORremoveMember={assignORremoveMember}
+                          ></MembersDropDown>
+                        </Link>
+                      </li>
+                      <li className="">
+                        <Link
+                          rel="noopener noreferrer"
+                          href="#"
+                          tabIndex={0}
+                          className={buttonStyle}
+                        >
+                          <FiCheckSquare></FiCheckSquare>
+                          <span>Checklist</span>
+                        </Link>
+                      </li>
+                      <li className="">
+                        <Link
+                          rel="noopener noreferrer"
+                          href="#"
+                          tabIndex={2}
+                          className={buttonStyle}
+                        >
+                          <FiClock></FiClock>
+                          <span>Deadline</span>
+                          <DateDropDown
+                            handleDateSubmit={handleDateSubmit}
+                            selectedDate={selectedDate}
+                            setSelectedDate={setSelectedDate}
+                            handleRemoveDate={handleRemoveDate}
+                          ></DateDropDown>
+                        </Link>
+                      </li>
+                      <li className="">
+                        <Link
+                          tabIndex={0}
+                          rel="noopener noreferrer"
+                          href="#"
+                          className={buttonStyle}
+                        >
+                          <FiPaperclip></FiPaperclip>
+                          <span>Attachment</span>
+                          <AttachmentDropDown
+                            handleAttachment={handleAttachment}
+                          ></AttachmentDropDown>
+                        </Link>
+                      </li>
+                    </div>
 
                     {/*----------- Action Section ----------- */}
 
                     <p className="text-grey pt-6">Actions</p>
-                    <li className="">
-                      <Link
-                        rel="noopener noreferrer"
-                        href="#"
-                        tabIndex={0}
-                        className={buttonStyle}
-                      >
-                        <FiArrowRight></FiArrowRight>
-                        <span>Move</span>
-                        <MoveDropDown></MoveDropDown>
-                      </Link>
-                    </li>
+                    <div className="flex flex-wrap md:flex-col">
+                      <li className="">
+                        <Link
+                          rel="noopener noreferrer"
+                          href="#"
+                          tabIndex={0}
+                          className={buttonStyle}
+                        >
+                          <FiArrowRight></FiArrowRight>
+                          <span>Move</span>
+                          <MoveDropDown></MoveDropDown>
+                        </Link>
+                      </li>
+                      <li className="">
+                        <Link
+                          tabIndex={5}
+                          rel="noopener noreferrer"
+                          href="#"
+                          className={buttonStyle}
+                        >
+                          <FiShare2></FiShare2>
+                          <span>Share</span>
+                          <ShareDropDown></ShareDropDown>
+                        </Link>
+                      </li>
+                    </div>
                   </ul>
                 </div>
               </div>
