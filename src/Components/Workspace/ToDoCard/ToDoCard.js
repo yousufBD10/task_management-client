@@ -41,7 +41,7 @@ const ToDoCard = ({ current_board, current_list, reloadItems }) => {
   return (
     <div>
       <div className="box-border">
-        <div className="bg-gray-200 p-3 w-60">
+        <div className="bg-gray-200 p-3">
           <div className="flex justify-between items-start gap-2">
             <h4 className="w-10/12 font-semibold text-justify hover:cursor-pointer">
               {current_list.ListName}

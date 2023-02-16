@@ -193,7 +193,23 @@ const SingleTaskModal = () => {
       }
     }, 1000);
   };
-
+  
+  //move task to another board
+  const MoveTask = (e) => {
+    clearTimeout(timer);
+    const id = e.target.value;
+    timer = setTimeout(() => {
+      let boardItemsCopy = [...boardItems];
+      for (let i = 0; i < boardItems.length; i++) {
+        if (boardItems[i]._id == currentTask._id) {
+          currentTask.cardID = boardItemsCopy[i].cardID = id;
+          setBoardItems(boardItemsCopy);
+          SendToServer();
+          break;
+        }
+      }
+    }, 1000);
+  };
   // ------------ Handle Remove Deadline ------------
 
   const handleRemoveDate = () => {
@@ -473,7 +489,7 @@ const SingleTaskModal = () => {
                         >
                           <FiArrowRight></FiArrowRight>
                           <span>Move</span>
-                          <MoveDropDown></MoveDropDown>
+                          <MoveDropDown MoveTask={MoveTask}></MoveDropDown>
                         </Link>
                       </li>
                       <li className="">
