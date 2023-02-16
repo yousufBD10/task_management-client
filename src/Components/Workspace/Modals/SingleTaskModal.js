@@ -4,12 +4,10 @@ import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import {
   FiArrowRight,
-  FiBook,
   FiCheckSquare,
   FiClock,
   FiPaperclip,
   FiShare2,
-  FiTag,
   FiTrash,
   FiUser,
 } from "react-icons/fi";
@@ -23,7 +21,6 @@ import MoveDropDown from "../SingleTaskModalDropDown/MoveDropDown";
 import ShareDropDown from "../SingleTaskModalDropDown/ShareDropDown";
 import { AuthContext } from "../../../Context/UserContext";
 import useMembersOfCurrentWorkspace from "../../../hooks/useMembersOfCurrentWorkspace";
-import { set } from "date-fns/esm";
 
 const SingleTaskModal = () => {
   const buttonStyle =
@@ -43,7 +40,6 @@ const SingleTaskModal = () => {
     is_loading_comment = false;
   const [comments, setComments] = useState([]);
   const [assignedUsers, setAssignedUsers] = useState([]);
-  const [attachment, setAttachment] = useState([]);
 
   // -------- Task info & description post to DB ---------
 
@@ -103,10 +99,12 @@ const SingleTaskModal = () => {
     const note = form.note.value;
     const description = form.description.value;
     timer = setTimeout(() => {
-      for (let i = 0; i < boardItems.length; i++) {
-        if (boardItems[i]._id == currentTask._id) {
-          currentTask.note = boardItems[i].note = note;
-          currentTask.description = boardItems[i].description = description;
+      let boardItemsCopy = [...boardItems];
+      for (let i = 0; i < boardItemsCopy.length; i++) {
+        if (boardItemsCopy[i]._id == currentTask._id) {
+          currentTask.note = boardItemsCopy[i].note = note;
+          currentTask.description = boardItemsCopy[i].description = description;
+          setBoardItems(boardItemsCopy);
           SendToServer();
           break;
         }
@@ -180,33 +178,51 @@ const SingleTaskModal = () => {
 
   const handleDateSubmit = () => {
     clearTimeout(timer);
-
     const StartDate = selectedDate?.from && format(selectedDate.from, "PP");
     const Deadline = selectedDate?.to && format(selectedDate.to, "PP");
     timer = setTimeout(() => {
+      let boardItemsCopy = [...boardItems];
       for (let i = 0; i < boardItems.length; i++) {
         if (boardItems[i]._id == currentTask._id) {
-          currentTask.StartDate = boardItems[i].StartDate = StartDate;
-          currentTask.Deadline = boardItems[i].Deadline = Deadline;
+          boardItemsCopy.StartDate = boardItemsCopy[i].StartDate = StartDate;
+          boardItemsCopy.Deadline = boardItemsCopy[i].Deadline = Deadline;
+          setBoardItems(boardItemsCopy);
           SendToServer();
           break;
         }
       }
     }, 1000);
   };
-
+  
+  //move task to another board
+  const MoveTask = (e) => {
+    clearTimeout(timer);
+    const id = e.target.value;
+    timer = setTimeout(() => {
+      let boardItemsCopy = [...boardItems];
+      for (let i = 0; i < boardItems.length; i++) {
+        if (boardItems[i]._id == currentTask._id) {
+          currentTask.cardID = boardItemsCopy[i].cardID = id;
+          setBoardItems(boardItemsCopy);
+          SendToServer();
+          break;
+        }
+      }
+    }, 1000);
+  };
   // ------------ Handle Remove Deadline ------------
 
   const handleRemoveDate = () => {
     clearTimeout(timer);
-
     const StartDate = "";
     const Deadline = "";
     timer = setTimeout(() => {
+      let boardItemsCopy = [...boardItems];
       for (let i = 0; i < boardItems.length; i++) {
         if (boardItems[i]._id == currentTask._id) {
-          currentTask.StartDate = boardItems[i].StartDate = StartDate;
-          currentTask.Deadline = boardItems[i].Deadline = Deadline;
+          currentTask.StartDate = boardItemsCopy[i].StartDate = StartDate;
+          currentTask.Deadline = boardItemsCopy[i].Deadline = Deadline;
+          setBoardItems(boardItemsCopy);
           SendToServer();
           break;
         }
@@ -226,7 +242,7 @@ const SingleTaskModal = () => {
         } else {
           boardItemsCopy[i].attachment.push(attachData.attach);
         }
-
+        setBoardItems(boardItemsCopy);
         SendToServer();
         break;
       }
@@ -237,12 +253,12 @@ const SingleTaskModal = () => {
     const findAttachment = currentTask.attachment.filter(
       (attach) => attach !== data
     );
-    console.log(findAttachment);
     timer = setTimeout(() => {
+      let boardItemsCopy = [...boardItems];
       for (let i = 0; i < boardItems.length; i++) {
         if (boardItems[i]._id == currentTask._id) {
-          currentTask.attachment = boardItems[i].attachment = findAttachment;
-
+          currentTask.attachment = boardItemsCopy[i].attachment = findAttachment;
+          setBoardItems(boardItemsCopy);
           SendToServer();
           break;
         }
@@ -277,21 +293,21 @@ const SingleTaskModal = () => {
                 <div className="flex items-center">
                   {assignedUsers && assignedUsers.length > 0
                     ? assignedUsers.map((el) => {
-                        return (
-                          <div className="avatar">
-                            <div className="w-10 h-10 rounded-full">
-                              <img
-                                alt="#"
-                                src={
-                                  members.find((u) => {
-                                    return u._id == el;
-                                  })?.photoURL
-                                }
-                              />
-                            </div>
+                      return (
+                        <div className="avatar">
+                          <div className="w-10 h-10 rounded-full">
+                            <img
+                              alt="#"
+                              src={
+                                members.find((u) => {
+                                  return u._id == el;
+                                })?.photoURL
+                              }
+                            />
                           </div>
-                        );
-                      })
+                        </div>
+                      );
+                    })
                     : ""}
                 </div>
                 {currentTask?.StartDate && (
@@ -473,7 +489,7 @@ const SingleTaskModal = () => {
                         >
                           <FiArrowRight></FiArrowRight>
                           <span>Move</span>
-                          <MoveDropDown></MoveDropDown>
+                          <MoveDropDown MoveTask={MoveTask}></MoveDropDown>
                         </Link>
                       </li>
                       <li className="">

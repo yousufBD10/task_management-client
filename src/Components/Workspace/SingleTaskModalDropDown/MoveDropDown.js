@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../../Context/UserContext";
 
-const MoveDropDown = () => {
+const MoveDropDown = ({ MoveTask }) => {
+  const { initialBoardLists } = useContext(AuthContext);
   return (
     <div
       tabIndex={0}
@@ -11,30 +13,17 @@ const MoveDropDown = () => {
       </p>
 
       <hr />
-      <form action="">
-        <div className="my-2">
-          <p className="text-gray-900 font-bold">Present Destination</p>
-          <input
-            name="name"
-            type="text"
-            className="input w-full rounded-sm text-md text-gray-900 focus:border-gray-900"
-            required
-          />
-        </div>
+      <form>
         <div>
           <p className="text-gray-900 font-bold">Change work position</p>
-          <select name="" id="" className="w-full text-gray-900">
+          <select onChange={MoveTask} className="w-full text-gray-900">
             <option value="#">(none)</option>
-            <option value="to_do">To do</option>
-            <option value="to_do">Doing</option>
-            <option value="to_do">Done</option>
+            {initialBoardLists && initialBoardLists.map((el) => { return <option value={el.id}>{el.ListName}</option> })}
           </select>
           <button
             type="submit"
             className="btn btn-ghost btn-sm rounded-md bg-gray-800 text-gray-400 my-3"
-          >
-            Move
-          </button>
+          >  Move </button>
         </div>
       </form>
     </div>
