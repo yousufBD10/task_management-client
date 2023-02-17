@@ -19,7 +19,7 @@ const Navbar = () => {
   }
   // eslint-disable-next-line no-unreachable
   return (
-    <div className="navbar bg-none shadow-md">
+    <div className="bg-gray-100 navbar shadow-md">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -35,7 +35,7 @@ const Navbar = () => {
             }
           </ul>
         </div>
-        <div className='bg-indigo-100 w-64 lg:ml-12 p-2 '>
+        <div className=' w-64 lg:ml-12 p-2 '>
         <Link to='/'><img className=' ' src="/logo.png" alt="" /></Link>
         </div>
       </div>
