@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/UserContext';
 import CreateWorkSpaceModal from '../CreateWorkSpaceModal/CreateWorkSpaceModal';
 import useRole from '../../hooks/useRole';
-
+import bgNav from '../../images/bgNav.jpg'
 const Navbar = () => {
   const navigate = useNavigate()
   const { user, logOut, toggleTheme, isDark } = useContext(AuthContext);
@@ -19,7 +19,13 @@ console.log(role);
   }
   // eslint-disable-next-line no-unreachable
   return (
-    <div className="navbar bg-base-100 shadow-md">
+    <div  style={{
+      backgroundImage: `url(${bgNav})`,
+      backgroundSize: 'cover',
+      opacity:'20',
+      backgroundPosition: 'center center',
+      backgroundRepeat: 'no-repeat',
+    }} className="navbar text-white  shadow-md">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
