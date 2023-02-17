@@ -3,37 +3,23 @@ import { useParams } from 'react-router-dom';
 import { AuthContext } from "../../Context/UserContext";
 import ToDoCard from "./ToDoCard/ToDoCard";
 
-const initialLists = [
-  {
-    ListName: "To Do",
-    id: "1",
-  },
-  {
-    ListName: "Doing",
-    id: "2",
-  },
-  {
-    ListName: "Done",
-    id: "3",
-  },
-];
 
 const BoardCards = () => {
   const { id } = useParams();
   const {
-    user,
+    user, initialBoardLists,
     reloadWorkspaces,
     currentWorkspace,
     setCurrentWorkspace,
     workspaces,
-    logOut, boardItems, setBoardItems
+    logOut, setBoardItems
   } = useContext(AuthContext);
   const setCurrent = (id) => {
     setCurrentWorkspace(workspaces.find((w) => w._id == id));
   };
 
   useEffect(reloadWorkspaces, [user]);
-  const [list, setLists] = useState(initialLists);
+  const [list, setLists] = useState(initialBoardLists);
   const [board, setBoard] = useState(null);
 
   const reloadItems = () => {
@@ -87,7 +73,7 @@ const BoardCards = () => {
           <h2 className="text-2xl font-bold">{board?.name}</h2>
         </div>
         <div>
-          <div className="w-1/4 flex gap-1">
+          <div className="grid md:grid-cols-3 content-center gap-4">
             {list.map((l, i) => (
               <ToDoCard
                 key={l.id}

@@ -5,7 +5,7 @@ const Pricing = () => {
     const [prices, setPrices] = useState([]);
     
     useEffect( () =>{
-        fetch('http://localhost:5000/pricingOptions')
+        fetch(process.env.REACT_APP_SERVER_URL+'/pricingOptions')
         .then(res =>res.json())
         .then(data => setPrices(data))
     }, []);

@@ -14,7 +14,7 @@ const CheckoutForm = ({ booking }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch(process.env.REACT_APP_SERVER_URL+"/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -78,7 +78,7 @@ const CheckoutForm = ({ booking }) => {
                 email,
                 bookingId: _id
             }
-            fetch('http://localhost:5000/payments', {
+            fetch(process.env.REACT_APP_SERVER_URL+'/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
