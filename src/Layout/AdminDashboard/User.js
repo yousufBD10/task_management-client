@@ -87,16 +87,8 @@ const handleDelete = (data)=>{
             </tr>
             )
           }
-          
-           
-          
-          
-           
-          </tbody>
-       
-     
-          
-        </table>
+            </tbody>
+       </table>
       </div>
     );
 };

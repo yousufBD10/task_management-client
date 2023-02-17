@@ -68,15 +68,15 @@ const Navbar = () => {
                   <img alt='#' src={user?.photoURL != null ? user?.photoURL : `https://ui-avatars.com/api/?name=${user?.displayName}&color=7F9CF5&background=EBF4FF`} />
                 </div>
               </label>
-              <div tabIndex={1} className="menu menu-compact dropdown-content mt-12 p-2 shadow-lg bg-base-100 rounded-sm w-60">
+              <div tabIndex={1} className="menu text-black menu-compact dropdown-content mt-12 p-2 shadow-lg bg-base-100 rounded-sm w-60">
                 <h2 className=" text-gray-600 font-bold my-2">ACCOUNT</h2>
                 <div className='flex items-center mb-5'>
                   <div className="w-10 mr-1">
                     <img alt='#' className='rounded-full' src={user?.photoURL != null ? user?.photoURL : `https://ui-avatars.com/api/?name=${user?.displayName}&color=7F9CF5&background=EBF4FF`} />
                   </div>
-                  <div>
+                  <div className='ml-3'>
                     <p className='mt-3 text-xs mb-0'>{user?.displayName}</p>
-                    <p className='mt-3 text-xs mb-0'>{user?.email}</p>
+                    <p className='mt-2 text-xs mb-0'>{user?.email}</p>
                   </div>
                 </div>
                 <li>

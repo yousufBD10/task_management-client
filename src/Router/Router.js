@@ -22,6 +22,8 @@ import Order from "../Components/PricingPlans/Order/Order";
 import AdminHomePage from "../Layout/AdminDashboard/AdminHomePage";
 import Privacy from "../Components/Footer/Privacy/Privacy";
 import Terms from "../Components/Footer/Terms/Terms";
+import UserWorkspace from "../Layout/AdminDashboard/UserWorkspace";
+import UserBoard from "../Layout/AdminDashboard/UserBoard";
 
 
 const Router = createBrowserRouter([
@@ -128,6 +130,15 @@ const Router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <AdminHomePage />,
+      },
+      {
+        path: "/dashboard/userworkspace",
+        element: <UserWorkspace/>,
+      },
+      {
+        path: "/dashboard/userboards/:id",
+        element: <UserBoard/>,
+        loader: ({params})=> fetch(process.env.REACT_APP_SERVER_URL +  `/userboard/${params.id}`)
       },
 
 

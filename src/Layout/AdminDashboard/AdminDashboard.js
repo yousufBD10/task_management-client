@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AiOutlineHome, AiOutlinePlus, AiOutlineUser } from 'react-icons/ai';
 import { MdOutlineSpaceDashboard } from 'react-icons/md';
 import { Link, Outlet } from 'react-router-dom';
 import Navbar from '../../Components/Navbar/Navbar';
+import { AuthContext } from '../../Context/UserContext';
 
 const AdminDashboard = () => {
+  const { workspaces,setCurrentWorkspace ,user,reloadWorkspaces} = useContext(AuthContext);
+  const setCurrent = (id) => { setCurrentWorkspace(workspaces.find((w) => w._id == id)) }
+  useEffect(reloadWorkspaces, [user]);
+  console.log(workspaces);
     return (
         <div>
         <Navbar></Navbar>
@@ -54,21 +59,15 @@ const AdminDashboard = () => {
                 </Link>
               </li>
               <li className="mb-1">
-                <Link to="/workspace/boards" className="font-semibold">
+                <Link to="/dashboard/userworkspace" className="font-semibold">
                   {" "}
                   <MdOutlineSpaceDashboard />
-                  Email
+                All Workspace
                 </Link>
               </li>
-              <li className="mb-1">
-                <Link to="/workspace/boards" className="font-semibold">
-                  {" "}
-                  <MdOutlineSpaceDashboard />
-                 Contact
-                </Link>
-              </li>
+             
               <li className=" mb-1  ">
-                <Link to="/workspace/boards" className="font-semibold">
+                <Link to={`/dashboard/userboards/${workspaces[0]?._id}`} className="font-semibold">
                   {" "}
                   <MdOutlineSpaceDashboard />
                   Boards
