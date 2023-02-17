@@ -58,7 +58,7 @@ const handleDelete = (data)=>{
           <tbody>
           
           {
-            allUsers[0].map((alluser,i)=>
+            allUsers[0]?.map((alluser,i)=>
                 <tr key={i}>
               <th>
                 
@@ -87,16 +87,8 @@ const handleDelete = (data)=>{
             </tr>
             )
           }
-          
-           
-          
-          
-           
-          </tbody>
-       
-     
-          
-        </table>
+            </tbody>
+       </table>
       </div>
     );
 };

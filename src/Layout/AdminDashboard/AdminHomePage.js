@@ -143,7 +143,7 @@ const AdminHomePage = () => {
       }
 
       {role === 'user' &&
-        <UserDashboard>Welcome to Dashboard</UserDashboard>
+        <UserDashboard></UserDashboard>
 
       }
 
