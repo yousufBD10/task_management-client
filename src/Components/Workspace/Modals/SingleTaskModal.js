@@ -24,7 +24,7 @@ import useMembersOfCurrentWorkspace from "../../../hooks/useMembersOfCurrentWork
 
 const SingleTaskModal = () => {
   const buttonStyle =
-    "dropdown dropdown-bottom md:dropdown-left flex items-center mb-1 mr-1 p-2 space-x-3 rounded-md btn-ghost bg-gray-800 btn-sm text-gray-400 w-44 md:w-none";
+    "dropdown dropdown-bottom md:dropdown-left flex items-center mb-1 mr-1 p-2 space-x-3 rounded-md btn-ghost bg-stone-300 btn-sm text-stone-800 hover:bg-indigo-200 w-44 md:w-none";
   const {
     boardItems,
     setBoardItems,
@@ -193,7 +193,7 @@ const SingleTaskModal = () => {
       }
     }, 1000);
   };
-  
+
   //move task to another board
   const MoveTask = (e) => {
     clearTimeout(timer);
@@ -257,7 +257,8 @@ const SingleTaskModal = () => {
       let boardItemsCopy = [...boardItems];
       for (let i = 0; i < boardItems.length; i++) {
         if (boardItems[i]._id == currentTask._id) {
-          currentTask.attachment = boardItemsCopy[i].attachment = findAttachment;
+          currentTask.attachment = boardItemsCopy[i].attachment =
+            findAttachment;
           setBoardItems(boardItemsCopy);
           SendToServer();
           break;
@@ -293,21 +294,21 @@ const SingleTaskModal = () => {
                 <div className="flex items-center">
                   {assignedUsers && assignedUsers.length > 0
                     ? assignedUsers.map((el) => {
-                      return (
-                        <div className="avatar">
-                          <div className="w-10 h-10 rounded-full">
-                            <img
-                              alt="#"
-                              src={
-                                members.find((u) => {
-                                  return u._id == el;
-                                })?.photoURL
-                              }
-                            />
+                        return (
+                          <div className="avatar">
+                            <div className="w-10 h-10 rounded-full">
+                              <img
+                                alt="#"
+                                src={
+                                  members.find((u) => {
+                                    return u._id == el;
+                                  })?.photoURL
+                                }
+                              />
+                            </div>
                           </div>
-                        </div>
-                      );
-                    })
+                        );
+                      })
                     : ""}
                 </div>
                 {currentTask?.StartDate && (
@@ -346,7 +347,7 @@ const SingleTaskModal = () => {
               {currentTask?.attachment?.length > 0 &&
                 currentTask.attachment.map((attach) => {
                   return (
-                    <div className=" flex justify-between items-center border border-gray-400 rounded-md p-3 mb-4 bg-indigo-500 text-gray-900">
+                    <div className=" flex justify-between items-center border border-gray-400 rounded-md p-3 mb-4 bg-stone-300 text-gray-900">
                       <p className="w-2/3"> {attach}</p>
                       <button
                         title="Remove"
@@ -385,7 +386,7 @@ const SingleTaskModal = () => {
                       {/* ----- comment submit button------ */}
                       <button
                         type="submit"
-                        className="btn btn-ghost btn-sm rounded-md bg-gray-800 text-gray-400"
+                        className="btn btn-ghost btn-sm rounded-md bg-stone-300 text-stone-800 hover:bg-indigo-300"
                       >
                         Save
                       </button>

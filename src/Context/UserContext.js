@@ -28,7 +28,6 @@ const UserContext = ({ children }) => {
   const [currentWorkspace, setCurrentWorkspace] = useState(null);
   const [boardItems, setBoardItems] = useState(null);
   const [currentTask, setCurrentTask] = useState(null);
-
   const themes = {
     light: "winter",
     dark: "forest",
@@ -69,27 +68,30 @@ const UserContext = ({ children }) => {
   useLogin(LoginInfo);
 
   //load workspaces
+
   const reloadWorkspaces = () => {
+
     fetch(process.env.REACT_APP_SERVER_URL + `/get-workspaces`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     })
-      .then((res) => {
-        if (res.status === 401 || res.status === 403) {
-          return logOut();
-        }
-        return res.json();
-      })
-      .then((res) => {
-        setWorkspaces(res);
-        if (!currentWorkspace && res.length > 0) {
-          setCurrentWorkspace(res[0]);
-        }
-      });
+    .then((res) => {
+      if (res.status === 401 || res.status === 403) {
+        return logOut();
+      }
+      return res.json();
+    })
+    .then((res) => {
+      setWorkspaces(res);
+      if (!currentWorkspace && res.length > 0) {
+        setCurrentWorkspace(res[0]);
+      }
+    });
   };
 
+  
   //-----------Firebase create user------------
   const createUser = (email, password) => {
     setLoading(true);
