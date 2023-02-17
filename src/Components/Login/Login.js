@@ -43,7 +43,7 @@ const Login = () => {
   };
 
   return (
-    <div className="mb-28 mt-12 grid items-center  lg:grid-cols-2 px-8 bg-base-50">
+    <div className="grid items-center  lg:grid-cols-2 px-8 bg-white ">
       <div className="flex items-center justify-center hidden md:block">
         <img
           className="lg:w-[670px] mx-auto lg:mr-12"
