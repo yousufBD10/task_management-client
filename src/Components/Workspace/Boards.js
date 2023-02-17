@@ -15,30 +15,6 @@ const Boards = () => {
     _setId(id)
   }
 
-  const handleEdite = (event) => {
-    event.preventDefault();
-    console.log(event,);
-    const form = event.target;
-    const name = form.name.value;
-    const data = { name, _id: _id };
-    fetch(`${process.env.REACT_APP_SERVER_URL}/create-update-workspace-board`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        authorization: `Bearer ${localStorage.getItem('accessToken')}`
-      },
-      body: JSON.stringify(data)
-    })
-      .then(res => res.json())
-      .then(data => {
-        toast.success("Successfully edited the board name.");
-        form.reset();
-        document.querySelector(".close_modal").click();
-        reloadBoards();
-      })
-      .catch((error) => toast.error(error.message));
-  }
-
   const reloadBoards = () => {
     if (!currentWorkspace) return;
     setBoards([]);
@@ -87,6 +63,30 @@ const Boards = () => {
   };
   const image = "https://media.istockphoto.com/id/1044776908/photo/a-beautiful-colorful-abstract-mountain-scenery-in-sunrise-minimalist-landscape-of-mountains.jpg?s=170667a&w=0&k=20&c=M1n3XMcg9KJNXEdsQqITqboEcU999O4uRy9yjUOKpJk=";
 
+  const handleEdite = (event) => {
+    event.preventDefault();
+    console.log(event,);
+    const form = event.target;
+    const name = form.name.value;
+    const data = { name, _id: _id };
+    fetch(`${process.env.REACT_APP_SERVER_URL}/create-update-workspace-board`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      },
+      body: JSON.stringify(data)
+    })
+      .then(res => res.json())
+      .then(data => {
+        toast.success("Successfully edited the board name.");
+        form.reset();
+        document.querySelector(".close_modal").click();
+        reloadBoards();
+      })
+      .catch((error) => toast.error(error.message));
+  }
+
   return (
     <div>{currentWorkspace && <>
       <div className="flex justify-between mt-8 pr-5">
@@ -107,9 +107,8 @@ const Boards = () => {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center center',
                 backgroundRepeat: 'no-repeat',
-              }} className=" mt-6 image-full">
-                {/* <img className="w-full h-28" src={image} alt="Shoes" /> */}
-                <div className="card-body ">
+              }} className="mt-6 image-full">
+                <div className="card-body">
                   <div className='flex'>
                     <h2 className="card-title text-white ">{card.name}</h2>
                   </div>

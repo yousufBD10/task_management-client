@@ -2,12 +2,14 @@ import React, { useContext } from 'react';
 import { CgLogOut } from "react-icons/cg";
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/UserContext';
+import useRole from '../../hooks/useRole';
 import CreateWorkSpaceModal from '../CreateWorkSpaceModal/CreateWorkSpaceModal';
 
 const Navbar = () => {
   const navigate = useNavigate()
-
   const { user, logOut, toggleTheme, isDark } = useContext(AuthContext);
+  const [role] = useRole(user?.email)
+
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -15,6 +17,7 @@ const Navbar = () => {
       })
       .catch(error => console.error(error))
   }
+  // eslint-disable-next-line no-unreachable
   return (
     <div className="navbar bg-none shadow-md">
       <div className="navbar-start">
@@ -23,54 +26,37 @@ const Navbar = () => {
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
           </label>
           <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-
-            <li ><Link to='/'>Home</Link></li>
-            <li> <Link to='/workspace/boards'>Workspaces</Link></li>
-            <li><a href="#WorkSpaceModal-1">Create</a></li>
-
-            {/* <li tabIndex={0}>
-                <a className="justify-between">
-                  Parent
-                  <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
-                </a>
-                <ul className="p-2">
-                  <li><a>Submenu 1</a></li>
-                  <li><a>Submenu 2</a></li>
-                </ul>
-              </li>
-              <li><a>Item 3</a></li> */}
+            <li className='rounded-none'><Link to='/'>Home</Link></li>
+            <li><Link to="/pricing">Pricing</Link></li>
+            <li> <Link to='/workspace/boards'>All Workspaces</Link></li>
+            <li><a href="#WorkSpaceModal-1">Create Workspace</a></li>
+            {
+              role == 'admin' ? <li><Link to="/dashboard">Dashboard</Link></li> : ''
+            }
           </ul>
         </div>
         <Link to='/'><img className='w-48 lg:ml-12' src="/logo.png" alt="" /></Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li className='rounded-none font-bold text-black'><Link to='/'>Home</Link></li>
-          <li className=' font-bold text-black'> <Link to='/workspace/boards'>Workspaces</Link></li>
-          <li className=' font-bold text-black'><a href="#WorkSpaceModal-1">Create</a></li>
-          {/* <li tabIndex={0}>
-              <a>
-                Parent
-                <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
-              </a>
-              <ul className="p-2">
-               
-                <li><a>Submenu 2</a></li>
-              </ul>
-            </li>
-            <li><a>Item 3</a></li> */}
+          <li className='rounded-none'><Link to='/'>Home</Link></li>
+          <li><Link to="/pricing">Pricing</Link></li>
+          <li> <Link to='/workspace/boards'>All Workspaces</Link></li>
+          <li><a href="#WorkSpaceModal-1">Create Workspace</a></li>
+          {
+            role == 'admin' ? <li><Link to="/dashboard">Dashboard</Link></li> : ''
+          }
         </ul>
       </div>
       <div className="navbar-end">
-       <div className='mr-5 cursor-pointer'> {
-          isDark ?   <img  onClick={toggleTheme}  className='w-6' src="https://cdn-icons-png.flaticon.com/512/831/831682.png" alt="#" /> :   <img  onClick={toggleTheme} className='w-6' src="https://icon-library.com/images/moon-icon-png/moon-icon-png-25.jpg" alt="" />
+        <div className='mr-5 cursor-pointer'> {
+          isDark ? <img onClick={toggleTheme} className='w-6' src="https://cdn-icons-png.flaticon.com/512/831/831682.png" alt="#" /> : <img onClick={toggleTheme} className='w-6' src="https://icon-library.com/images/moon-icon-png/moon-icon-png-25.jpg" alt="" />
         }
         </div>
-     
+
         {
           user?.uid ?
             <><div className="dropdown dropdown-end flex flex-row">
-              {/* <p className='mt-3 font-bold'>{user.displayName}</p> */}
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img alt='#' src={user?.photoURL != null ? user?.photoURL : `https://ui-avatars.com/api/?name=${user?.displayName}&color=7F9CF5&background=EBF4FF`} />
@@ -90,31 +76,6 @@ const Navbar = () => {
                 <li>
                   <Link to='/profile' className="justify-between">
                     Profile
-                  </Link>
-                </li>
-                <li>
-                  <Link to='/profile' className="justify-between">
-                    Activity
-                  </Link>
-                </li>
-                <li>
-                  <Link to='/profile' className="justify-between">
-                    Cards
-                  </Link>
-                </li>
-                <li>
-                  <Link to='/profile' className="justify-between">
-                    Settings
-                  </Link>
-                </li>
-                <li>
-                  <Link to='/profile' className="justify-between">
-                    Help
-                  </Link>
-                </li>
-                <li>
-                  <Link to='/profile' className="justify-between">
-                    Shortcuts
                   </Link>
                 </li>
                 <div className="divider"></div>
