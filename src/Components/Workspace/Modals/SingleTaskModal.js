@@ -24,7 +24,7 @@ import useMembersOfCurrentWorkspace from "../../../hooks/useMembersOfCurrentWork
 
 const SingleTaskModal = () => {
   const buttonStyle =
-    "dropdown dropdown-bottom md:dropdown-left flex items-center mb-1 mr-1 p-2 space-x-3 rounded-md btn-ghost bg-stone-300 btn-sm text-stone-800 hover:bg-indigo-200 w-44 md:w-none";
+    "dropdown dropdown-bottom md:dropdown-left flex items-center mb-1 mr-1 p-2 space-x-3 rounded-md btn-ghost bg-stone-300 btn-sm text-stone-800 hover:bg-indigo-300 w-44 md:w-none";
   const {
     boardItems,
     setBoardItems,
