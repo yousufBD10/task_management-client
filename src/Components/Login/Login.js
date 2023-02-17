@@ -11,6 +11,7 @@ const Login = () => {
   useDocumentTitle("Login");
   const { signIn, resetPassword, jwtANDUser } = useContext(AuthContext);
   const [userEmail, setUserEmail] = useState("");
+  const [userError, setUserError] = useState("");
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -34,16 +35,26 @@ const Login = () => {
       .catch((error) => toast.error(error.message));
   };
   // --------------- Password reset function----------
+  const handleOnBlur = (event) => {
+    const email = event.target.value;
+    setUserEmail(email);
+  };
   const handlePasswordReset = () => {
-    resetPassword(userEmail)
-      .then(() => {
-        toast.success("Please check your email, reset your password");
-      })
-      .catch((error) => toast.error(error.message));
+    if (!userEmail) {
+      setUserError("Please fill the email field for the create new password");
+      return;
+    } else {
+      resetPassword(userEmail);
+      setUserEmail("")
+        .then(() => {
+          toast.success("Please check your email, reset your password");
+        })
+        .catch((error) => toast.error(error.message));
+    }
   };
 
   return (
-    <div className="mb-28 mt-12 grid items-center  lg:grid-cols-2 px-8 bg-base-50">
+    <div className="grid items-center  lg:grid-cols-2 px-8 bg-white ">
       <div className="flex items-center justify-center hidden md:block">
         <img
           className="lg:w-[670px] mx-auto lg:mr-12"
@@ -68,12 +79,16 @@ const Login = () => {
                 Email
               </label>
               <input
+                onBlur={handleOnBlur}
                 type="email"
                 name="email"
                 id="email"
                 placeholder="email"
                 className="input input-bordered  w-full px-4 py-3 rounded-md border-b-4 border-purple-200"
               />
+              <p>
+                <small className="text-red-500">{userError}</small>
+              </p>
             </div>
 
             {/* ------------------Password input------------- */}
