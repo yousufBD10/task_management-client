@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { CgLogOut } from "react-icons/cg";
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/UserContext';
-import CreateWorkSpaceModal from '../CreateWorkSpaceModal/CreateWorkSpaceModal';
 import useRole from '../../hooks/useRole';
+import CreateWorkSpaceModal from '../CreateWorkSpaceModal/CreateWorkSpaceModal';
 
 const Navbar = () => {
   const navigate = useNavigate()
@@ -19,14 +19,14 @@ const Navbar = () => {
   }
   // eslint-disable-next-line no-unreachable
   return (
-    <div className="navbar bg-base-100 shadow-md">
+    <div className="navbar bg-none shadow-md">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
           </label>
           <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-            <li className='rounded-none'><Link to='/'>Home</Link></li>
+            <li className='rounded-none text-black font-semibold'><Link to='/'>Home</Link></li>
             <li><Link to="/pricing">Pricing</Link></li>
             <li> <Link to='/workspace/boards'>All Workspaces</Link></li>
             <li><a href="#WorkSpaceModal-1">Create Workspace</a></li>
@@ -35,16 +35,18 @@ const Navbar = () => {
             }
           </ul>
         </div>
-        <Link to='/'><img className='w-48 lg:ml-12' src="/logo.png" alt="" /></Link>
+        <div className='bg-indigo-100 w-64 lg:ml-12 p-2 '>
+        <Link to='/'><img className=' ' src="/logo.png" alt="" /></Link>
+        </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li className='rounded-none'><Link to='/'>Home</Link></li>
-          <li><Link to="/pricing">Pricing</Link></li>
-          <li> <Link to='/workspace/boards'>All Workspaces</Link></li>
-          <li><a href="#WorkSpaceModal-1">Create Workspace</a></li>
+          <li className='rounded-none text-black font-semibold'><Link to='/'>Home</Link></li>
+          <li className='text-black font-semibold'><Link to="/pricing">Pricing</Link></li>
+          <li className='text-black font-semibold'> <Link to='/workspace/boards'>All Workspaces</Link></li>
+          <li className='text-black font-semibold'><a href="#WorkSpaceModal-1">Create Workspace</a></li>
           {
-            role == 'admin' ? <li><Link to="/dashboard">Dashboard</Link></li> : ''
+            role == 'admin' ? <li className='text-black font-semibold'><Link to="/dashboard">Dashboard</Link></li> : ''
           }
         </ul>
       </div>
@@ -83,8 +85,8 @@ const Navbar = () => {
               </div>
             </div></> :
             <>
-              <Link to='/login'><button type="button" className="hover:bg-gray-100 rounded-md font-medium  text-sm px-5 py-2.5 mr-2 mb-2 ">Login</button></Link>
-              <Link to='/register'><button type="button" className="hover:bg-gray-100 focus-visible: rounded-md  font-medium  text-sm px-5 py-2.5 mr-2 mb-2 ">Sign Up</button></Link>
+              <Link to='/login'><button type="button" className="hover:bg-gray-100 rounded-md font-medium text-black  text-sm px-5 py-2.5 mr-2 mb-2 ">Login</button></Link>
+              <Link to='/register'><button type="button" className="hover:bg-gray-100 focus-visible: rounded-md  font-medium text-black  text-sm px-5 py-2.5 mr-2 mb-2 ">Sign Up</button></Link>
             </>
         }
       </div>

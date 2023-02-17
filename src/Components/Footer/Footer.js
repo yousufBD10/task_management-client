@@ -1,11 +1,14 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <footer className="footer p-12 bg-base-200 text-base-content">
+        <footer className="footer p-12 text-white bg-indigo-900 ">
             <div>
-                <img src='/logo.png' width="50%" />
+                <div className='bg-black lg:w-64 p-2' >
+                <img src='/logo.png' width="100%" />
+                </div>
                 <h3 className='text-3xl'>TaskMaster</h3>
                 <p>Task Management System</p>
             </div>

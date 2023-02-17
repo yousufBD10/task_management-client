@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../Context/UserContext';
-import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
-import NewBoard from './Modals/NewBoard';
 import { BsPencilSquare } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from '../../Context/UserContext';
 import EditBoard from './Modals/EditBoard';
+import NewBoard from './Modals/NewBoard';
 
 const Boards = () => {
   const { user, currentWorkspace, logOut } = useContext(AuthContext);
@@ -89,7 +89,7 @@ const Boards = () => {
 
   return (
     <div>{currentWorkspace && <>
-      <div className="flex justify-between mt-8 pr-5">
+      <div className="flex justify-between  pr-5">
         <h1 className="text-xl font-medium px-5">Boards</h1>
         <a
           href="#new-board"

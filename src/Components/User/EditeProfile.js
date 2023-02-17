@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/UserContext';
+import './EditeProfile.css';
 
 
 const EditeProfile = ({setModal,setRefetch}) => {
@@ -46,75 +47,77 @@ const EditeProfile = ({setModal,setRefetch}) => {
  
    
     return (
-        <div>
+  <div>
+          <div>
         {/* The button to open modal */}
 
 
 {/* Put this part before </body> tag */}
-<input type="checkbox" id="my-modal-4" className="modal-toggle" />
-<div className="modal">
-<form  onSubmit={handleEdit} className="modal-box relative">
-<label htmlFor="my-modal-4" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+<input type="checkbox" id="my-modal-4" className="modal-toggle " />
+<div className="modal ">
+<form  onSubmit={handleEdit} className="modal-box relative bg-form">
+<label htmlFor="my-modal-4" className="btn btn-sm btn-circle absolute font-extrabold  text-red-600 right-2 top-2">✕</label>
 <div className='flex items-center gap-3 mb-6'>
-<h1 className="text-3xl">Edit profile</h1>
+<h1 className="text-3xl text-black font-bold">Edit Profile</h1>
 </div>
 <div className="divider"></div>
    <div>
    <div className="form-control w-full mb-5">
   <label className="label">
-    <span className="label-text">Your name</span>
+    <span className="label-text text-xl font-bold text-black">Your Name</span>
    
   </label>
-  <input name='name' type="text" placeholder="Your Name" className="input input-bordered w-full " />
+  <input name='name' type="text" placeholder="Your name" className="input input-bordered bg-gray-300 text-black font-semibold w-full " />
   
 </div>
    
    <div className="form-control w-full mb-5">
   <label className="label">
-    <span className="label-text">Work place</span>
+    <span className="label-text text-xl font-bold text-black">Work place</span>
    
   </label>
-  <input name='workplace' type="text" placeholder="Your Name" className="input input-bordered w-full " />
+  <input name='workplace' type="text" placeholder=" work place" className="input input-bordered w-full bg-gray-300 text-black font-semibold " />
   
 </div>
    <div className="form-control w-full mb-5">
   <label className="label">
-    <span className="label-text">College or Univerty</span>
+    <span className="label-text text-xl font-bold text-black">College or University</span>
    
   </label>
-  <input name='univerty' type="text" placeholder="Your Name" className="input input-bordered w-full " />
+  <input name='univerty' type="text" placeholder="College or university" className="input input-bordered w-full bg-gray-300 text-black font-semibold  " />
   
 </div>
    <div className="form-control w-full mb-5">
   <label className="label">
-    <span className="label-text">Your home address</span>
+    <span className="label-text text-xl font-bold text-black">Your Home Address</span>
    
   </label>
-  <input name='address' type="text" placeholder="Your Name" className="input input-bordered w-full " />
+  <input name='address' type="text" placeholder="Your home address" className="input input-bordered w-full bg-gray-300 text-black font-semibold " />
   
 </div>
    <div className="form-control w-full mb-5">
   <label className="label">
-    <span className="label-text">Come frome</span>
+    <span className="label-text text-xl font-bold text-black">Come From</span>
    
   </label>
-  <input name='come' type="text" placeholder="Your Name" className="input input-bordered w-full " />
+  <input name='come' type="text" placeholder="Come from" className="input input-bordered w-full bg-gray-300 text-black font-semibold " />
   
 </div>
    <div className="form-control w-full mb-5">
   <label className="label">
-    <span className="label-text">Relationship</span>
+    <span className="label-text text-xl font-bold text-black">Relationship</span>
    
   </label>
-  <input name='relationship' type="text" placeholder="Your Name" className="input input-bordered w-full " />
+  <input name='relationship' type="text" placeholder="Relationship" className="input input-bordered w-full bg-gray-300 text-black font-semibold  " />
   
 </div>
    </div>
-   <button type='submit' className="btn btn-primary w-full">Update</button>
+   <button type='submit' className="btn btn-info  font-bold w-full">Update</button>
 
 </form>
 </div>
     </div>
+  </div>
     );
 };
 
