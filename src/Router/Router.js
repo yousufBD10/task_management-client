@@ -22,16 +22,6 @@ import Workspace from "../Layout/Workspace";
 import WorkspaceSingle from "../Layout/WorkspaceSingle";
 import Error from "../Share/Error";
 import PrivateRoute from "./PrivateRoute";
-import UpdateUser from "../Components/User/UpdateUser"
-import Payment from "../Components/PricingPlans/Payment/Payment"
-import Pricing from "../Components/PricingPlans/Pricing/Pricing";
-import Checkout from "../Components/PricingPlans/Checkout/Checkout"
-import AdminDashboard from "../Layout/AdminDashboard/AdminDashboard";
-import User from "../Layout/AdminDashboard/User";
-import Order from "../Components/PricingPlans/Order/Order";
-import AdminHomePage from "../Layout/AdminDashboard/AdminHomePage";
-import Privacy from "../Components/Footer/Privacy/Privacy";
-import Terms from "../Components/Footer/Terms/Terms";
 import UserWorkspace from "../Layout/AdminDashboard/UserWorkspace";
 import UserBoard from "../Layout/AdminDashboard/UserBoard";
 
