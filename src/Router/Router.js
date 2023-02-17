@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Homepage from "../Components/Homepage/Homepage";
 import Login from "../Components/Login/Login";
 import SingUp from "../Components/SignUp/SignUp";
+import UpdateUser from "../Components/User/UpdateUser";
 import UserProfile from "../Components/User/UserProfile";
 import BoardCards from "../Components/Workspace/BoardCards";
 import Boards from "../Components/Workspace/Boards";
@@ -12,7 +13,6 @@ import Workspace from "../Layout/Workspace";
 import WorkspaceSingle from "../Layout/WorkspaceSingle";
 import Error from "../Share/Error";
 import PrivateRoute from "./PrivateRoute";
-import UpdateUser from "../Components/User/UpdateUser"
 
 const Router = createBrowserRouter([
   {

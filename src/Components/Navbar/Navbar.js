@@ -16,7 +16,7 @@ const Navbar = () => {
       .catch(error => console.error(error))
   }
   return (
-    <div className="navbar bg-base-100 shadow-md">
+    <div className="navbar bg-none shadow-md">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -24,7 +24,7 @@ const Navbar = () => {
           </label>
           <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
 
-            <li><Link to='/'>Home</Link></li>
+            <li ><Link to='/'>Home</Link></li>
             <li> <Link to='/workspace/boards'>Workspaces</Link></li>
             <li><a href="#WorkSpaceModal-1">Create</a></li>
 
@@ -45,9 +45,9 @@ const Navbar = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li className='rounded-none'><Link to='/'>Home</Link></li>
-          <li> <Link to='/workspace/boards'>Workspaces</Link></li>
-          <li><a href="#WorkSpaceModal-1">Create</a></li>
+          <li className='rounded-none font-bold text-black'><Link to='/'>Home</Link></li>
+          <li className=' font-bold text-black'> <Link to='/workspace/boards'>Workspaces</Link></li>
+          <li className=' font-bold text-black'><a href="#WorkSpaceModal-1">Create</a></li>
           {/* <li tabIndex={0}>
               <a>
                 Parent
@@ -122,8 +122,8 @@ const Navbar = () => {
               </div>
             </div></> :
             <>
-              <Link to='/login'><button type="button" className="hover:bg-gray-100 rounded-md font-medium  text-sm px-5 py-2.5 mr-2 mb-2 ">Login</button></Link>
-              <Link to='/register'><button type="button" className="hover:bg-gray-100 focus-visible: rounded-md  font-medium  text-sm px-5 py-2.5 mr-2 mb-2 ">Sign Up</button></Link>
+              <Link to='/login'><button type="button" className="hover:bg-gray-100 rounded-md font-medium text-black  text-sm px-5 py-2.5 mr-2 mb-2 ">Login</button></Link>
+              <Link to='/register'><button type="button" className="hover:bg-gray-100 focus-visible: rounded-md  font-medium text-black  text-sm px-5 py-2.5 mr-2 mb-2 ">Sign Up</button></Link>
             </>
         }
       </div>
