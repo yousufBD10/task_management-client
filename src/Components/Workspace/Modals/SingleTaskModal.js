@@ -4,16 +4,19 @@ import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import {
   FiArrowRight,
+  FiBook,
   FiCheckSquare,
   FiClock,
   FiPaperclip,
   FiShare2,
+  FiTag,
   FiTrash,
   FiUser,
 } from "react-icons/fi";
 import { BsCalendar4Range } from "react-icons/bs";
 import { GrTextAlignFull } from "react-icons/gr";
 import { RxActivityLog } from "react-icons/rx";
+import { MdOutlineHideImage } from "react-icons/md";
 import MembersDropDown from "../SingleTaskModalDropDown/MembersDropDown";
 import DateDropDown from "../SingleTaskModalDropDown/DateDropDown";
 import AttachmentDropDown from "../SingleTaskModalDropDown/AttachmentDropDown";
@@ -21,6 +24,8 @@ import MoveDropDown from "../SingleTaskModalDropDown/MoveDropDown";
 import ShareDropDown from "../SingleTaskModalDropDown/ShareDropDown";
 import { AuthContext } from "../../../Context/UserContext";
 import useMembersOfCurrentWorkspace from "../../../hooks/useMembersOfCurrentWorkspace";
+import LabelDropDown from "../SingleTaskModalDropDown/LabelDropDown";
+import CoverDropDown from "../CoverDropDown";
 
 const SingleTaskModal = () => {
   const buttonStyle =
@@ -194,7 +199,8 @@ const SingleTaskModal = () => {
     }, 1000);
   };
 
-  //move task to another board
+  //---------- move task to another board----------
+
   const MoveTask = (e) => {
     clearTimeout(timer);
     const id = e.target.value;
@@ -266,10 +272,97 @@ const SingleTaskModal = () => {
       }
     }, 1000);
   };
+
+  // -------------- Label component ------------
+
+  const handleLabel = (color) => {
+    let boardItemsCopy = [...boardItems];
+    for (let i = 0; i < boardItemsCopy.length; i++) {
+      if (boardItemsCopy[i]._id == currentTask._id) {
+        if (!boardItemsCopy[i].Labels) {
+          boardItemsCopy[i].Labels = [];
+          boardItemsCopy[i].Labels.push(color);
+        } else {
+          boardItemsCopy[i].Labels.push(color);
+        }
+        setBoardItems(boardItemsCopy);
+        SendToServer();
+        break;
+      }
+    }
+  };
+  // ------- remove label ---------
+  const removeLabel = (label) => {
+    clearTimeout(timer);
+    const findLabels = currentTask.Labels.filter((lab) => lab !== label);
+    timer = setTimeout(() => {
+      let boardItemsCopy = [...boardItems];
+      for (let i = 0; i < boardItems.length; i++) {
+        if (boardItems[i]._id == currentTask._id) {
+          currentTask.Labels = boardItemsCopy[i].Labels = findLabels;
+          setBoardItems(boardItemsCopy);
+          SendToServer();
+          break;
+        }
+      }
+    }, 1000);
+  };
+
+  // -------------- cover upload ------------
+
+  const handleUploadCover = (coverImage) => {
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      let boardItemsCopy = [...boardItems];
+      for (let i = 0; i < boardItems.length; i++) {
+        if (boardItems[i]._id == currentTask._id) {
+          boardItemsCopy.cover = boardItemsCopy[i].cover = coverImage;
+          // setBoardItems(boardItemsCopy);
+          SendToServer();
+          break;
+        }
+      }
+    }, 1000);
+  };
+  // ----------------- Remove Cover ----------
+  const removeCover = () => {
+    clearTimeout(timer);
+    const cover = "";
+    timer = setTimeout(() => {
+      let boardItemsCopy = [...boardItems];
+      for (let i = 0; i < boardItems.length; i++) {
+        if (boardItems[i]._id == currentTask._id) {
+          currentTask.cover = boardItemsCopy[i].cover = cover;
+
+          setBoardItems(boardItemsCopy);
+          SendToServer();
+          break;
+        }
+      }
+    }, 1000);
+  };
   return (
     <div>
       <div id="new-board-modal" className="modal">
         <div className="modal-box card rounded-md touch-auto max-w-screen-md scrollbar-hide">
+          {/* ------ Dynamically cover load ------ */}
+
+          {currentTask?.cover && (
+            <div className="bg-stone-300 -m-6 flex justify-center relative">
+              <img src={currentTask?.cover} alt="Shoes" className="w-52" />
+              <button
+                onClick={removeCover}
+                className="btn-ghost h-8 flex justify-center items-center p-2 text-gray-400 text-2xl font-bold absolute bottom-2 right-2 border rounded-md bg-stone-200 hover:bg-black/30"
+                title="Remove cover"
+              >
+                <MdOutlineHideImage></MdOutlineHideImage>
+              </button>
+            </div>
+          )}
+
+          {/* --------- Modal close button ---------- */}
+
           <a href="#g" className="btn btn-ghost btn-sm absolute right-2 top-2">
             ✕
           </a>
@@ -281,6 +374,7 @@ const SingleTaskModal = () => {
                 onKeyUp={updateCurrentTaskInfo}
               >
                 {/* ------------title input section---------- */}
+
                 <input
                   name="note"
                   type="text"
@@ -312,7 +406,7 @@ const SingleTaskModal = () => {
                     : ""}
                 </div>
                 {currentTask?.StartDate && (
-                  <p className="flex mt-2 font-semibold">
+                  <div className="flex mt-4 font-semibold">
                     <span className="pr-2">
                       <BsCalendar4Range></BsCalendar4Range>{" "}
                     </span>
@@ -324,10 +418,42 @@ const SingleTaskModal = () => {
                         currentTask?.Deadline
                       )}
                     </small>
-                  </p>
+                  </div>
+                )}
+
+                {/* --------- Dynamic Labels ---------- */}
+
+                {currentTask?.Labels?.length > 0 && (
+                  <>
+                    <div className="flex items-center mt-4">
+                      <FiTag></FiTag>
+                      <p className="ml-2 font-semibold">Labels</p>
+                    </div>
+                    <div className="flex items-center mb-6">
+                      {currentTask?.Labels?.map((label, i) => {
+                        return (
+                          <div className="flex items-center mr-2 ">
+                            <div
+                              key={label.i}
+                              className={`flex items-center w-12 h-2 bg-${label}-400 rounded-full relative hover:bg:black/60`}
+                            >
+                              <button
+                                onClick={() => removeLabel(label)}
+                                className="flex items-center hover:text-gray-100 font-semibold justify-center w-12 h-6 text-md opacity-10 hover:opacity-100 absolute bg-black/60 rounded-sm"
+                                title="remove label"
+                              >
+                                <FiTrash></FiTrash>
+                              </button>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </>
                 )}
 
                 {/* ------------Text Area section------------- */}
+
                 <GrTextAlignFull></GrTextAlignFull>
                 <textarea
                   name="description"
@@ -337,7 +463,9 @@ const SingleTaskModal = () => {
                 ></textarea>
               </form>
               <br />
+
               {/* ------------- Attachment section------- */}
+
               {currentTask?.attachment?.length > 0 && (
                 <div className="flex items-center mt-8 mb-2">
                   <FiPaperclip></FiPaperclip>
@@ -345,9 +473,12 @@ const SingleTaskModal = () => {
                 </div>
               )}
               {currentTask?.attachment?.length > 0 &&
-                currentTask.attachment.map((attach) => {
+                currentTask.attachment.map((attach, i) => {
                   return (
-                    <div className=" flex justify-between items-center border border-gray-400 rounded-md p-3 mb-4 bg-stone-300 text-gray-900">
+                    <div
+                      key={attach.i}
+                      className=" flex justify-between items-center border border-gray-400 rounded-md p-3 mb-4 bg-stone-300 text-gray-900"
+                    >
                       <p className="w-2/3"> {attach}</p>
                       <button
                         title="Remove"
@@ -384,6 +515,7 @@ const SingleTaskModal = () => {
                     </label>
                     <div className="flex flex-wrap">
                       {/* ----- comment submit button------ */}
+
                       <button
                         type="submit"
                         className="btn btn-ghost btn-sm rounded-md bg-stone-300 text-stone-800 hover:bg-indigo-300"
@@ -436,6 +568,20 @@ const SingleTaskModal = () => {
                       <li className="">
                         <Link
                           rel="noopener noreferrer"
+                          tabIndex={0}
+                          href="#"
+                          className={buttonStyle}
+                        >
+                          <FiTag></FiTag>
+                          <span>Labels</span>
+                          <LabelDropDown
+                            handleLabel={handleLabel}
+                          ></LabelDropDown>
+                        </Link>
+                      </li>
+                      <li className="">
+                        <Link
+                          rel="noopener noreferrer"
                           href="#"
                           tabIndex={0}
                           className={buttonStyle}
@@ -473,6 +619,21 @@ const SingleTaskModal = () => {
                           <AttachmentDropDown
                             handleAttachment={handleAttachment}
                           ></AttachmentDropDown>
+                        </Link>
+                      </li>
+                      <li className="">
+                        <Link
+                          rel="noopener noreferrer"
+                          type="file"
+                          href="#"
+                          tabIndex={7}
+                          className={buttonStyle}
+                        >
+                          <FiBook></FiBook>
+                          <span>Cover</span>
+                          <CoverDropDown
+                            handleUploadCover={handleUploadCover}
+                          ></CoverDropDown>
                         </Link>
                       </li>
                     </div>

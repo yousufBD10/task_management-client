@@ -1,18 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import { AuthContext } from "../../Context/UserContext";
 import ToDoCard from "./ToDoCard/ToDoCard";
-
 
 const BoardCards = () => {
   const { id } = useParams();
   const {
-    user, initialBoardLists,
+    user,
+    initialBoardLists,
     reloadWorkspaces,
     currentWorkspace,
     setCurrentWorkspace,
     workspaces,
-    logOut, setBoardItems
+    logOut,
+    setBoardItems,
   } = useContext(AuthContext);
   const setCurrent = (id) => {
     setCurrentWorkspace(workspaces.find((w) => w._id == id));
@@ -66,9 +67,9 @@ const BoardCards = () => {
   useEffect(reloadItems, [currentWorkspace]);
   useEffect(reloadBoard, []);
   return (
-    <div className="my-12 px-12 min-h-screen">
+    <div className="mt-4 mb-12 px-12 text-stone-700 min-h-screen">
       <div>
-        <div className="w-full mb-12">
+        <div className="w-full p-1 mb-6 rounded-md">
           <h3>{currentWorkspace?.name}</h3>
           <h2 className="text-2xl font-bold">{board?.name}</h2>
         </div>

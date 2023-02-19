@@ -18,12 +18,22 @@ const MoveDropDown = ({ MoveTask }) => {
           <p className="text-gray-900 font-bold">Change work position</p>
           <select onChange={MoveTask} className="w-full text-gray-900">
             <option value="#">(none)</option>
-            {initialBoardLists && initialBoardLists.map((el) => { return <option value={el.id}>{el.ListName}</option> })}
+            {initialBoardLists &&
+              initialBoardLists.map((el) => {
+                return (
+                  <option value={el.id} key={el.id}>
+                    {el.ListName}
+                  </option>
+                );
+              })}
           </select>
           <button
             type="submit"
             className="btn btn-ghost btn-sm rounded-md bg-gray-800 text-gray-400 my-3"
-          >  Move </button>
+          >
+            {" "}
+            Move{" "}
+          </button>
         </div>
       </form>
     </div>
