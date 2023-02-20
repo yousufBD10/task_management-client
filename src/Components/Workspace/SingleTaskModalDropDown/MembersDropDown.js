@@ -11,17 +11,23 @@ const MembersDropDown = ({ assignORremoveMember }) => {
     <div>
       <ul
         tabIndex={0}
-        className="dropdown-content p-2 rounded-md w-72 bg-gray-300 divide-gray-800"
+        className="dropdown-content p-2 rounded-md w-72 bg-stone-200 divide-black text-black"
       >
-        <p className="text-gray-900 font-semibold space-x-3 text-center pb-1">
-          Members
-        </p>
+        <p className="font-semibold space-x-3 text-center pb-1">Members</p>
         <hr />
-        {members && members.map((member) => {
-          return <li key={member._id} className="flex btn btn-ghost items-center justify-center btn-sm  my-1 rounded-md bg-gray-900 text-gray-400 shadow-md">
-            <button onClick={() => assignORremoveMember(member._id)}>{member.name}</button> 
-          </li>
-        })}
+        {members &&
+          members.map((member) => {
+            return (
+              <li
+                key={member._id}
+                className="flex btn btn-ghost items-center justify-center btn-sm  my-1 rounded-md bg-stone-400 border-none shadow-md hover:bg-indigo-300"
+              >
+                <button onClick={() => assignORremoveMember(member._id)}>
+                  {member.name}
+                </button>
+              </li>
+            );
+          })}
       </ul>
     </div>
   );

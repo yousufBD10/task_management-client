@@ -25,7 +25,7 @@ import ShareDropDown from "../SingleTaskModalDropDown/ShareDropDown";
 import { AuthContext } from "../../../Context/UserContext";
 import useMembersOfCurrentWorkspace from "../../../hooks/useMembersOfCurrentWorkspace";
 import LabelDropDown from "../SingleTaskModalDropDown/LabelDropDown";
-import CoverDropDown from "../CoverDropDown";
+import CoverDropDown from "../SingleTaskModalDropDown/CoverDropDown";
 
 const SingleTaskModal = () => {
   const buttonStyle =
@@ -291,9 +291,10 @@ const SingleTaskModal = () => {
       }
     }
   };
+
   // ------- remove label ---------
+
   const removeLabel = (label) => {
-    clearTimeout(timer);
     const findLabels = currentTask.Labels.filter((lab) => lab !== label);
     timer = setTimeout(() => {
       let boardItemsCopy = [...boardItems];

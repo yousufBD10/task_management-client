@@ -6,16 +6,14 @@ const MoveDropDown = ({ MoveTask }) => {
   return (
     <div
       tabIndex={0}
-      className="dropdown-content p-2 rounded-md w-64 bg-gray-300 divide-gray-800"
+      className="dropdown-content p-2 rounded-md w-64 bg-stone-300 divide-gray-800 text-black"
     >
-      <p className="text-gray-900 font-semibold space-x-3 text-center">
-        Move Card
-      </p>
+      <p className="font-semibold space-x-3 text-center">Move Card</p>
 
       <hr />
       <form>
         <div>
-          <p className="text-gray-900 font-bold">Change work position</p>
+          <p className="font-semibold my-2">Change work position</p>
           <select onChange={MoveTask} className="w-full text-gray-900">
             <option value="#">(none)</option>
             {initialBoardLists &&
@@ -29,7 +27,7 @@ const MoveDropDown = ({ MoveTask }) => {
           </select>
           <button
             type="submit"
-            className="btn btn-ghost btn-sm rounded-md bg-gray-800 text-gray-400 my-3"
+            className="btn btn-ghost mt-3 btn-sm rounded-md bg-stone-400 text-black hover:bg-indigo-300 w-full"
           >
             {" "}
             Move{" "}

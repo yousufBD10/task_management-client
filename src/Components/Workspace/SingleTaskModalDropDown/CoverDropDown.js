@@ -30,15 +30,15 @@ const CoverDropDown = ({ handleUploadCover }) => {
 
   return (
     <div
-      onClick={(e) => e.stopPropagation()}
       className="dropdown-content p-2  rounded-md w-72 bg-stone-200 divide-gray-800"
       tabIndex={7}
     >
-      <p className="text-gray-900 font-semibold space-x-3 text-center">Cover</p>
+      <p className="text-black font-semibold space-x-3 text-center">Cover</p>
       <hr />
       <form
+        onClick={(e) => e.stopPropagation()}
         onSubmit={handleCover}
-        className="w-full space-y-1 dark:text-gray-600"
+        className="w-full space-y-1 dark:text-black"
       >
         <label for="files" className="block text-sm font-medium mt-2">
           Upload your form
@@ -49,13 +49,13 @@ const CoverDropDown = ({ handleUploadCover }) => {
             type="file"
             name="image"
             id="files"
-            className="pl-2 py-8 border-2 border-dashed rounded-md  text-sm dark:border-gray-700 dark:text-gray-700 dark:bg-stone-400"
+            className="pl-2 py-8 mb-2 border-2 border-dashed rounded-md  text-sm dark:border-gray-700 dark:text-gray-700 dark:bg-stone-300"
           />
         </div>
         <button
           onClick={""}
           type="submit"
-          className="btn btn-ghost btn-sm rounded-md bg-gray-800 text-gray-400"
+          className="btn btn-ghost mb-4 btn-sm rounded-md bg-stone-400 text-black hover:bg-indigo-300 w-full"
         >
           Save
         </button>

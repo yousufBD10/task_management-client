@@ -17,9 +17,9 @@ const ShareDropDown = () => {
   return (
     <div
       tabIndex={5}
-      className="dropdown-content p-2 rounded-md w-64 bg-gray-300 divide-gray-800"
+      className="dropdown-content p-2 rounded-md w-64 bg-stone-300 divide-black text-black"
     >
-      <p className="text-gray-900 font-semibold space-x-3 text-center">Share</p>
+      <p className="font-semibold space-x-3 text-center">Share</p>
 
       <hr />
       <div className="flex items-center justify-center mt-4">

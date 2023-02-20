@@ -8,11 +8,9 @@ const LabelDropDown = ({ handleLabel }) => {
   return (
     <div
       tabIndex={0}
-      className="dropdown-content p-2 rounded-md w-64 bg-gray-100 divide-gray-800"
+      className="dropdown-content p-2 pb-3 rounded-md w-64 bg-stone-300 divide-black text-black"
     >
-      <p className="text-gray-900 font-semibold space-x-3 text-center">
-        Labels
-      </p>
+      <p className="font-semibold space-x-3 text-center">Labels</p>
 
       <hr />
       <div className="mt-4">
