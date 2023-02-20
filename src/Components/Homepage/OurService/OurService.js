@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 const OurService = () => {
-
+    // service data api start
     const serviceCollection = [
         {
             name: "Project",
@@ -111,7 +111,7 @@ const OurService = () => {
         {
             name: "Design",
             services: [
-              {
+                {
                     icon: "",
                     title: "",
                     description: "",
@@ -133,7 +133,7 @@ const OurService = () => {
         {
             name: "HR",
             services: [
-                 {
+                {
                     icon: "",
                     title: "",
                     description: "",
@@ -149,9 +149,10 @@ const OurService = () => {
         },
 
     ]
+    // service data api end
 
     const [service, setService] = useState([]);
-    
+
     function serviceHandle(service = "Project") {
         setService(serviceCollection.filter(item => item.name === service));
     }
@@ -166,23 +167,23 @@ const OurService = () => {
                 <h3 className='font-bold text-blue-900'>BUILT FOR EVERYONE</h3>
                 <h1 className='text-3xl font-serif mt-5 text-black  font-bold'>See how TaskMaster can work for you.</h1>
             </div>
-
+            {/* dynamic services button start */}
             <div className='justify-around lg:flex lg:px-32 py-16'>
                 {
-                    serviceCollection.map((item, i) =>
+                    service[0] && serviceCollection.map((item, i) =>
                         <div key={i}>
                             <button
                                 onClick={() => serviceHandle(item.name)}
-                                className={`${item.name===service[0].name?'bg-gray-300':'bg-indigo-500'} text-black hover:bg-gray-300 font-bold w-28  h-8 rounded-sm shadow-lg`}
+                                className={`${item.name === service[0]?.name ? 'bg-gray-300' : 'bg-indigo-500'} text-black hover:bg-gray-300 font-bold w-28  h-8 rounded-sm shadow-lg`}
                             >
                                 {item.name}
                             </button>
                         </div>
                     )
                 }
-                </div>
-
-
+            </div>
+            {/* dynamic services button end */}
+            {/* service section start */}
             {service[0] && <div className='grid grid-cols-2 lg:px-12 items-center'>
                 <div className=' lg:px-16 '>
                     {
@@ -203,7 +204,7 @@ const OurService = () => {
                     <img className='lg:w-96 mx-auto' src={service[0].logo} alt="" />
                 </div>
             </div>}
-
+            {/* service section end */}
         </div>
     );
 };
