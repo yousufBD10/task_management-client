@@ -65,7 +65,7 @@ const Boards = () => {
       })
       .catch((error) => toast.error(error.message));
   };
-  const image = "/assets/banner/board_img-5.png";
+  const image = "/assets/banner/board_img-5.jpg";
 
   const handleEdite = (event) => {
     event.preventDefault();
