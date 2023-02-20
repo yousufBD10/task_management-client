@@ -86,9 +86,7 @@ const OurService = () => {
                             <h4 className='font-semibold text-black px-2 '>Add visual widgets for team members, tasks, sprints, time tracking, statuses, docs, embeds, and more.</h4>
                         </div>
                        </div>
-                       <div className='px-12 mt-12'>
-                <button className='border rounded-lg text-black hover:text-white  lg:h-12 text-xl font-bold lg:w-36 border-gray-500 bg-gray-200 hover:bg-blue-600'>Get Start</button>
-            </div>
+                     
                     </div>
                     <div>
                     <img className='lg:w-96 mx-auto' src="https://cdn-icons-png.flaticon.com/512/1934/1934025.png" alt="" />
@@ -125,9 +123,7 @@ const OurService = () => {
                             <h4 className='font-semibold text-black px-2 '>Connect your existing development workflows with native integrations for GitHub, GitLab Bitbucket, Sentry, Slack, Figma, and more.</h4>
                         </div>
                        </div>
-                       <div className='px-12 mt-12'>
-                <button className='border rounded-lg text-black hover:text-white  lg:h-12 text-xl font-bold lg:w-36 border-gray-500 bg-gray-200 hover:bg-blue-600'>Get Start</button>
-            </div>
+                     
                     </div>
                     <div>
                     <img className='lg:w-96 mx-auto' src="https://cdn-icons-png.flaticon.com/512/609/609034.png" alt="" />
@@ -165,9 +161,7 @@ const OurService = () => {
                             <h4 className='font-semibold text-black px-2 '>See how deals track over time, who is closing, and how your team is performing overall with customizable Dashboards.</h4>
                         </div>
                        </div>
-                       <div className='px-12 mt-12'>
-                <button className='border rounded-lg text-black hover:text-white  lg:h-12 text-xl font-bold lg:w-36 border-gray-500 bg-gray-200 hover:bg-blue-600'>Get Start</button>
-            </div>
+                     
                     </div>
                     <div>
                     <img className='lg:w-96 mx-auto' src="https://cdn-icons-png.flaticon.com/512/3505/3505655.png" alt="" />
@@ -205,9 +199,7 @@ const OurService = () => {
                             <h4 className='font-semibold text-black px-2 '>Visualize your content schedule on a calendar with dates, assignees, and Custom Statuses that make it easy to understand where your content stands at a glance.</h4>
                         </div>
                        </div>
-                       <div className='px-12 mt-12'>
-                <button className='border rounded-lg text-black hover:text-white  lg:h-12 text-xl font-bold lg:w-36 border-gray-500 bg-gray-200 hover:bg-blue-600'>Get Start</button>
-            </div>
+                     
                     </div>
                     <div>
                     <img className='lg:w-96 mx-auto' src="https://cdn-icons-png.flaticon.com/512/9609/9609568.png" alt="" />
@@ -245,9 +237,7 @@ const OurService = () => {
                             <h4 className='font-semibold text-black px-2 '>Connect product briefs, whiteboards, docs, and more directly to your epics and stories for better visibility—without the busy work. </h4>
                         </div>
                        </div>
-                       <div className='px-12 mt-12'>
-                <button className='border rounded-lg text-black hover:text-white  lg:h-12 text-xl font-bold lg:w-36 border-gray-500 bg-gray-200 hover:bg-blue-600'>Get Start</button>
-            </div>
+                      
                     </div>
                     <div>
                     <img className='lg:w-96 mx-auto' src="https://cdn-icons-png.flaticon.com/512/1474/1474674.png" alt="" />

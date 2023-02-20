@@ -20,13 +20,15 @@ const Navbar = () => {
   }
   // eslint-disable-next-line no-unreachable
   return (
-    <div  style={{
-      backgroundImage: `url(${bgNav})`,
-      backgroundSize: 'cover',
-      opacity:'20',
-      backgroundPosition: 'center center',
-      backgroundRepeat: 'no-repeat',
-    }} className="navbar text-white  shadow-md">
+    <div 
+    // style={{
+    //   backgroundImage: `url(${bgNav})`,
+    //   backgroundSize: 'cover',
+    //   opacity:'20',
+    //   backgroundPosition: 'center center',
+    //   backgroundRepeat: 'no-repeat',
+    // }}
+    className="navbar text-black bg-white  shadow-md">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -42,7 +44,7 @@ const Navbar = () => {
             }
           </ul>
         </div>
-        <div className='bg-indigo-100 w-64 lg:ml-12 p-2 '>
+        <div className=' w-64 lg:ml-12 p-2 '>
         <Link to='/'><img className=' ' src="/logo.png" alt="" /></Link>
         </div>
       </div>

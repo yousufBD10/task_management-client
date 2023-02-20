@@ -70,7 +70,7 @@ const Workspace = () => {
           <label htmlFor="dashboardDawer" className="drawer-overlay"></label>
           <ul className="p-4 w-80 menu bg-base-100">
             {" "}
-            <li className="shadow-sm mb-2 rounded-md ">
+            <li className=" mb-2 rounded-md ">
               <Link to="/workspace/boards" className="font-bold">
                 {" "}
                 <MdOutlineSpaceDashboard />
@@ -85,7 +85,7 @@ const Workspace = () => {
               </a>
             </div>
             {workspaces?.length > 0 ? workspaces.map((el) => {
-              return <div key={el._id} className="collapse hover:bg-zinc-100 shadow-sm mb-2" onClick={() => setCurrent(el._id)}>
+             return <div key={el._id} className="collapse hover:bg-zinc-100 shadow-sm mb-2" onClick={() => setCurrent(el._id)}>
                 <input type="checkbox" className="peer" />
                 <div className="collapse-title mb-2 flex items-center gap-3 font-bold">
                   {" "}
@@ -97,20 +97,20 @@ const Workspace = () => {
                   {el.name} <TiArrowUnsorted className="ml-16"></TiArrowUnsorted>
                 </div>
                 <div className="collapse-content">
-                  <li className="shadow-sm mb-2 rounded-md">
+                  <li className=" mb-2 rounded-md">
                     <Link to="/workspace/boards">
                       <MdOutlineSpaceDashboard />
                       Boards
                     </Link>
                   </li>
-                  <li className="shadow-sm mb-2 rounded-md">
+                  <li className=" mb-2 rounded-md">
                     <Link to="/workspace/members">
                       <HiOutlineUsers />
                       Members
                     </Link>
                   </li>
                   {" "}
-                  <li className="shadow-sm mb-2 rounded-md">
+                  <li className=" mb-2 rounded-md">
                     <Link to="/workspace/settings">
                       {" "}
                       <AiOutlineSetting />

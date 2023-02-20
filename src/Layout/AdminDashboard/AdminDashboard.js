@@ -67,7 +67,7 @@ const AdminDashboard = () => {
               </li>
              
               <li className=" mb-1  ">
-                <Link to={`/dashboard/userboards/${workspaces[0]?._id}`} className="font-semibold">
+                <Link to={`/dashboard/userboards/${workspaces[1]?._id}`} className="font-semibold">
                   {" "}
                   <MdOutlineSpaceDashboard />
                   Boards
