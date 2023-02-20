@@ -6,18 +6,19 @@ import Navbar from '../../Components/Navbar/Navbar';
 import { AuthContext } from '../../Context/UserContext';
 
 const AdminDashboard = () => {
-  const { workspaces,setCurrentWorkspace ,user,reloadWorkspaces} = useContext(AuthContext);
+  const { workspaces, setCurrentWorkspace, user, reloadWorkspaces } = useContext(AuthContext);
   const setCurrent = (id) => { setCurrentWorkspace(workspaces.find((w) => w._id == id)) }
   useEffect(reloadWorkspaces, [user]);
   console.log(workspaces);
-    return (
-        <div>
-        <Navbar></Navbar>
-        <label
-          htmlFor="dashboardDawer"
-          tabIndex={2}
-          className="btn btn-ghost lg:hidden"
-        >
+  return (
+    <div>
+      <Navbar></Navbar>
+      <label
+        htmlFor="dashboardDawer"
+        tabIndex={2}
+        className="btn btn-ghost lg:hidden"
+      >
+        <svg>
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -26,11 +27,9 @@ const AdminDashboard = () => {
           />
         </svg>
       </label>
-
       <div className="drawer drawer-mobile">
         <input id="dashboardDawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content min-h-screen ">
-
           <Outlet></Outlet>
         </div>
         <div className="drawer-side shadow-md">
@@ -49,33 +48,26 @@ const AdminDashboard = () => {
                 {" "}
                 <AiOutlineUser />
                 User
-                </Link>
-              </li>
-              <li className="mb-1">
-                <Link to="/dashboard/userworkspace" className="font-semibold">
-                  {" "}
-                  <MdOutlineSpaceDashboard />
+              </Link>
+            </li>
+            <li className="mb-1">
+              <Link to="/dashboard/userworkspace" className="font-semibold">
+                {" "}
+                <MdOutlineSpaceDashboard />
                 All Workspace
-                </Link>
-              </li>
-             
-              <li className=" mb-1  ">
-                <Link to={`/dashboard/userboards/${workspaces[0]?._id}`} className="font-semibold">
-                  {" "}
-                  <MdOutlineSpaceDashboard />
-                  Boards
-                </Link>
-              </li>
-             
-             
-             
-            </ul>
-          </div>
+              </Link>
+            </li>
+            <li className=" mb-1  ">
+              <Link to={`/dashboard/userboards/${workspaces[0]?._id}`} className="font-semibold">
+                {" "}
+                <MdOutlineSpaceDashboard />
+                Boards
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
-
-
-    </div>
+    </div >
   );
 };
 
