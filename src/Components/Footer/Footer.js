@@ -6,10 +6,9 @@ const Footer = () => {
     return (
         <footer className="footer p-12 text-white bg-indigo-900 ">
             <div>
-                <div className='bg-black lg:w-64 p-2' >
+                <div className=' lg:w-64 pb-2' >
                 <img src='/logo.png' width="100%" />
                 </div>
-                <h3 className='text-3xl'>TaskMaster</h3>
                 <p>Task Management System</p>
             </div>
             {/* <div>
@@ -22,7 +21,7 @@ const Footer = () => {
                 <a className="link link-hover">Contact</a>
                 <a className="link link-hover">Jobs</a>
             </div> */}
-            <div className='pt-4'>
+            <div className='md:pt-4'>
                 <span className="footer-title">Legal</span>
                 <Link to="/terms">Terms of use</Link>
                 <Link to="/privacy">Privacy policy</Link>

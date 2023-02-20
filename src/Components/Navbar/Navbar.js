@@ -20,15 +20,7 @@ const Navbar = () => {
   }
   // eslint-disable-next-line no-unreachable
   return (
-    <div 
-    // style={{
-    //   backgroundImage: `url(${bgNav})`,
-    //   backgroundSize: 'cover',
-    //   opacity:'20',
-    //   backgroundPosition: 'center center',
-    //   backgroundRepeat: 'no-repeat',
-    // }}
-    className="navbar text-black bg-white  shadow-md">
+    <div className="bg-gray-100 navbar shadow-md">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">

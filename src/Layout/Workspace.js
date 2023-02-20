@@ -21,7 +21,7 @@ const Workspace = () => {
   useEffect(reloadWorkspaces, [user]);
 
   return (
-    <div>
+    <div className='text-white'>
       <Navbar></Navbar>
       <label
         htmlFor="dashboardDawer"
@@ -44,9 +44,9 @@ const Workspace = () => {
         </svg>
       </label>
 
-      <div className="drawer drawer-mobile mt-8">
+      <div className="drawer drawer-mobile">
         <input id="dashboardDawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content min-h-screen">
+        <div className="drawer-content min-h-screen  pt-8">
           {currentWorkspace && <><div className='lg:flex justify-between px-5'>
             <div className='flex items-center gap-2'>
               <div className="avatar">
@@ -66,9 +66,9 @@ const Workspace = () => {
           }
           <Outlet></Outlet>
         </div>
-        <div className="drawer-side shadow-md">
+        <div className="drawer-side shadow-lg bg-slate-800 pt-8">
           <label htmlFor="dashboardDawer" className="drawer-overlay"></label>
-          <ul className="p-4 w-80 menu bg-base-100">
+          <ul className="pl-4 pr-4 w-80 menu">
             {" "}
             <li className=" mb-2 rounded-md ">
               <Link to="/workspace/boards" className="font-bold">
@@ -85,7 +85,7 @@ const Workspace = () => {
               </a>
             </div>
             {workspaces?.length > 0 ? workspaces.map((el) => {
-             return <div key={el._id} className="collapse hover:bg-zinc-100 shadow-sm mb-2" onClick={() => setCurrent(el._id)}>
+              return <div key={el._id} className="collapse hover:bg-gray-100 hover:text-black shadow-sm mb-2" onClick={() => setCurrent(el._id)}>
                 <input type="checkbox" className="peer" />
                 <div className="collapse-title mb-2 flex items-center gap-3 font-bold">
                   {" "}
