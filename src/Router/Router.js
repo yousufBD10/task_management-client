@@ -24,6 +24,7 @@ import Error from "../Share/Error";
 import PrivateRoute from "./PrivateRoute";
 import UserWorkspace from "../Layout/AdminDashboard/UserWorkspace";
 import UserBoard from "../Layout/AdminDashboard/UserBoard";
+import UserAllTask from "../Layout/AdminDashboard/UserAllTask";
 
 
 const Router = createBrowserRouter([
@@ -105,19 +106,18 @@ const Router = createBrowserRouter([
         path: "/workspace/members",
         element: <Members />,
       },
-    ],
-  },
-  {
-    path: "/workspace/board/:id",
-    element: <PrivateRoute><WorkspaceSingle /></PrivateRoute>,
-    children: [
       {
         path: "/workspace/board/:id",
-        element: <BoardCards />,
-      }
+        element: <PrivateRoute><WorkspaceSingle /></PrivateRoute>,
+        children: [
+          {
+             path: "/workspace/board/:id",
+             element: <BoardCards />,
+          }
+        ],
+      },
     ],
   },
-
 
   {
     path: "/dashboard",
@@ -140,6 +140,11 @@ const Router = createBrowserRouter([
         element: <UserBoard/>,
         loader: ({params})=> fetch(process.env.REACT_APP_SERVER_URL +  `/userboard/${params.id}`)
       },
+      {
+        path: "/dashboard/tasks",
+        element: <UserAllTask />,
+      },
+     
 
 
     ],

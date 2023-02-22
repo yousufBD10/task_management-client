@@ -4,19 +4,21 @@ import CreateTask from "../Modals/CreateTask";
 import { toast } from "react-toastify";
 
 const ToDoCard = ({ current_board, current_list, reloadItems }) => {
-  const { currentWorkspace, setCurrentTask, boardItems } = useContext(AuthContext);
+  const { currentWorkspace, setCurrentTask, boardItems,user } = useContext(AuthContext);
 
   /* ----------------- Collect data After Submit Task on modal Start ----------------- */
   const handleTaskSubmit = (event, cardID) => {
     event.preventDefault();
     const form = event.target;
+    const userId = user?.uid;
     const note = form.note.value;
     const taskData = {
       _id: "new",
       wid: currentWorkspace._id,
       boradId: current_board,
       cardID: cardID,
-      note: note
+      note: note,
+      userId
     };
 
     fetch(`${process.env.REACT_APP_SERVER_URL}/create-update-task`, {
@@ -40,8 +42,8 @@ const ToDoCard = ({ current_board, current_list, reloadItems }) => {
 
   return (
     <div>
-      <div className="box-border">
-        <div className="bg-gray-200 p-3">
+      <div className="box-border  text-black">
+        <div className="bg-gray-300 p-3">
           <div className="flex justify-between items-start gap-2">
             <h4 className="w-10/12 font-semibold text-justify hover:cursor-pointer">
               {current_list.ListName}
@@ -59,7 +61,7 @@ const ToDoCard = ({ current_board, current_list, reloadItems }) => {
                     >
                       <a
                         className="block"
-                        href="#new-board-modal"
+                        href="#new-board-modal1"
                         onClick={() => setCurrentTask(item)}
                       >
                         {item.note}
