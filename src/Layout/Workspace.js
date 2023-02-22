@@ -8,7 +8,6 @@ import { HiOutlineUsers } from "react-icons/hi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BiLock, BiPencil } from "react-icons/bi";
 import { FiUserPlus } from "react-icons/fi";
-
 import { AuthContext } from "../Context/UserContext";
 import { useState } from "react";
 import InviteMember from "../Components/Workspace/Modals/InviteMember";
@@ -28,7 +27,7 @@ const Workspace = () => {
   useEffect(reloadWorkspaces, [user]);
 
   return (
-    <div>
+    <div className="text-white">
       <Navbar></Navbar>
       <label
         htmlFor="dashboardDawer"
@@ -51,22 +50,22 @@ const Workspace = () => {
         </svg>
       </label>
 
-      <div className="drawer drawer-mobile mt-8">
+      <div className="drawer drawer-mobile">
         <input id="dashboardDawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content min-h-screen">
+        <div className="drawer-content min-h-screen  pt-8">
           {currentWorkspace && (
             <>
               <div className="lg:flex justify-between px-5">
                 <div className="flex items-center gap-2">
                   <div className="avatar">
                     <div className="w-20 rounded">
-                      <img src="/assets/banner/project_img-10.jpg" alt="" />
+                      <img src="https://placeimg.com/192/192/people" />
                     </div>
                   </div>
                   <div>
                     <div className="flex items-center gap-3">
                       {" "}
-                      <h1 className="text-xl flex items-center gap-2 font-medium text-black">
+                      <h1 className="text-xl flex items-center gap-2 font-medium">
                         {currentWorkspace?.name}{" "}
                       </h1>
                       <a
@@ -77,14 +76,14 @@ const Workspace = () => {
                         <BiPencil></BiPencil>{" "}
                       </a>
                     </div>
-                    <p className="flex items-center text-black gap-2">
+                    <p className="flex items-center gap-2">
                       <BiLock></BiLock> Private
                     </p>
                   </div>
                 </div>
                 <a
                   href="#invite-member"
-                  className="flex mt-12 items-center gap-2 bg-stone-400 btn btn-sm rounded-sm text-black hover:bg-indigo-300 border-none"
+                  className="flex mt-12 items-center gap-2 bg-blue-600 btn btn-primary btn-sm rounded-sm text-white"
                 >
                   <FiUserPlus></FiUserPlus> Invite Workspace members
                 </a>
@@ -94,11 +93,11 @@ const Workspace = () => {
           )}
           <Outlet></Outlet>
         </div>
-        <div className="drawer-side shadow-md">
+        <div className="drawer-side shadow-lg bg-slate-800 pt-8">
           <label htmlFor="dashboardDawer" className="drawer-overlay"></label>
-          <ul className="p-4 w-80 menu bg-base-100">
+          <ul className="pl-4 pr-4 w-80 menu">
             {" "}
-            <li className="shadow-sm mb-2 rounded-md ">
+            <li className="  hover:bg-gray-600 mb-2  ">
               <Link to="/workspace/boards" className="font-bold">
                 {" "}
                 <MdOutlineSpaceDashboard />
@@ -110,7 +109,7 @@ const Workspace = () => {
               <h3 className="mb-2 font-medium">Workspace</h3>
               <a
                 href="#WorkSpaceModal-1"
-                className=" ml-32 hover:bg-zinc-300 p-2 rounded-md"
+                className=" ml-32 hover:bg-zinc-300 hover:text-gray-700  p-2 rounded-full "
               >
                 <AiOutlinePlus />
               </a>
@@ -120,40 +119,44 @@ const Workspace = () => {
                 return (
                   <div
                     key={el._id}
-                    className="collapse hover:bg-zinc-100 shadow-sm mb-2"
+                    className="collapse   mb-2"
                     onClick={() => setCurrent(el._id)}
                   >
                     <input type="checkbox" className="peer" />
-                    <div className="collapse-title mb-2 flex items-center gap-3 font-bold">
+                    <div className="collapse-title  mb-2 flex items-center gap-3 font-bold">
                       {" "}
                       <img
                         className="w-6 rounded-sm"
                         src="https://placeimg.com/192/192/people"
                         alt=""
                       />
-                      {el.name}{" "}
-                      <TiArrowUnsorted className="ml-16"></TiArrowUnsorted>
+                      <li className=" mb-2 flex items-center justify-between hover:bg-gray-600 rounded-md">
+                        <Link to="/workspace/boards">
+                          {el.name}{" "}
+                          <TiArrowUnsorted className="ml-12"></TiArrowUnsorted>
+                        </Link>
+                      </li>
                     </div>
                     <div className="collapse-content">
-                      <li className="shadow-sm mb-2 rounded-md">
+                      <li className=" mb-2 hover:bg-gray-600  ">
                         <Link to="/workspace/boards">
                           <MdOutlineSpaceDashboard />
                           Boards
                         </Link>
                       </li>
-                      <li className="shadow-sm mb-2 rounded-md">
+                      <li className="  hover:bg-gray-600 mb-2 ">
                         <Link to="/workspace/members">
                           <HiOutlineUsers />
                           Members
                         </Link>
                       </li>{" "}
-                      {/* <li className="shadow-sm mb-2 rounded-md">
-                    <Link to="/workspace/settings">
-                      {" "}
-                      <AiOutlineSetting />
-                      Settings
-                    </Link>
-                  </li> */}
+                      <li className="  hover:bg-gray-600 mb-2 ">
+                        <Link to="/workspace/settings">
+                          {" "}
+                          <AiOutlineSetting />
+                          Settings
+                        </Link>
+                      </li>
                     </div>
                   </div>
                 );

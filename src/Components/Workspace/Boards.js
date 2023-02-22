@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../Context/UserContext";
-import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
-import NewBoard from "./Modals/NewBoard";
 import { BsPencilSquare } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AuthContext } from "../../Context/UserContext";
 import EditBoard from "./Modals/EditBoard";
+import NewBoard from "./Modals/NewBoard";
 
 const Boards = () => {
   const { user, currentWorkspace, logOut } = useContext(AuthContext);
@@ -46,7 +46,8 @@ const Boards = () => {
 
     const form = event.target;
     const name = form.name.value;
-    const data = { name, wid: currentWorkspace._id, _id: "new" };
+    const userId = user?.uid;
+    const data = { name, wid: currentWorkspace._id, userId, _id: "new" };
 
     fetch(`${process.env.REACT_APP_SERVER_URL}/create-update-workspace-board`, {
       method: "POST",
@@ -65,7 +66,8 @@ const Boards = () => {
       })
       .catch((error) => toast.error(error.message));
   };
-  const image = "/assets/banner/board_img-5.jpg";
+  const image =
+    "https://media.istockphoto.com/id/1044776908/photo/a-beautiful-colorful-abstract-mountain-scenery-in-sunrise-minimalist-landscape-of-mountains.jpg?s=170667a&w=0&k=20&c=M1n3XMcg9KJNXEdsQqITqboEcU999O4uRy9yjUOKpJk=";
 
   const handleEdite = (event) => {
     event.preventDefault();
@@ -95,12 +97,9 @@ const Boards = () => {
     <div>
       {currentWorkspace && (
         <>
-          <div className="flex justify-between mt-8 pr-5 text-black">
+          <div className="flex justify-between  pr-5">
             <h1 className="text-xl font-medium px-5">Boards</h1>
-            <a
-              href="#new-board"
-              className="btn bg-stone-400 hover:bg-indigo-300 border-none btn-sm rounded-sm text-black"
-            >
+            <a href="#new-board" className="btn btn-primary btn-sm rounded-sm">
               {" "}
               Create new board{" "}
             </a>
@@ -119,7 +118,7 @@ const Boards = () => {
                 <Link to={`/workspace/board/${card._id}`}>
                   <div
                     style={{
-                      background: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),url(${image})`,
+                      backgroundImage: `url(${image})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center center",
                       backgroundRepeat: "no-repeat",
@@ -128,9 +127,7 @@ const Boards = () => {
                   >
                     <div className="card-body">
                       <div className="flex">
-                        <h2 className="card-title text-stone-100">
-                          {card.name}
-                        </h2>
+                        <h2 className="card-title text-white ">{card.name}</h2>
                       </div>
                     </div>
                   </div>

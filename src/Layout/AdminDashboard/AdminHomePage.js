@@ -4,7 +4,7 @@ import { AiOutlineUser } from 'react-icons/ai'
 import { BiTask } from 'react-icons/bi'
 import { IoIosBriefcase } from 'react-icons/io'
 import { useQuery } from "@tanstack/react-query";
-import { VictoryChart, VictoryLegend, VictoryBar, VictorySharedEvents, VictoryPie } from "victory";
+import { VictoryBar, VictorySharedEvents, VictoryPie } from "victory";
 import useRole from "../../hooks/useRole";
 import { AuthContext } from "../../Context/UserContext";
 import UserDashboard from "./UserDashboard";
@@ -27,7 +27,6 @@ const AdminHomePage = () => {
       return data;
     },
   });
-  console.log(allData)
 
   return (
     <div>
@@ -144,7 +143,7 @@ const AdminHomePage = () => {
       }
 
       {role === 'user' &&
-        <UserDashboard>Welcome to Dashboard</UserDashboard>
+        <UserDashboard></UserDashboard>
 
       }
 

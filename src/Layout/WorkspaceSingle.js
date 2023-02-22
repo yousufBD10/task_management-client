@@ -6,7 +6,7 @@ import SingleTaskModal from '../Components/Workspace/Modals/SingleTaskModal';
 const WorkspaceSingle = () => {
     return (
         <div>
-            <Navbar />
+          
             <Outlet />
             <SingleTaskModal></SingleTaskModal>
         </div>

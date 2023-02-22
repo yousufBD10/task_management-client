@@ -345,7 +345,7 @@ const SingleTaskModal = () => {
   };
   return (
     <div>
-      <div id="new-board-modal" className="modal">
+      <div id="new-board-modal1" className="modal text-black">
         <div className="modal-box card rounded-md touch-auto max-w-screen-md scrollbar-hide">
           {/* ------ Dynamically cover load ------ */}
 

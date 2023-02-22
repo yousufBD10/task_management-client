@@ -1,14 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { CgLogOut } from "react-icons/cg";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/UserContext";
-import CreateWorkSpaceModal from "../CreateWorkSpaceModal/CreateWorkSpaceModal";
 import useRole from "../../hooks/useRole";
+import bgNav from "../../images/bgNav.jpg";
+import Loader from "../../Share/Loader";
+import CreateWorkSpaceModal from "../CreateWorkSpaceModal/CreateWorkSpaceModal";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { user, logOut, toggleTheme, isDark } = useContext(AuthContext);
-  const [role] = useRole(user?.email);
+  const [role, isRoleLoading] = useRole(user?.email);
 
   const handleLogOut = () => {
     logOut()
@@ -18,8 +20,11 @@ const Navbar = () => {
       .catch((error) => console.error(error));
   };
   // eslint-disable-next-line no-unreachable
+  if (isRoleLoading) {
+    return <Loader></Loader>;
+  }
   return (
-    <div className="navbar bg-base-100 shadow-md">
+    <div className="bg-gray-100 navbar shadow-md">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -42,7 +47,7 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li className="rounded-none">
+            <li className="rounded-none text-black font-semibold">
               <Link to="/">Home</Link>
             </li>
             <li>
@@ -55,40 +60,38 @@ const Navbar = () => {
             <li>
               <a href="#WorkSpaceModal-1">Create Workspace</a>
             </li>
-            {role == "admin" ? (
-              <li>
+            {role && (
+              <li className="text-black font-semibold">
                 <Link to="/dashboard">Dashboard</Link>
               </li>
-            ) : (
-              ""
             )}
           </ul>
         </div>
-        <Link to="/">
-          <img className="w-48 lg:ml-12" src="/logo.png" alt="" />
-        </Link>
+        <div className=" w-64 lg:ml-12 p-2 ">
+          <Link to="/">
+            <img className=" " src="/logo.png" alt="" />
+          </Link>
+        </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li className="rounded-none">
+          <li className="rounded-none text-black font-semibold">
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li className="text-black font-semibold">
             <Link to="/pricing">Pricing</Link>
           </li>
-          <li>
+          <li className="text-black font-semibold">
             {" "}
-            <Link to="/workspace/boards">Workspaces</Link>
+            <Link to="/workspace/boards">All Workspaces</Link>
           </li>
-          <li>
+          <li className="text-black font-semibold">
             <a href="#WorkSpaceModal-1">Create Workspace</a>
           </li>
-          {role == "admin" ? (
-            <li>
+          {role && (
+            <li className="text-black font-semibold">
               <Link to="/dashboard">Dashboard</Link>
             </li>
-          ) : (
-            ""
           )}
         </ul>
       </div>
@@ -129,7 +132,7 @@ const Navbar = () => {
               </label>
               <div
                 tabIndex={1}
-                className="menu menu-compact dropdown-content mt-12 p-2 shadow-lg bg-base-100 rounded-sm w-60"
+                className="menu text-black menu-compact dropdown-content mt-12 p-2 shadow-lg bg-base-100 rounded-sm w-60"
               >
                 <h2 className=" text-gray-600 font-bold my-2">ACCOUNT</h2>
                 <div className="flex items-center mb-5">
@@ -144,9 +147,9 @@ const Navbar = () => {
                       }
                     />
                   </div>
-                  <div>
+                  <div className="ml-3">
                     <p className="mt-3 text-xs mb-0">{user?.displayName}</p>
-                    <p className="mt-3 text-xs mb-0">{user?.email}</p>
+                    <p className="mt-2 text-xs mb-0">{user?.email}</p>
                   </div>
                 </div>
                 <li>
@@ -172,7 +175,7 @@ const Navbar = () => {
             <Link to="/login">
               <button
                 type="button"
-                className="hover:bg-gray-100 rounded-md font-medium  text-sm px-5 py-2.5 mr-2 mb-2 "
+                className="hover:bg-gray-100 rounded-md font-medium text-black  text-sm px-5 py-2.5 mr-2 mb-2 "
               >
                 Login
               </button>
@@ -180,7 +183,7 @@ const Navbar = () => {
             <Link to="/register">
               <button
                 type="button"
-                className="hover:bg-gray-100 focus-visible: rounded-md  font-medium  text-sm px-5 py-2.5 mr-2 mb-2 "
+                className="hover:bg-gray-100 focus-visible: rounded-md  font-medium text-black  text-sm px-5 py-2.5 mr-2 mb-2 "
               >
                 Sign Up
               </button>

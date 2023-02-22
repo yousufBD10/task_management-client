@@ -1,27 +1,30 @@
 import { createBrowserRouter } from "react-router-dom";
+import Privacy from "../Components/Footer/Privacy/Privacy";
+import Terms from "../Components/Footer/Terms/Terms";
 import Homepage from "../Components/Homepage/Homepage";
 import Login from "../Components/Login/Login";
+import Checkout from "../Components/PricingPlans/Checkout/Checkout";
+import Order from "../Components/PricingPlans/Order/Order";
+import Payment from "../Components/PricingPlans/Payment/Payment";
+import Pricing from "../Components/PricingPlans/Pricing/Pricing";
 import SingUp from "../Components/SignUp/SignUp";
+import UpdateUser from "../Components/User/UpdateUser";
 import UserProfile from "../Components/User/UserProfile";
 import BoardCards from "../Components/Workspace/BoardCards";
 import Boards from "../Components/Workspace/Boards";
 import Members from "../Components/Workspace/Members";
 import Settings from "../Components/Workspace/Settings";
+import AdminDashboard from "../Layout/AdminDashboard/AdminDashboard";
+import AdminHomePage from "../Layout/AdminDashboard/AdminHomePage";
+import User from "../Layout/AdminDashboard/User";
 import Main from "../Layout/Main";
 import Workspace from "../Layout/Workspace";
 import WorkspaceSingle from "../Layout/WorkspaceSingle";
 import Error from "../Share/Error";
 import PrivateRoute from "./PrivateRoute";
-import UpdateUser from "../Components/User/UpdateUser"
-import Payment from "../Components/PricingPlans/Payment/Payment"
-import Pricing from "../Components/PricingPlans/Pricing/Pricing";
-import Checkout from "../Components/PricingPlans/Checkout/Checkout"
-import AdminDashboard from "../Layout/AdminDashboard/AdminDashboard";
-import User from "../Layout/AdminDashboard/User";
-import Order from "../Components/PricingPlans/Order/Order";
-import AdminHomePage from "../Layout/AdminDashboard/AdminHomePage";
-import Privacy from "../Components/Footer/Privacy/Privacy";
-import Terms from "../Components/Footer/Terms/Terms";
+import UserWorkspace from "../Layout/AdminDashboard/UserWorkspace";
+import UserBoard from "../Layout/AdminDashboard/UserBoard";
+import UserAllTask from "../Layout/AdminDashboard/UserAllTask";
 
 
 const Router = createBrowserRouter([
@@ -103,19 +106,18 @@ const Router = createBrowserRouter([
         path: "/workspace/members",
         element: <Members />,
       },
-    ],
-  },
-  {
-    path: "/workspace/board/:id",
-    element: <PrivateRoute><WorkspaceSingle /></PrivateRoute>,
-    children: [
       {
         path: "/workspace/board/:id",
-        element: <BoardCards />,
-      }
+        element: <PrivateRoute><WorkspaceSingle /></PrivateRoute>,
+        children: [
+          {
+             path: "/workspace/board/:id",
+             element: <BoardCards />,
+          }
+        ],
+      },
     ],
   },
-
 
   {
     path: "/dashboard",
@@ -129,6 +131,20 @@ const Router = createBrowserRouter([
         path: "/dashboard",
         element: <AdminHomePage />,
       },
+      {
+        path: "/dashboard/userworkspace",
+        element: <UserWorkspace/>,
+      },
+      {
+        path: "/dashboard/userboards/:id",
+        element: <UserBoard/>,
+        loader: ({params})=> fetch(process.env.REACT_APP_SERVER_URL +  `/userboard/${params.id}`)
+      },
+      {
+        path: "/dashboard/tasks",
+        element: <UserAllTask />,
+      },
+     
 
 
     ],

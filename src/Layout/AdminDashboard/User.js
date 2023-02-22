@@ -21,9 +21,8 @@ const User = () => {
     });
    
 const handleDelete = (data)=>{
-  console.log(data);
-
-  fetch(process.env.REACT_APP_SERVER_URL + `/delete/${data}`, {
+ 
+ fetch(process.env.REACT_APP_SERVER_URL + `/delete/${data}`, {
             method: 'DELETE', 
              headers: {
                authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -31,9 +30,9 @@ const handleDelete = (data)=>{
         })
         .then(res => res.json())
         .then(data => {
-            if(data.deletedCount > 0){
-              refetch()
-                toast.success(`Users deleted successfully`)
+            if(data.deletedCount){
+              refetch();
+                toast.success('Users deleted successfully');
             }
         })
 }
@@ -58,7 +57,7 @@ const handleDelete = (data)=>{
           <tbody>
           
           {
-            allUsers[0].map((alluser,i)=>
+            allUsers[0]?.map((alluser,i)=>
                 <tr key={i}>
               <th>
                 
@@ -87,16 +86,8 @@ const handleDelete = (data)=>{
             </tr>
             )
           }
-          
-           
-          
-          
-           
-          </tbody>
-       
-     
-          
-        </table>
+            </tbody>
+       </table>
       </div>
     );
 };

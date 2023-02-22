@@ -5,19 +5,20 @@ import { AuthContext } from "../../Context/UserContext";
 
 const CreateWorkSpaceModal = () => {
   const navigate = useNavigate();
-  const { reloadWorkspaces } = useContext(AuthContext);
+  const { reloadWorkspaces, user } = useContext(AuthContext);
   const inputColor =
     "bg-gray-100 border border-stone-300 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full";
-  const workImage =
-    "https://www.cygnismedia.com/images/post-images/ui-for-web-apps/Main.jpg";
+  // const workImage =
+  //   "https://www.cygnismedia.com/images/post-images/ui-for-web-apps/Main.jpg";
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
     const type = form.type.value;
+    const userId = user?.uid;
     const description = form.description.value;
-    const data = { name, type, description, _id: "new" };
+    const data = { name, type, description, userId, _id: "new" };
 
     fetch(`${process.env.REACT_APP_SERVER_URL}/create-update-workspace`, {
       method: "POST",
@@ -121,7 +122,7 @@ const CreateWorkSpaceModal = () => {
                       <div className="space-x-4 mt-8">
                         <button
                           type="submit"
-                          className="w-full btn border-none bg-stone-300 hover:bg-indigo-300 text-black font-bold rounded-md font-bold"
+                          className="w-full btn border-none bg-stone-300 hover:bg-indigo-300 text-black font-bold rounded-md"
                         >
                           Continue
                         </button>
