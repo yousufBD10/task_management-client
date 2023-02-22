@@ -4,13 +4,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/UserContext';
 import useRole from '../../hooks/useRole';
 import bgNav from '../../images/bgNav.jpg'
+import Loader from '../../Share/Loader';
 import CreateWorkSpaceModal from '../CreateWorkSpaceModal/CreateWorkSpaceModal';
 
 const Navbar = () => {
   const navigate = useNavigate()
   const { user, logOut, toggleTheme, isDark } = useContext(AuthContext);
-  const [role] = useRole(user?.email)
-
+  const [role,isRoleLoading] = useRole(user?.email)
+console.log(role);
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -19,6 +20,9 @@ const Navbar = () => {
       .catch(error => console.error(error))
   }
   // eslint-disable-next-line no-unreachable
+  if (isRoleLoading) {
+    return <Loader></Loader>
+}
   return (
     <div className="bg-gray-100 navbar shadow-md">
       <div className="navbar-start">
@@ -32,8 +36,8 @@ const Navbar = () => {
             <li> <Link to='/workspace/boards'>All Workspaces</Link></li>
             <li><a href="#WorkSpaceModal-1">Create Workspace</a></li>
             {
-              role == 'admin' ? <li><Link to="/dashboard">Dashboard</Link></li> : ''
-            }
+            role && <li className='text-black font-semibold'><Link to="/dashboard">Dashboard</Link></li>
+          }
           </ul>
         </div>
         <div className=' w-64 lg:ml-12 p-2 '>
@@ -47,7 +51,7 @@ const Navbar = () => {
           <li className='text-black font-semibold'> <Link to='/workspace/boards'>All Workspaces</Link></li>
           <li className='text-black font-semibold'><a href="#WorkSpaceModal-1">Create Workspace</a></li>
           {
-            role == 'admin' ? <li className='text-black font-semibold'><Link to="/dashboard">Dashboard</Link></li> : ''
+            role && <li className='text-black font-semibold'><Link to="/dashboard">Dashboard</Link></li>
           }
         </ul>
       </div>

@@ -31,7 +31,7 @@ const UserProfile = () => {
         <div className="lg:flex justify-between">
           <div className="flex  gap-5">
             <div className="avatar mr-3">
-              <div className="w-24 rounded-full   ring-offset-base-100 ring-offset-2">
+              <div className=" w-48 rounded-full    ring-offset-base-100 ring-offset-2">
                 {user?.photoURL ? (
                   <img src={user?.photoURL} alt="f" />
                 ) : (

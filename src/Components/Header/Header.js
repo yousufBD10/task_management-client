@@ -16,7 +16,7 @@ const Header = () => {
     return (
         <div className="my-10 grid items-center lg:grid-cols-2 px-12">
             <div>
-                <h1 className='text-6xl font-sans font-bold text-black mt-12'>One App to <br /> Replace Them All.</h1>
+                <h1 className='text-6xl font-sans font-bold text-black mt-12'> <span className='text-red-600'>One App to </span> <br /> Replace Them All.</h1>
                 <h3 className='text-xl font-semibold font-serif mt-8 text-black'>We’re more than a doc. Or a table. Customize TaskMaster <br /> to work the way you do.</h3>
                 <form onSubmit={handleSubs}>
                     <input type="email" name='email' placeholder="Enter your email address" className="rounded-md input text-black bg-gray-300 mt-12 w-full max-w-xs input-bordered" /><br />

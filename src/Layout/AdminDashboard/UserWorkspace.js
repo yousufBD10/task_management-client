@@ -25,10 +25,11 @@ const UserWorkspace = () => {
             if(data.deletedCount > 0){
               setRefetch(false)
               // refetch()
+              reloadWorkspaces();
                 toast.success(`Workspace deleted successfully`)
             }
         });
-      },[workspaces,id])
+      },[workspaces,id,reloadWorkspaces])
       
 
      

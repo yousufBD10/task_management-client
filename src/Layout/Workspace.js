@@ -70,7 +70,7 @@ const Workspace = () => {
           <label htmlFor="dashboardDawer" className="drawer-overlay"></label>
           <ul className="pl-4 pr-4 w-80 menu">
             {" "}
-            <li className="shadow-sm mb-2 rounded-md ">
+            <li className="  hover:bg-gray-600 mb-2  ">
               <Link to="/workspace/boards" className="font-bold">
                 {" "}
                 <MdOutlineSpaceDashboard />
@@ -80,37 +80,44 @@ const Workspace = () => {
             <div className="divider"></div>
             <div className="flex items-center ">
               <h3 className="mb-2 font-medium">Workspace</h3>
-              <a href="#WorkSpaceModal-1" className=" ml-32 hover:bg-zinc-300 p-2 rounded-md">
+              <a href="#WorkSpaceModal-1" className=" ml-32 hover:bg-zinc-300 hover:text-gray-700  p-2 rounded-full ">
                 <AiOutlinePlus />
               </a>
             </div>
             {workspaces?.length > 0 ? workspaces.map((el) => {
-              return <div key={el._id} className="collapse hover:bg-gray-100 hover:text-black shadow-sm mb-2" onClick={() => setCurrent(el._id)}>
+              return <div key={el._id} className="collapse   mb-2" onClick={() => setCurrent(el._id)}>
                 <input type="checkbox" className="peer" />
-                <div className="collapse-title mb-2 flex items-center gap-3 font-bold">
+                <div className="collapse-title  mb-2 flex items-center gap-3 font-bold">
                   {" "}
                   <img
                     className="w-6 rounded-sm"
                     src="https://placeimg.com/192/192/people"
                     alt=""
                   />
-                  {el.name} <TiArrowUnsorted className="ml-16"></TiArrowUnsorted>
+
+                <li className=" mb-2 flex items-center justify-between hover:bg-gray-600 rounded-md">
+                    <Link to="/workspace/boards">
+                    
+                    {el.name}  <TiArrowUnsorted className="ml-12"></TiArrowUnsorted> 
+                    </Link>
+                  </li>
+                
                 </div>
                 <div className="collapse-content">
-                  <li className="shadow-sm mb-2 rounded-md">
+                  <li className=" mb-2 hover:bg-gray-600  ">
                     <Link to="/workspace/boards">
                       <MdOutlineSpaceDashboard />
                       Boards
                     </Link>
                   </li>
-                  <li className="shadow-sm mb-2 rounded-md">
+                  <li className="  hover:bg-gray-600 mb-2 ">
                     <Link to="/workspace/members">
                       <HiOutlineUsers />
                       Members
                     </Link>
                   </li>
                   {" "}
-                  <li className="shadow-sm mb-2 rounded-md">
+                  <li className="  hover:bg-gray-600 mb-2 ">
                     <Link to="/workspace/settings">
                       {" "}
                       <AiOutlineSetting />
