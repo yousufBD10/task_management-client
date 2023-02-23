@@ -27,8 +27,10 @@ import { AuthContext } from "../../../Context/UserContext";
 import useMembersOfCurrentWorkspace from "../../../hooks/useMembersOfCurrentWorkspace";
 import LabelDropDown from "../SingleTaskModalDropDown/LabelDropDown";
 import CoverDropDown from "../SingleTaskModalDropDown/CoverDropDown";
+import CheckList from "../../CheckList/CheckList";
 
 const SingleTaskModal = () => {
+   const [checklistToggle, setChecklistToggle] = useState(false);
   const buttonStyle =
     "dropdown dropdown-bottom md:dropdown-left flex items-center mb-1 mr-1 p-2 space-x-3 rounded-md btn-ghost bg-stone-300 btn-sm text-stone-800 hover:bg-indigo-300 w-44 md:w-none";
   const {
@@ -465,7 +467,9 @@ const SingleTaskModal = () => {
                 ></textarea>
               </form>
               <br />
-
+              {/* checklist start */}
+              {checklistToggle && <CheckList currentTask={currentTask} />}
+              {/* checklist end */}
               {/* ------------- Attachment section------- */}
 
               {currentTask?.attachment?.length > 0 && (
@@ -587,9 +591,10 @@ const SingleTaskModal = () => {
                           href="#"
                           tabIndex={0}
                           className={buttonStyle}
+                          onClick={() => setChecklistToggle(!checklistToggle)}
                         >
                           <FiCheckSquare></FiCheckSquare>
-                          <span>Checklist</span>
+                          <span className={`${checklistToggle && 'font-bold'}`}>Checklist</span>
                         </Link>
                       </li>
                       <li className="">
