@@ -8,7 +8,7 @@ const UserDashboard = () => {
     const setCurrent = (id) => { setCurrentWorkspace(workspaces.find((w) => w._id == id)) }
     useEffect(reloadWorkspaces, [user]);
     console.log(workspaces);
-    const { data: alluserdata = [] } = useQuery({
+    const { data: alluserdata = [],refetch } = useQuery({
         queryKey: [ `/alluserdatas/${user?.uid}`],
         queryFn: async () => {
           const res = await fetch(process.env.REACT_APP_SERVER_URL + `/alluserdatas/${user?.uid}`, {

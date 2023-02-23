@@ -1,56 +1,44 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useEffect, useState } from 'react';
-import { CgSpinner } from 'react-icons/cg';
+import React, { useContext} from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/UserContext';
 
 const UserAllTask = () => {
-     const [id,setId] = useState('');
-     const [refetch,setRefetch] =useState(true);
-    const {user} = useContext(AuthContext);
+    
+  const {user} = useContext(AuthContext);
+
+    const { data: alluserdata = [] ,refetch} = useQuery({
+      queryKey: [user?.uid],
+      queryFn: async () => {
+        const res = await fetch(process.env.REACT_APP_SERVER_URL +  `/alluserdatas/${user?.uid}`, {
+          method: "GET",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          }
+        },
+        );
+        const data = await res.json();
+        return data;
+      },
+    });
     const handleDelete = (id)=>{
-      setId(id)
+      
+      fetch(process.env.REACT_APP_SERVER_URL + `/delete/task/${id}`, {
+        method: 'DELETE', 
+         headers: {
+           authorization: `bearer ${localStorage.getItem('accessToken')}`
+         }
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.deletedCount > 0){
+          refetch()
+            toast.success(`Tasks deleted successfully`)
+        }
+    });
     };
 
-    
-    const { data: alluserdata = [] ,isLoading} = useQuery({
-        queryKey: [user?.uid],
-        queryFn: async () => {
-          const res = await fetch(process.env.REACT_APP_SERVER_URL +  `/alluserdatas/${user?.uid}`, {
-            method: "GET",
-            headers: {
-              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-            }
-          },
-          );
-          const data = await res.json();
-          return data;
-        },
-      });
-      if(isLoading){
-        <div className="text-center">
-        <CgSpinner aria-label="Center-aligned spinner example" />
-      </div>
-      }
-      console.log(alluserdata);
-
-      useEffect(()=>{
-        fetch(process.env.REACT_APP_SERVER_URL + `/delete/${id}`, {
-            method: 'DELETE', 
-             headers: {
-               authorization: `bearer ${localStorage.getItem('accessToken')}`
-             }
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.deletedCount > 0){
-              console.log(data.deletedCount);
-                toast.success(`Tasks deleted successfully`);
-                setRefetch(false);
-            }
-        });
-      },[id,refetch])
-    return (
+     return (
       
        <div className="overflow-x-auto mt-5">
         <table className="table w-full">
