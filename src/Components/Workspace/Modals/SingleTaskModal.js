@@ -295,7 +295,7 @@ const SingleTaskModal = () => {
   // ------- remove label ---------
 
   const removeLabel = (label) => {
-    const findLabels = currentTask.Labels.filter((lab) => lab !== label);
+    const findLabels = currentTask?.Labels?.filter((lab) => lab !== label);
     timer = setTimeout(() => {
       let boardItemsCopy = [...boardItems];
       for (let i = 0; i < boardItems.length; i++) {

@@ -73,7 +73,7 @@ const ToDoCard = ({ current_board, current_list, reloadItems }) => {
                       <div className="flex flex-wrap items-center m-2">
                         {item?.Labels?.map((label, i) => {
                           return (
-                            <div className="flex items-center mr-2 ">
+                            <div className="flex items-center mr-2 my-1">
                               <div
                                 key={i}
                                 className={`flex items-center w-12 h-2 bg-${label}-400 rounded-full relative hover:bg:black/60`}
@@ -101,7 +101,7 @@ const ToDoCard = ({ current_board, current_list, reloadItems }) => {
               {/* -------------------- To Show CreateTask Modal trigger Start -------------------- */}
               <a
                 href={`#_${current_list.id}_`}
-                className="w-full btn border-none bg-stone-300 hover:bg-indigo-300 text-black font-semibold rounded-sm font-bold"
+                className="w-full btn border-none bg-stone-300 hover:bg-indigo-300 text-black font-semibold rounded-sm"
               >
                 Add a Card
               </a>
