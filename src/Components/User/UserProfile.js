@@ -57,7 +57,7 @@ const UserProfile = () => {
   
         <div>
            <h1 className="text-3xl  my-6 text-black">About</h1>
-           <h1 className="flex items-center gap-3 my-6 text-black  "><MdCastForEducation></MdCastForEducation>  Former <span className=' font-bold '>{update?.workplace}</span> </h1>
+           <h1 className="flex items-center gap-3 my-6 text-black  "><MdCastForEducation></MdCastForEducation>  Working as <span className=' font-bold '>{update?.workplace}</span> </h1>
            <h1 className=" flex items-center gap-3 text-black  my-6"><FaGraduationCap></FaGraduationCap> Studies at<span className=' font-bold '>{update?.univerty}</span> </h1>
            <h1 className=" flex items-center gap-3 my-6 text-black  "><FaHome></FaHome> Live at <span className=' font-bold '>{update?.address}</span></h1>
            <h1 className=" flex items-center gap-3  my-6 text-black  "><MdLocationOn></MdLocationOn> From at <span className=' font-bold '>{update?.come}</span> </h1>
