@@ -60,7 +60,7 @@ const AdminDashboard = () => {
               </Link>
             </li>
             <li className=" hover:bg-gray-600 mb-1  ">
-              <Link to={`/dashboard/userboards/${workspaces[0]?._id}`} className="font-semibold">
+              <Link to='/dashboard/userboard' className="font-semibold">
                 {" "}
                 <MdOutlineBookmarkAdd/>
                 Boards

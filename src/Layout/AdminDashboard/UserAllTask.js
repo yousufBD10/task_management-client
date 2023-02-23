@@ -40,7 +40,7 @@ const UserAllTask = () => {
 
      return (
       
-       <div className="overflow-x-auto mt-5">
+       <div className="overflow-x-auto p-4">
         <table className="table w-full">
          
           <thead>
@@ -50,9 +50,8 @@ const UserAllTask = () => {
               </th>
               <th>No</th>
               <th>Name</th>
-              <th>Action</th>
               <th>Delete</th>
-              <th></th>
+             
             </tr>
           </thead>
           <tbody>
@@ -77,10 +76,7 @@ const UserAllTask = () => {
                   </div>
                 </div>
               </td>
-              <th>
-              <a href='#edit-workspace' className='hover:bg-slate-200 text-black rounded-lg cursor-pointer p-2'> Edit </a>
-                {/* <button className="btn btn-ghost btn-xs">Edit</button> */}
-              </th>
+             
               <td><button onClick={()=>handleDelete(task?._id)} className="bg-red-600 rounded text-white px-2 hover:bg-red-500">Delete</button></td>
             </tr>
             )
