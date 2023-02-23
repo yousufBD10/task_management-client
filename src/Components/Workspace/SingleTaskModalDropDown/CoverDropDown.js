@@ -7,7 +7,7 @@ const CoverDropDown = ({ handleUploadCover }) => {
   const handleCover = (event) => {
     event.preventDefault();
     const form = event.target;
-    const image = form.image.files[0];
+    const image = form.files[0];
 
     const formData = new FormData();
     formData.append("image", image);
@@ -21,7 +21,7 @@ const CoverDropDown = ({ handleUploadCover }) => {
       .then((imgData) => {
         if (imgData.success) {
           handleUploadCover(imgData.data.url);
-          form.reset();
+          form.files[0].reset();
         } else {
           toast.error(imgData.message);
         }
@@ -37,7 +37,6 @@ const CoverDropDown = ({ handleUploadCover }) => {
       <hr />
       <form
         onClick={(e) => e.stopPropagation()}
-        onSubmit={handleCover}
         className="w-full space-y-1 dark:text-black"
       >
         <label for="files" className="block text-sm font-medium mt-2">
@@ -48,6 +47,8 @@ const CoverDropDown = ({ handleUploadCover }) => {
           <input
             type="file"
             name="image"
+            onChange={handleCover}
+            value=""
             id="files"
             className="pl-2 py-8 mb-2 border-2 border-dashed rounded-md  text-sm dark:border-gray-700 dark:text-gray-700 dark:bg-stone-300"
           />

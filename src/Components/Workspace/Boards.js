@@ -66,8 +66,7 @@ const Boards = () => {
       })
       .catch((error) => toast.error(error.message));
   };
-  const image =
-    "https://media.istockphoto.com/id/1044776908/photo/a-beautiful-colorful-abstract-mountain-scenery-in-sunrise-minimalist-landscape-of-mountains.jpg?s=170667a&w=0&k=20&c=M1n3XMcg9KJNXEdsQqITqboEcU999O4uRy9yjUOKpJk=";
+  const image = "/assets/banner/board_img-5.jpg";
 
   const handleEdite = (event) => {
     event.preventDefault();
@@ -99,7 +98,10 @@ const Boards = () => {
         <>
           <div className="flex justify-between  pr-5">
             <h1 className="text-xl font-medium px-5">Boards</h1>
-            <a href="#new-board" className="btn btn-primary btn-sm rounded-sm">
+            <a
+              href="#new-board"
+              className="btn btn-sm border-none bg-stone-300 hover:bg-indigo-300 text-black font-semibold rounded-sm"
+            >
               {" "}
               Create new board{" "}
             </a>
@@ -118,7 +120,8 @@ const Boards = () => {
                 <Link to={`/workspace/board/${card._id}`}>
                   <div
                     style={{
-                      backgroundImage: `url(${image})`,
+                      backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                      url(${image})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center center",
                       backgroundRepeat: "no-repeat",

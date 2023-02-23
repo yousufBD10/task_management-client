@@ -26,6 +26,8 @@ const Workspace = () => {
   };
   useEffect(reloadWorkspaces, [user]);
 
+  const image = "/assets/banner/project_img-10.jpg";
+
   return (
     <div className="text-white">
       <Navbar></Navbar>
@@ -58,9 +60,16 @@ const Workspace = () => {
               <div className="lg:flex justify-between px-5">
                 <div className="flex items-center gap-2">
                   <div className="avatar">
-                    <div className="w-20 rounded">
-                      <img src="https://placeimg.com/192/192/people" />
-                    </div>
+                    <div
+                      className="w-20 rounded"
+                      style={{
+                        backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                    url(${image})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center center",
+                        backgroundRepeat: "no-repeat",
+                      }}
+                    ></div>
                   </div>
                   <div>
                     <div className="flex items-center gap-3">
@@ -83,7 +92,7 @@ const Workspace = () => {
                 </div>
                 <a
                   href="#invite-member"
-                  className="flex mt-12 items-center gap-2 bg-blue-600 btn btn-primary btn-sm rounded-sm text-white"
+                  className="btn btn-sm border-none bg-stone-300 hover:bg-indigo-300 text-black font-semibold rounded-sm"
                 >
                   <FiUserPlus></FiUserPlus> Invite Workspace members
                 </a>
