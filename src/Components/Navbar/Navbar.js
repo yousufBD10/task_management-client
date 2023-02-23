@@ -3,15 +3,14 @@ import { CgLogOut } from "react-icons/cg";
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/UserContext';
 import useRole from '../../hooks/useRole';
-import bgNav from '../../images/bgNav.jpg'
 import Loader from '../../Share/Loader';
 import CreateWorkSpaceModal from '../CreateWorkSpaceModal/CreateWorkSpaceModal';
 
 const Navbar = () => {
   const navigate = useNavigate()
   const { user, logOut, toggleTheme, isDark } = useContext(AuthContext);
-  const [role,isRoleLoading] = useRole(user?.email)
-console.log(role);
+  const [role, isRoleLoading] = useRole(user?.email)
+  console.log(role);
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -22,7 +21,7 @@ console.log(role);
   // eslint-disable-next-line no-unreachable
   if (isRoleLoading) {
     return <Loader></Loader>
-}
+  }
   return (
     <div className="bg-gray-100 navbar shadow-md">
       <div className="navbar-start">
@@ -36,12 +35,12 @@ console.log(role);
             <li> <Link to='/workspace/boards'>All Workspaces</Link></li>
             <li><a href="#WorkSpaceModal-1">Create Workspace</a></li>
             {
-            role && <li className='text-black font-semibold'><Link to="/dashboard">Dashboard</Link></li>
-          }
+              role && <li className='text-black font-semibold'><Link to="/dashboard">Dashboard</Link></li>
+            }
           </ul>
         </div>
         <div className=' w-64 lg:ml-12 p-2 '>
-        <Link to='/'><img className=' ' src="/logo.png" alt="" /></Link>
+          <Link to='/'><img className=' ' src="/logo.png" alt="" /></Link>
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
