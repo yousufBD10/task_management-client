@@ -5,9 +5,11 @@ import { AuthContext } from "../../Context/UserContext";
 
 const CreateWorkSpaceModal = () => {
   const navigate = useNavigate();
-  const { reloadWorkspaces ,user} = useContext(AuthContext);
-  const workImage =
-    "https://www.cygnismedia.com/images/post-images/ui-for-web-apps/Main.jpg";
+  const { reloadWorkspaces, user } = useContext(AuthContext);
+  const inputColor =
+    "bg-gray-100 border border-stone-300 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full";
+  // const workImage =
+  //   "https://www.cygnismedia.com/images/post-images/ui-for-web-apps/Main.jpg";
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -16,7 +18,7 @@ const CreateWorkSpaceModal = () => {
     const type = form.type.value;
     const userId = user?.uid;
     const description = form.description.value;
-    const data = { name, type, description,userId, _id: "new" };
+    const data = { name, type, description, userId, _id: "new" };
 
     fetch(`${process.env.REACT_APP_SERVER_URL}/create-update-workspace`, {
       method: "POST",
@@ -40,16 +42,16 @@ const CreateWorkSpaceModal = () => {
   return (
     <div>
       <div id="WorkSpaceModal-1" className="modal">
-        <div className="modal-box w-11/12 max-w-6xl m-0 p-0">
+        <div className="modal-box w-11/12 max-w-6xl m-0 p-0 scrollbar-hide rounded-md">
           <a
             href="#y"
-            className="btn btn-sm btn-circle absolute right-2 top-2 z-30 hover:rotate-90 transition-all ease-in close_modal"
+            className="btn btn-sm btn-circle absolute right-2 top-2 z-30 hover:bg-indigo-300 bg-stone-300 text-stone-500 border-none transition-all ease-in close_modal"
           >
             ✕
           </a>
           <div>
             <div className="relative flex flex-col-reverse  lg:py-0 lg:flex-col">
-              <div className="w-full max-w-xl px-4 mx-auto md:px-0 lg:px-8 lg:py-20 bg-indigo-300 lg:max-w-screen-xl">
+              <div className="w-full max-w-xl px-4 mx-auto md:px-0 lg:px-8 lg:py-20 bg-stone-100 rounded-md lg:max-w-screen-xl">
                 <div className="mb-0 lg:max-w-lg py-4 lg:pr-8 xl:pr-6 text-gray-900">
                   <div className="px-8">
                     <h1 className="font-medium text-3xl">
@@ -72,7 +74,7 @@ const CreateWorkSpaceModal = () => {
                             required
                             type="text"
                             name="name"
-                            className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
+                            className={inputColor}
                             placeholder="Enter Workspace name"
                           />
                           <small>
@@ -87,11 +89,7 @@ const CreateWorkSpaceModal = () => {
                           >
                             Workspace type
                           </label>
-                          <select
-                            required
-                            name="type"
-                            className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
-                          >
+                          <select required name="type" className={inputColor}>
                             <option>Operation</option>
                             <option>Small Business</option>
                             <option>Engineering-IT</option>
@@ -111,7 +109,7 @@ const CreateWorkSpaceModal = () => {
                           </label>
                           <textarea
                             name="description"
-                            className="bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full h-36"
+                            className={`${inputColor} h-36`}
                             placeholder="Our team organizes everything here"
                             defaultValue={""}
                           />
@@ -124,7 +122,7 @@ const CreateWorkSpaceModal = () => {
                       <div className="space-x-4 mt-8">
                         <button
                           type="submit"
-                          className="w-full btn btn-primary rounded-md font-bold"
+                          className="w-full btn border-none bg-stone-300 hover:bg-indigo-300 text-black font-bold rounded-md"
                         >
                           Continue
                         </button>

@@ -4,7 +4,8 @@ import CreateTask from "../Modals/CreateTask";
 import { toast } from "react-toastify";
 
 const ToDoCard = ({ current_board, current_list, reloadItems }) => {
-  const { currentWorkspace, setCurrentTask, boardItems,user } = useContext(AuthContext);
+  const { currentWorkspace, setCurrentTask, boardItems, user } =
+    useContext(AuthContext);
 
   /* ----------------- Collect data After Submit Task on modal Start ----------------- */
   const handleTaskSubmit = (event, cardID) => {
@@ -18,7 +19,7 @@ const ToDoCard = ({ current_board, current_list, reloadItems }) => {
       boradId: current_board,
       cardID: cardID,
       note: note,
-      userId
+      userId,
     };
 
     fetch(`${process.env.REACT_APP_SERVER_URL}/create-update-task`, {
@@ -45,7 +46,7 @@ const ToDoCard = ({ current_board, current_list, reloadItems }) => {
       <div className="box-border  text-black">
         <div className="bg-gray-300 p-3">
           <div className="flex justify-between items-start gap-2">
-            <h4 className="w-10/12 font-semibold text-justify hover:cursor-pointer">
+            <h4 className="w-10/12 font-semibold text-justify p-2 hover:cursor-pointer">
               {current_list.ListName}
             </h4>
           </div>
@@ -59,6 +60,29 @@ const ToDoCard = ({ current_board, current_list, reloadItems }) => {
                       key={item._id}
                       className="bg-gray-50 hover:cursor-pointer hover:bg-gray-100 p-2 my-1 relative"
                     >
+                      {/* ------show cover image ------- */}
+                      {item?.cover && (
+                        <img
+                          src={item?.cover}
+                          alt="Shoes"
+                          className="w-full mb-4"
+                        />
+                      )}
+                      {/*---------- show label ------- */}
+
+                      <div className="flex flex-wrap items-center m-2">
+                        {item?.Labels?.map((label, i) => {
+                          return (
+                            <div className="flex items-center mr-2 my-1">
+                              <div
+                                key={i}
+                                className={`flex items-center w-12 h-2 bg-${label}-400 rounded-full relative hover:bg:black/60`}
+                              ></div>
+                            </div>
+                          );
+                        })}
+                      </div>
+
                       <a
                         className="block"
                         href="#new-board-modal1"
@@ -77,9 +101,9 @@ const ToDoCard = ({ current_board, current_list, reloadItems }) => {
               {/* -------------------- To Show CreateTask Modal trigger Start -------------------- */}
               <a
                 href={`#_${current_list.id}_`}
-                className="btn btn-primary w-full hover:bg-gray-300 px-2 py-1 text-start"
+                className="w-full btn border-none bg-stone-300 hover:bg-indigo-300 text-black font-semibold rounded-sm"
               >
-                ➕ Add a Card
+                Add a Card
               </a>
               {/* -------------------- To Show CreateTask Modal trigger End -------------------- */}
             </div>

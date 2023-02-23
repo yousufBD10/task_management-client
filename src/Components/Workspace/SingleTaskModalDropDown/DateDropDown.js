@@ -12,16 +12,14 @@ const DateDropDown = ({
   setSelectedDate,
   handleRemoveDate,
 }) => {
-  const { boardItems, currentTask, user, logOut, currentWorkspace } =
-    useContext(AuthContext);
   //------- Received selected date range from DayPicker calendar-----
 
   return (
     <div
       tabIndex={2}
-      className="dropdown-content p-2 rounded-md bg-gray-100 divide-gray-800"
+      className="dropdown-content p-2 rounded-md bg-stone-200 divide-black text-black"
     >
-      <p className="text-gray-900 font-semibold space-x-3 text-center">Dates</p>
+      <p className=" font-semibold space-x-3 text-center">Dates</p>
 
       <hr />
       {/*------- Calendar ---------- */}
@@ -36,20 +34,20 @@ const DateDropDown = ({
       <form action="" onSubmit={""}>
         <div>
           <div>
-            <p className="text-gray-500">
+            <p className="text-gray-700">
               Start date:{" "}
               {selectedDate?.from && format(selectedDate.from, "PP")}
             </p>
           </div>
           <div>
-            <p className="text-gray-500">
+            <p className="text-gray-700">
               Due date: {selectedDate?.to && format(selectedDate.to, "PP")}
             </p>
           </div>
         </div>
         <div className="my-4">
-          <p className="text-gray-900 font-bold mb-2">Set due date reminder</p>
-          <select name="" id="" className="w-full text-gray-900">
+          <p className=" font-bold mb-2">Set due date reminder</p>
+          <select name="" id="" className="w-full bg-gray-50">
             <option value="#">(none)</option>
             <option value="#">At time of due date</option>
             <option value="#">5 mins before</option>
@@ -64,14 +62,14 @@ const DateDropDown = ({
             <button
               onClick={handleDateSubmit}
               type="submit"
-              className="btn btn-ghost btn-sm rounded-md bg-gray-800 text-gray-400"
+              className="btn btn-ghost btn-sm rounded-md bg-stone-400 hover:bg-indigo-300"
             >
               Save
             </button>
             <button
               onClick={() => handleRemoveDate("")}
               type="submit"
-              className="btn btn-ghost btn-sm font-normal bg-gray-300 rounded-md text-gray-700 ml-3"
+              className="btn btn-ghost btn-sm font-normal bg-gray-300 rounded-md text-gray-700 ml-3 hover:bg-indigo-300"
             >
               Remove
             </button>
