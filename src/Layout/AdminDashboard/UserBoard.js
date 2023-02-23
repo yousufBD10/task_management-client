@@ -1,35 +1,35 @@
 import  {useContext, useEffect,useState}  from "react";
 import { useLoaderData } from "react-router";
+import { toast } from "react-toastify";
 import  { AuthContext } from "../../Context/UserContext";
 
 
 const UserBoard = () => {
     const board = useLoaderData();
-    const [id,setId] = useState('');
+    const [refetch,setRefetch] = useState(true);
     const { workspaces,setCurrentWorkspace ,user,reloadWorkspaces} = useContext(AuthContext);
     const setCurrent = (id) => { setCurrentWorkspace(workspaces.find((w) => w._id == id)) }
     useEffect(reloadWorkspaces, [user]);
-    console.log(board);
-    console.log(id);
-    const handleDelete = (data)=>{
-        setId(data)
+    
+    const handleDelete = (id)=>{
+        fetch(process.env.REACT_APP_SERVER_URL + `/delete/board/${id}`, {
+          method: 'DELETE', 
+           headers: {
+             authorization: `bearer ${localStorage.getItem('accessToken')}`
+           }
+      })
+      .then(res => res.json())
+      .then(data => {
+          if(data.deletedCount > 0){
+          setRefetch(false);
+         
+            toast.success(`Board deleted successfully`)
+          }
+      });
     }
       useEffect(()=>{
-        fetch(process.env.REACT_APP_SERVER_URL + `/delete/${id}`, {
-            method: 'DELETE', 
-             headers: {
-               authorization: `bearer ${localStorage.getItem('accessToken')}`
-             }
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.deletedCount > 0){
-            //   setRefetch(false)
-            //   // refetch()
-            //     toast.success(`Workspace deleted successfully`)
-            }
-        });
-      },[workspaces,id])
+
+      },[refetch])
     return (
         <div className="overflow-x-auto w-full">
         <table className="table w-full">

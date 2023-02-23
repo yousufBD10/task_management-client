@@ -22,7 +22,7 @@ const User = () => {
    
 const handleDelete = (data)=>{
  
- fetch(process.env.REACT_APP_SERVER_URL + `/delete/${data}`, {
+ fetch(process.env.REACT_APP_SERVER_URL + `/delete/user/${data}`, {
             method: 'DELETE', 
              headers: {
                authorization: `bearer ${localStorage.getItem('accessToken')}`

@@ -4,32 +4,32 @@ import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/UserContext';
 
 const UserWorkspace = () => {
-     const [id,setId] = useState('');
     const [refetch,setRefetch] = useState(true);
     const { user, reloadWorkspaces, workspaces, setCurrentWorkspace, currentWorkspace } = useContext(AuthContext);
     const setCurrent = (id) => { setCurrentWorkspace(workspaces.find((w) => w._id == id)) }
     useEffect(reloadWorkspaces, [user]);
     console.log(workspaces);
-    const handleDelete = (data)=>{
-        setId(data)
+  
+    const handleDelete = (id)=>{
+      fetch(process.env.REACT_APP_SERVER_URL + `/delete/workspace/${id}`, {
+        method: 'DELETE', 
+         headers: {
+           authorization: `bearer ${localStorage.getItem('accessToken')}`
+         }
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.deletedCount > 0){
+          setRefetch(false)
+          // refetch()
+          reloadWorkspaces();
+            toast.success(`Workspace deleted successfully`)
+        }
+    });
     }
       useEffect(()=>{
-        fetch(process.env.REACT_APP_SERVER_URL + `/delete/${id}`, {
-            method: 'DELETE', 
-             headers: {
-               authorization: `bearer ${localStorage.getItem('accessToken')}`
-             }
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.deletedCount > 0){
-              setRefetch(false)
-              // refetch()
-              reloadWorkspaces();
-                toast.success(`Workspace deleted successfully`)
-            }
-        });
-      },[workspaces,id,reloadWorkspaces])
+       
+      },[workspaces,refetch,reloadWorkspaces])
       
 
      
