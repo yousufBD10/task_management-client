@@ -320,7 +320,7 @@ const SingleTaskModal = () => {
       for (let i = 0; i < boardItems.length; i++) {
         if (boardItems[i]._id == currentTask._id) {
           boardItemsCopy.cover = boardItemsCopy[i].cover = coverImage;
-          // setBoardItems(boardItemsCopy);
+          setBoardItems(boardItemsCopy);
           SendToServer();
           break;
         }

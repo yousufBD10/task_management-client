@@ -62,7 +62,7 @@ const EditeProfile = ({ setModal, setRefetch }) => {
           <form onSubmit={handleEdit} className="modal-box relative bg-form">
             <label
               htmlFor="my-modal-4"
-              className="btn btn-sm btn-circle absolute font-extrabold  text-red-600 right-2 top-2"
+              className="btn btn-sm btn-circle absolute font-extrabold   right-2 top-2 text-black bg-stone-400 hover:bg-indigo-300 scrollbar-hide"
             >
               ✕
             </label>
@@ -151,7 +151,10 @@ const EditeProfile = ({ setModal, setRefetch }) => {
                 />
               </div>
             </div>
-            <button type="submit" className="btn btn-info  font-bold w-full">
+            <button
+              type="submit"
+              className="w-full btn border-none bg-stone-300 hover:bg-indigo-300 text-black font-bold rounded-md"
+            >
               Update
             </button>
           </form>
