@@ -12,6 +12,7 @@ import {
   FiTag,
   FiTrash,
   FiUser,
+  FiVideo,
 } from "react-icons/fi";
 import { BsCalendar4Range } from "react-icons/bs";
 import { GrTextAlignFull } from "react-icons/gr";
@@ -666,6 +667,17 @@ const SingleTaskModal = () => {
                           <span>Share</span>
                           <ShareDropDown></ShareDropDown>
                         </Link>
+                      </li>
+                      <li className="">
+                        <a
+                          rel="noopener noreferrer"
+                          target="_blank"
+                          href="https://meet.google.com"
+                          className={buttonStyle}
+                        >
+                          <FiVideo></FiVideo>
+                          <span>Google meet</span>
+                        </a>
                       </li>
                     </div>
                   </ul>
