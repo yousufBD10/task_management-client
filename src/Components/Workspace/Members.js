@@ -8,7 +8,7 @@ const Members = () => {
   const [members] = useMembersOfCurrentWorkspace(currentWorkspace, logOut);
 
   return (
-    <div>{currentWorkspace && <>
+    <div className='text-black'>{currentWorkspace && <>
       <h1 className="text-xl font-medium px-5">Members</h1>
       <div className='flex flex-row px-5'>
         <div className='flex flex-col w-60 g-3'>
