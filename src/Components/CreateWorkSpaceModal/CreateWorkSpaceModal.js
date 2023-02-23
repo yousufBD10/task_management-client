@@ -5,7 +5,7 @@ import { AuthContext } from "../../Context/UserContext";
 
 const CreateWorkSpaceModal = () => {
   const navigate = useNavigate();
-  const { reloadWorkspaces } = useContext(AuthContext);
+  const { reloadWorkspaces ,user} = useContext(AuthContext);
   const workImage =
     "https://www.cygnismedia.com/images/post-images/ui-for-web-apps/Main.jpg";
 
@@ -14,8 +14,9 @@ const CreateWorkSpaceModal = () => {
     const form = event.target;
     const name = form.name.value;
     const type = form.type.value;
+    const userId = user?.uid;
     const description = form.description.value;
-    const data = { name, type, description, _id: "new" };
+    const data = { name, type, description,userId, _id: "new" };
 
     fetch(`${process.env.REACT_APP_SERVER_URL}/create-update-workspace`, {
       method: "POST",

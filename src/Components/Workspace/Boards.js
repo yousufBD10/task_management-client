@@ -42,7 +42,8 @@ const Boards = () => {
 
     const form = event.target;
     const name = form.name.value;
-    const data = { name, wid: currentWorkspace._id, _id: 'new' };
+    const userId = user?.uid;
+    const data = { name, wid: currentWorkspace._id,userId, _id: 'new' };
 
     fetch(`${process.env.REACT_APP_SERVER_URL}/create-update-workspace-board`, {
       method: 'POST',

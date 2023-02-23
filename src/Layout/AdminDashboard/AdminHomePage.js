@@ -29,7 +29,7 @@ const AdminHomePage = () => {
   });
 
   return (
-    <div>
+    <div className="p-4">
       {role === 'admin' &&
         <div>
           <div className=" ml-1 lg:flex grid md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5   ">

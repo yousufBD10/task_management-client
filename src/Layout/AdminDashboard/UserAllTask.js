@@ -1,19 +1,16 @@
-import { useQuery } from "@tanstack/react-query";
-import  {useContext, useEffect,useState}  from "react";
-import { useLoaderData } from "react-router";
-import { toast } from "react-toastify";
-import  { AuthContext } from "../../Context/UserContext";
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext} from 'react';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../Context/UserContext';
 
+const UserAllTask = () => {
+    
+  const {user} = useContext(AuthContext);
 
-const UserBoard = () => {
-    const { workspaces,setCurrentWorkspace ,user,reloadWorkspaces} = useContext(AuthContext);
-    const setCurrent = (id) => { setCurrentWorkspace(workspaces.find((w) => w._id == id)) }
-    useEffect(reloadWorkspaces, [user]);
-
-    const { data: alluserdata = [],refetch } = useQuery({
-      queryKey: [ `/alluserdatas/${user?.uid}`],
+    const { data: alluserdata = [] ,refetch} = useQuery({
+      queryKey: [user?.uid],
       queryFn: async () => {
-        const res = await fetch(process.env.REACT_APP_SERVER_URL + `/alluserdatas/${user?.uid}`, {
+        const res = await fetch(process.env.REACT_APP_SERVER_URL +  `/alluserdatas/${user?.uid}`, {
           method: "GET",
           headers: {
             authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -25,7 +22,8 @@ const UserBoard = () => {
       },
     });
     const handleDelete = (id)=>{
-      fetch(process.env.REACT_APP_SERVER_URL + `/delete/board/${id}`, {
+      
+      fetch(process.env.REACT_APP_SERVER_URL + `/delete/task/${id}`, {
         method: 'DELETE', 
          headers: {
            authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -34,15 +32,15 @@ const UserBoard = () => {
     .then(res => res.json())
     .then(data => {
         if(data.deletedCount > 0){
-          refetch();
-       
-          toast.success(`Board deleted successfully`)
+          refetch()
+            toast.success(`Tasks deleted successfully`)
         }
     });
-    }
-     
-    return (
-        <div className="overflow-x-auto w-full p-4">
+    };
+
+     return (
+      
+       <div className="overflow-x-auto p-4">
         <table className="table w-full">
          
           <thead>
@@ -50,7 +48,7 @@ const UserBoard = () => {
               <th>
                 
               </th>
-              <th>No.</th>
+              <th>No</th>
               <th>Name</th>
               <th>Delete</th>
              
@@ -59,7 +57,7 @@ const UserBoard = () => {
           <tbody>
           
           {
-            alluserdata[0]?.map((workspace,i)=>
+            alluserdata[1]?.map((task,i)=>
                 <tr key={i}>
               <th>
                 
@@ -67,26 +65,28 @@ const UserBoard = () => {
               <td>
                 <div className="flex items-center space-x-3">
                  <div>
-                    <div className="font-bold">{i+1}</div>
+                    <div className="font-bold">{i + 1}</div>
                   </div>
                 </div>
               </td>
               <td>
                 <div className="flex items-center space-x-3">
                  <div>
-                    <div className="font-bold">{workspace?.name}</div>
+                    <div className="font-bold">{task?.note}</div>
                   </div>
                 </div>
               </td>
              
-              <td><button onClick={()=>handleDelete(workspace?._id)} className="bg-red-600 rounded text-white px-2 hover:bg-red-500">Delete</button></td>
+              <td><button onClick={()=>handleDelete(task?._id)} className="bg-red-600 rounded text-white px-2 hover:bg-red-500">Delete</button></td>
             </tr>
             )
           }
             </tbody>
        </table>
       </div>
+   
+   
     );
 };
 
-export default UserBoard;
+export default UserAllTask;

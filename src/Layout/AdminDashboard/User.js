@@ -21,9 +21,8 @@ const User = () => {
     });
    
 const handleDelete = (data)=>{
-  console.log(data);
-
-  fetch(process.env.REACT_APP_SERVER_URL + `/delete/${data}`, {
+ 
+ fetch(process.env.REACT_APP_SERVER_URL + `/delete/user/${data}`, {
             method: 'DELETE', 
              headers: {
                authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -31,16 +30,16 @@ const handleDelete = (data)=>{
         })
         .then(res => res.json())
         .then(data => {
-            if(data.deletedCount > 0){
-              refetch()
-                toast.success(`Users deleted successfully`)
+            if(data.deletedCount){
+              refetch();
+                toast.success('Users deleted successfully');
             }
         })
 }
     
   
     return (
-        <div className="overflow-x-auto w-full">
+        <div className="overflow-x-auto w-full p-4">
         <table className="table w-full">
          
           <thead>
@@ -50,7 +49,6 @@ const handleDelete = (data)=>{
               </th>
               <th>Name</th>
               <th>Email</th>
-              <th>Status</th>
               <th>Delete</th>
               <th></th>
             </tr>
@@ -72,7 +70,7 @@ const handleDelete = (data)=>{
                   </div>
                   <div>
                     <div className="font-bold">{alluser?.name}</div>
-                    <div className="text-sm opacity-50">United States</div>
+                  
                   </div>
                 </div>
               </td>
@@ -80,10 +78,11 @@ const handleDelete = (data)=>{
                {alluser?.email}
               
               </td>
-              <th>
-                <button className="btn btn-ghost btn-xs">details</button>
-              </th>
+             
               <td><button onClick={()=>handleDelete(alluser._id)} className="bg-red-600 rounded text-white px-2 hover:bg-red-500">Delete</button></td>
+              <th>
+               
+               </th>
             </tr>
             )
           }
