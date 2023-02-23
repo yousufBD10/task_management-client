@@ -136,7 +136,7 @@ const Workspace = () => {
                       {" "}
                       <img
                         className="w-6 rounded-sm"
-                        src="https://placeimg.com/192/192/people"
+                        src="https://img.freepik.com/free-photo/strate_53876-95298.jpg?w=740&t=st=1677160634~exp=1677161234~hmac=a7af953f7ed59b74c5c1941493cd1ac1442bf50f1c97dcb8e3e376fdb72f6bfa"
                         alt=""
                       />
                       <li className=" mb-2 flex items-center justify-between hover:bg-gray-600 rounded-md">

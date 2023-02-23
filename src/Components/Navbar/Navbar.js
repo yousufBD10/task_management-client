@@ -54,7 +54,7 @@ const Navbar = () => {
             </li>
             <li>
               {" "}
-              <Link to="/workspace/boards">All Workspaces</Link>
+              <Link to="/workspace/boards">Workspaces</Link>
             </li>
             <li>
               <a href="#WorkSpaceModal-1">Create Workspace</a>
@@ -82,7 +82,7 @@ const Navbar = () => {
           </li>
           <li className="text-black font-semibold">
             {" "}
-            <Link to="/workspace/boards">All Workspaces</Link>
+            <Link to="/workspace/boards">Workspaces</Link>
           </li>
           <li className="text-black font-semibold">
             <a href="#WorkSpaceModal-1">Create Workspace</a>
