@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../Context/UserContext";
-import "./EditeProfile.css";
+
 
 const EditeProfile = ({ setModal, setRefetch }) => {
   const { user, updateName } = useContext(AuthContext);
