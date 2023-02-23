@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import  {useContext, useEffect,useState}  from "react";
 import { useLoaderData } from "react-router";
 import { toast } from "react-toastify";
@@ -5,33 +6,43 @@ import  { AuthContext } from "../../Context/UserContext";
 
 
 const UserBoard = () => {
-    const board = useLoaderData();
-    const [refetch,setRefetch] = useState(true);
     const { workspaces,setCurrentWorkspace ,user,reloadWorkspaces} = useContext(AuthContext);
     const setCurrent = (id) => { setCurrentWorkspace(workspaces.find((w) => w._id == id)) }
     useEffect(reloadWorkspaces, [user]);
-    
-    const handleDelete = (id)=>{
-        fetch(process.env.REACT_APP_SERVER_URL + `/delete/board/${id}`, {
-          method: 'DELETE', 
-           headers: {
-             authorization: `bearer ${localStorage.getItem('accessToken')}`
-           }
-      })
-      .then(res => res.json())
-      .then(data => {
-          if(data.deletedCount > 0){
-          setRefetch(false);
-         
-            toast.success(`Board deleted successfully`)
-          }
-      });
-    }
-      useEffect(()=>{
 
-      },[refetch])
+    const { data: alluserdata = [],refetch } = useQuery({
+      queryKey: [ `/alluserdatas/${user?.uid}`],
+      queryFn: async () => {
+        const res = await fetch(process.env.REACT_APP_SERVER_URL + `/alluserdatas/${user?.uid}`, {
+          method: "GET",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          }
+        },
+        );
+        const data = await res.json();
+        return data;
+      },
+    });
+    const handleDelete = (id)=>{
+      fetch(process.env.REACT_APP_SERVER_URL + `/delete/board/${id}`, {
+        method: 'DELETE', 
+         headers: {
+           authorization: `bearer ${localStorage.getItem('accessToken')}`
+         }
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.deletedCount > 0){
+          refetch();
+       
+          toast.success(`Board deleted successfully`)
+        }
+    });
+    }
+     
     return (
-        <div className="overflow-x-auto w-full">
+        <div className="overflow-x-auto w-full p-4">
         <table className="table w-full">
          
           <thead>
@@ -39,16 +50,16 @@ const UserBoard = () => {
               <th>
                 
               </th>
+              <th>No.</th>
               <th>Name</th>
-              <th>Action</th>
               <th>Delete</th>
-              <th></th>
+             
             </tr>
           </thead>
           <tbody>
           
           {
-            board?.map((workspace,i)=>
+            alluserdata[0]?.map((workspace,i)=>
                 <tr key={i}>
               <th>
                 
@@ -56,14 +67,18 @@ const UserBoard = () => {
               <td>
                 <div className="flex items-center space-x-3">
                  <div>
+                    <div className="font-bold">{i+1}</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div className="flex items-center space-x-3">
+                 <div>
                     <div className="font-bold">{workspace?.name}</div>
                   </div>
                 </div>
               </td>
-              <th>
-              <a href='#edit-workspace' className='hover:bg-slate-200 text-black rounded-lg cursor-pointer p-2'> Edit </a>
-                {/* <button className="btn btn-ghost btn-xs">Edit</button> */}
-              </th>
+             
               <td><button onClick={()=>handleDelete(workspace?._id)} className="bg-red-600 rounded text-white px-2 hover:bg-red-500">Delete</button></td>
             </tr>
             )

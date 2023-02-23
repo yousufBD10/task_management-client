@@ -34,18 +34,17 @@ const UserWorkspace = () => {
 
      
     return (
-        <div className="overflow-x-auto w-full">
+        <div className="overflow-x-auto w-full p-4">
         <table className="table w-full">
          
           <thead>
             <tr>
               <th>
-                
+                No.
               </th>
               <th>Name</th>
-              <th>Action</th>
               <th>Delete</th>
-              <th></th>
+             
             </tr>
           </thead>
           <tbody>
@@ -54,7 +53,11 @@ const UserWorkspace = () => {
             workspaces?.map((workspace,i)=>
                 <tr key={i}>
               <th>
-                
+              <div className="flex items-center space-x-3">
+                 <div>
+                    <div className="font-bold">{i + 1}</div>
+                  </div>
+                </div>
               </th>
               <td>
                 <div className="flex items-center space-x-3">
@@ -63,11 +66,9 @@ const UserWorkspace = () => {
                   </div>
                 </div>
               </td>
-              <th>
-              <a href='#edit-workspace' className='hover:bg-slate-200 text-black rounded-lg cursor-pointer p-2'> Edit </a>
-                {/* <button className="btn btn-ghost btn-xs">Edit</button> */}
-              </th>
+            
               <td><button onClick={()=>handleDelete(workspace?._id)} className="bg-red-600 rounded text-white px-2 hover:bg-red-500">Delete</button></td>
+            
             </tr>
             )
           }
