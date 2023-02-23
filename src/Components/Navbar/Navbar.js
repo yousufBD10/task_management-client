@@ -3,7 +3,6 @@ import { CgLogOut } from "react-icons/cg";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/UserContext";
 import useRole from "../../hooks/useRole";
-import bgNav from "../../images/bgNav.jpg";
 import Loader from "../../Share/Loader";
 import CreateWorkSpaceModal from "../CreateWorkSpaceModal/CreateWorkSpaceModal";
 
@@ -11,7 +10,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { user, logOut, toggleTheme, isDark } = useContext(AuthContext);
   const [role, isRoleLoading] = useRole(user?.email);
-
+  console.log(role);
   const handleLogOut = () => {
     logOut()
       .then(() => {

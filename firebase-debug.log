@@ -1,0 +1,102 @@
+[debug] [2023-02-17T15:24:57.087Z] ----------------------------------------------------------------------
+[debug] [2023-02-17T15:24:57.089Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\HP\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-02-17T15:24:57.090Z] CLI Version:   11.19.0
+[debug] [2023-02-17T15:24:57.090Z] Platform:      win32
+[debug] [2023-02-17T15:24:57.091Z] Node Version:  v16.15.1
+[debug] [2023-02-17T15:24:57.101Z] Time:          Fri Feb 17 2023 21:24:57 GMT+0600 (Bangladesh Standard Time)
+[debug] [2023-02-17T15:24:57.101Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-02-17T15:24:57.182Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-02-17T15:24:57.183Z] > authorizing via signed-in user (mahafujer@gmail.com)
+[debug] [2023-02-17T15:24:57.183Z] [iam] checking project taskmaster6085 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-02-17T15:24:57.185Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/taskmaster6085:testIamPermissions [none]
+[debug] [2023-02-17T15:24:57.185Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/taskmaster6085:testIamPermissions x-goog-quota-user=projects/taskmaster6085
+[debug] [2023-02-17T15:24:57.185Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/taskmaster6085:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-02-17T15:24:58.891Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/taskmaster6085:testIamPermissions 200
+[debug] [2023-02-17T15:24:58.891Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/taskmaster6085:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-02-17T15:24:58.893Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/taskmaster6085 [none]
+[debug] [2023-02-17T15:24:59.620Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/taskmaster6085 200
+[debug] [2023-02-17T15:24:59.620Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/taskmaster6085 {"projectId":"taskmaster6085","projectNumber":"660297020289","displayName":"task-master","name":"projects/taskmaster6085","resources":{"hostingSite":"taskmaster6085"},"state":"ACTIVE","etag":"1_00b13c24-683c-42ac-826a-daae82903e96"}
+[info] 
+[info] === Deploying to 'taskmaster6085'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2023-02-17T15:24:59.628Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/taskmaster6085/versions [none]
+[debug] [2023-02-17T15:24:59.628Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/taskmaster6085/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2023-02-17T15:25:01.484Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/taskmaster6085/versions 200
+[debug] [2023-02-17T15:25:01.484Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/taskmaster6085/versions {"name":"projects/660297020289/sites/taskmaster6085/versions/bb7c050f07a8c9f6","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[taskmaster6085]: beginning deploy... 
+[info] i  hosting[taskmaster6085]: found 24 files in build 
+[debug] [2023-02-17T15:25:20.745Z] [hosting] uploading with 200 concurrency
+[debug] [2023-02-17T15:25:24.800Z] [hosting] hash cache [YnVpbGQ] stored for 24 files
+[debug] [2023-02-17T15:25:24.801Z] [hosting][hash queue][FINAL] {"max":4014,"min":12,"avg":196.29166666666666,"active":0,"complete":24,"success":24,"errored":0,"retried":0,"total":24,"elapsed":4049}
+[debug] [2023-02-17T15:25:24.804Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/660297020289/sites/taskmaster6085/versions/bb7c050f07a8c9f6:populateFiles [none]
+[debug] [2023-02-17T15:25:24.805Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/660297020289/sites/taskmaster6085/versions/bb7c050f07a8c9f6:populateFiles {"files":{"/favicon.ico":"a8619cc971697c81bad49f1b18d98d63e77cb17c098fa733057d7d30f394b74e","/graph.png":"c66a5fb44ab64c0851c88bbfafc7b2f7c07c77b0d9ee1427efa79ee4078fde6d","/graph1.JPG":"976316205b5acf86c887deb078000d2399b603746386e2b6d4516188bf658976","/logo.png":"a26e9d683929dc597b7f52ebac272e0915b69c58a15b827315fd2a1b4f1dedfd","/logo192.png":"b5181be5b7e2ffad11bdce3bcc9fe8d4dd81905a437cf21e3d980c93ed99b1a3","/logo512.png":"22979a0a2a290d46195db7ebe1b43f488d10ed9a4898c751a4efb543391f189c","/manifest.json":"5c997de1364b8be939319fa9209abd77f2caf7f8844999a9e2e9173f844e7840","/pricing.json":"54ac3e912090ebafb52b47dbc4c1e0d5ac60ca86446fa0b3b6e8fa168eb9e088","/robots.txt":"b2090cf9761ef60aa06e4fab97679bd43dfa5e5df073701ead5879d7c68f1ec5","/_redirects":"05bdf8be7d3270d9e0213e1010349186f7383be4b6a8cdba71a3b06012a0aecd","/assets/banner/login-2.png":"f557ac2bd6b3a885c220ce10f076a42189793a47f78e4f68a90331c93ddafa9a","/assets/banner/login-3.png":"0d975817130fb8e31dfcb083e8270fb7b35ec6a54e04139f80bdc3599ec92980","/assets/banner/SMS2.gif":"0a20ea1041565336a52ec8811dd75e3865fac40be6870324d19927e1566d8fde","/assets/banner/task.gif":"1b1f6e791b40012b2e5d62c2c7af0915054645a0f1d6cf6544d64033bee1a3b5","/assets/banner/taskMaster.png":"db569e45b731f676af695aa140a67c76305d797f6e2a5285ddd99a9bb92af5a0","/asset-manifest.json":"f6d958afde9c8437eb525d47d28fba5ca57a2cb3d794233cd38073566ff97fab","/index.html":"70f86e143cd6eb4396cd1d79c8ca29a48eba98974eb938a458e6e97502add4b1","/static/js/787.8cdb08d7.chunk.js":"67db174766a55e67f0db029a526df30962e26b1dd5b02639fe913282585a96d6","/static/js/787.8cdb08d7.chunk.js.map":"56c64da2b1b628933f4a9f07da65aef2975caaf0a676defd2c1e6ad236eae017","/static/js/main.52f7d588.js.LICENSE.txt":"7679ab213300b50fe4f8b0c8c6e0955f93f02f7df0f51eb2d774eecc7424cbaf","/static/css/main.24a35b2a.css.map":"b12f0b1473191c161278b11aa4a60a57b28311d414608a732a286b68e1a2323f","/static/css/main.24a35b2a.css":"50662dbca654c2f21ab5b28692e71e5eba810de8f945a1a5b7e543bef91b255e","/static/js/main.52f7d588.js":"badcb8b2776a1f8aefe88658af27b972e34e3668652d446e3fb1f8058366cc05","/static/js/main.52f7d588.js.map":"3bc5c7b0d6f3ec3e27d808614ee7332fc3db692c18cc7c8e0b5686c6dcc63df9"}}
+[debug] [2023-02-17T15:25:26.136Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/660297020289/sites/taskmaster6085/versions/bb7c050f07a8c9f6:populateFiles 200
+[debug] [2023-02-17T15:25:26.136Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/660297020289/sites/taskmaster6085/versions/bb7c050f07a8c9f6:populateFiles {"uploadRequiredHashes":["f6d958afde9c8437eb525d47d28fba5ca57a2cb3d794233cd38073566ff97fab","70f86e143cd6eb4396cd1d79c8ca29a48eba98974eb938a458e6e97502add4b1","3bc5c7b0d6f3ec3e27d808614ee7332fc3db692c18cc7c8e0b5686c6dcc63df9","badcb8b2776a1f8aefe88658af27b972e34e3668652d446e3fb1f8058366cc05"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/taskmaster6085/versions/bb7c050f07a8c9f6/files"}
+[debug] [2023-02-17T15:25:26.143Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/taskmaster6085/versions/bb7c050f07a8c9f6/files/f6d958afde9c8437eb525d47d28fba5ca57a2cb3d794233cd38073566ff97fab [none]
+[debug] [2023-02-17T15:25:26.144Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/taskmaster6085/versions/bb7c050f07a8c9f6/files/f6d958afde9c8437eb525d47d28fba5ca57a2cb3d794233cd38073566ff97fab [stream]
+[debug] [2023-02-17T15:25:26.146Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/taskmaster6085/versions/bb7c050f07a8c9f6/files/70f86e143cd6eb4396cd1d79c8ca29a48eba98974eb938a458e6e97502add4b1 [none]
+[debug] [2023-02-17T15:25:26.147Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/taskmaster6085/versions/bb7c050f07a8c9f6/files/70f86e143cd6eb4396cd1d79c8ca29a48eba98974eb938a458e6e97502add4b1 [stream]
+[debug] [2023-02-17T15:25:26.148Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/taskmaster6085/versions/bb7c050f07a8c9f6/files/3bc5c7b0d6f3ec3e27d808614ee7332fc3db692c18cc7c8e0b5686c6dcc63df9 [none]
+[debug] [2023-02-17T15:25:26.149Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/taskmaster6085/versions/bb7c050f07a8c9f6/files/3bc5c7b0d6f3ec3e27d808614ee7332fc3db692c18cc7c8e0b5686c6dcc63df9 [stream]
+[debug] [2023-02-17T15:25:26.152Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/taskmaster6085/versions/bb7c050f07a8c9f6/files/badcb8b2776a1f8aefe88658af27b972e34e3668652d446e3fb1f8058366cc05 [none]
+[debug] [2023-02-17T15:25:26.153Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/taskmaster6085/versions/bb7c050f07a8c9f6/files/badcb8b2776a1f8aefe88658af27b972e34e3668652d446e3fb1f8058366cc05 [stream]
+[debug] [2023-02-17T15:25:26.157Z] [hosting][populate queue][FINAL] {"max":1346,"min":1346,"avg":1346,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1360}
+[debug] [2023-02-17T15:25:26.158Z] [hosting] uploads queued: 4
+[debug] [2023-02-17T15:25:28.077Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/taskmaster6085/versions/bb7c050f07a8c9f6/files/f6d958afde9c8437eb525d47d28fba5ca57a2cb3d794233cd38073566ff97fab 200
+[debug] [2023-02-17T15:25:28.077Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/taskmaster6085/versions/bb7c050f07a8c9f6/files/f6d958afde9c8437eb525d47d28fba5ca57a2cb3d794233cd38073566ff97fab [stream]
+[debug] [2023-02-17T15:25:28.753Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/taskmaster6085/versions/bb7c050f07a8c9f6/files/70f86e143cd6eb4396cd1d79c8ca29a48eba98974eb938a458e6e97502add4b1 200
+[debug] [2023-02-17T15:25:28.753Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/taskmaster6085/versions/bb7c050f07a8c9f6/files/70f86e143cd6eb4396cd1d79c8ca29a48eba98974eb938a458e6e97502add4b1 [stream]
+[debug] [2023-02-17T15:25:28.964Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/taskmaster6085/versions/bb7c050f07a8c9f6/files/badcb8b2776a1f8aefe88658af27b972e34e3668652d446e3fb1f8058366cc05 200
+[debug] [2023-02-17T15:25:28.964Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/taskmaster6085/versions/bb7c050f07a8c9f6/files/badcb8b2776a1f8aefe88658af27b972e34e3668652d446e3fb1f8058366cc05 [stream]
+[debug] [2023-02-17T15:25:33.386Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/taskmaster6085/versions/bb7c050f07a8c9f6/files/3bc5c7b0d6f3ec3e27d808614ee7332fc3db692c18cc7c8e0b5686c6dcc63df9 200
+[debug] [2023-02-17T15:25:33.387Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/taskmaster6085/versions/bb7c050f07a8c9f6/files/3bc5c7b0d6f3ec3e27d808614ee7332fc3db692c18cc7c8e0b5686c6dcc63df9 [stream]
+[debug] [2023-02-17T15:25:33.387Z] [hosting][upload queue][FINAL] {"max":7245,"min":1941,"avg":3654.75,"active":0,"complete":4,"success":4,"errored":0,"retried":0,"total":4,"elapsed":7250}
+[info] +  hosting[taskmaster6085]: file upload complete 
+[debug] [2023-02-17T15:25:33.392Z] [hosting] deploy completed after 12695ms
+[debug] [2023-02-17T15:25:33.403Z] [
+  {
+    "config": {
+      "public": "build",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "taskmaster6085"
+    },
+    "version": "projects/660297020289/sites/taskmaster6085/versions/bb7c050f07a8c9f6"
+  }
+]
+[info] i  hosting[taskmaster6085]: finalizing version... 
+[debug] [2023-02-17T15:25:33.410Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/taskmaster6085/versions/bb7c050f07a8c9f6 updateMask=status%2Cconfig
+[debug] [2023-02-17T15:25:33.410Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/taskmaster6085/versions/bb7c050f07a8c9f6 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]}}
+[debug] [2023-02-17T15:25:34.821Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/taskmaster6085/versions/bb7c050f07a8c9f6 200
+[debug] [2023-02-17T15:25:34.821Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/taskmaster6085/versions/bb7c050f07a8c9f6 {"name":"projects/660297020289/sites/taskmaster6085/versions/bb7c050f07a8c9f6","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2023-02-17T15:25:01.099239Z","createUser":{"email":"mahafujer@gmail.com"},"finalizeTime":"2023-02-17T15:25:34.922856Z","finalizeUser":{"email":"mahafujer@gmail.com"}}
+[debug] [2023-02-17T15:25:34.822Z] [hosting] finalized version for taskmaster6085:[object Object]
+[info] +  hosting[taskmaster6085]: version finalized 
+[info] i  hosting[taskmaster6085]: releasing new version... 
+[debug] [2023-02-17T15:25:34.824Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/taskmaster6085/channels/live/releases versionName=projects%2F660297020289%2Fsites%2Ftaskmaster6085%2Fversions%2Fbb7c050f07a8c9f6
+[debug] [2023-02-17T15:25:34.824Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/taskmaster6085/channels/live/releases {}
+[debug] [2023-02-17T15:25:36.266Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/taskmaster6085/channels/live/releases 200
+[debug] [2023-02-17T15:25:36.267Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/taskmaster6085/channels/live/releases {"name":"projects/660297020289/sites/taskmaster6085/channels/live/releases/1676647535688000","version":{"name":"projects/660297020289/sites/taskmaster6085/versions/bb7c050f07a8c9f6","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2023-02-17T15:25:01.099239Z","createUser":{"email":"mahafujer@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp75JUJehm0dgFYHi0RL4X8e2GcBX86EF8tGxnsbFQ"},"finalizeTime":"2023-02-17T15:25:34.922856Z","finalizeUser":{"email":"mahafujer@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp75JUJehm0dgFYHi0RL4X8e2GcBX86EF8tGxnsbFQ"}},"type":"DEPLOY","releaseTime":"2023-02-17T15:25:35.688Z","releaseUser":{"email":"mahafujer@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp75JUJehm0dgFYHi0RL4X8e2GcBX86EF8tGxnsbFQ"}}
+[debug] [2023-02-17T15:25:36.267Z] [hosting] release: {"name":"projects/660297020289/sites/taskmaster6085/channels/live/releases/1676647535688000","version":{"name":"projects/660297020289/sites/taskmaster6085/versions/bb7c050f07a8c9f6","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2023-02-17T15:25:01.099239Z","createUser":{"email":"mahafujer@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp75JUJehm0dgFYHi0RL4X8e2GcBX86EF8tGxnsbFQ"},"finalizeTime":"2023-02-17T15:25:34.922856Z","finalizeUser":{"email":"mahafujer@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp75JUJehm0dgFYHi0RL4X8e2GcBX86EF8tGxnsbFQ"}},"type":"DEPLOY","releaseTime":"2023-02-17T15:25:35.688Z","releaseUser":{"email":"mahafujer@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp75JUJehm0dgFYHi0RL4X8e2GcBX86EF8tGxnsbFQ"}}
+[info] +  hosting[taskmaster6085]: release complete 
+[info] 
+[info] +  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/taskmaster6085/overview
+[info] Hosting URL: https://taskmaster6085.web.app
+[debug] [2023-02-17T15:25:46.652Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\HP\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:253:49)
+    at listOnTimeout (node:internal/timers:559:17)
+    at processTimers (node:internal/timers:502:7)
+[error] 
+[error] Error: An unexpected error has occurred.

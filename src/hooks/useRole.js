@@ -2,9 +2,10 @@ import { useEffect, useState } from "react"
 
 const useRole = email => {
     const [role, setRole] = useState(false);
-    const [isRoleLoading, setRoleLoading] = useState(true);
+    const [isRoleLoading, setRoleLoading] = useState(false);
     useEffect(() => {
         if (email) {
+            setRoleLoading(true);
             fetch(`${process.env.REACT_APP_SERVER_URL}/getRole`, {
                 method: 'POST',
                 headers: {

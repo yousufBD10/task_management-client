@@ -136,9 +136,9 @@ const Router = createBrowserRouter([
         element: <UserWorkspace/>,
       },
       {
-        path: "/dashboard/userboards/:id",
+        path: "/dashboard/userboard",
         element: <UserBoard/>,
-        loader: ({params})=> fetch(process.env.REACT_APP_SERVER_URL +  `/userboard/${params.id}`)
+       
       },
       {
         path: "/dashboard/tasks",

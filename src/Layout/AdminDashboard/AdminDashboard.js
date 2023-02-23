@@ -7,11 +7,10 @@ import { AuthContext } from '../../Context/UserContext';
 import useRole from '../../hooks/useRole';
 
 const AdminDashboard = () => {
-  const { workspaces, setCurrentWorkspace, user, reloadWorkspaces } = useContext(AuthContext);
+  const { user, reloadWorkspaces } = useContext(AuthContext);
   const [role] = useRole(user?.email);
-  const setCurrent = (id) => { setCurrentWorkspace(workspaces.find((w) => w._id == id)) }
   useEffect(reloadWorkspaces, [user]);
-  console.log(workspaces);
+
   return (
     <div>
       <Navbar></Navbar>
@@ -45,7 +44,7 @@ const AdminDashboard = () => {
                 Home
               </Link>
             </li>
-        {role === 'admin' &&     <li className=" hover:bg-gray-600 mb-1">
+            {role === 'admin' && <li className=" hover:bg-gray-600 mb-1">
               <Link to="/dashboard/user" className="font-semibold">
                 {" "}
                 <AiOutlineUser />
@@ -60,25 +59,25 @@ const AdminDashboard = () => {
               </Link>
             </li>
             <li className=" hover:bg-gray-600 mb-1  ">
-              <Link to={`/dashboard/userboards/${workspaces[0]?._id}`} className="font-semibold">
+              <Link to='/dashboard/userboard' className="font-semibold">
                 {" "}
-                <MdOutlineBookmarkAdd/>
+                <MdOutlineBookmarkAdd />
                 Boards
               </Link>
             </li>
 
-               <li className=" hover:bg-gray-600 mb-1">
+            <li className=" hover:bg-gray-600 mb-1">
               <Link to="/dashboard/tasks" className="font-semibold">
                 {" "}
                 <AiOutlineSlack />
-               Tasks
+                Tasks
               </Link>
             </li>
-            
+
           </ul>
         </div>
-  
-      
+
+
       </div>
     </div >
   );
