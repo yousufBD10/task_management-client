@@ -74,22 +74,22 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li className="rounded-none font-semibold">
+        <ul className="menu menu-horizontal px-1 font-bold text-lg">
+          <li className=" text-black rounded-md mr-3 hover:bg-gray-300 ">
             <Link to="/">Home</Link>
           </li>
-          <li className=" font-semibold">
+          <li className="text-black  rounded-md mr-3 hover:bg-gray-300">
             <Link to="/pricing">Pricing</Link>
           </li>
-          <li className=" font-semibold">
+          <li className="text-black rounded-md mr-3 hover:bg-gray-300">
             {" "}
             <Link to="/workspace/boards">Workspaces</Link>
           </li>
-          <li className=" font-semibold">
+          <li className="text-black rounded-md mr-3 hover:bg-gray-300">
             <a href="#WorkSpaceModal-1">Create Workspace</a>
           </li>
           {role && (
-            <li className=" font-semibold">
+            <li className="text-black rounded-md mr-3 hover:bg-gray-300">
               <Link to="/dashboard">Dashboard</Link>
             </li>
           )}
@@ -175,7 +175,7 @@ const Navbar = () => {
             <Link to="/login">
               <button
                 type="button"
-                className="hover:bg-gray-100 rounded-md font-medium  text-sm px-5 py-2.5 mr-2 mb-2 "
+                className="hover:bg-gray-400 rounded-md font-bold bg-blue-200 text-black   px-5 py-2.5 mr-2 "
               >
                 Login
               </button>
@@ -183,7 +183,7 @@ const Navbar = () => {
             <Link to="/register">
               <button
                 type="button"
-                className="hover:bg-gray-100 focus-visible: rounded-md  font-medium  text-sm px-5 py-2.5 mr-2 mb-2 "
+                className="hover:bg-gray-400 focus-visible: rounded-md bg-blue-200 font-bold text-black px-5 py-2.5 mr-2 "
               >
                 Sign Up
               </button>
