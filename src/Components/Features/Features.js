@@ -1,6 +1,6 @@
 import React from 'react';
 import ServiceCard from '../Cards/ServiceCard/ServiceCard';
-
+import './Features.css'
 const Features = () => {
     const waysToGrowData = [
         {
@@ -35,7 +35,7 @@ const Features = () => {
         // }
     ]
     return (
-        <div className='w-full sm:px-12 lg:px-32 my-16'>
+        <div className='w-full md:mx-11 md:px-11 sm:px-12  lg:px-32 my-16'>
             <h3 className='text-3xl text-center text-black font-bold'>POWERFUL WAYS TO GROW</h3>
             <h2 className='text-2xl font-bold text-center text-black'>Do More With <span className='text-blue-700'>TaskMaster</span></h2>
             <p className='text-sm mb-8 mt-1 text-center font-semibold text-black'>TaskMaster's intuitive features give any team the ability to quickly set up and customize <br /> workflows for just about anything.</p>
