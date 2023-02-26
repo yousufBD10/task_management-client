@@ -5,9 +5,9 @@ import { AuthContext } from "../../Context/UserContext";
 
 const CreateWorkSpaceModal = () => {
   const navigate = useNavigate();
-  const { reloadWorkspaces, user } = useContext(AuthContext);
+  const { reloadWorkspaces, user ,theme} = useContext(AuthContext);
   const inputColor =
-    "bg-gray-100 border border-stone-300 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full";
+    " border border-stone-300  rounded py-1 px-3 block focus:ring-blue-500  focus:border-blue-500  w-full";
   // const workImage =
   //   "https://www.cygnismedia.com/images/post-images/ui-for-web-apps/Main.jpg";
 
@@ -51,13 +51,13 @@ const CreateWorkSpaceModal = () => {
           </a>
           <div>
             <div className="relative flex flex-col-reverse  lg:py-0 lg:flex-col">
-              <div className="w-full max-w-xl px-4 mx-auto md:px-0 lg:px-8 lg:py-20 bg-stone-100 rounded-md lg:max-w-screen-xl">
-                <div className="mb-0 lg:max-w-lg py-4 lg:pr-8 xl:pr-6 text-gray-900">
+              <div className={theme?.createworkspace}>
+                <div className="mb-0 lg:max-w-lg py-4 lg:pr-8 xl:pr-6 ">
                   <div className="px-8">
                     <h1 className="font-medium text-3xl">
                       Let's build a Workspace
                     </h1>
-                    <p className="text-gray-600 mt-6">
+                    <p className=" mt-6">
                       Boost your productivity by making it easier for everyone
                       to access boards in one location.
                     </p>
@@ -66,7 +66,7 @@ const CreateWorkSpaceModal = () => {
                         <div>
                           <label
                             htmlFor="name"
-                            className="text-sm text-gray-700 block mb-1 font-medium"
+                            className="text-sm  block mb-1 font-medium"
                           >
                             Workspace name
                           </label>
@@ -74,7 +74,7 @@ const CreateWorkSpaceModal = () => {
                             required
                             type="text"
                             name="name"
-                            className={inputColor}
+                            className={ theme?.createworkspaceInput}
                             placeholder="Enter Workspace name"
                           />
                           <small>
@@ -89,7 +89,7 @@ const CreateWorkSpaceModal = () => {
                           >
                             Workspace type
                           </label>
-                          <select required name="type" className={inputColor}>
+                          <select required name="type" className={theme?.createworkspaceInput}>
                             <option>Operation</option>
                             <option>Small Business</option>
                             <option>Engineering-IT</option>
@@ -109,7 +109,7 @@ const CreateWorkSpaceModal = () => {
                           </label>
                           <textarea
                             name="description"
-                            className={`${inputColor} h-36`}
+                            className={`${theme?.createworkspaceInput} h-36`}
                             placeholder="Our team organizes everything here"
                             defaultValue={""}
                           />
@@ -122,7 +122,7 @@ const CreateWorkSpaceModal = () => {
                       <div className="space-x-4 mt-8">
                         <button
                           type="submit"
-                          className="w-full btn border-none bg-stone-300 hover:bg-indigo-300 text-black font-bold rounded-md"
+                          className="w-full btn border-none bg-gray-500  hover:bg-gray-400   font-bold rounded-md"
                         >
                           Continue
                         </button>
@@ -134,7 +134,7 @@ const CreateWorkSpaceModal = () => {
               <div className="inset-y-0 top-0 right-0 w-full max-w-xl mx-auto mb-6 md:px-0 lg:pl-8 lg:pr-0 lg:mb-0 lg:mx-0 lg:w-1/2 lg:max-w-full lg:absolute xl:px-0">
                 <img
                   className="object-center w-full h-56 rounded shadow-lg lg:rounded-none lg:shadow-none md:h-96 lg:h-full"
-                  src="/assets/banner/work-1.jpg"
+                  src="/work-1.png"
                   alt=""
                 />
               </div>

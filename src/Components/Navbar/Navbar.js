@@ -74,28 +74,29 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 font-bold text-lg">
-          <li className=" text-black rounded-md mr-3 hover:bg-gray-300 ">
+        <ul className="menu menu-horizontal px-1 font-bold ">
+          <li className="   mr-3 hover:bg-gray-300 ">
             <Link to="/">Home</Link>
           </li>
-          <li className="text-black  rounded-md mr-3 hover:bg-gray-300">
+          <li className="   mr-3 hover:bg-gray-300">
             <Link to="/pricing">Pricing</Link>
           </li>
-          <li className="text-black rounded-md mr-3 hover:bg-gray-300">
+          <li className="  mr-3 hover:bg-gray-300">
             {" "}
             <Link to="/workspace/boards">Workspaces</Link>
           </li>
-          <li className="text-black rounded-md mr-3 hover:bg-gray-300">
+          <li className="  mr-3 hover:bg-gray-300">
             <a href="#WorkSpaceModal-1">Create Workspace</a>
           </li>
           {role && (
-            <li className="text-black rounded-md mr-3 hover:bg-gray-300">
+            <li className="  mr-3 hover:bg-gray-300">
               <Link to="/dashboard">Dashboard</Link>
             </li>
           )}
         </ul>
       </div>
       <div className="navbar-end">
+        
         <div className="mr-5 cursor-pointer">
           {" "}
           {isDark ? (
@@ -109,7 +110,7 @@ const Navbar = () => {
             <img
               onClick={toggleTheme}
               className="w-6"
-              src="https://icon-library.com/images/moon-icon-png/moon-icon-png-25.jpg"
+              src="https://www.pngkey.com/png/full/132-1329742_halloween-half-moon-moon-icon-svg.png"
               alt=""
             />
           )}
@@ -175,7 +176,7 @@ const Navbar = () => {
             <Link to="/login">
               <button
                 type="button"
-                className="hover:bg-gray-400 rounded-md font-bold bg-blue-200 text-black   px-5 py-2.5 mr-2 "
+                className="hover:bg-gray-400  font-bold bg-blue-200    px-5 py-2.5 mr-2 "
               >
                 Login
               </button>
@@ -183,7 +184,7 @@ const Navbar = () => {
             <Link to="/register">
               <button
                 type="button"
-                className="hover:bg-gray-400 focus-visible: rounded-md bg-blue-200 font-bold text-black px-5 py-2.5 mr-2 "
+                className="hover:bg-gray-400 focus-visible:  bg-blue-200 font-bold  px-5 py-2.5 mr-2 "
               >
                 Sign Up
               </button>

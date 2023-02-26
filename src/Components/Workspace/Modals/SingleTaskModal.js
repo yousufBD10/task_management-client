@@ -31,13 +31,13 @@ import CheckList from "../../CheckList/CheckList";
 
 const SingleTaskModal = () => {
    const [checklistToggle, setChecklistToggle] = useState(false);
-  const buttonStyle =
-    "dropdown dropdown-bottom md:dropdown-left flex items-center mb-1 mr-1 p-2 space-x-3 rounded-md btn-ghost bg-stone-300 btn-sm text-stone-800 hover:bg-indigo-300 w-44 md:w-none";
+ 
   const {
     boardItems,
     setBoardItems,
     currentTask,
     user,
+    theme,
     logOut,
     currentWorkspace,
   } = useContext(AuthContext);
@@ -349,7 +349,7 @@ const SingleTaskModal = () => {
   return (
     <div>
       <div id="new-board-modal1" className="modal text-black">
-        <div className="modal-box card rounded-md touch-auto max-w-screen-md scrollbar-hide">
+        <div className={theme?.SingleTaskModalColor}>
           {/* ------ Dynamically cover load ------ */}
 
           {currentTask?.cover && (
@@ -383,7 +383,7 @@ const SingleTaskModal = () => {
                   name="note"
                   type="text"
                   defaultValue={currentTask?.note}
-                  className="input input-bordered w-full rounded-md text-3xl font-semibold"
+                  className={theme?.SingleTaskModalInput}
                   required
                 />
                 {assignedUsers && assignedUsers.length > 0 && (
@@ -463,7 +463,7 @@ const SingleTaskModal = () => {
                   name="description"
                   placeholder="Description"
                   defaultValue={currentTask?.description}
-                  className="input input-bordered p-4 w-full rounded-md outline-border h-28"
+                  className={theme?.SingleTaskModalTextAria}
                 ></textarea>
               </form>
               <br />
@@ -516,7 +516,7 @@ const SingleTaskModal = () => {
                         name="text"
                         placeholder="Write a comment..."
                         rows={6}
-                        className="input input-bordered p-2 mt-2 w-full rounded-sm outline-border"
+                        className={theme?.SingleTaskModalComment}
                       ></textarea>
                     </label>
                     <div className="flex flex-wrap">
@@ -562,7 +562,7 @@ const SingleTaskModal = () => {
                         <Link
                           rel="noopener noreferrer"
                           tabIndex={0}
-                          className={buttonStyle}
+                          className={theme?.buttonStyle}
                         >
                           <FiUser></FiUser>
                           <span className="text-grey">Assign Members</span>
@@ -576,7 +576,7 @@ const SingleTaskModal = () => {
                           rel="noopener noreferrer"
                           tabIndex={0}
                           href="#"
-                          className={buttonStyle}
+                          className={theme?.buttonStyle}
                         >
                           <FiTag></FiTag>
                           <span>Labels</span>
@@ -590,7 +590,7 @@ const SingleTaskModal = () => {
                           rel="noopener noreferrer"
                           href="#"
                           tabIndex={0}
-                          className={buttonStyle}
+                          className={theme?.buttonStyle}
                           onClick={() => setChecklistToggle(!checklistToggle)}
                         >
                           <FiCheckSquare></FiCheckSquare>
@@ -602,11 +602,12 @@ const SingleTaskModal = () => {
                           rel="noopener noreferrer"
                           href="#"
                           tabIndex={2}
-                          className={buttonStyle}
+                          className={theme?.buttonStyle}
                         >
                           <FiClock></FiClock>
                           <span>Deadline</span>
                           <DateDropDown
+                          className="bg-gray-700"
                             handleDateSubmit={handleDateSubmit}
                             selectedDate={selectedDate}
                             setSelectedDate={setSelectedDate}
@@ -619,7 +620,7 @@ const SingleTaskModal = () => {
                           tabIndex={0}
                           rel="noopener noreferrer"
                           href="#"
-                          className={buttonStyle}
+                          className={theme?.buttonStyle}
                         >
                           <FiPaperclip></FiPaperclip>
                           <span>Attachment</span>
@@ -634,7 +635,7 @@ const SingleTaskModal = () => {
                           type="file"
                           href="#"
                           tabIndex={7}
-                          className={buttonStyle}
+                          className={theme?.buttonStyle}
                         >
                           <FiBook></FiBook>
                           <span>Cover</span>
@@ -654,7 +655,7 @@ const SingleTaskModal = () => {
                           rel="noopener noreferrer"
                           href="#"
                           tabIndex={0}
-                          className={buttonStyle}
+                          className={theme?.buttonStyle}
                         >
                           <FiArrowRight></FiArrowRight>
                           <span>Move</span>
@@ -666,7 +667,7 @@ const SingleTaskModal = () => {
                           tabIndex={5}
                           rel="noopener noreferrer"
                           href="#"
-                          className={buttonStyle}
+                          className={theme?.buttonStyle}
                         >
                           <FiShare2></FiShare2>
                           <span>Share</span>
@@ -678,7 +679,7 @@ const SingleTaskModal = () => {
                           rel="noopener noreferrer"
                           target="_blank"
                           href="https://meet.google.com"
-                          className={buttonStyle}
+                          className={theme?.buttonStyle}
                         >
                           <FiVideo></FiVideo>
                           <span>Google meet</span>
