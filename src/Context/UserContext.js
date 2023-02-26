@@ -31,10 +31,10 @@ const UserContext = ({ children }) => {
   const themes = {
     light:{
       nav:'bg-white text-black navbar shadow-md',
-      bg:'bg-slate-200',
+      bg:'bg-blue-100',
       text:'text-black',
       serviceCard:" h-auto md:h-[350px] bg-blue-300  flex overflow-hidden shadow",
-      footer:"footer p-12 text-white bg-indigo-900 ",
+      footer:"footer p-12 text-white bg-black ",
       pricingCard:"my-9 mr-3 py-3 px-3 card-compact w-72 h-auto bg-base-100 shadow-2xl rounded-xl",
       pricingOrder:"my-9 mx-11 py-3 px-11 h-auto bg-gray-100 shadow-2xl rounded-xl",
       createworkspace:"w-full max-w-xl px-4 mx-auto md:px-0 lg:px-8 lg:py-20 bg-stone-100 rounded-md lg:max-w-screen-xl",
@@ -56,7 +56,7 @@ const UserContext = ({ children }) => {
     bg:'bg-gray-800 text-white',
     text:'text-white',
     serviceCard:" h-auto md:h-[350px] bg-gray-700  flex overflow-hidden text-white shadow",
-    footer:"footer p-12 text-white bg-gray-900 ",
+    footer:"footer p-12 text-white bg-gray-900",
     pricingCard:"my-9 mr-3 py-3 px-3 text-white card-compact w-72 h-auto bg-gray-700 shadow-2xl rounded-xl",
     pricingOrder:"my-9 mx-11 py-3 px-11 h-auto bg-gray-700 shadow-2xl rounded-xl",
     createworkspace:"w-full max-w-xl px-4 mx-auto md:px-0 lg:px-8 lg:py-20 bg-gray-700 text-white rounded-md lg:max-w-screen-xl",
