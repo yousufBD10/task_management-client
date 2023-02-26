@@ -8,7 +8,7 @@ import CreateWorkSpaceModal from "../CreateWorkSpaceModal/CreateWorkSpaceModal";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { user, logOut, toggleTheme, isDark } = useContext(AuthContext);
+  const { user, logOut, toggleTheme, isDark,theme } = useContext(AuthContext);
   const [role, isRoleLoading] = useRole(user?.email);
   console.log(role);
   const handleLogOut = () => {
@@ -23,7 +23,8 @@ const Navbar = () => {
     return <Loader></Loader>;
   }
   return (
-    <div className="bg-gray-100 navbar shadow-md">
+   
+     <div className={theme?.nav}>
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -46,7 +47,7 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li className="rounded-none text-black font-semibold">
+            <li className="rounded-none font-semibold">
               <Link to="/">Home</Link>
             </li>
             <li>
@@ -60,7 +61,7 @@ const Navbar = () => {
               <a href="#WorkSpaceModal-1">Create Workspace</a>
             </li>
             {role && (
-              <li className="text-black font-semibold">
+              <li className=" font-semibold">
                 <Link to="/dashboard">Dashboard</Link>
               </li>
             )}
@@ -74,21 +75,21 @@ const Navbar = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li className="rounded-none text-black font-semibold">
+          <li className="rounded-none font-semibold">
             <Link to="/">Home</Link>
           </li>
-          <li className="text-black font-semibold">
+          <li className=" font-semibold">
             <Link to="/pricing">Pricing</Link>
           </li>
-          <li className="text-black font-semibold">
+          <li className=" font-semibold">
             {" "}
             <Link to="/workspace/boards">Workspaces</Link>
           </li>
-          <li className="text-black font-semibold">
+          <li className=" font-semibold">
             <a href="#WorkSpaceModal-1">Create Workspace</a>
           </li>
           {role && (
-            <li className="text-black font-semibold">
+            <li className=" font-semibold">
               <Link to="/dashboard">Dashboard</Link>
             </li>
           )}
@@ -131,7 +132,7 @@ const Navbar = () => {
               </label>
               <div
                 tabIndex={1}
-                className="menu text-black menu-compact dropdown-content mt-12 p-2 shadow-lg bg-base-100 rounded-sm w-60"
+                className="menu menu-compact dropdown-content mt-12 p-2 shadow-lg bg-base-100 rounded-sm w-60"
               >
                 <h2 className=" text-gray-600 font-bold my-2">ACCOUNT</h2>
                 <div className="flex items-center mb-5">
@@ -174,7 +175,7 @@ const Navbar = () => {
             <Link to="/login">
               <button
                 type="button"
-                className="hover:bg-gray-100 rounded-md font-medium text-black  text-sm px-5 py-2.5 mr-2 mb-2 "
+                className="hover:bg-gray-100 rounded-md font-medium  text-sm px-5 py-2.5 mr-2 mb-2 "
               >
                 Login
               </button>
@@ -182,7 +183,7 @@ const Navbar = () => {
             <Link to="/register">
               <button
                 type="button"
-                className="hover:bg-gray-100 focus-visible: rounded-md  font-medium text-black  text-sm px-5 py-2.5 mr-2 mb-2 "
+                className="hover:bg-gray-100 focus-visible: rounded-md  font-medium  text-sm px-5 py-2.5 mr-2 mb-2 "
               >
                 Sign Up
               </button>
@@ -192,6 +193,7 @@ const Navbar = () => {
       </div>
       {user && <CreateWorkSpaceModal></CreateWorkSpaceModal>}
     </div>
+    
   );
 };
 

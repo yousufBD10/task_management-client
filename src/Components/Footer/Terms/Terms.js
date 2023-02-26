@@ -2,8 +2,8 @@ import React from 'react';
 
 const Terms = () => {
     return (
-        <div className='p-11 bg-indigo-100'>
-            <div className=' bg-indigo-200 p-28 text-black'>
+        <div className='p-11 '>
+            <div className=' p-28'>
             
             <p className='text-xl pb-3'><h1 className='text-4xl font-bold pb-5'>Terms and Conditions</h1>
             <br></br>

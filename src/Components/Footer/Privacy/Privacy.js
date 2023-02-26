@@ -2,8 +2,8 @@ import React from 'react';
 
 const Privacy = () => {
     return (
-        <div className='p-11 bg-indigo-100'>
-            <div className=' bg-indigo-200 p-28 text-black'>
+        <div className='p-11 '>
+            <div className='  p-28 '>
            <p className='text-xl pb-3'><h1 className='text-4xl font-bold pb-5'>TaskMaster Privacy Policy</h1>
            This Privacy Policy covers the information we collect about you when you use our products or services, or otherwise interact with us (for example, by attending our premises or events or by communicating with us), unless a different policy is displayed.
 This policy also explains your choices surrounding how we use information about you, which include how you can object to certain uses of information about you and how you can access and update certain information about you.  If you do not agree with this policy, do not access or use our Services or interact with any other aspect of our business.  

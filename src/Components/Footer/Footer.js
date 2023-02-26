@@ -1,10 +1,12 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/UserContext';
 
 const Footer = () => {
+    const {theme} = useContext(AuthContext);
     return (
-        <footer className="footer p-12 text-white bg-indigo-900 ">
+        <footer className={theme?.footer}>
             <div>
                 <div className=' lg:w-64 pb-2' >
                 <img src='/logo.png' width="100%" />

@@ -165,7 +165,7 @@ const OurService = () => {
         <div className='lg:mb-24  py-16 border border-none '>
             <div className='text-center mt-24'>
                 <h3 className='font-bold text-blue-900'>BUILT FOR EVERYONE</h3>
-                <h1 className='text-3xl font-serif mt-5 text-black  font-bold'>See how TaskMaster can work for you.</h1>
+                <h1 className='text-3xl font-serif mt-5   font-bold'>See how TaskMaster can work for you.</h1>
             </div>
             {/* dynamic services button start */}
             <div className='justify-around lg:flex lg:px-32 py-16'>
@@ -174,7 +174,7 @@ const OurService = () => {
                         <div key={i}>
                             <button
                                 onClick={() => serviceHandle(item.name)}
-                                className={`${item.name === service[0]?.name ? 'bg-gray-300' : 'bg-indigo-500'} text-black hover:bg-gray-300 font-bold w-28  h-8 rounded-sm shadow-lg`}
+                                className={`${item.name === service[0]?.name ? 'bg-gray-500' : 'bg-indigo-500'}  hover:bg-gray-500 font-bold w-28  h-8 rounded-sm shadow-lg`}
                             >
                                 {item.name}
                             </button>
@@ -193,8 +193,8 @@ const OurService = () => {
                                     <img className='w-24 p-2 aspect-square bg-white border rounded-lg hover:bg-gray-300' src={item.icon} alt="" />
                                 </div>
                                 <div>
-                                    <h2 className='text-2xl font-bold text-black px-2'>{item.title}</h2>
-                                    <h4 className='font-semibold text-black px-2 '>{item.description}</h4>
+                                    <h2 className='text-2xl font-bold  px-2'>{item.title}</h2>
+                                    <h4 className='font-semibold  px-2 '>{item.description}</h4>
                                 </div>
                             </div>
                         )

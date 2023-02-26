@@ -29,9 +29,23 @@ const UserContext = ({ children }) => {
   const [boardItems, setBoardItems] = useState(null);
   const [currentTask, setCurrentTask] = useState(null);
   const themes = {
-    light: "winter",
-    dark: "forest",
-  };
+    light:{
+      nav:'bg-white text-black navbar shadow-md',
+      bg:'bg-slate-200',
+      serviceCard:" h-auto md:h-[350px] bg-blue-300  flex overflow-hidden shadow",
+      footer:"footer p-12 text-white bg-indigo-900 ",
+      pricingCard:"my-9 mr-3 py-3 px-3 card-compact w-72 h-auto bg-base-100 shadow-2xl rounded-xl",
+      pricingOrder:"my-9 mx-11 py-3 px-11 h-auto bg-gray-100 shadow-2xl rounded-xl"
+    },
+    dark: { 
+       nav:'bg-gray-900 text-white navbar shadow-md',
+    bg:'bg-gray-800 text-white',
+    serviceCard:" h-auto md:h-[350px] bg-gray-500  flex overflow-hidden text-white shadow",
+    footer:"footer p-12 text-white bg-gray-900 ",
+    pricingCard:"my-9 mr-3 py-3 px-3 text-white card-compact w-72 h-auto bg-gray-700 shadow-2xl rounded-xl",
+    pricingOrder:"my-9 mx-11 py-3 px-11 h-auto bg-gray-700 shadow-2xl rounded-xl"
+  },
+  }
 
   const [isDark, setIsDark] = useState(false);
   const theme = isDark ? themes.dark : themes.light;
