@@ -11,9 +11,9 @@ import Router from "./Router/Router";
 
 function App() {
   const { theme } = useContext(AuthContext)
-  console.log(theme);
+  console.log(theme.nav);
   return (
-    <div className="body  ">
+    <div className={theme.bg}>
       <Provider store={Store}>
         <RouterProvider router={Router} />
         <ToastContainer />

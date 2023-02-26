@@ -18,21 +18,7 @@ const Features = () => {
             title: 'Team Collaboration',
             text: `Working together is hard work—for a lot of reasons. You likely have teammates who work in different locations and different hours. Plus, everyone’s work is now spread across multiple apps. The result?`
         },
-        // {
-        //     image: 'https://cdn-icons-png.flaticon.com/512/2924/2924763.png',
-        //     title: 'Task Management',
-        //     text: `Task management software tends to have fewer features than standard project management platforms. That’s because it is intended to be used by entire teams, not just by managers or “power users.” The focus of task management tools is strictly execution-oriented, centered on organizing and managing tasks. Thus, these solutions tend to be limited when.`
-        // },
-        // {
-        //     image: 'https://cdn-icons-png.flaticon.com/512/2680/2680945.png',
-        //     title: 'Track Progress',
-        //     text: `Project tracking is the process of monitoring a project's progress against the original project plan. The goal is to make corrective actions as soon as you spot deviations (or occurrences that may lead to deviations) so the team stays on track. When done right, project tracking empowers your team to: Stay on schedule.`
-        // },
-        // {
-        //     image: 'https://cdn-icons-png.flaticon.com/512/9386/9386935.png',
-        //     title: 'User Friendly',
-        //     text: `he term user-friendly describes computer software, hardware, or a service designed to make the user's life easier. We like to think of Computer Hope as a user-friendly website. Anything difficult or frustrating for the user to use is not considered user-friendly.`
-        // }
+       
     ]
     return (
         <div className='w-full md:mx-11 md:px-11 sm:px-12  lg:px-32 my-16'>

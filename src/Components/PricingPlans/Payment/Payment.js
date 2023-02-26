@@ -17,7 +17,7 @@ const Payment = () => {
     //     return <Loading></Loading>
     // }
     return (
-        <div className='my-11 mx-40 p-11 shadow-lg bg-indigo-100 rounded-lg text-lg font-bold'>
+        <div className='my-11 mx-40 p-11  rounded-lg text-lg font-bold'>
             <h3 className="text-3xl">Payment {name}</h3>
             <p className="text-xl">Please pay for your subscription plan.</p>
             <div className='w-96 my-12'>

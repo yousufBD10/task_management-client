@@ -5,7 +5,7 @@ import { AuthContext } from '../../../Context/UserContext';
 
 
 const Order = () => {
-    const { user } = useContext(AuthContext);
+    const { user,theme } = useContext(AuthContext);
 
     const url = process.env.REACT_APP_SERVER_URL+`/bookings?email=${user?.email}`;
 

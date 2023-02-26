@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../Context/UserContext';
+
 
 
 const User = () => {
-
+const {theme} = useContext(AuthContext);
   const { data: allUsers = [], refetch } = useQuery({
     queryKey: ['allDatas'],
     queryFn: async () => {
@@ -39,8 +41,8 @@ const User = () => {
 
 
   return (
-    <div className="overflow-x-auto w-full p-4">
-      <table className="table w-full">
+    <div className="overflow-x-auto  w-full p-4">
+      <table className={theme?.table}>
 
         <thead>
           <tr>
@@ -53,7 +55,7 @@ const User = () => {
             <th></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody >
 
           {
             allUsers[0]?.map((alluser, i) =>

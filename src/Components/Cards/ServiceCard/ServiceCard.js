@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Context/UserContext";
 import "./ServiceCard.css";
 
 const ServiceCard = ({ image, title, text }) => {
+  const {theme} = useContext(AuthContext);
   return (
     <div className=" h-auto md:h-[450px] bg-sky-100  flex overflow-hidden shadow">
       <article className="flex flex-col rounded-lg border border-gray-100 p-2 shadow-sm transition hover:shadow-lg sm:p-6">
@@ -11,8 +13,8 @@ const ServiceCard = ({ image, title, text }) => {
         </span>
 
         <div className="mt-auto">
-          <h3 className="mt-0.5 text-lg font-medium text-black">{title}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-gray-900 line-clamp-3">
+          <h3 className="mt-0.5 text-lg font-medium ">{title}</h3>
+          <p className="mt-2 text-sm leading-relaxed  line-clamp-3">
             {text.slice(0,150)}...
           </p>
           <p>

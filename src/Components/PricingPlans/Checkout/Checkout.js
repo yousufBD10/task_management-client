@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 
 import { FcCheckmark } from 'react-icons/fc';
+import { AuthContext } from '../../../Context/UserContext';
 
 const Checkout = () => {
-    
+    const {theme} =useContext(AuthContext);
     const { _id, priceDetails, pricing, title, subtitle, featureTitle, feature01, feature02, feature03, feature04, feature05, feature06, feature07 } = useLoaderData()
     
     return (
         <div>
-                    <div className="my-9 mx-11 py-3 px-11 h-auto bg-base-100 shadow-2xl rounded-xl">
+                    <div className={theme?.pricingOrder}>
             
             <div className="mx-11 my-11 px-11 flex flex-row">
                 <div className='h-72 pt-11 mr-11'>

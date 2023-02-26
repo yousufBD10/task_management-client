@@ -8,7 +8,7 @@ import CreateWorkSpaceModal from "../CreateWorkSpaceModal/CreateWorkSpaceModal";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { user, logOut, toggleTheme, isDark } = useContext(AuthContext);
+  const { user, logOut, toggleTheme, isDark,theme } = useContext(AuthContext);
   const [role, isRoleLoading] = useRole(user?.email);
   console.log(role);
   const handleLogOut = () => {
@@ -46,7 +46,7 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li className="rounded-none text-black font-semibold">
+            <li className="rounded-none font-semibold">
               <Link to="/">Home</Link>
             </li>
             <li>
@@ -60,7 +60,7 @@ const Navbar = () => {
               <a href="#WorkSpaceModal-1">Create Workspace</a>
             </li>
             {role && (
-              <li className="text-black font-semibold">
+              <li className=" font-semibold">
                 <Link to="/dashboard">Dashboard</Link>
               </li>
             )}
@@ -73,28 +73,29 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 font-bold text-lg">
-          <li className=" text-black rounded-md mr-3 hover:bg-gray-300 ">
+        <ul className="menu menu-horizontal px-1 font-bold ">
+          <li className="   mr-3 hover:bg-gray-300 ">
             <Link to="/">Home</Link>
           </li>
-          <li className="text-black  rounded-md mr-3 hover:bg-gray-300">
+          <li className="   mr-3 hover:bg-gray-300">
             <Link to="/pricing">Pricing</Link>
           </li>
-          <li className="text-black rounded-md mr-3 hover:bg-gray-300">
+          <li className="  mr-3 hover:bg-gray-300">
             {" "}
             <Link to="/workspace/boards">Workspaces</Link>
           </li>
-          <li className="text-black rounded-md mr-3 hover:bg-gray-300">
+          <li className="  mr-3 hover:bg-gray-300">
             <a href="#WorkSpaceModal-1">Create Workspace</a>
           </li>
           {role && (
-            <li className="text-black rounded-md mr-3 hover:bg-gray-300">
+            <li className="  mr-3 hover:bg-gray-300">
               <Link to="/dashboard">Dashboard</Link>
             </li>
           )}
         </ul>
       </div>
       <div className="navbar-end">
+        
         <div className="mr-5 cursor-pointer">
           {" "}
           {isDark ? (
@@ -108,7 +109,7 @@ const Navbar = () => {
             <img
               onClick={toggleTheme}
               className="w-6"
-              src="https://icon-library.com/images/moon-icon-png/moon-icon-png-25.jpg"
+              src="https://www.pngkey.com/png/full/132-1329742_halloween-half-moon-moon-icon-svg.png"
               alt=""
             />
           )}
@@ -131,7 +132,7 @@ const Navbar = () => {
               </label>
               <div
                 tabIndex={1}
-                className="menu text-black menu-compact dropdown-content mt-12 p-2 shadow-lg bg-base-100 rounded-sm w-60"
+                className="menu menu-compact dropdown-content mt-12 p-2 shadow-lg bg-base-100 rounded-sm w-60"
               >
                 <h2 className=" text-gray-600 font-bold my-2">ACCOUNT</h2>
                 <div className="flex items-center mb-5">
@@ -192,6 +193,7 @@ const Navbar = () => {
       </div>
       {user && <CreateWorkSpaceModal></CreateWorkSpaceModal>}
     </div>
+    
   );
 };
 

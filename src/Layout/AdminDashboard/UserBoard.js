@@ -6,7 +6,7 @@ import { AuthContext } from "../../Context/UserContext";
 
 
 const UserBoard = () => {
-  const { user, reloadWorkspaces } = useContext(AuthContext);
+  const { user,theme, reloadWorkspaces } = useContext(AuthContext);
   useEffect(reloadWorkspaces, [user]);
 
   const { data: alluserdata = [], refetch } = useQuery({
@@ -41,7 +41,7 @@ const UserBoard = () => {
 
   return (
     <div className="overflow-x-auto w-full p-4">
-      <table className="table w-full">
+      <table className={theme?.table}>
 
         <thead>
           <tr>

@@ -5,7 +5,7 @@ import { AuthContext } from '../../Context/UserContext';
 
 const UserWorkspace = () => {
   const [refetch, setRefetch] = useState(true);
-  const { user, reloadWorkspaces, workspaces } = useContext(AuthContext);
+  const { user,theme, reloadWorkspaces, workspaces } = useContext(AuthContext);
   useEffect(reloadWorkspaces, [user]);
 
   const handleDelete = (id) => {
@@ -33,7 +33,7 @@ const UserWorkspace = () => {
 
   return (
     <div className="overflow-x-auto w-full p-4">
-      <table className="table w-full">
+      <table className={theme?.table}>
 
         <thead>
           <tr>
