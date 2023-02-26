@@ -1,7 +1,7 @@
 const LoadCheckList = (taskId) => {
     console.log("taskId chek: ", taskId);
     return async (dispatch, getState) => {
-        const res = await fetch('http://localhost:5000' + `/check-list/${taskId}`, {
+        const res = await fetch(process.env.REACT_APP_SERVER_URL + `/check-list/${taskId}`, {
             method: "GET",
             headers: {
                 "Content-type": "application/json",

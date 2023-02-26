@@ -5,7 +5,7 @@ import { AuthContext } from '../../Context/UserContext';
 
 const UserAllTask = () => {
 
-  const { user } = useContext(AuthContext);
+  const { user,theme } = useContext(AuthContext);
 
   const { data: alluserdata = [], refetch } = useQuery({
     queryKey: [user?.uid],
@@ -41,7 +41,7 @@ const UserAllTask = () => {
   return (
 
     <div className="overflow-x-auto p-4">
-      <table className="table w-full">
+      <table className={theme?.table}>
 
         <thead>
           <tr>

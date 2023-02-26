@@ -19,7 +19,7 @@ const CheckList = ({ currentTask }) => {
 
     /* -------------------------------- checklist handle start ------------------------------- */
     const loadCheckList = (taskId) => {
-        fetch('http://localhost:5000' + `/check-list/${taskId}`, {
+        fetch(process.env.REACT_APP_SERVER_URL + `/check-list/${taskId}`, {
             method: "GET",
         })
             .then((res) => {
@@ -39,7 +39,7 @@ const CheckList = ({ currentTask }) => {
             taskDoneActivity: false,
             taskCheckAssignDate: new Date()
         }
-        fetch(`http://localhost:5000/create-checklist-item`, {
+        fetch(process.env.REACT_APP_SERVER_URL + `/create-checklist-item`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -53,7 +53,7 @@ const CheckList = ({ currentTask }) => {
             })
     }
     const handleCheckListUpdate = (checkListItemId, taskId, taskDoneActivity) => {
-        fetch(`http://localhost:5000/update-checklist-item/${checkListItemId}`, {
+        fetch(process.env.REACT_APP_SERVER_URL+`/update-checklist-item/${checkListItemId}`, {
             method: 'PUT',
             headers: {
                 "content-type": "application/json",
@@ -66,7 +66,7 @@ const CheckList = ({ currentTask }) => {
             })
     }
     const handleRemoveChecklist = (checkListItemId, taskId) => {
-        fetch(`http://localhost:5000/remove-checklist-item/${checkListItemId}`, {
+        fetch(process.env.REACT_APP_SERVER_URL+`/remove-checklist-item/${checkListItemId}`, {
             method: 'DELETE',
             headers: {
                 "content-type": "application/json",

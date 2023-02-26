@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../../Context/UserContext";
 
 const CreateTask = ({ handleTaskSubmit, cardInfo, modalID }) => {
+  const {theme} = useContext(AuthContext);
   return (
-    <div>
-      <div id={modalID} className="modal">
-        <div className="modal-box">
+    <div className={theme?.bg}>
+      <div id={modalID} className="modal ">
+        <div className={theme?.modal}>
           <a
             href="#"
             className="btn btn-sm btn-circle absolute right-2 top-2 z-30 hover:rotate-90 transition-all ease-in close_modal"
@@ -16,12 +18,12 @@ const CreateTask = ({ handleTaskSubmit, cardInfo, modalID }) => {
               <div>
                 <label
                   htmlFor="note"
-                  className="text-sm text-gray-700 block mb-1 font-medium"
+                  className="text-sm  block mb-1 font-medium"
                 >
                   {cardInfo.ListName}
                 </label>
                 <textarea
-                  className="textarea textarea-accent bg-gray-100 border border-gray-200 rounded py-1 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full h-40"
+                  className={theme?.createTaskTextAria}
                   placeholder="Enter your Note"
                   name="note"
                 ></textarea>
@@ -30,7 +32,7 @@ const CreateTask = ({ handleTaskSubmit, cardInfo, modalID }) => {
             <div className="space-x-4 mt-8">
               <input
                 type="submit"
-                className="w-full btn btn-primary rounded-md font-bold"
+                className="w-full btn bg-gray-500 rounded-md font-bold"
                 value="Save"
               />
             </div>

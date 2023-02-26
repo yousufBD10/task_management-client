@@ -16,6 +16,7 @@ import EditWorkspace from "../Components/Workspace/Modals/EditWorkspace";
 const Workspace = () => {
   const {
     user,
+    theme,
     reloadWorkspaces,
     workspaces,
     setCurrentWorkspace,
@@ -71,15 +72,15 @@ const Workspace = () => {
                       }}
                     ></div>
                   </div>
-                  <div>
+                  <div className={theme?.text}>
                     <div className="flex items-center gap-3">
                       {" "}
-                      <h1 className="text-xl flex items-center gap-2 font-medium">
+                      <h1 className="text-xl flex items-center gap-2  font-medium">
                         {currentWorkspace?.name}{" "}
                       </h1>
                       <a
                         href="#edit-workspace"
-                        className="hover:bg-slate-200 text-black rounded-lg cursor-pointer p-2"
+                        className="hover:bg-slate-500  rounded-full cursor-pointer p-2"
                       >
                         {" "}
                         <BiPencil></BiPencil>{" "}

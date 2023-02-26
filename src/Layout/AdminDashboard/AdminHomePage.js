@@ -83,7 +83,7 @@ const AdminHomePage = () => {
           </div>
           <div className="mt-10 ml-3">
             <h1 className="text-3xl">Analysis Reports</h1>
-            <h1 className="text-blue-300">Checkout your latest project and their progress</h1>
+            <h1 className="text-blue-500">Checkout your latest project and their progress</h1>
           </div>
           <svg viewBox="0 0 450 350">
             <VictorySharedEvents
@@ -104,8 +104,10 @@ const AdminHomePage = () => {
                   onMouseOut: () => {
                     return [{
                       childName: ["pie", "bar"],
-                      mutation: () => {
-                        return null;
+                      mutation: (props) => {
+                        return {
+                          style: Object.assign({}, props.style, { fill: "blue" })
+                        };
                       }
                     }];
                   }

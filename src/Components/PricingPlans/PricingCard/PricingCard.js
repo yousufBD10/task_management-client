@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { FcCheckmark } from 'react-icons/fc';
+import { AuthContext } from '../../../Context/UserContext';
 
 
 const PricingCard = ( { price } ) => {
+    const {theme} = useContext(AuthContext);
 
     const { _id, priceDetails, pricing,button, title, subtitle, featureTitle, feature01, feature02, feature03, feature04, feature05, feature06, feature07 } = price;
     
     return (
-        <div className="my-9 mr-3 py-3 px-3 card-compact w-72 h-auto bg-base-100 shadow-2xl rounded-xl">
+        <div className={theme?.pricingCard}>
             
             <div className="ml-2 p-2">
                 <div className='h-72'>
                 <h2 className="card-title"><strong>{title}</strong></h2>
                 <h1 className='text-2xl text-red-500 font-semibold'>Price: {pricing} USD</h1>
-                <p className='text-stone-500 mb-11'>{priceDetails}</p>
+                <p className=' mb-11'>{priceDetails}</p>
                 <h2>{subtitle}</h2>
                 </div>
                 <Link to={`/pricingOptions/${_id}`}>

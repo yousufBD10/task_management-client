@@ -7,7 +7,7 @@ import EditBoard from "./Modals/EditBoard";
 import NewBoard from "./Modals/NewBoard";
 
 const Boards = () => {
-  const { user, currentWorkspace, logOut } = useContext(AuthContext);
+  const { user,theme, currentWorkspace, logOut } = useContext(AuthContext);
   const [cards, setBoards] = useState([]);
   const [_id, _setId] = useState("");
 
@@ -97,7 +97,7 @@ const Boards = () => {
       {currentWorkspace && (
         <>
           <div className="flex justify-between  pr-5">
-            <h1 className="text-xl font-medium px-5">Boards</h1>
+           <div className={theme?.text}> <h1 className="text-xl font-medium px-5">Boards</h1></div>
             <a
               href="#new-board"
               className="btn btn-sm border-none bg-stone-300 hover:bg-indigo-300 text-black font-semibold rounded-sm"

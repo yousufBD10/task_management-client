@@ -4,7 +4,7 @@ import CreateTask from "../Modals/CreateTask";
 import { toast } from "react-toastify";
 
 const ToDoCard = ({ current_board, current_list, reloadItems }) => {
-  const { currentWorkspace, setCurrentTask, boardItems, user } =
+  const { currentWorkspace, setCurrentTask, boardItems,theme,user } =
     useContext(AuthContext);
 
   /* ----------------- Collect data After Submit Task on modal Start ----------------- */
@@ -43,8 +43,8 @@ const ToDoCard = ({ current_board, current_list, reloadItems }) => {
 
   return (
     <div>
-      <div className="box-border  text-black">
-        <div className="bg-gray-300 p-3">
+      <div className="box-border  ">
+        <div className={theme?.ToDo}>
           <div className="flex justify-between items-start gap-2">
             <h4 className="w-10/12 font-semibold text-justify p-2 hover:cursor-pointer">
               {current_list.ListName}
@@ -56,9 +56,10 @@ const ToDoCard = ({ current_board, current_list, reloadItems }) => {
               boardItems.map((item, i) => (
                 <>
                   {item.cardID === current_list.id && (
+                    <div className={theme?.TaskCard}>
                     <div
                       key={item._id}
-                      className="bg-gray-50 hover:cursor-pointer hover:bg-gray-100 p-2 my-1 relative"
+                      className="hover:cursor-pointer  p-2 my-1 relative"
                     >
                       {/* ------show cover image ------- */}
                       {item?.cover && (
@@ -91,6 +92,7 @@ const ToDoCard = ({ current_board, current_list, reloadItems }) => {
                         {item.note}
                       </a>
                     </div>
+                    </div>
                   )}
                 </>
               ))}
@@ -101,7 +103,7 @@ const ToDoCard = ({ current_board, current_list, reloadItems }) => {
               {/* -------------------- To Show CreateTask Modal trigger Start -------------------- */}
               <a
                 href={`#_${current_list.id}_`}
-                className="w-full btn border-none bg-stone-300 hover:bg-indigo-300 text-black font-semibold rounded-sm"
+                className="w-full btn border-none bg-gray-400 hover:bg-indigo-300  font-semibold rounded-sm"
               >
                 Add a Card
               </a>
