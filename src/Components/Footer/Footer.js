@@ -8,10 +8,11 @@ const Footer = () => {
     return (
         <footer className={theme?.footer}>
             <div>
-                <div className=' lg:w-64 pb-2' >
-                <img src='/logo.png' width="100%" />
+                <div className='lg:w-64 h-36' >
+                <img src="/TaskMaster10.png" className='lg:w-64 h-40 -mt-6'/>
+                <p className='pl-14 -mt-10'>Task Management System</p>
                 </div>
-                <p>Task Management System</p>
+                
             </div>
             {/* <div>
                 <span className="footer-title">Services</span>

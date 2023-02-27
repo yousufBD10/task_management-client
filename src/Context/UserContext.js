@@ -30,7 +30,7 @@ const UserContext = ({ children }) => {
   const [currentTask, setCurrentTask] = useState(null);
   const themes = {
     light:{
-      nav:'bg-white text-black navbar shadow-md',
+      nav:'bg-gray-200 text-black navbar shadow-md',
       bg:'bg-blue-100',
       text:'text-black',
       serviceCard:" h-auto md:h-[350px] bg-blue-300  flex overflow-hidden shadow",
@@ -52,7 +52,7 @@ const UserContext = ({ children }) => {
       "dropdown dropdown-bottom md:dropdown-left flex items-center mb-1 mr-1 p-2 space-x-3  btn-ghost bg-gray-300 btn-sm  hover:bg-gray-400 w-44 md:w-none"
     },
     dark: { 
-       nav:'bg-gray-900 text-white navbar shadow-md',
+    nav:'bg-sky-700 text-white navbar shadow-md',
     bg:'bg-gray-800 text-white',
     text:'text-white',
     serviceCard:" h-auto md:h-[350px] bg-gray-700  flex overflow-hidden text-white shadow",
