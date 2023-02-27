@@ -8,7 +8,6 @@ import Order from "../Components/PricingPlans/Order/Order";
 import Payment from "../Components/PricingPlans/Payment/Payment";
 import Pricing from "../Components/PricingPlans/Pricing/Pricing";
 import SingUp from "../Components/SignUp/SignUp";
-import UpdateUser from "../Components/User/UpdateUser";
 import UserProfile from "../Components/User/UserProfile";
 import BoardCards from "../Components/Workspace/BoardCards";
 import Boards from "../Components/Workspace/Boards";
@@ -48,10 +47,7 @@ const Router = createBrowserRouter([
         path: "/profile",
         element: <UserProfile />,
       },
-      {
-        path: "/updateprofile",
-        element: <UpdateUser />,
-      },
+     
       {
         path: '/pricing',
         element: <Pricing></Pricing>

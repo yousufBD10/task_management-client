@@ -133,9 +133,9 @@ const Navbar = () => {
               </label>
               <div
                 tabIndex={1}
-                className="menu menu-compact dropdown-content mt-12 p-2 shadow-lg bg-base-100 rounded-sm w-60"
+                className={theme?.accountSection}
               >
-                <h2 className=" text-gray-600 font-bold my-2">ACCOUNT</h2>
+                <h2 className="  font-bold my-2">ACCOUNT</h2>
                 <div className="flex items-center mb-5">
                   <div className="w-10 mr-1">
                     <img
@@ -154,7 +154,7 @@ const Navbar = () => {
                   </div>
                 </div>
                 <li>
-                  <Link to="/profile" className="justify-between">
+                  <Link to="/profile" className=" justify-between">
                     Profile
                   </Link>
                 </li>

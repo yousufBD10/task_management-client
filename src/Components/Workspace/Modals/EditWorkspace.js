@@ -3,7 +3,7 @@ import { AuthContext } from "../../../Context/UserContext";
 import { toast } from "react-toastify";
 
 const EditWorkspace = () => {
-  const { user, currentWorkspace, reloadWorkspaces, logOut } =
+  const { user, theme,currentWorkspace, reloadWorkspaces, logOut } =
     useContext(AuthContext);
 
   const handleEdit = (event) => {
@@ -31,7 +31,7 @@ const EditWorkspace = () => {
   };
   return (
     <div id={`edit-workspace`} className="modal">
-      <div className="modal-box rounded-md">
+      <div className={theme?.modal}>
         <a
           href="#"
           className="btn btn-sm btn-circle absolute right-2 top-2 z-30 hover:bg-indigo-300 bg-stone-300 text-stone-500 border-none transition-all ease-in close_modal"
@@ -43,7 +43,7 @@ const EditWorkspace = () => {
             <div>
               <label
                 htmlFor="name"
-                className="text-sm text-gray-700 block mb-1 font-medium"
+                className="text-sm block mb-1 font-medium"
               >
                 Workspace name
               </label>
@@ -52,14 +52,14 @@ const EditWorkspace = () => {
                 required
                 type="text"
                 name="name"
-                className="bg-gray-100 border border-stone-300 rounded py-2 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
+                className={theme?.editeWorkspaceInput}
               />
             </div>
           </div>
           <div className="space-x-4 mt-8">
             <button
               type="submit"
-              className="w-full btn border-none bg-stone-300 hover:bg-indigo-300 text-black font-bold rounded-md font-bold"
+              className="w-full btn border-none bg-gray-500 hover:bg-gray-400  font-bold rounded-md font-bold"
             >
               Save
             </button>

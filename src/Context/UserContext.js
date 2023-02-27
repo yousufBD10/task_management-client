@@ -49,7 +49,11 @@ const UserContext = ({ children }) => {
       SingleTaskModalTextAria:"input input-bordered p-4 w-full rounded-md outline-border h-28",
       SingleTaskModalComment:"input input-bordered p-2 mt-2 w-full rounded-sm outline-border",
       buttonStyle :
-      "dropdown dropdown-bottom md:dropdown-left flex items-center mb-1 mr-1 p-2 space-x-3  btn-ghost bg-gray-300 btn-sm  hover:bg-gray-400 w-44 md:w-none"
+      "dropdown dropdown-bottom md:dropdown-left flex items-center mb-1 mr-1 p-2 space-x-3  btn-ghost bg-gray-300 btn-sm  hover:bg-gray-400 w-44 md:w-none",
+      accountSection:"menu menu-compact dropdown-content mt-12 p-2 shadow-lg bg-base-100 rounded-sm w-60",
+      editProfileInput:"input input-bordered w-full bg-gray-300 font-semibold ",
+      boardEditeModal:"bg-gray-100 border border-stone-300 rounded py-4 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full",
+      editeWorkspaceInput:"bg-gray-100 border border-stone-300 rounded py-2 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
     },
     dark: { 
     nav:'bg-sky-700 text-white navbar shadow-md',
@@ -71,7 +75,11 @@ const UserContext = ({ children }) => {
     SingleTaskModalTextAria:"input bg-gray-700 text-white input-bordered p-4 w-full rounded-md outline-border h-28",
     SingleTaskModalComment:"input bg-gray-700 input-bordered p-2 mt-2 w-full rounded-sm outline-border",
     buttonStyle :
-    "dropdown dropdown-bottom md:dropdown-left flex items-center mb-1 mr-1 p-2 space-x-3  btn-ghost bg-gray-500 btn-sm  hover:bg-gray-600 w-44 md:w-none"
+    "dropdown dropdown-bottom md:dropdown-left flex items-center mb-1 mr-1 p-2 space-x-3  btn-ghost bg-gray-500 btn-sm  hover:bg-gray-600 w-44 md:w-none",
+    accountSection:"menu menu-compact dropdown-content mt-12 p-2 shadow-lg bg-gray-700 rounded-sm w-60",
+    editProfileInput:"input input-bordered w-full bg-gray-700 text-white focus:bg-gray-600 font-semibold ",
+    boardEditeModal:"bg-gray-700 border border-stone-300 rounded py-4 px-3 block focus:ring-blue-500 focus:border-blue-500  w-full",
+    editeWorkspaceInput:"bg-gray-600 border border-stone-300 rounded py-2 px-3 block focus:ring-blue-500 focus:border-blue-500 text-white w-full"
 
   },
   }
