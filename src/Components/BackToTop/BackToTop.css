@@ -1,0 +1,36 @@
+.progress{
+    z-index: 500;
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  .progress:active{
+    scale: 0.9;
+    transition: all 0.2s;
+  }
+  .progress-value{
+    z-index: 501;
+    -webkit-user-select: none; 
+    -ms-user-select: none;
+    user-select: none;
+    display: block;
+    height: calc(100% - 15%);
+    width: calc(100% - 15%);
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #001a2e;
+  }
+  .progress-value:hover{
+    background-color: rgb(250, 250, 250);
+  
+  }
+  .progress-value:active{
+    background-color: rgb(245, 245, 245);
+  }

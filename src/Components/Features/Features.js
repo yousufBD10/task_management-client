@@ -3,7 +3,7 @@ import { AuthContext } from '../../Context/UserContext';
 import ServiceCard from '../Cards/ServiceCard/ServiceCard';
 import './Features.css'
 const Features = () => {
-    const {theme} = useContext(AuthContext);
+    const { theme } = useContext(AuthContext);
 
     const features = [
         {
@@ -21,20 +21,20 @@ const Features = () => {
             title: 'Team Collaboration',
             text: `Working together is hard work—for a lot of reasons. You likely have teammates who work in different locations and different hours. Plus, everyone’s work is now spread across multiple apps. The result?`
         },
-       
+
     ]
     return (
         <div className={theme?.features}>
-        <div className='w-full md:mx-11 md:px-11 sm:px-12  lg:px-32 my-16'>
-            <h3 className='text-3xl text-center font-bold pt-28'>POWERFUL WAYS TO GROW</h3>
-            <h2 className='text-2xl font-bold text-center'>Do More With <span className='text-blue-700'>TaskMaster</span></h2>
-            <p className='text-sm mb-8 mt-1 text-center font-semibold'>TaskMaster's intuitive features give any team the ability to quickly set up and customize <br /> workflows for just about anything.</p>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:px-16 sm:px-2 my-12 pb-32'>
-                {
-                    features.map((feature, i) => <ServiceCard key={i} image={feature.image} title={feature.title} text={feature.text}></ServiceCard>)
-                }
+            <div className='p-4 md:mx-11 md:px-11 sm:px-12  lg:px-32 my-16'>
+                <h3 className='text-3xl text-center font-bold pt-28'>POWERFUL WAYS TO GROW</h3>
+                <h2 className='text-2xl font-bold text-center'>Do More With <span className='text-blue-700'>TaskMaster</span></h2>
+                <p className='text-sm mb-8 mt-1 text-center font-semibold'>TaskMaster's intuitive features give any team the ability to quickly set up and customize <br /> workflows for just about anything.</p>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:px-16 sm:px-2 my-12 pb-32'>
+                    {
+                        features.map((feature, i) => <ServiceCard key={i} image={feature.image} title={feature.title} text={feature.text}></ServiceCard>)
+                    }
+                </div>
             </div>
-        </div>
         </div>
     );
 };
