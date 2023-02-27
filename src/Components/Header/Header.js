@@ -20,7 +20,7 @@ const Header = () => {
                 <h3 className='text-xl font-semibold  mt-8 '>We’re more than a doc. Or a table. Customize TaskMaster <br /> to work the way you do.</h3>
                 <form onSubmit={handleSubs}>
                     <input type="email" name='email' placeholder="Enter your email address" className="rounded-md input  bg-gray-100 mt-5 w-full max-w-xs input-bordered" /><br />
-                    <button type='submit' className="btn btn-outline font-bold  bg-blue-300 hover:bg-blue-500 mt-6 ">Get Started</button>
+                    <button type='submit' className="btn btn-outline border-none font-bold  bg-green-400 hover:bg-green-500 mt-6 ">Get Started</button>
                 </form>
             </div>
             <div>
