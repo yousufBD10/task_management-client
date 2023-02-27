@@ -24,7 +24,7 @@ const Navbar = () => {
   }
   return (
     <nav className={theme?.nav}>
-    <div className="h-24 navbar">
+    <div className="h-14 navbar">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -67,9 +67,9 @@ const Navbar = () => {
             )}
           </ul>
         </div>
-        <div className=" w-64 lg:mt-4 p-2 ">
+        <div className=" w-64 lg:mt-2 p-2 ">
           <Link to="/">
-            <img className="w-64 h-52 " src="/TaskMaster.png" alt="" />
+            <img className="w-80 h-40" src="/TaskMaster10.png" alt="" />
           </Link>
         </div>
       </div>

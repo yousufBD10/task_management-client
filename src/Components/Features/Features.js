@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../Context/UserContext';
 import ServiceCard from '../Cards/ServiceCard/ServiceCard';
 import './Features.css'
 const Features = () => {
-    const waysToGrowData = [
+    const {theme} = useContext(AuthContext);
+
+    const features = [
         {
             image: 'https://cdn-icons-png.flaticon.com/512/7481/7481977.png',
             title: 'WorkSpace',
@@ -21,15 +24,17 @@ const Features = () => {
        
     ]
     return (
+        <div className={theme?.features}>
         <div className='w-full md:mx-11 md:px-11 sm:px-12  lg:px-32 my-16'>
-            <h3 className='text-3xl text-center text-black font-bold'>POWERFUL WAYS TO GROW</h3>
-            <h2 className='text-2xl font-bold text-center text-black'>Do More With <span className='text-blue-700'>TaskMaster</span></h2>
-            <p className='text-sm mb-8 mt-1 text-center font-semibold text-black'>TaskMaster's intuitive features give any team the ability to quickly set up and customize <br /> workflows for just about anything.</p>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:px-16 sm:px-2 my-12 '>
+            <h3 className='text-3xl text-center font-bold pt-28'>POWERFUL WAYS TO GROW</h3>
+            <h2 className='text-2xl font-bold text-center'>Do More With <span className='text-blue-700'>TaskMaster</span></h2>
+            <p className='text-sm mb-8 mt-1 text-center font-semibold'>TaskMaster's intuitive features give any team the ability to quickly set up and customize <br /> workflows for just about anything.</p>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:px-16 sm:px-2 my-12 pb-32'>
                 {
-                    waysToGrowData.map((way, i) => <ServiceCard key={i} image={way.image} title={way.title} text={way.text}></ServiceCard>)
+                    features.map((feature, i) => <ServiceCard key={i} image={feature.image} title={feature.title} text={feature.text}></ServiceCard>)
                 }
             </div>
+        </div>
         </div>
     );
 };

@@ -30,10 +30,12 @@ const UserContext = ({ children }) => {
   const [currentTask, setCurrentTask] = useState(null);
   const themes = {
     light:{
-      nav:'bg-gray-200 text-black navbar shadow-md',
+      nav:'bg-gray-200 navbar shadow-md',
       bg:'bg-blue-100',
       text:'text-black',
-      serviceCard:" h-auto md:h-[350px] bg-blue-300  flex overflow-hidden shadow",
+      features:"bg-gray-200",
+      reviews:"bg-gray-200",
+      serviceCard:" h-auto md:h-[350px] bg-gray-300  flex overflow-hidden shadow",
       footer:"footer p-12 text-white bg-black ",
       pricingCard:"my-9 mr-3 py-3 px-3 card-compact w-72 h-auto bg-base-100 shadow-2xl rounded-xl",
       pricingOrder:"my-9 mx-11 py-3 px-11 h-auto bg-gray-100 shadow-2xl rounded-xl",
@@ -56,9 +58,12 @@ const UserContext = ({ children }) => {
       editeWorkspaceInput:"bg-gray-100 border border-stone-300 rounded py-2 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
     },
     dark: { 
-    nav:'bg-sky-700 text-white navbar shadow-md',
-    bg:'bg-gray-800 text-white',
+    nav:'bg-gray-700 text-white navbar shadow-md',
+    bg:'bg-gray-900 text-white',
     text:'text-white',
+    features:"bg-gray-800",
+    reviews:"bg-gray-800",
+    feature:"text-black",
     serviceCard:" h-auto md:h-[350px] bg-gray-700  flex overflow-hidden text-white shadow",
     footer:"footer p-12 text-white bg-gray-900",
     pricingCard:"my-9 mr-3 py-3 px-3 text-white card-compact w-72 h-auto bg-gray-700 shadow-2xl rounded-xl",

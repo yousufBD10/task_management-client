@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import "./Reviews.css";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,9 +6,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 // import required modules
-import { Pagination } from "swiper";
+import { Pagination, Autoplay } from "swiper";
+import { AuthContext } from '../../Context/UserContext';
 
 const Reviews = () => {
+    const {theme} = useContext(AuthContext);
+
     const data =[
         {
             id:0, 
@@ -54,8 +57,10 @@ const Reviews = () => {
         },
     ]
     return (
-        <div className='px-11 py-32 mt-11'>
-        <h2 className='text-center text-3xl font-bold mb-11'>This is Why People Love TaskMaster</h2>
+        <div className={theme?.reviews}>
+        <div className='px-6 py-24'>
+        <h2 className='text-center text-4xl font-bold'>User Reviews</h2>
+        <h2 className='text-center text-2xl font-bold'>This is why people love TaskMaster</h2>
         <Swiper
                 breakpoints={{
                     // when window width is >= 640px
@@ -69,17 +74,21 @@ const Reviews = () => {
                       slidesPerView: 2,
                     },
                   }}
-        // slidesPerView={3}
+                  
+        slidesPerView={3}
         spaceBetween={30}
-        autoplay={{
-            delay:1250,
+        
+         autoplay={{
+            delay:3250,
             // disableOnInteraction: false,
-        }}
+         }}
+        
+       
         pagination={{
           clickable: true,
           
         }}
-        modules={[Pagination]}
+        modules={[Pagination, Autoplay]}
         className="mySwiper"
         >
         {
@@ -96,6 +105,7 @@ const Reviews = () => {
             ))
         }
       </Swiper>
+      </div>
       </div>
       );
     }
