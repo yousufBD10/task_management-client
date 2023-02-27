@@ -23,8 +23,7 @@ const Navbar = () => {
     return <Loader></Loader>;
   }
   return (
-   
-     <div className={theme?.nav}>
+    <div className="bg-gray-200 h-24 navbar shadow-md text-black">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -176,7 +175,7 @@ const Navbar = () => {
             <Link to="/login">
               <button
                 type="button"
-                className="hover:bg-gray-400  font-bold bg-blue-200    px-5 py-2.5 mr-2 "
+                className="hover:bg-gray-400 rounded-md font-bold bg-blue-300 text-black   px-5 py-2.5 mr-2 "
               >
                 Login
               </button>
@@ -184,7 +183,7 @@ const Navbar = () => {
             <Link to="/register">
               <button
                 type="button"
-                className="hover:bg-gray-400 focus-visible:  bg-blue-200 font-bold  px-5 py-2.5 mr-2 "
+                className="hover:bg-gray-400 focus-visible: rounded-md bg-blue-300 font-bold text-black px-5 py-2.5 mr-2 "
               >
                 Sign Up
               </button>

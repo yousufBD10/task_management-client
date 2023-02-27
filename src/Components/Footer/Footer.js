@@ -25,8 +25,8 @@ const Footer = () => {
             </div> */}
             <div className='md:pt-4'>
                 <span className="footer-title">Legal</span>
-                <Link to="/terms">Terms of use</Link>
-                <Link to="/privacy">Privacy policy</Link>
+                <Link to="/terms">Terms of Service</Link>
+                <Link to="/privacy">Privacy Policy</Link>
                 {/* <a className="link link-hover">Cookie policy</a> */}
             </div>
             <div className='ml-24 pt-6'>
