@@ -49,10 +49,10 @@ const Router = createBrowserRouter([
         path: "/profile",
         element: <UserProfile />,
       },
-     
+
       {
-        path: '/pricing',
-        element: <Pricing></Pricing>
+        path: "/pricing",
+        element: <Pricing></Pricing>,
       },
       {
         path: '/contact',
@@ -60,45 +60,50 @@ const Router = createBrowserRouter([
       },
 
       {
-        path: '/pricingOptions/:id',
+        path: "/pricingOptions/:id",
         element: <Checkout></Checkout>,
-        loader: ({ params }) => fetch(process.env.REACT_APP_SERVER_URL + `/pricingOptions/${params.id}`)
-
+        loader: ({ params }) =>
+          fetch(
+            process.env.REACT_APP_SERVER_URL + `/pricingOptions/${params.id}`
+          ),
       },
       {
-        path: '/payment',
-        element: <Payment></Payment>
-      },
-      {
-        path: "*",
-        element: <Error></Error>,
-      },
-      {
-        path: "/order",
-        element: <Order></Order>
-      },
-      {
-        path: '/payment/:id',
+        path: "/payment",
         element: <Payment></Payment>,
-        loader: ({ params }) => fetch(process.env.REACT_APP_SERVER_URL + `/bookings/${params.id}`)
-      },
-      {
-        path: "/privacy",
-        element: <Privacy></Privacy>
-      },
-      {
-        path: "/terms",
-        element: <Terms></Terms>
       },
       {
         path: "/about",
-        element: <About></About>
+        element: <About></About>,
       },
+
+      {
+        path: "/order",
+        element: <Order></Order>,
+      },
+      {
+        path: "/payment/:id",
+        element: <Payment></Payment>,
+        loader: ({ params }) =>
+          fetch(process.env.REACT_APP_SERVER_URL + `/bookings/${params.id}`),
+      },
+      {
+        path: "/privacy",
+        element: <Privacy></Privacy>,
+      },
+      {
+        path: "/terms",
+        element: <Terms></Terms>,
+      },
+
     ],
   },
   {
     path: "/workspace",
-    element: <PrivateRoute><Workspace /></PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <Workspace />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/workspace/boards",
@@ -114,12 +119,16 @@ const Router = createBrowserRouter([
       },
       {
         path: "/workspace/board/:id",
-        element: <PrivateRoute><WorkspaceSingle /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <WorkspaceSingle />
+          </PrivateRoute>
+        ),
         children: [
           {
-             path: "/workspace/board/:id",
-             element: <BoardCards />,
-          }
+            path: "/workspace/board/:id",
+            element: <BoardCards />,
+          },
         ],
       },
     ],
@@ -127,7 +136,11 @@ const Router = createBrowserRouter([
 
   {
     path: "/dashboard",
-    element: <PrivateRoute><AdminDashboard /></PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <AdminDashboard />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/dashboard/user",
@@ -139,24 +152,22 @@ const Router = createBrowserRouter([
       },
       {
         path: "/dashboard/userworkspace",
-        element: <UserWorkspace/>,
+        element: <UserWorkspace />,
       },
       {
         path: "/dashboard/userboard",
-        element: <UserBoard/>,
-       
+        element: <UserBoard />,
       },
       {
         path: "/dashboard/tasks",
         element: <UserAllTask />,
       },
-     
-
-
     ],
   },
-
-
+  {
+    path: "*",
+    element: <Error></Error>,
+  },
 ]);
 
 export default Router;

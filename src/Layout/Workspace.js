@@ -30,7 +30,7 @@ const Workspace = () => {
   const image = "/assets/banner/project_img-10.jpg";
 
   return (
-    <div className="text-white">
+    <div className="text-black">
       <Navbar></Navbar>
       <label
         htmlFor="dashboardDawer"
@@ -103,7 +103,7 @@ const Workspace = () => {
           )}
           <Outlet></Outlet>
         </div>
-        <div className="drawer-side shadow-lg bg-slate-800 pt-8">
+        <div className="drawer-side shadow-lg bg-blue-200 pt-8">
           <label htmlFor="dashboardDawer" className="drawer-overlay"></label>
           <ul className="pl-4 pr-4 w-80 menu">
             {" "}

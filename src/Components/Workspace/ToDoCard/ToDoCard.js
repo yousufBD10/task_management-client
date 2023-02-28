@@ -4,7 +4,7 @@ import CreateTask from "../Modals/CreateTask";
 import { toast } from "react-toastify";
 
 const ToDoCard = ({ current_board, current_list, reloadItems }) => {
-  const { currentWorkspace, setCurrentTask, boardItems,theme,user } =
+  const { currentWorkspace, setCurrentTask, boardItems, theme, user } =
     useContext(AuthContext);
 
   /* ----------------- Collect data After Submit Task on modal Start ----------------- */
@@ -50,48 +50,48 @@ const ToDoCard = ({ current_board, current_list, reloadItems }) => {
               {current_list.ListName}
             </h4>
           </div>
-          <div className="py-2">
+          <div className="py-1">
             {/*  ---------------------- map and distribute card data Start ----------------------  */}
             {boardItems &&
               boardItems.map((item, i) => (
                 <>
                   {item.cardID === current_list.id && (
                     <div className={theme?.TaskCard}>
-                    <div
-                      key={item._id}
-                      className="hover:cursor-pointer  p-2 my-1 relative"
-                    >
-                      {/* ------show cover image ------- */}
-                      {item?.cover && (
-                        <img
-                          src={item?.cover}
-                          alt="Shoes"
-                          className="w-full mb-4"
-                        />
-                      )}
-                      {/*---------- show label ------- */}
-
-                      <div className="flex flex-wrap items-center m-2">
-                        {item?.Labels?.map((label, i) => {
-                          return (
-                            <div className="flex items-center mr-2 my-1">
-                              <div
-                                key={i}
-                                className={`flex items-center w-12 h-2 bg-${label}-400 rounded-full relative hover:bg:black/60`}
-                              ></div>
-                            </div>
-                          );
-                        })}
-                      </div>
-
-                      <a
-                        className="block"
-                        href="#new-board-modal1"
-                        onClick={() => setCurrentTask(item)}
+                      <div
+                        key={item._id}
+                        className="hover:cursor-pointer  p-2 my-1 relative"
                       >
-                        {item.note}
-                      </a>
-                    </div>
+                        {/* ------show cover image ------- */}
+                        {item?.cover && (
+                          <img
+                            src={item?.cover}
+                            alt="Shoes"
+                            className="w-full mb-2"
+                          />
+                        )}
+                        {/*---------- show label ------- */}
+
+                        <div className="flex flex-wrap items-center m-1">
+                          {item?.Labels?.map((label, i) => {
+                            return (
+                              <div className="flex items-center mr-2 my-1">
+                                <div
+                                  key={i}
+                                  className={`flex items-center w-12 h-2 bg-${label}-400 rounded-full relative hover:bg:black/60`}
+                                ></div>
+                              </div>
+                            );
+                          })}
+                        </div>
+
+                        <a
+                          className="block"
+                          href="#new-board-modal1"
+                          onClick={() => setCurrentTask(item)}
+                        >
+                          {item.note}
+                        </a>
+                      </div>
                     </div>
                   )}
                 </>

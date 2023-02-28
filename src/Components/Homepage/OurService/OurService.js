@@ -70,22 +70,22 @@ const OurService = () => {
             name: "Marketing",
             services: [
                 {
-                    icon: "",
-                    title: "",
-                    description: "",
+                    icon: "https://cdn-icons-png.flaticon.com/512/232/232587.png",
+                    title: "Prioritize, Plan, and Deliver",
+                    description: "Consolidate all feedback, ideas, epics, and sprints into a unified  product roadmap—providing stakeholders full context and visibility into what's coming next.",
                 },
                 {
-                    icon: "",
-                    title: "",
-                    description: "",
+                    icon: "https://cdn-icons-png.flaticon.com/512/2040/2040514.png",
+                    title: "Customize your workflows",
+                    description: "Create custom agile workflows tailor-fit for product management, and automate handoffs to design and engineering.",
                 },
                 {
-                    icon: "",
-                    title: "",
-                    description: "",
+                    icon: "https://cdn-icons-png.flaticon.com/512/9430/9430155.png",
+                    title: "All-in-one platform",
+                    description: "Connect product briefs, whiteboards, docs, and more directly to your epics and stories for better visibility—without the busy work.",
                 },
             ],
-            logo: "https://cdn-icons-png.flaticon.com/512/1934/1934025.png",
+            logo: "https://www.outtask.ai/hubfs/cloud-computing-technology%201%20(1).webp",
         },
         {
             name: "Product",
@@ -106,46 +106,65 @@ const OurService = () => {
                     description: "Connect product briefs, whiteboards, docs, and more directly to your epics and stories for better visibility—without the busy work.",
                 },
             ],
-            logo: "https://cdn-icons-png.flaticon.com/512/1474/1474674.png",
+            logo: "https://www.outtask.ai/hubfs/business-partnership-1%20(1).webp",
         },
         {
             name: "Design",
             services: [
                 {
-                    icon: "",
-                    title: "",
-                    description: "",
+                    icon: "https://cdn-icons-png.flaticon.com/512/232/232587.png",
+                    title: "Prioritize, Plan, and Deliver",
+                    description: "Consolidate all feedback, ideas, epics, and sprints into a unified  product roadmap—providing stakeholders full context and visibility into what's coming next.",
+                },
+                {
+                    icon: "https://cdn-icons-png.flaticon.com/512/2040/2040514.png",
+                    title: "Customize your workflows",
+                    description: "Create custom agile workflows tailor-fit for product management, and automate handoffs to design and engineering.",
                 },
             ],
-            logo: "https://cdn-icons-png.flaticon.com/512/1934/1934025.png",
+            logo: "https://antmyerp.com/wp-content/uploads/2022/05/automation-2.jpg",
         },
         {
             name: "Finance",
             services: [
                 {
-                    icon: "",
-                    title: "",
-                    description: "",
+                    icon: "https://cdn-icons-png.flaticon.com/512/232/232587.png",
+                    title: "Prioritize, Plan, and Deliver",
+                    description: "Consolidate all feedback, ideas, epics, and sprints into a unified  product roadmap—providing stakeholders full context and visibility into what's coming next.",
                 },
-            ],
-            logo: "https://cdn-icons-png.flaticon.com/512/1934/1934025.png",
-        },
-        {
-            name: "HR",
-            services: [
                 {
-                    icon: "",
-                    title: "",
-                    description: "",
+                    icon: "https://cdn-icons-png.flaticon.com/512/2040/2040514.png",
+                    title: "Customize your workflows",
+                    description: "Create custom agile workflows tailor-fit for product management, and automate handoffs to design and engineering.",
+                },
+                {
+                    icon: "https://cdn-icons-png.flaticon.com/512/9430/9430155.png",
+                    title: "All-in-one platform",
+                    description: "Connect product briefs, whiteboards, docs, and more directly to your epics and stories for better visibility—without the busy work.",
                 },
             ],
-            logo: "https://cdn-icons-png.flaticon.com/512/1934/1934025.png",
+            logo: "https://codersera.com/blog/wp-content/uploads/2020/06/time-management-apps.jpg",
         },
         {
             name: "IT",
             services: [
+                {
+                    icon: "https://cdn-icons-png.flaticon.com/512/232/232587.png",
+                    title: "Prioritize, Plan, and Deliver",
+                    description: "Consolidate all feedback, ideas, epics, and sprints into a unified  product roadmap—providing stakeholders full context and visibility into what's coming next.",
+                },
+                {
+                    icon: "https://cdn-icons-png.flaticon.com/512/2040/2040514.png",
+                    title: "Customize your workflows",
+                    description: "Create custom agile workflows tailor-fit for product management, and automate handoffs to design and engineering.",
+                },
+                {
+                    icon: "https://cdn-icons-png.flaticon.com/512/9430/9430155.png",
+                    title: "All-in-one platform",
+                    description: "Connect product briefs, whiteboards, docs, and more directly to your epics and stories for better visibility—without the busy work.",
+                },
             ],
-            logo: "https://cdn-icons-png.flaticon.com/512/1934/1934025.png",
+            logo: "https://uploads-ssl.webflow.com/5f895cb2deba3b3841e90d7a/5fe33c3715013a42fc826cbc_intro.png",
         },
 
     ]
@@ -162,8 +181,8 @@ const OurService = () => {
 
     return (
 
-        <div className='lg:mb-24  py-16 border border-none '>
-            <div className='text-center -mt-16'>
+        <div className='lg:mb-24  p-8 border border-none '>
+            <div className='text-center mt-24'>
                 <h3 className='font-bold text-blue-900'>BUILT FOR EVERYONE</h3>
                 <h1 className='text-3xl font-serif mt-5   font-bold'>See how TaskMaster can work for you.</h1>
             </div>
