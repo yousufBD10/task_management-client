@@ -24,7 +24,7 @@ const Navbar = () => {
   }
   return (
     <nav className={theme?.nav}>
-    <div className="h-14 navbar">
+    <div className="h-8 navbar">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -45,9 +45,9 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu  menu-compact dropdown-content mt-3 p-2  shadow bg-gray-600 rounded-box w-52"
           >
-            <li className="rounded-none font-semibold">
+            <li className="rounded-none ">
               <Link to="/">Home</Link>
             </li>
             <li>
@@ -65,16 +65,20 @@ const Navbar = () => {
                 <Link to="/dashboard">Dashboard</Link>
               </li>
             )}
+              <li>
+              {" "}
+              <Link to="/contact">Contact Us</Link>
+            </li>
           </ul>
         </div>
-        <div className=" w-64 lg:mt-2 p-2 ">
+        <div className=" ">
           <Link to="/">
-            <img className="w-80 h-40" src="/TaskMaster10.png" alt="" />
+            <img className="w-32 py-2 h-16" src="/TaskMaster10.png" alt="" />
           </Link>
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 font-bold ">
+        <ul className="menu menu-horizontal px-1 font-semibold ">
           <li className="   mr-3 hover:bg-gray-300 ">
             <Link to="/">Home</Link>
           </li>
@@ -93,6 +97,10 @@ const Navbar = () => {
               <Link to="/dashboard">Dashboard</Link>
             </li>
           )}
+            <li  className="  mr-3 hover:bg-gray-300">
+              {" "}
+              <Link to="/contact">Contact Us</Link>
+            </li>
         </ul>
       </div>
       <div className="navbar-end">

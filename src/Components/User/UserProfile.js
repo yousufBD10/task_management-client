@@ -4,9 +4,11 @@ import { GiLovers } from 'react-icons/gi';
 import { MdCastForEducation, MdLocationOn } from 'react-icons/md';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/UserContext';
+import useDocumentTitle from '../../Share/useDocumentTitle';
 import EditeProfile from './EditeProfile';
 
 const UserProfile = () => {
+  useDocumentTitle("Profile || TaskMaster");
  const {user} =    useContext(AuthContext);
  const [modal,setModal] = useState(true);
     const [refetch ,setRefetch] = useState(true);

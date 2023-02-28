@@ -24,7 +24,7 @@ const Features = () => {
        
     ]
     return (
-        <div className={theme?.features}>
+        <div >
         <div className='w-full md:mx-11 md:px-11 sm:px-12  lg:px-32 my-16'>
             <h3 className='text-3xl text-center font-bold pt-28'>POWERFUL WAYS TO GROW</h3>
             <h2 className='text-2xl font-bold text-center'>Do More With <span className='text-blue-700'>TaskMaster</span></h2>
