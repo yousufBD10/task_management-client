@@ -92,8 +92,8 @@ const Features = () => {
         <SwiperSlide key={i} image={feature.image} title={feature.title} text={feature.text}>
         {/* <ServiceCard key={i} image={feature.image} title={feature.title} text={feature.text}></ServiceCard> */}                  
         <div className={theme?.feature}>
-        <div className="h-full w-72 ml-11  rounded-lg bg-white text-3xl text-left">
-        <article className=" rounded-lg border border-gray-100 p-2 transition hover:shadow-lg sm:p-6">
+        <div className="h-full w-72 ml-11  rounded-lg  text-3xl text-left">
+        <article className=" rounded-lg  p-2 transition hover:shadow-lg sm:p-6">
             <span className="inline-block rounded p-2 h-40">
                 <img src={feature.image} className="lg:h-36 md:h-40 object-cover mx-auto" alt="image" />
             </span>
