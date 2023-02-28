@@ -24,6 +24,7 @@ import PrivateRoute from "./PrivateRoute";
 import UserWorkspace from "../Layout/AdminDashboard/UserWorkspace";
 import UserBoard from "../Layout/AdminDashboard/UserBoard";
 import UserAllTask from "../Layout/AdminDashboard/UserAllTask";
+import About from "../Components/About/About";
 
 
 const Router = createBrowserRouter([
@@ -86,7 +87,7 @@ const Router = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <Terms></Terms>
+        element: <About></About>
       },
     ],
   },

@@ -162,13 +162,8 @@ const OurService = () => {
 
     return (
 
-<<<<<<< HEAD
         <div className='lg:mb-24  py-16 border border-none '>
             <div className='text-center -mt-16'>
-=======
-        <div className='lg:mb-24  p-8 border border-none '>
-            <div className='text-center mt-24'>
->>>>>>> f558b8b86ba3d62b1abd1395e0bfbffbf1899e8b
                 <h3 className='font-bold text-blue-900'>BUILT FOR EVERYONE</h3>
                 <h1 className='text-3xl font-serif mt-5   font-bold'>See how TaskMaster can work for you.</h1>
             </div>
