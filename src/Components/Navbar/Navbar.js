@@ -85,10 +85,14 @@ const Navbar = () => {
           <li className="   mr-3 hover:bg-gray-300">
             <Link to="/pricing">Pricing</Link>
           </li>
+          <li className="   mr-3 hover:bg-gray-300">
+            <Link to="/about">About</Link>
+          </li>
           <li className="  mr-3 hover:bg-gray-300">
             {" "}
             <Link to="/workspace/boards">Workspaces</Link>
           </li>
+
           <li className="  mr-3 hover:bg-gray-300">
             <a href="#WorkSpaceModal-1">Create Workspace</a>
           </li>

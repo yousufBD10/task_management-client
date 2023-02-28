@@ -60,7 +60,7 @@ const Reviews = () => {
         
         <div className='px-6 py-24'>
         <h2 className='text-center text-4xl font-bold'>User Reviews</h2>
-        <h2 className='text-center text-2xl font-bold'>This is why people love TaskMaster</h2>
+        <h2 className='text-center text-2xl font-bold -mb-40'>This is why people love TaskMaster</h2>
         <Swiper
                 breakpoints={{
                     // when window width is >= 640px
@@ -75,7 +75,7 @@ const Reviews = () => {
                     },
                   }}
                   
-        slidesPerView={3}
+        // slidesPerView={3}
         spaceBetween={30}
         
          autoplay={{

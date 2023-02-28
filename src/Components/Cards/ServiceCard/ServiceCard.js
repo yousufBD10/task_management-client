@@ -10,7 +10,7 @@ const ServiceCard = ({ image, title, text }) => {
     <div className={theme?.serviceCard}>
       <article className="flex flex-col rounded-lg border border-gray-100 p-2 shadow-sm transition hover:shadow-lg sm:p-6">
         <span className="inline-block rounded p-2">
-          <img src={image} className="lg:h-36 object-cover mx-auto" alt="image" />
+          <img  className="lg:h-36 object-cover mx-auto" alt="image" src={image} />
         </span>
 
         <div className="mt-auto">

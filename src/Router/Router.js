@@ -25,6 +25,7 @@ import UserWorkspace from "../Layout/AdminDashboard/UserWorkspace";
 import UserBoard from "../Layout/AdminDashboard/UserBoard";
 import UserAllTask from "../Layout/AdminDashboard/UserAllTask";
 import Contact from "../ContactUs/Contact";
+import About from "../Components/About/About";
 
 
 const Router = createBrowserRouter([
@@ -88,6 +89,10 @@ const Router = createBrowserRouter([
       {
         path: "/terms",
         element: <Terms></Terms>
+      },
+      {
+        path: "/about",
+        element: <About></About>
       },
     ],
   },
