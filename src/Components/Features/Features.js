@@ -45,76 +45,76 @@ const Features = () => {
             title: 'Task Scheduling',
             text: `Working together is hard work—for a lot of reasons. You likely have teammates who work in different locations and different hours. Plus, everyone’s work is now spread across multiple apps. The result?`
         },
-       
+
     ]
     return (
         <div className={theme?.features}>
-        <div className='w-full md:mx-11 md:px-11 sm:px-12   pb-16 my-16'>
-            <h3 className='text-3xl text-center font-bold pt-28'>POWERFUL WAYS TO GROW</h3>
-            <h2 className='text-2xl font-bold text-center'>Do More With <span className='text-blue-700'>TaskMaster</span></h2>
-            <p className='text-sm mt-1 -mb-40 text-center font-semibold'>TaskMaster's intuitive features give any team the ability to quickly set up and customize <br /> workflows for just about anything.</p>
-            
+            <div className='md:mx-11 md:px-11 sm:px-12   pb-16 my-16'>
+                <h3 className='text-3xl text-center font-bold pt-28'>POWERFUL WAYS TO GROW</h3>
+                <h2 className='text-2xl font-bold text-center'>Do More With <span className='text-blue-700'>TaskMaster</span></h2>
+                <p className='text-sm mt-1 -mb-40 text-center font-semibold'>TaskMaster's intuitive features give any team the ability to quickly set up and customize <br /> workflows for just about anything.</p>
 
-            <Swiper
-                breakpoints={{
-                    // when window width is >= 640px
-                    640: {
-                      width: 640,
-                      slidesPerView: 1,
-                    },
-                    // when window width is >= 768px
-                    768: {
-                      width: 768,
-                      slidesPerView: 2,
-                    },
-                  }}
-                  
-        // slidesPerView={3}
-        spaceBetween={30}
-        
-         autoplay={{
-            delay:3250,
-            // disableOnInteraction: false,
-         }}
-        
-       
-        pagination={{
-          clickable: true,
-          
-        }}
-        modules={[Pagination, Autoplay]}
-        className="mySwiper"
-        >
 
-        {
-        features.map((feature, i) => 
+                <Swiper
+                    breakpoints={{
+                        // when window width is >= 640px
+                        640: {
+                            width: 640,
+                            slidesPerView: 1,
+                        },
+                        // when window width is >= 768px
+                        768: {
+                            width: 768,
+                            slidesPerView: 2,
+                        },
+                    }}
 
-        <SwiperSlide key={i} image={feature.image} title={feature.title} text={feature.text}>
-        {/* <ServiceCard key={i} image={feature.image} title={feature.title} text={feature.text}></ServiceCard> */}                  
-        <div className={theme?.feature}>
-        <div className="h-full w-72 ml-11  rounded-lg bg-white text-3xl text-left">
-        <article className=" rounded-lg border border-gray-100 p-2 transition hover:shadow-lg sm:p-6">
-            <span className="inline-block rounded p-2 h-40">
-                <img src={feature.image} className="lg:h-36 md:h-40 object-cover mx-auto" alt="image" />
-            </span>
-        <div className="mt-auto">
-            <h3 className="mt-0.5 text-lg font-medium ">{feature.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed  line-clamp-3">
-                {feature.text.slice(0,150)}...
-            </p>
-            <p>
-            <Link to={'/'} className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-black">
-            Read More <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 -translate-x-4 text-2xl opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100"><path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd"></path></svg></Link></p>         
-        </div>
-        </article>      
-        </div>
-        </div>
-        </SwiperSlide>
-        )
-        }
-        </Swiper>
-           
-        </div>
+                    // slidesPerView={3}
+                    spaceBetween={30}
+
+                    autoplay={{
+                        delay: 3250,
+                        // disableOnInteraction: false,
+                    }}
+
+
+                    pagination={{
+                        clickable: true,
+
+                    }}
+                    modules={[Pagination, Autoplay]}
+                    className="mySwiper"
+                >
+
+                    {
+                        features.map((feature, i) =>
+
+                            <SwiperSlide key={i} image={feature.image} title={feature.title} text={feature.text}>
+                                {/* <ServiceCard key={i} image={feature.image} title={feature.title} text={feature.text}></ServiceCard> */}
+                                <div className={theme?.feature}>
+                                    <div className="h-full w-72 ml-11  rounded-lg bg-white text-3xl text-left">
+                                        <article className=" rounded-lg border border-gray-100 p-2 transition hover:shadow-lg sm:p-6">
+                                            <span className="inline-block rounded p-2 h-40">
+                                                <img src={feature.image} className="lg:h-36 md:h-40 object-cover mx-auto" alt="image" />
+                                            </span>
+                                            <div className="mt-auto">
+                                                <h3 className="mt-0.5 text-lg font-medium ">{feature.title}</h3>
+                                                <p className="mt-2 text-sm leading-relaxed  line-clamp-3">
+                                                    {feature.text.slice(0, 150)}...
+                                                </p>
+                                                <p>
+                                                    <Link to={'/'} className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-black">
+                                                        Read More <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 -translate-x-4 text-2xl opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100"><path fill-rule="evenodd" d="M12.97 3.97a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 11-1.06-1.06l6.22-6.22H3a.75.75 0 010-1.5h16.19l-6.22-6.22a.75.75 0 010-1.06z" clip-rule="evenodd"></path></svg></Link></p>
+                                            </div>
+                                        </article>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                        )
+                    }
+                </Swiper>
+
+            </div>
         </div>
     );
 };
