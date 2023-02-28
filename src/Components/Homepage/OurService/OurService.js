@@ -162,13 +162,18 @@ const OurService = () => {
 
     return (
 
+<<<<<<< HEAD
         <div className='lg:mb-24  py-16 border border-none '>
             <div className='text-center -mt-16'>
+=======
+        <div className='lg:mb-24  p-8 border border-none '>
+            <div className='text-center mt-24'>
+>>>>>>> f558b8b86ba3d62b1abd1395e0bfbffbf1899e8b
                 <h3 className='font-bold text-blue-900'>BUILT FOR EVERYONE</h3>
                 <h1 className='text-3xl font-serif mt-5   font-bold'>See how TaskMaster can work for you.</h1>
             </div>
             {/* dynamic services button start */}
-            <div className='justify-around lg:flex lg:px-32 py-16'>
+            <div className='flex flex-wrap justify-around gap-2 md:gap-1 p-4'>
                 {
                     service[0] && serviceCollection.map((item, i) =>
                         <div key={i}>
@@ -184,7 +189,7 @@ const OurService = () => {
             </div>
             {/* dynamic services button end */}
             {/* service section start */}
-            {service[0] && <div className='grid grid-cols-2 lg:px-12 items-center'>
+            {service[0] && <div className='grid grid-cols-1 md:grid-cols-2 lg:px-12 items-center'>
                 <div className=' lg:px-16 '>
                     {
                         service[0].services?.map((item, i) =>
