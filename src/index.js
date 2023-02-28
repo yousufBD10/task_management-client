@@ -12,9 +12,8 @@ const queryClient = new QueryClient()
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <UserContext>
-   <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
       <App />
-
     </QueryClientProvider>
   </UserContext>
 );
