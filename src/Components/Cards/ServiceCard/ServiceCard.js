@@ -7,7 +7,7 @@ const ServiceCard = ({ image, title, text }) => {
   const {theme} = useContext(AuthContext);
   return (
     <div className={theme?.feature}>
-    <div className=" h-auto md:h-[450px] bg-sky-100  flex overflow-hidden shadow">
+    <div className=" h-auto md:h-[450px] bg-blue-200  flex overflow-hidden shadow">
       <article className="flex flex-col rounded-lg border border-gray-100 p-2 shadow-sm transition hover:shadow-lg sm:p-6">
         <span className="inline-block rounded p-2">
           <img src={image} className="lg:h-36 object-cover mx-auto" alt="image" />

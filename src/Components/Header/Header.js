@@ -15,7 +15,7 @@ const Header = () => {
     }
     return (
         <div className="py-12  grid items-center lg:grid-cols-2 px-12">
-            <div><h3 className='text-xl font-semibold font-serif mt-8 text-sky-700'> EASY PROJECT OR TASK MANAGEMENT</h3>
+            <div><h3 className='text-xl font-semibold font-serif mt-8 text-sky-700'> EASY TASK MANAGEMENT</h3>
                 <h1 className='text-6xl font-sans font-bold  mt-5'> <span className=''>Getting things done as a team quickly and easily </span></h1>
                 <h3 className='text-xl font-semibold  mt-8 '>We’re more than a doc. Or a table. Customize TaskMaster <br /> to work the way you do.</h3>
                 <form onSubmit={handleSubs}>
