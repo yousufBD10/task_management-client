@@ -69,6 +69,9 @@ const Navbar = () => {
               {" "}
               <Link to="/contact">Contact Us</Link>
             </li>
+            <li className="   mr-3 hover:bg-gray-300">
+            <Link to="/about">About</Link>
+          </li>
           </ul>
         </div>
         <div className=" ">
@@ -84,9 +87,6 @@ const Navbar = () => {
           </li>
           <li className="   mr-3 hover:bg-gray-300">
             <Link to="/pricing">Pricing</Link>
-          </li>
-          <li className="   mr-3 hover:bg-gray-300">
-            <Link to="/about">About</Link>
           </li>
           <li className="  mr-3 hover:bg-gray-300">
             {" "}
@@ -105,6 +105,9 @@ const Navbar = () => {
               {" "}
               <Link to="/contact">Contact Us</Link>
             </li>
+            <li className="   mr-3 hover:bg-gray-300">
+            <Link to="/about">About</Link>
+          </li>
         </ul>
       </div>
       <div className="navbar-end">
