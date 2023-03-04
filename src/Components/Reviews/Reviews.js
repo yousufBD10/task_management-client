@@ -99,7 +99,7 @@ const Reviews = () => {
                             <img src={user.image} className="rounded-full lg:h-24 lg:w-24 pt-2 mx-auto pl-2" alt="image" />
                             <div className='ml-3 mt-5 flex flex-col pb-11 text-left'><b>{user.name} </b>{user.user_id}</div>
                         </div>
-                        <div className='text-leftbg-slate-100 h-36 mt-3 pl-3 pt-2 pb-40 rounded-lg'>{user.review} </div>                        
+                        <div className='text-left bg-slate-100 h-36 mt-3 pl-3 pt-2 pb-40 rounded-lg'>{user.review} </div>                        
                     </div>
                 </SwiperSlide>   
             ))
