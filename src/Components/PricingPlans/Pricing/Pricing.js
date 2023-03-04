@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import useDocumentTitle from '../../../Share/useDocumentTitle';
 import PricingCard from '../PricingCard/PricingCard';
 
 const Pricing = () => {
+    useDocumentTitle("Pricing || TaskMaster");
     const [prices, setPrices] = useState([]);
     
     useEffect( () =>{

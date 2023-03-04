@@ -57,7 +57,7 @@ const Reviews = () => {
         },
     ]
     return (
-        <div className={theme?.reviews}>
+        
         <div className='px-6 py-24'>
         <h2 className='text-center text-4xl font-bold'>User Reviews</h2>
         <h2 className='text-center text-2xl font-bold -mb-40'>This is why people love TaskMaster</h2>
@@ -95,18 +95,18 @@ const Reviews = () => {
         data.map( user => (
                 <SwiperSlide key={user.id}>
                     <div className='content-center shadow-lg rounded pb-7 bg-blue-200'>                            
-                        <div className="lg:h-24 lg:w-24 lg:flex lg:flex-row rounded-full  text-black">
+                        <div className="lg:h-24 lg:w-24 lg:flex lg:flex-row rounded-full  ">
                             <img src={user.image} className="rounded-full lg:h-24 lg:w-24 pt-2 mx-auto pl-2" alt="image" />
                             <div className='ml-3 mt-5 flex flex-col pb-11 text-left'><b>{user.name} </b>{user.user_id}</div>
                         </div>
-                        <div className='text-left text-black bg-slate-100 h-36 mt-3 pl-3 pt-2 pb-40 rounded-lg'>{user.review} </div>                        
+                        <div className='text-leftbg-slate-100 h-36 mt-3 pl-3 pt-2 pb-40 rounded-lg'>{user.review} </div>                        
                     </div>
                 </SwiperSlide>   
             ))
         }
       </Swiper>
       </div>
-      </div>
+     
       );
     }
 export default Reviews;

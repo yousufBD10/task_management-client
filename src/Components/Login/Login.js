@@ -8,7 +8,7 @@ import GoogleSignIn from "../GoogleSignIn/GoogleSignIn";
 import useDocumentTitle from "../../Share/useDocumentTitle";
 
 const Login = () => {
-  useDocumentTitle("Login");
+  useDocumentTitle("Login || TaskMaster");
   const { signIn, resetPassword, jwtANDUser } = useContext(AuthContext);
   const [userEmail, setUserEmail] = useState("");
   const [userError, setUserError] = useState("");
