@@ -24,6 +24,7 @@ import PrivateRoute from "./PrivateRoute";
 import UserWorkspace from "../Layout/AdminDashboard/UserWorkspace";
 import UserBoard from "../Layout/AdminDashboard/UserBoard";
 import UserAllTask from "../Layout/AdminDashboard/UserAllTask";
+import Contact from "../ContactUs/Contact";
 import About from "../Components/About/About";
 
 
@@ -52,6 +53,10 @@ const Router = createBrowserRouter([
       {
         path: "/pricing",
         element: <Pricing></Pricing>,
+      },
+      {
+        path: '/contact',
+        element: <Contact/>
       },
 
       {

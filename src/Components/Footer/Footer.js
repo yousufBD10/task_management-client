@@ -9,8 +9,8 @@ const Footer = () => {
         <footer className={theme?.footer}>
             <div>
                 <div className='lg:w-64 h-36' >
-                <img src="/TaskMaster10.png" className='lg:w-64 h-40 -mt-6'/>
-                <p className='pl-14 -mt-10'>Task Management System</p>
+                <img src="/TaskMaster10.png" className='lg:w-40 ml-14 '/>
+                <p className='pl-14 '>Task Management System</p>
                 </div>
                 
             </div>
