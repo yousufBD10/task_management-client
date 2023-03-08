@@ -103,7 +103,7 @@ const Workspace = () => {
           )}
           <Outlet></Outlet>
         </div>
-        <div className="drawer-side shadow-lg bg-blue-200 pt-8">
+        <div className={theme?.asideMenu}>
           <label htmlFor="dashboardDawer" className="drawer-overlay"></label>
           <ul className="pl-4 pr-4 w-80 menu">
             {" "}

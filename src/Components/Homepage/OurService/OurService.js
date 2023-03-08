@@ -193,7 +193,7 @@ const OurService = () => {
                         <div key={i}>
                             <button
                                 onClick={() => serviceHandle(item.name)}
-                                className={`${item.name === service[0]?.name ? 'bg-green-600' : 'bg-gray-500 px-3 '}  hover:bg-green-600 font-bold w-28  h-8  shadow-lg`}
+                                className={`${item.name === service[0]?.name ? 'bg-green-600' : 'bg-gray-400 px-3 '}  hover:bg-green-600 font-bold w-28  h-8  shadow-lg`}
                             >
                                 {item.name}
                             </button>

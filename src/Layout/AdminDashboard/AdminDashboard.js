@@ -7,7 +7,7 @@ import { AuthContext } from '../../Context/UserContext';
 import useRole from '../../hooks/useRole';
 
 const AdminDashboard = () => {
-  const { user, reloadWorkspaces } = useContext(AuthContext);
+  const { user, theme,reloadWorkspaces } = useContext(AuthContext);
   const [role] = useRole(user?.email);
   useEffect(reloadWorkspaces, [user]);
 
@@ -33,7 +33,7 @@ const AdminDashboard = () => {
         <div className="drawer-content min-h-screen ">
           <Outlet></Outlet>
         </div>
-        <div className="drawer-side  bg-slate-800 text-white shadow-md">
+        <div className={theme?.feature}>
           <label htmlFor="dashboardDawer" className="drawer-overlay"></label>
           <ul className="p-4 w-80 menu ">
             {" "}

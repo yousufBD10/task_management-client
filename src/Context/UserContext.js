@@ -54,7 +54,8 @@ const UserContext = ({ children }) => {
       accountSection: "menu menu-compact dropdown-content mt-12 p-2 shadow-lg bg-base-100 rounded-sm w-60",
       editProfileInput: "input input-bordered w-full bg-gray-300 font-semibold ",
       boardEditeModal: "bg-gray-100 border border-stone-300 rounded py-4 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full",
-      editeWorkspaceInput: "bg-gray-100 border border-stone-300 rounded py-2 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full"
+      editeWorkspaceInput: "bg-gray-100 border border-stone-300 rounded py-2 px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 w-full",
+      asideMenu:"drawer-side shadow-lg bg-gray-200 pt-8",
     },
     dark: { 
     nav:'bg-gray-700 p-0  text-white navbar shadow-md',
@@ -82,7 +83,8 @@ const UserContext = ({ children }) => {
     accountSection:"menu menu-compact dropdown-content mt-12 p-2 shadow-lg bg-gray-700 rounded-sm w-60",
     editProfileInput:"input input-bordered w-full bg-gray-700 text-white focus:bg-gray-600 font-semibold ",
     boardEditeModal:"bg-gray-700 border border-stone-300 rounded py-4 px-3 block focus:ring-blue-500 focus:border-blue-500  w-full",
-    editeWorkspaceInput:"bg-gray-600 border border-stone-300 rounded py-2 px-3 block focus:ring-blue-500 focus:border-blue-500 text-white w-full"
+    editeWorkspaceInput:"bg-gray-600 border border-stone-300 rounded py-2 px-3 block focus:ring-blue-500 focus:border-blue-500 text-white w-full",
+    asideMenu:"drawer-side text-white shadow-lg bg-slate-800 pt-8",
 
     },
   }

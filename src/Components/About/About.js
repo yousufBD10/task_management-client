@@ -36,18 +36,18 @@ const About = () => {
       id: 6,
       name: "Md. Forhad Mia",
       title: "Founder, Task Master",
-      photo: "/assets/banner/taraque.png",
+      photo: "https://scontent.fcgp28-1.fna.fbcdn.net/v/t1.6435-9/83118426_1079047209113170_3290586522360741888_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeEO1WJeaWEwbU6hb3kA2DoeMnK41r8VcaMycrjWvxVxozm5rrG-nOEfvKOfCmZvQeJ4QeBl44Wq6G7XgZai-qsN&_nc_ohc=PcW4V6JfahgAX_3-3N3&_nc_ht=scontent.fcgp28-1.fna&oh=00_AfDnuraPoQDdwwNTeLzj8jJ6A0dPvgfjYBaKlIW4EJOCdQ&oe=64262E03",
     },
   ];
   const image = "/assets/banner/meeting-2.jpg";
   return (
-    <div className="p-4 md:p-10 bg-white">
+    <div className="p-4 md:p-10">
       <section className="md:flex pb-10">
         <div className="w-full md:p-10">
           <img src={image} alt="" />
         </div>
-        <div className="w-full md:p-12 text-black">
-          <div className="w-32 -mb-4 md:-my-8 -ml-8">
+        <div className="w-full md:p-12">
+          <div className="w-32 mb-4 md:my-8 ml-8">
             <img src="/TaskMaster10.png" alt="" />
           </div>
           <p className="text-3xl font-bold mb-6">Why Task Master?</p>
@@ -75,7 +75,7 @@ const About = () => {
         </div>
       </section>
       <section className="flex flex-col justify-center items-center pb-20">
-        <p className="text-4xl font-bold my-20 text-black">Team members</p>
+        <p className="text-4xl font-bold my-20 ">Team members</p>
 
         <div className="grid grid-cols-1 gap-x-12 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
           {members.map((member) => {
@@ -90,7 +90,7 @@ const About = () => {
                   className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square"
                 />
                 <div className="space-y-4 text-center divide-y divide-gray-700 ">
-                  <div className="my-2 space-y-1 text-gray-900">
+                  <div className="my-2 space-y-1 ">
                     <h2 className="text-xl font-semibold sm:text-2xl">
                       {member.name}
                     </h2>
