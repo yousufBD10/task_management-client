@@ -62,7 +62,7 @@ const UserContext = ({ children }) => {
     bg:'bg-gray-800 text-white',
     text:'text-white',
     features:"bg-gray-800",
-    feature:"text-white bg-gray-700 ",
+    feature:"text-black bg-gray-700 ",
     serviceCard:" h-auto md:h-[350px] bg-gray-700  flex overflow-hidden text-white shadow",
     footer:"footer p-12 text-white bg-gray-900",
     pricingCard:"my-9 mr-3 py-3 px-3 text-white card-compact w-72 h-auto bg-gray-700 shadow-2xl rounded-xl",

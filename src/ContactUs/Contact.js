@@ -24,7 +24,7 @@ return (
      <div className="my-9 min-h-screen">
     <div >
     <h1  className="text-7xl text-white text-center font-bold">
-        GET <span className="text-red-400"> IN TOUCH</span>
+        GET <span className="text-blue-400"> IN TOUCH</span>
       </h1>
       <p  className="  text-center mt-4">
         I’M ALWAYS OPEN TO DISCUSSING PRODUCT DESIGN WORK OR PARTNERSHIPS{" "}
@@ -45,7 +45,7 @@ return (
             <p className="text-xl font-bold">Email</p>
             <div className="flex items-center">
               <MdEmail className="mr-2" />
-              <p> yousufalibd391@gmail.com</p>
+              <p>team.anonymous608.5@gmail.com</p>
             </div>
           </div>
           <div className="mb-4">
@@ -112,7 +112,7 @@ return (
               required
             ></textarea>
           </div>
-          <button onClick={handleemail} type='submit' className="btn lg:w-auto w-full border-none rounded-full mt-4 bg-red-500">
+          <button onClick={handleemail} type='submit' className="btn lg:w-auto w-full border-none rounded-full mt-4 bg-blue-500">
             {" "}
             <FiSend className="mr-4"></FiSend> Send Message{" "}
           </button>
