@@ -94,7 +94,7 @@ const Reviews = () => {
         {
         data.map( user => (
                 <SwiperSlide key={user.id}>
-                    <div className='content-center shadow-lg rounded pb-7 bg-blue-200'>                            
+                    <div className='content-center shadow-lg rounded pb-7 bg-blue-200 text-black'>                            
                         <div className="lg:h-24 lg:w-24 lg:flex lg:flex-row rounded-full  ">
                             <img src={user.image} className="rounded-full lg:h-24 lg:w-24 pt-2 mx-auto pl-2" alt="image" />
                             <div className='ml-3 mt-5 flex flex-col pb-11 text-left'><b>{user.name} </b>{user.user_id}</div>
